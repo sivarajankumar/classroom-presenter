@@ -1,0 +1,1 @@
+DROP TABLE `Attends`, `Choices`, `Course`, `Feedback`, `FreeResponse`, `Instructor`, `MultipleChoice`, `Question`, `Session`, `Student`, `Survey`, `Teaches`, `User`, `VotedOn`;
