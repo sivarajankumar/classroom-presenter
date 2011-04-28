@@ -1,0 +1,156 @@
+/************ Common layout throughout multiple questions. **************/
+body{
+	margin-top: 20px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: auto;
+	width: 900px;
+}
+
+#topbanner {		/* Incognito logo (and its div) */
+	text-align:left;
+	font-size: 12pt;
+	font-weight: bold;
+	font-family: Tahoma,Verdana, sans-serif;
+}
+
+#greeting {		/* Greeting to teacher/student */
+	float: right;
+	text-align: right;
+	font-size: 12px;
+}
+
+#navigation {	/* Navigation bar */
+	background-color: #A00000; 
+	text-align: left;
+	height: 40px;
+	margin-top: 15px;
+	margin-bottom: 20px;
+}
+
+ul {		/* For unordered lists */
+	list-style-type:none;
+	margin:0;
+	padding:0; 
+	float:left;
+}
+
+li { 		/* For list items */
+	display:inline;
+	width: 150px;
+}
+
+.tab, #timeline 		/* Tabs (in the navigation bar including "View Timeline" */
+{
+	color:white;
+	font-size: 30px;
+	font-family: Calibri;
+	text-shadow: 0.01em 0.01em 0.2em #585858;
+}
+
+#timeline { 		/* Timeline-specific formatting */
+	float:right;
+	font-size: 23px;
+	text-decoration: underline;
+	margin-right: 10px;
+}
+
+#filterandsort, #sortingby, #filteringby, {		/* Filter By and Sorting features */
+	float: left;
+	margin-right: 20px;
+	vertical-align: bottom;
+} 
+
+hr {		/* Horizontal bar */
+	clear: both;
+	color: #E8E8E8;
+}
+
+/************ Teacher pages **************/
+
+#feedbox, #blankfeed {		/* Teacher feed */
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-family: Calibri;
+}
+
+#blankfeed {		/* Blank feed */
+	font-style:italic;
+}
+
+#votes, #checklist {		/* Vote and checklist column */
+	width: 100px;
+	float:left;
+	text-align:center;
+}
+
+#submission {	/* Submission text in feed */
+	width:650px;
+	float: left;
+	text-align:left;
+}
+
+span {
+	margin-left: 20px;
+}
+
+
+/************ Links **************/
+
+a {	/* Customizing link appearance */
+	border-style: none;
+	text-decoration: none;
+	color: #A00000;
+}
+
+a:hover {	/* Link hover rule */
+	text-decoration: underline;
+}
+
+.bottomlinks {	/* Link at bottom of every page */
+	clear: both;
+	position: absolute;
+	bottom: 0;
+	margin-bottom: 10px;
+	text-align: center;
+	width: 900px;
+}
+
+
+
+/************ Student Home **************/
+
+#submitbutton{
+	float: right;
+}
+
+#homebox {
+	width: 300px;
+}
+
+#submissioncontent {
+	width: 80ems;
+	margin: auto;
+}
+
+#typearea, #submitbuttondiv{
+	width: 660px;
+	margin: auto;
+}
+
+/************ Log In Page **************/
+.logincontent{
+	width: 300px;
+	margin: auto;
+}
+
+#loginbutton  {
+	float: right;
+}
+
+.logintext {
+	font-size: 20pt;
+}
+
+
+
