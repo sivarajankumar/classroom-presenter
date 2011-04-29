@@ -10,29 +10,28 @@
 
 	<body>
 		
-		<div id="topbanner"> 
-			
+		<div id="topbanner"> <!-- Includes logo & person's information/help/logout, & feed status -->			
 			<img src="logo.png" alt="logo" />
 			<div id="greeting">
-				Hello [teacher's name]! | <a href="">Your Classes</a> | <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
-				[course name] feed is currently: 
+				Hello [teacher's name]! | <a href="instructorsettings.php">Your Settings</a> | <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
+				<a href="">[course name]</a> feed is currently: 
 				<label><input type="radio" name="feedstatus" value="Open"/> Open </label>
 				<label><input type="radio" name="feedstatus" value="Closed" checked="checked"/> Closed</label>
 			</div>
 		</div>			
 
 		
-		<div id="navigation">
+		<div id="navigation">	<!-- Navigation bar -->
 			<ul>
 				<li><span><a class="tab" href="instructorfeed.php">Feed</a></span></li>
-				<li><span><a class="tab" href="surveys.php">Surveys</a></span></li>
-				<li><span><a class="tab" href="history.php">History</a></span></li>
+				<li><span><a class="tab" href="instructorfree.php">Surveys</a></span></li>
+				<li><span><a class="tab" href="instructorhistory.php">History</a></span></li>
 			</ul>		
 			<a href=""><span id="timeline">VIEW TIMELINE </span></a>
 		</div>
 		
 		<div id = "maincontent">
-			<div id="filterandsort">	
+			<div id="filterandsort">	<!-- Filtering & Sorting -->
 				<span>
 					FILTER BY: 
 					<select name="filter">
@@ -58,13 +57,14 @@
 			</div>
 			
 			<div id="feedbox">
-				<div id="votes"> Votes
+				<div class="nonSubCol">Votes	<!-- Column names in feed -->
 				</div>
-				<div id="submission"> Feed				
+				<div id="subCol">Feed				
 				</div>
-				<div id="checklist"> Answered/Read?
-				</div>	
+				<div class="nonSubCol">Answered/Read?
+				</div>					
 				<hr />
+				
 				<span id="blankfeed">(Today&#39;s feed has not yet been open. To open, refer to  top-right of window.)</span>						
 			</div>
 			
@@ -72,10 +72,10 @@
 
 		
 		
-		<div class="bottomlinks">
-			<a class="aboutlink" href="about.php">About</a> | 
-			<a class="aboutlink" href="about.php">Privacy Policy</a> | 
-			<a class="aboutlink" href="about.php">Contact Us</a>
+		<div class="bottomlinks">	<!-- Links at bottom of page -->
+			<a class="aboutlink" href="help.php">About</a> | 
+			<a class="aboutlink" href="help.php">Privacy Policy</a> | 
+			<a class="aboutlink" href="help.php">Contact Us</a>
 		</div>
 		
 	</body>

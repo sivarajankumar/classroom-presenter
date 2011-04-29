@@ -22,8 +22,8 @@
 		<div id = "maincontent">			
 			<form method="post">
 				<div class="logincontent">
-					<div class="logintext">Gmail Account: <br />
-						<input class="logincontent" name="email"/>
+					<div class="logintext">Email Account: <br />
+						<input type="text" class="logincontent" name="email"/>
 					</div>
 					<div class="logintext">Password: <br />
 						<input class="logincontent" name="password" type="password" /> <br />
@@ -39,7 +39,7 @@
 
 		
 		
-		<div class="bottomlinks">
+		<div class="bottomlinks">	<!-- Links at bottom of page -->
 			<a class="aboutlink" href="about.php">About</a> | 
 			<a class="aboutlink" href="about.php">Privacy Policy</a> | 
 			<a class="aboutlink" href="about.php">Contact Us</a>
