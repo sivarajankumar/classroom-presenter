@@ -1,3 +1,4 @@
+
 CREATE TABLE User
 (
 uid                                        INT                        NOT NULL,
