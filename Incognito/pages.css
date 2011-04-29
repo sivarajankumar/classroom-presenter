@@ -7,6 +7,10 @@ body{
 	width: 900px;
 }
 
+#maincontent {
+	
+}
+
 #topbanner {		/* Incognito logo (and its div) */
 	text-align:left;
 	font-size: 12pt;
@@ -61,9 +65,29 @@ li { 		/* For list items */
 	vertical-align: bottom;
 } 
 
+.nonSubCol, .surveyCol {		/* 1st & 3rd columns for Teacher & Student feed*/
+	width: 100px;
+	float:left;
+	text-align:center;
+}
+
+#subCol,#surveyQuestCol {	/* 2nd column: Teacher & Student feed*/
+	width:650px;
+	float: left;
+	text-align:left;
+}
+
 hr {		/* Horizontal bar */
 	clear: both;
 	color: #E8E8E8;
+}
+
+button {
+	background-color: #FFCCCC;
+	font-family: Calibri;
+	font-weight: bold;
+	border: 2px outset #A00000;  
+	font-size: 13pt;
 }
 
 /************ Teacher pages **************/
@@ -78,20 +102,22 @@ hr {		/* Horizontal bar */
 	font-style:italic;
 }
 
-#votes, #checklist {		/* Vote and checklist column */
-	width: 100px;
-	float:left;
-	text-align:center;
+#surveyQuestCol {
+	width:650px;
+	margin-left: 15px;
 }
 
-#submission {	/* Submission text in feed */
-	width:650px;
-	float: left;
-	text-align:left;
+.surveyCol {
+	width: 70px;
 }
 
 span {
 	margin-left: 20px;
+}
+
+#createSurveyArea {
+	border: 1px dotted #A8A8A8;
+	padding: 5px;
 }
 
 
@@ -109,11 +135,12 @@ a:hover {	/* Link hover rule */
 
 .bottomlinks {	/* Link at bottom of every page */
 	clear: both;
-	position: absolute;
+	/*position: absolute;*/
 	bottom: 0;
-	margin-bottom: 10px;
+	margin-bottom: 0px;
 	text-align: center;
 	width: 900px;
+	background-color:white;
 }
 
 
@@ -133,9 +160,17 @@ a:hover {	/* Link hover rule */
 	margin: auto;
 }
 
-#typearea, #submitbuttondiv{
+#typeAreaHome, #typeAreaFeed, #createSurveyArea, #submitbuttondiv{
 	width: 660px;
 	margin: auto;
+	padding-bottom: 10px;
+}
+
+/************ Student Feed *************/
+
+#typeAreaFeed, #createSurveyArea {  /* create survey is also in teacher page*/
+	margin: auto;
+	margin-bottom: 20px;
 }
 
 /************ Log In Page **************/
