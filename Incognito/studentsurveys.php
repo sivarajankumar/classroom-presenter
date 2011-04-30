@@ -62,6 +62,7 @@
 		
 		
 		<div class="bottomlinks">
+			<a class="aboutlink" href="">Report Bug</a> | 
 			<a class="aboutlink" href="about.php">About</a> | 
 			<a class="aboutlink" href="about.php">Privacy Policy</a> | 
 			<a class="aboutlink" href="about.php">Contact Us</a>

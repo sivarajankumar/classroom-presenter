@@ -83,6 +83,7 @@
 
 		
 		<div class="bottomlinks">	<!-- Links at bottom of page -->
+			<a class="aboutlink" href="">Report Bug</a> | 
 			<a class="aboutlink" href="help.php">About</a> | 
 			<a class="aboutlink" href="help.php">Privacy Policy</a> | 
 			<a class="aboutlink" href="help.php">Contact Us</a>
