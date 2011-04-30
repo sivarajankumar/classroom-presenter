@@ -31,6 +31,26 @@
 					<div>Need help? 
 						<a href="">Click here!</a>
 						<button id="loginbutton">Log In</button>
+						
+						<script>
+							function studenthome(){
+							    window.location = "studenthome.php"
+							}
+						</script>
+						
+						<script>
+							function instructorfeed(){
+							    window.location = "instructorfeed.php"
+							}
+						</script>
+
+						<form>
+							<input type="button" name="test" value="Student Home" onclick="studenthome()">
+						</form> <br/>
+						
+						<form>
+							<input type="button" name="test" value="Instructor Feed" onclick="instructorfeed()">
+						</form>
 					</div>
 				</div>
 			</form>
@@ -40,9 +60,10 @@
 		
 		
 		<div class="bottomlinks">	<!-- Links at bottom of page -->
-			<a class="aboutlink" href="about.php">About</a> | 
-			<a class="aboutlink" href="about.php">Privacy Policy</a> | 
-			<a class="aboutlink" href="about.php">Contact Us</a>
+			<a class="aboutlink" href="">Report Bug</a> | 
+			<a class="aboutlink" href="help.php">About</a> | 
+			<a class="aboutlink" href="help.php">Privacy Policy</a> | 
+			<a class="aboutlink" href="help.php">Contact Us</a>
 		</div>
 		
 	</body>
