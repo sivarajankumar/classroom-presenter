@@ -9,7 +9,7 @@
 
     <property
             name="browserFileNames"
-            value="/usr/bin/links"
+            value="/usr/bin/firefox"
             description="browserFileNames is a comma-separated list of browsers in which to run tests when StandaloneTest is invoked on this host. Each value can be a semi-colon separated list, with the second value being the program to run to shut down the browser and the third value being the display name of the browser. The second and third values are optional. For a JsUnit Server, this is a mandatory property. For example: 'c:\program files\internet explorer\iexplore.exe;c:\program files\killie.bat;Internet Explorer 6.0,c:\program files\netscape\netscape7.1\netscp.exe,c:\program files\Opera\runopera.bat'"
             />
 
@@ -44,21 +44,21 @@
     <property
             id="port"
             name="port"
-            value=""
+            value="8089"
             description="port is the port on which the JsUnitStandardServer runs. This is not a mandatory property. If not specified, 8080 is assumed. For exapmle: '8080'"
             />
 
     <property
             id="remoteMachineURLs"
             name="remoteMachineURLs"
-            value="http://localhost:8080"
+            value=""
             description="remoteMachineURLs is a property used only by the JsUnit Aggregate Server and the distributed_test target. Its value is the list of URLs of remote machines to which a request to run tests will be sent. For example: 'http://machine1.company.com:8080,http://localhost:8080,http://192.168.1.200:9090'"
             />
 
     <property
             id="resourceBase"
             name="resourceBase"
-            value=""
+            value="~/classroom-presenter/testing/jsunit"
             description="resourceBase is the directory that the JsUnitStandardServer considers to be its document root. It can be specified relative to the working directory. This is not a mandatory property. If not specified, the working directory is assumed. For example: 'c:\jsunit'"
             />
 
@@ -123,7 +123,7 @@
             <sysproperty key="port" value="${port}"/>
             <sysproperty key="resourceBase" value="."/>
             <sysproperty key="timeoutSeconds" value="${timeoutSeconds}"/>
-            <sysproperty key="url" value="http://cubist.cs.washington.edu/~ashen/testing/jsunit/testRunner.html?testpage=http://cubist.cs.washington.edu/~ashen/testing/jsunit/testTesting.html"/>
+            <sysproperty key="url" value="file:///home/ashen/classroom-presenter/testing/jsunit/testRunner.html?testPage=file:///home/ashen/classroom-presenter/testing/jsunit/testTesting.html"/>
             <test name="net.jsunit.StandaloneTest"/>
         </junit>
     </target>
