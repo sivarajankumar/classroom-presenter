@@ -1,7 +1,7 @@
 INSERT INTO User (uid, email, pass_hash)
-VALUES (12345, alice@foo.com, abcdefg);
+VALUES (12345, 'alice@foo.com', 'abcdefg');
 INSERT INTO User (uid, email, pass_hash)
-VALUES (23456, bob@foo.com, bcdefgh);
+VALUES (23456, 'bob@foo.com', 'bcdefgh');
 
 INSERT INTO Student (uid, spam_count)
 VALUES (23456, 0);
@@ -10,7 +10,7 @@ INSERT INTO Instructor (uid)
 VALUES (12345);
 
 INSERT INTO Course(cid, name, mailinglist)
-VALUES (11111, CSE403, cse403_sp11@foo.com);
+VALUES (11111, 'CSE403', 'cse403_sp11@foo.com');
 
 INSERT INTO Attends(uid, cid)
 VALUES (23456, 11111);
@@ -19,7 +19,7 @@ INSERT INTO Teaches(uid, cid)
 VALUES (12345, 11111);
 
 INSERT INTO Session(sid, cid, TimeStamp)
-VALUES (22222, '1970-01-01 00:00:01');
+VALUES (22222, 11111, '1970-01-01 00:00:01');
 
 INSERT INTO Feedback(fid, numvotes, isread, text, sid)
 VALUES (34567, 3, 0, 'feedback here', 22222);
