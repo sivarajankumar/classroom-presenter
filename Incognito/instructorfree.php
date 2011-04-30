@@ -33,8 +33,7 @@
 			<div class="submissioncontent">
 				<div id="createSurveyArea">		<!-- Includes: "Create new" types, textbox, create button, and checkbox -->
 					<span>Create New:
-						<label><input type="radio" name="createSurveyType" value="FR" checked="checked"/> Free Response</label>
-						<label><input type="radio" name="createSurveyType" value="MC"/> Multiple Choice </label>
+					<a href="instructorfree.php">Free Response </a> | <a href="instructormultiple.php">Multiple Choice</a> <!--fix these options later! redirect w/ radio buttons-->
 					</span> <br />
 					<textarea name="textfeed" rows="2" cols="79">
 					</textarea>					

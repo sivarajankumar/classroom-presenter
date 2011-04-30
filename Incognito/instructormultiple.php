@@ -34,11 +34,10 @@
 		
 			<div id="createSurveyArea">		<!-- Includes: "Create new" types, textbox, create button, and checkbox -->
 				<span>Create New:
-					<label><input type="radio" name="createSurveyType" value="FR"/> Free Response</label>
-					<label><input type="radio" name="createSurveyType" value="MC" checked="checked"/> Multiple Choice </label>
+					<a href="instructorfree.php">Free Response </a> | <a href="instructormultiple.php">Multiple Choice</a> <!--fix these options later! redirect w/ radio buttons-->
 				</span> <br />
 				<textarea name="textfeed" rows="2" cols="79">
-				</textarea>					
+				</textarea>		
 				<button type="submit" id="submitbutton">Create!</button> <br />
 				<input type="checkbox" name="createSurvey" /> I do not want to create a survey.
 			</div>
@@ -76,6 +75,7 @@
 
 			
 		<div class="bottomlinks">	<!-- Links at bottom of page -->
+			<a class="aboutlink" href="">Report Bug</a> | 
 			<a class="aboutlink" href="help.php">About</a> | 
 			<a class="aboutlink" href="help.php">Privacy Policy</a> | 
 			<a class="aboutlink" href="help.php">Contact Us</a>
