@@ -1,3 +1,6 @@
+-- This file creates all of the necessary tables we will be using to store
+-- data collected. 
+
 
 CREATE TABLE User
 (
