@@ -58,7 +58,7 @@
     <property
             id="resourceBase"
             name="resourceBase"
-            value="~/classroom-presenter/testing/jsunit"
+            value="~/www/testing/jsunit"
             description="resourceBase is the directory that the JsUnitStandardServer considers to be its document root. It can be specified relative to the working directory. This is not a mandatory property. If not specified, the working directory is assumed. For example: 'c:\jsunit'"
             />
 
@@ -123,7 +123,7 @@
             <sysproperty key="port" value="${port}"/>
             <sysproperty key="resourceBase" value="."/>
             <sysproperty key="timeoutSeconds" value="${timeoutSeconds}"/>
-            <sysproperty key="url" value="file:///home/ashen/classroom-presenter/testing/jsunit/testRunner.html?testPage=file:///home/ashen/classroom-presenter/testing/jsunit/testTesting.html"/>
+            <sysproperty key="url" value="file:///homes/cubist/ashen/www/testing/jsunit/testRunner.html?testPage=file:///homes/cubist/ashen/www/testing/jsunit/testTesting.html"/>
             <test name="net.jsunit.StandaloneTest"/>
         </junit>
     </target>
