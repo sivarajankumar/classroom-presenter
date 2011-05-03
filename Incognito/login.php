@@ -34,13 +34,13 @@
 						
 						<script>
 							function studenthome(){
-							    window.location = "studenthome.php"
+							    window.location = "students/studenthome.php"
 							}
 						</script>
 						
 						<script>
 							function instructorfeed(){
-							    window.location = "instructorfeed.php"
+							    window.location = "instr/instructorfeed.php"
 							}
 						</script>
 
