@@ -28,8 +28,7 @@
 		</div>
 		
 		<div id = "maincontent">
-			<form method="post">
-			
+			<form action="../../jscript/uiController/studentUIcontroller.js" method="post">
 				<div class="submissioncontent">	<!-- Includes: "Submit as", textbox, & submit button -->
 					<div id="typeAreaHome">
 						<span>Submit as:

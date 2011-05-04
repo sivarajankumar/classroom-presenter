@@ -5,6 +5,8 @@
  * instructor UI controller, this controller will handle the all of the 
  * state during the student's visit to Incognito. 
  */
+$question = $_GET['texthome'];
+echo $question;
 
 var currentSession;
 var timestamp;
