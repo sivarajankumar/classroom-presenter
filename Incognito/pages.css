@@ -5,6 +5,7 @@ body{
 	margin-left: auto;
 	margin-bottom: auto;
 	width: 900px;
+	font-family: Calibri;
 }
 
 #maincontent {
@@ -82,6 +83,11 @@ hr {		/* Horizontal bar */
 	color: #E8E8E8;
 }
 
+textarea {
+	resize: none;
+	text-align: left;
+}
+
 button, .loginType {
 	background-color: #FFCCCC;
 	font-family: Calibri;
@@ -118,6 +124,15 @@ span {
 #createSurveyArea {
 	border: 1px dotted #A8A8A8;
 	padding: 5px;
+}
+
+.surveyHidden {
+	display: none;
+}
+
+#createSurvey {
+	margin-left: 20px;
+	margin-bottom: 30px;
 }
 
 

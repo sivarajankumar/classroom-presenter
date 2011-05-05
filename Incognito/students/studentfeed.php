@@ -35,8 +35,7 @@
 							<label><input type="radio" name="submitType" value="Q" checked="checked"/> Question</label>
 							<label><input type="radio" name="submitType" value="F"/> Feedback </label>
 						</span> <br />
-						<textarea name="textfeed" rows="2" cols="70">
-						</textarea>					
+						<textarea name="textfeed" rows="2" cols="70"></textarea>					
 						<button type="submit" id="submitbutton">Submit</button>
 					</div>
 				</div>
