@@ -1,14 +1,17 @@
 <?php
 	
 	// Change this for whoever is using the php script
-	$database = "schwer_Incognito";
+	// These variables need to be changed for every person who sets this up
+	// Production DB: ashen; 2kV2cNct; ashen_403_Local
+	$username = "ashen";
+	$password = "2kV2cNct"; 
+	$db_name = "ashen_403_Local"; 
 
-	// Connect to the mysql server
-	$db_conn = mysql_connect("cubist.cs.washington.edu", "schwer", "Egh8vF5d"); 
-
-	// Check if we connected properly
-	if ($db_conn) {
-		die("Could not connect to the mysql server");
+	// Connect to server
+	$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+ 
+	if (!$db_conn) {
+		die("Failed to connect to the mysql server"); 
 	}
 	
 	// Select the correct database
@@ -20,5 +23,8 @@
 	$numvotes = $_POST['numvotes'];
 	$text = $_POST['text'];
 	$sid = $_POST['sid']; 
-	$query = "INSERT INTO Question VALUES (  	
+	$query = "INSERT INTO Question (qid, text, numvotes, answered, sid) VALUES ()";
+	mysql_query($query, $db_conn);
+	
+	
 ?>
