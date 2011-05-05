@@ -3,7 +3,8 @@
 
 	<head>
 		<title>Incognito</title>
-
+		<script src="/homes/cubist/chriacua/classroom-presenter/jscript/libs/jquery-1.5.2.js"></script>
+		<script src="instructorfeed.js"></script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="pages.css" type="text/css" rel="stylesheet" />
 	</head>

@@ -6,6 +6,7 @@
 
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="pages.css" type="text/css" rel="stylesheet" />
+		<script type="text/javascript" src="instructorsurvey.js"></script>
 	</head>
 
 	<body>		
@@ -33,13 +34,24 @@
 			<div class="submissioncontent">
 				<div id="createSurveyArea">		<!-- Includes: "Create new" types, textbox, create button, and checkbox -->
 					<span>Create New:
-					<a href="instructorfree.php">Free Response </a> | <a href="instructormultiple.php">Multiple Choice</a> <!--fix these options later! redirect w/ radio buttons-->
+						<input id="frButton" type="radio" name="typeSurvey" checked="checked"/> Free Response
+						<input id="mcButton" type="radio" name="typeSurvey" /> Multiple Choice
 					</span> <br />
-					<textarea name="textfeed" rows="2" cols="79">
-					</textarea>					
+					
+					<div id="freeArea">
+						<textarea name="textfeed" rows="2" cols="79"></textarea>	
+					</div>
+					
+					<div id="multArea" class="surveyHidden">
+						<textarea name="textfeed" rows="2" cols="79"></textarea>		
+						Option 1) <input type="text" name="name" size="16"/> <br /> <!--fix these options later!!!!!!!-->
+						Option 2) <input type="text" name="name" size="16"/> <br /> 	
+						Option 3) <input type="text" name="name" size="16"/> + -<br /> 
+					</div>
+				
 					<button type="submit" id="submitbutton">Create!</button> <br />
-					<input type="checkbox" name="createSurvey" /> I do not want to create a survey.
 				</div>
+				<input id="createSurvey" type="checkbox" name="createSurvey" /> I do not want to create a survey.
 			</div>
 		
 		
