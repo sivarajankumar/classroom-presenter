@@ -4,14 +4,15 @@
 
 	// Connect to the database
 
-	// These variables need to be changed for every person who sets this up
-	$username = "schwer";
-	$password = "Egh8vF5d"; 
-	$db_name = "schwer_Incognito"; 
+	// These variables need to be changed for every person who wants to use their local db.
+	// Production DB: ashen; 2kV2cNct; ashen_403_Local
+	$username = "ashen";
+	$password = "2kV2cNct"; 
+	$db_name = "ashen_403_Local"; 
 
-	$db_conn = mysql_connect("cubist.ccs.washington.edu", $username, $password);
+	$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
  
-	if ($db_conn) {
+	if (!$db_conn) {
 		die("Failed to connect to the mysql server"); 
 	}
 
