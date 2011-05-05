@@ -24,7 +24,5 @@
 	$text = $_POST['text'];
 	$sid = $_POST['sid']; 
 	$query = "INSERT INTO Question (qid, text, numvotes, answered, sid) VALUES ()";
-	mysql_query($query, $db_conn);
-	
-	
+	mysql_query($query, $db_conn);	
 ?>

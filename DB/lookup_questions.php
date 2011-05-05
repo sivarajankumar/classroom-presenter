@@ -24,6 +24,5 @@
 	$query = sprintf("SELECT * FROM Question WHERE sid = %d", $sid);
 	$results = mysql_query($query, $db_conn);
 
-	// Echo the results of the query
-	echo json_encode($results);  
+
 ?>
