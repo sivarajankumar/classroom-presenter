@@ -24,11 +24,11 @@
 	$text = $_POST['text'];
 	$sid = $_POST['sid']; 
 	$query = sprintf("INSERT INTO Question (text, numvotes, answered, sid) 
-						VALUES (%s, %d, %d, %d);", $text, $numvotes, $answered, $sid);
-	echo $query; 
-
+						VALUES ('%s', %d, %d, %d)", $text, $numvotes, $answered, $d);
+	
 	if(!mysql_query($query, $db_conn)) {
-		die("Query error: " . mysql_error()); 
-	}	
+		die("Query error: " . mysql_error());
+	}
+	
 	
 ?>
