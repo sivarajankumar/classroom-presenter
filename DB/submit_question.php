@@ -23,7 +23,8 @@
 	$numvotes = $_POST['numvotes'];
 	$text = $_POST['text'];
 	$sid = $_POST['sid']; 
-	$query = "INSERT INTO Question (qid, text, numvotes, answered, sid) VALUES ()";
+	$query = sprintf("INSERT INTO Question (text, numvotes, answered, sid) 
+						VALUES ('%s', %d, %d, %d)", $text, $numvotes, $answered, $d);
 	mysql_query($query, $db_conn);
 	
 	
