@@ -3,7 +3,9 @@
 
 	<head>
 		<title>Incognito</title>
-
+		
+		<script src="instructorfeed.js"></script>
+		
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="pages.css" type="text/css" rel="stylesheet" />
 	</head>
