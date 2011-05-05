@@ -3,7 +3,9 @@
 
 	<head>
 		<title>Incognito</title>
-
+		
+		<script src="instructorfeed.js"></script>
+		
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="pages.css" type="text/css" rel="stylesheet" />
 	</head>
@@ -35,8 +37,7 @@
 							<label><input type="radio" name="submitType" value="Q" checked="checked"/> Question</label>
 							<label><input type="radio" name="submitType" value="F"/> Feedback </label>
 						</span>
-						<textarea name="texthome" rows="10" cols="80">
-						</textarea>
+						<textarea name="texthome" rows="10" cols="80"></textarea>
 					</div>
 					<div id="submitbuttondiv"><button type="submit" id="submitbutton">Submit</button></div>
 				</div>

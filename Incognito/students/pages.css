@@ -5,6 +5,7 @@ body{
 	margin-left: auto;
 	margin-bottom: auto;
 	width: 900px;
+	font-family: Calibri;
 }
 
 #maincontent {
@@ -82,7 +83,12 @@ hr {		/* Horizontal bar */
 	color: #E8E8E8;
 }
 
-button {
+textarea {
+	resize: none;
+	text-align: left;
+}
+
+button, .loginType {
 	background-color: #FFCCCC;
 	font-family: Calibri;
 	font-weight: bold;
@@ -120,6 +126,15 @@ span {
 	padding: 5px;
 }
 
+.surveyHidden {
+	display: none;
+}
+
+#createSurvey {
+	margin-left: 20px;
+	margin-bottom: 30px;
+}
+
 
 /************ Links **************/
 
@@ -134,8 +149,8 @@ a:hover {	/* Link hover rule */
 }
 
 .bottomlinks {	/* Link at bottom of every page */
+	margin-top: 40px;
 	clear: both;
-	/*position: absolute;*/
 	bottom: 0;
 	margin-bottom: 0px;
 	text-align: center;
@@ -175,7 +190,7 @@ a:hover {	/* Link hover rule */
 
 /************ Log In Page **************/
 .logincontent{
-	width: 300px;
+	width: 200px;
 	margin: auto;
 }
 
