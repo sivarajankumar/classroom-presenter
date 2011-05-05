@@ -22,40 +22,28 @@
 		<div id = "maincontent">			
 			<form method="post">
 				<div class="logincontent">
-					<div class="logintext">Email Account: <br />
-						<input type="text" class="logincontent" name="email"/>
-					</div>
-					<div class="logintext">Password: <br />
-						<input class="logincontent" name="password" type="password" /> <br />
-					</div>
-					<div>Need help? 
-						<a href="">Click here!</a>
-						<button id="loginbutton">Log In</button>
-						
+					<div>
+						<div class="logintext">Sign me in as a...
+						</div>
+						<form>
+						<input type="button" class="loginType" value="Student" onclick="studenthome()">					
+						<input type="button" class="loginType" value="Instructor" onclick="instructorfeed()">
+						</form>
 						<script>
 							function studenthome(){
-							    window.location = "students/studenthome.php"
+								window.location = "students/studenthome.php";
 							}
-						</script>
-						
-						<script>
-							function instructorfeed(){
-							    window.location = "instr/instructorfeed.php"
-							}
-						</script>
 
-						<form>
-							<input type="button" name="test" value="Student Home" onclick="studenthome()">
-						</form> <br/>
+							function instructorfeed(){
+								window.location = "instr/instructorfeed.php"
+							}
+						</script>						
 						
-						<form>
-							<input type="button" name="test" value="Instructor Feed" onclick="instructorfeed()">
-						</form>
 					</div>
 				</div>
 			</form>
 
-		</div>
+		</div> 
 
 		
 		
