@@ -1,0 +1,3 @@
+AuthType UWNetID
+Require user shenama schwerr chriacua OR type faculty
+
