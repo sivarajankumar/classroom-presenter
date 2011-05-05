@@ -15,7 +15,7 @@
 	}
 	
 	// Select the correct database
-	mysql_select_db($database, $db_conn); 
+	mysql_select_db($db_name, $db_conn); 
 
 	// Insert the question into the table given
 	// all of the relevent fields
@@ -24,8 +24,11 @@
 	$text = $_POST['text'];
 	$sid = $_POST['sid']; 
 	$query = sprintf("INSERT INTO Question (text, numvotes, answered, sid) 
-						VALUES ('%s', %d, %d, %d)", $text, $numvotes, $answered, $d);
-	mysql_query($query, $db_conn);
-	
+						VALUES (%s, %d, %d, %d);", $text, $numvotes, $answered, $sid);
+	echo $query; 
+
+	if(!mysql_query($query, $db_conn)) {
+		die("Query error: " . mysql_error()); 
+	}	
 	
 ?>
