@@ -21,8 +21,14 @@
 	// Now query the database for all of the questions associated
 	// with the current session
 	$sid = $_POST['sid'];
-	$query = sprintf("SELECT * FROM Question WHERE sid = %d", $sid);
+	$query = sprintf("SELECT text FROM Survey, FreeResponse WHERE sessionid = 22222 and Survey.sid = FreeResponse.sid", $sid);
 	$results = mysql_query($query, $db_conn);
+	
+	while($row = mysql_fetch_array($result))
+ 	{
+  		echo $row['text'];
+  		echo "<br />";
+	}
 
 
 ?>

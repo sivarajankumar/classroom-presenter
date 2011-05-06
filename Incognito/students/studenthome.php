@@ -48,7 +48,13 @@
 		</div>
 <script>
 YUI({ filter: 'raw' }).use("autocomplete", "autocomplete-filters", "autocomplete-highlighters", function (Y) {
- 	
+ 	states = [
+
+
+
+
+
+  	     	]
 
   Y.one('#ac-input').plug(Y.Plugin.AutoComplete, {
     resultFilters    : 'phraseMatch',
