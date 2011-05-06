@@ -11,7 +11,7 @@ window.onload = function() {
 	$.ajax({
 		type: "POST",
 		url: "lookup_questions.php",
-		data: "sid=...",
+		data: "sid=22222",
 		success: function(msg){
 			data = json_decode(msg);
 			alert( data );
