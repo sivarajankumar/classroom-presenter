@@ -18,9 +18,6 @@ VALUES (23456, 11111);
 INSERT INTO Teaches(uid, cid)
 VALUES (12345, 11111);
 
-INSERT INTO Session(sid, cid, TimeStamp)
-VALUES (22222, 11111, '1970-01-01 00:00:01');
-
 INSERT INTO Feedback(fid, numvotes, isread, text, sid)
 VALUES (34567, 3, 0, 'feedback here', 22222);
 
