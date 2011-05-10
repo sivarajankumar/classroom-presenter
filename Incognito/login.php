@@ -35,7 +35,7 @@
 							}
 
 							function instructorfeed(){
-								window.location = "instr/instructorfeed.php"
+								window.location = "instr/instructorfeed.php";
 							}
 						</script>						
 						

@@ -1,3 +1,33 @@
+<?php
+
+  // Change this for whoever is using the php script
+  // These variables need to be changed for every person who sets this up
+  // Production DB: ashen; 2kV2cNct; ashen_403_Local
+  $username = "ashen";
+	$password = "2kV2cNct"; 
+	$db_name = "ashen_403_Local"; 
+
+  // Connect to server
+  $db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+ 
+  if (!$db_conn) {
+    die("Failed to connect to the mysql server"); 
+  }
+  
+  // Select the correct database
+  mysql_select_db($db_name, $db_conn); 
+  
+  // Current timestamp is auto-inserted
+  $query = sprintf("INSERT INTO Session (cid) 
+            VALUES (11111)");
+  
+  if(!mysql_query($query, $db_conn)) {
+    die("Query error: " . mysql_error());
+  }	
+  
+  mysql_close($db_conn);
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -14,7 +44,7 @@
 		<div id="topbanner"> <!-- Includes logo & person's information/help/logout, & feed status -->			
 			<img src="logo.png" alt="logo" />
 			<div id="greeting">
-				Hello [teacher's name]! | <a href="instructorsettings.php">Your Settings</a> | <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
+				Hello [teacher's name]! | <a href="instructorsettings.php">Your Settings</a> | <a class="aboutlink" href="help.php">Help</a> | <a href="../logout.php">Logout</a> <br />
 				<a href="">[course name]</a> feed is currently: 
 				<label><input type="radio" name="feedstatus" value="Open"/> Open </label>
 				<label><input type="radio" name="feedstatus" value="Closed" checked="checked"/> Closed</label>

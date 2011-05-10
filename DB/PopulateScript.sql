@@ -1,3 +1,4 @@
+
 INSERT INTO User (uid, email, pass_hash)
 VALUES (12345, 'alice@foo.com', 'abcdefg');
 INSERT INTO User (uid, email, pass_hash)
