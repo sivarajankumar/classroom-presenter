@@ -47,7 +47,8 @@ CREATE TABLE Session
 (
        sid		INT NOT NULL AUTO_INCREMENT,
        cid		INT,
-       TimeStamp	TIME,
+       start_time	TIMESTAMP DEFAULT NOW(),
+       stop_time TIMESTAMP,
        PRIMARY KEY(sid),
        FOREIGN KEY(cid) REFERENCES Course(cid)
 );
