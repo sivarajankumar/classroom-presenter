@@ -1,6 +1,6 @@
 <?php
 
-	// This file adds a new course to the database
+	// This file adds a new course to the database and returns the cid
 	
 	// Check if the proper variables were sent
 	if (isset($_POST['uid'])) {
@@ -46,6 +46,9 @@
 		// Now insert the pair
 		$query = sprintf("INSERT INTO Teaches VALUES (%d, %d);", $uid, $cid);
 		mysql_query($query, $db_conn);
+		
+		// Return the cid back to the user
+		echo $cid; 
 	}
 
 ?>

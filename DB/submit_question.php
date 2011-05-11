@@ -30,5 +30,4 @@
 		die("Query error: " . mysql_error());
 	}
 	
-	
 ?>
