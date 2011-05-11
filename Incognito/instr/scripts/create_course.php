@@ -36,12 +36,13 @@
 		
 		// We also need to insert the course id and the uid pair into the 
 		// Teaches table, but first we need to get the uid
-		$query = sprintf("SELECT cid FROM Course WHERE name = '%s' AND mailinglist = '%s' ORDER BY DESC cid;",
+		$query = sprintf("SELECT cid FROM Course WHERE name = '%s' AND mailinglist = '%s' ORDER BY cid DESC;",
 							$name, $email);
 		$results = mysql_query($query, $db_conn);
 		
-		$cid = $results['cid'];
-		
+		$row = mysql_fetch_row($results);
+		$cid = $row[0];
+	
 		// Now insert the pair
 		$query = sprintf("INSERT INTO Teaches VALUES (%d, %d);", $uid, $cid);
 		mysql_query($query, $db_conn);
