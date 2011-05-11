@@ -10,11 +10,16 @@ var data;
 window.onload = function() {
 	$.ajax({
 		type: "POST",
-		url: "lookup_questions.php",
+		url: "../../DB/lookup_questions.php",
 		data: "sid=22222",
 		success: function(msg){
-			data = json_decode(msg);
-			alert( data );
+			data = new Array();
+			for (var i = 0; i < msg.length; i++)
+			{
+				//alert( msg[i].question );
+				data[i] = msg[i].question;
 			}
+			return data;
+		}
 	});
 };
