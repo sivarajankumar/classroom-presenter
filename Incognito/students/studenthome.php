@@ -1,6 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-
+<?php
+  foreach($_POST as $var => $value)
+  {
+    echo $var . ' : ' . $value . "<br>";
+  }
+  $first_name = 'David';
+  setcookie('first_name',$first_name,time() + (86400 * 7)); // 86400 = 1 day
+  echo 'Hello '.($_COOKIE['pubcookie_s___mcmk_Incognito_students_']!='' ? $_COOKIE['pubcookie_s___mcmk_Incognito_students_'] : 'Guest'); // Hello David!
+  setcookie('first_name',$first_name,time() + (86400* 7),'/~sugar/','davidwalsh.name',true,true);
+?>
 	<head>
 		<title>Incognito</title>
 		
@@ -9,7 +18,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="pages.css" type="text/css" rel="stylesheet" />
 		<script type="text/javascript" src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script>
-		<script type="text/javascript" src="../../jscript/libs/jquery-1.5.2.js"></script>
+		<script type="text/javascript" src="../../jscript/uiViews/HomeView.js"></script>
 
 	</head>
 
@@ -54,27 +63,12 @@ YUI({ filter: 'raw' }).use("autocomplete", "autocomplete-filters", "autocomplete
 
 
 
-  	     	];
+  	     	]
 
   Y.one('#ac-input').plug(Y.Plugin.AutoComplete, {
     resultFilters    : 'phraseMatch',
     resultHighlighter: 'phraseMatch',
-    source           : function(query) {
-        var data;
-		$.ajax({
-			type: "POST",
-			url: "../../DB/lookup_questions.php",
-			data: "sid=22222", // still need to retrieve the session ID dynamically.
-			success: function(msg){
-				data = new Array();
-				for (var i = 0; i < msg.length; i++)
-				{
-					data[i] = msg[i].question;
-				}
-				}
-			});
-			return data;
-		}
+    source           : states
   });
 });
 </script>
