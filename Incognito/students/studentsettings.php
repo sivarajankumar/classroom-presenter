@@ -34,7 +34,7 @@
 				<div>
 					<h1>Your Current Courses:</h1>
 					CSE403 Leave Course					
-					<button type="submit" id="joinCourseButton">Add Course</button>
+					<button type="submit" id="joinCourseButton" onclick="">Add Course</button>
 				</div>
 					<h1> Edit Profile </h1>
 					Change Username <br />
