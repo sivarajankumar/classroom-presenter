@@ -1,14 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <?php
-  foreach($_POST as $var => $value)
-  {
-    echo $var . ' : ' . $value . "<br>";
-  }
-  $first_name = 'David';
-  setcookie('first_name',$first_name,time() + (86400 * 7)); // 86400 = 1 day
-  echo 'Hello '.($_COOKIE['pubcookie_s___mcmk_Incognito_students_']!='' ? $_COOKIE['pubcookie_s___mcmk_Incognito_students_'] : 'Guest'); // Hello David!
-  setcookie('first_name',$first_name,time() + (86400* 7),'/~sugar/','davidwalsh.name',true,true);
+  setcookie('session', $_SERVER['REMOTE_USER']);
 ?>
 	<head>
 		<title>Incognito</title>
@@ -27,7 +20,7 @@
 		<div id="topbanner"> 	<!-- Includes logo & person's information/help/logout, & course name -->
 			<img src="logo.png" alt="logo" />
 			<div id="greeting">
-				Hello [student's alias]! | <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
+				<?php echo 'Hello '.($_COOKIE['session']!='' ? $_COOKIE['session'] : 'Guest') ?> | <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
 				You are currently looking at [course name].
 			</div>
 		</div>			
