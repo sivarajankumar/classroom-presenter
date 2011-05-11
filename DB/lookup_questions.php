@@ -23,6 +23,11 @@
 	$sid = $_POST['sid'];
 	$query = sprintf("SELECT * FROM Question WHERE sid = %d", $sid);
 	$results = mysql_query($query, $db_conn);
-
+	$rows = array();
+	while($r = mysql_fetch_assoc($results))
+	{
+		$rows[] = array('question'=>$r["text"],'votes'=>$r["numvotes"]);
+	}
+	echo json_encode($rows);
 
 ?>

@@ -9,7 +9,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="pages.css" type="text/css" rel="stylesheet" />
 		<script type="text/javascript" src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script>
-		<script type="text/javascript" src="../../jscript/uiViews/HomeView.js"></script>
+		<script type="text/javascript" src="../../jscript/libs/jquery-1.5.2.js"></script>
 
 	</head>
 
@@ -54,12 +54,27 @@ YUI({ filter: 'raw' }).use("autocomplete", "autocomplete-filters", "autocomplete
 
 
 
-  	     	]
+  	     	];
 
   Y.one('#ac-input').plug(Y.Plugin.AutoComplete, {
     resultFilters    : 'phraseMatch',
     resultHighlighter: 'phraseMatch',
-    source           : states
+    source           : function(query) {
+        var data;
+		$.ajax({
+			type: "POST",
+			url: "../../DB/lookup_questions.php",
+			data: "sid=22222", // still need to retrieve the session ID dynamically.
+			success: function(msg){
+				data = new Array();
+				for (var i = 0; i < msg.length; i++)
+				{
+					data[i] = msg[i].question;
+				}
+				}
+			});
+			return data;
+		}
   });
 });
 </script>
