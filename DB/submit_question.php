@@ -17,17 +17,38 @@
 	// Select the correct database
 	mysql_select_db($db_name, $db_conn); 
 
-	// Insert the question into the table given
-	// all of the relevent fields
-	$answered = $_POST['answered'];
+	// Insert the question/feedback into the table given
+	// all of the relevant fields
+	
+	// These fields are present for both submission types
+	$type = $_POST['type'];
 	$numvotes = $_POST['numvotes'];
 	$text = $_POST['text'];
-	$sid = $_POST['sid']; 
-	$query = sprintf("INSERT INTO Question (text, numvotes, answered, sid) 
-						VALUES ('%s', %d, %d, %d)", $text, $numvotes, $answered, $sid);
+	$sid = $_POST['sid'];
 	
-	if(!mysql_query($query, $db_conn)) {
-		die("Query error: " . mysql_error());
+	// Execute the appropriate query depending on whether the submitted text
+	//	is a question or a feedback
+	if ($type == 'Q')
+	{
+		$answered = $_POST['answered'];
+		$query = sprintf("INSERT INTO Question (text, numvotes, answered, sid) 
+						VALUES ('%s', %d, %d, %d)", $text, $numvotes, $answered, $sid);
+		if(!mysql_query($query, $db_conn)) {
+			die("Query error: " . mysql_error());
+		}
+	}
+	elseif ($type == 'F')
+	{
+		$isread = $_POST['isread'];
+		$query = sprintf("INSERT INTO Feedback (text, numvotes, isread, sid)
+						VALUES ('%s', %d, %d, %d)", $text, $numvotes, $isread, $sid);
+		if(!mysql_query($query, $db_conn)) {
+			die("Query error: " . mysql_error());
+		}
+	}
+	else
+	{
+		die("Invalid submission type!");
 	}
 	
 ?>
