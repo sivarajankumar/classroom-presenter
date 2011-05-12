@@ -1,9 +1,0 @@
-<browserResult type="FAILURE" id="1304371722285" time="0.093"><browser><fullFileName>/homes/cubist/ashen/firefox/firefox</fullFileName><id>0</id><displayName>Firefox</displayName><logoPath>images/logo_firefox.gif</logoPath></browser><properties><property name="jsUnitVersion" value="2.2" /><property name="userAgent" value="Mozilla/5.0 (X11; Linux i686; rv:2.0.1) Gecko/20100101 Firefox/4.0.1" /><property name="remoteAddress" value="0:0:0:0:0:0:0:1" /><property name="url" value="file:///homes/cubist/ashen/www/testing/jsunit/testTesting.html" /><property name="testPage" value="testTesting.html" /><property name="userProperty" value="" /></properties><testCaseResults><testCaseResult type="FAILURE" name="file:///homes/cubist/ashen/www/testing/jsunit/testTesting.html:testSetupWorks" time="0.0010"><failure>"Should have equaled true for setup"&#xD;
-Expected &lt;0&gt; (Number) but was &lt;1&gt; (Number)&#xD;
-&#xD;
-Stack trace follows:&#xD;
-&gt; anonymous&#xD;
-&gt; anonymous&#xD;
-&gt; assertEquals&#xD;
-&gt; testSetupWorks&#xD;
-</failure></testCaseResult></testCaseResults></browserResult>

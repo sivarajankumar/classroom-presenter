@@ -1,5 +1,38 @@
+<?php
+
+  // Change this for whoever is using the php script
+  // These variables need to be changed for every person who sets this up
+  // Production DB: ashen; 2kV2cNct; ashen_403_Local
+  $username = "ashen";
+	$password = "2kV2cNct"; 
+	$db_name = "ashen_403_Local"; 
+
+  // Connect to server
+  $db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+ 
+  if (!$db_conn) {
+    die("Failed to connect to the mysql server"); 
+  }
+  
+  // Select the correct database
+  mysql_select_db($db_name, $db_conn); 
+  
+  // Current timestamp is auto-inserted
+  $query = sprintf("INSERT INTO Session (cid) 
+            VALUES (11111)");
+  
+  if(!mysql_query($query, $db_conn)) {
+    die("Query error: " . mysql_error());
+  }	
+  
+  mysql_close($db_conn);
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+<?php
+  setcookie('session', $_SERVER['REMOTE_USER']);
+?>
 
 	<head>
 		<title>Incognito</title>
@@ -7,6 +40,8 @@
 		<script src="instructorfeed.js"></script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="pages.css" type="text/css" rel="stylesheet" />
+		<script src="jquery-1.5.2.js" type="text/javascript"></script>
+		<script type="text/javascript" src="testingInstructorFeed.js"></script
 	</head>
 
 	<body>
@@ -14,10 +49,9 @@
 		<div id="topbanner"> <!-- Includes logo & person's information/help/logout, & feed status -->			
 			<img src="logo.png" alt="logo" />
 			<div id="greeting">
-				Hello [teacher's name]! | <a href="instructorsettings.php">Your Settings</a> | <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
+				<?php echo 'Hello '.($_COOKIE['session']!='' ? $_COOKIE['session'] : 'Guest') ?> | <a href="instructorsettings.php">Your Settings</a> | <a class="aboutlink" href="help.php">Help</a> | <a href="../logout.php">Logout</a> <br />
 				<a href="">[course name]</a> feed is currently: 
 				<label><input type="radio" name="feedstatus" value="Open"/> Open </label>
-				<label><input type="radio" name="feedstatus" value="Closed" checked="checked"/> Closed</label>
 			</div>
 		</div>			
 
@@ -53,20 +87,26 @@
 				
 				<span>
 					SORT BY:
-					<a href="" >NEWEST</a> | <a href="" >HIGHEST PRIORITY</a>
+					<a href="#feedbox" id="newest" >NEWEST</a> | <a href="#feedbox" id="priority">HIGHEST PRIORITY</a>
 				</span>				  
 			</div>
 			
 			<div id="feedbox">
 				<div class="nonSubCol">Votes	<!-- Column names in feed -->
+					<div id = "viewVotesCol" class="feed">
+					</div>
 				</div>
-				<div id="subCol">Feed				
+				<div id="subCol">Feed		
+					<div id = "feedCol" class="feed">
+					</div>				
 				</div>
 				<div class="nonSubCol">Answered/Read?
+					<div id = "answerCol" class="feed">
+					</div>
 				</div>					
 				<hr />
 				
-				<span id="blankfeed">(Today&#39;s feed has not yet been open. To open, refer to  top-right of window.)</span>						
+				<span id="blankfeed"><!--(Today&#39;s feed has not yet been open. To open, refer to your settings.)--></span>						
 			</div>
 			
 		</div>

@@ -1,2 +1,2 @@
 AuthType UWNetID
-Require user shenama schwer chriacua OR type student
+Require valid-user
