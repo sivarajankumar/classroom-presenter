@@ -12,6 +12,7 @@ CREATE TABLE Student
 (
 	uid		INT NOT NULL,
 	spam_count	INT NOT NULL,
+	alias	VARCHAR(30), 
 	PRIMARY KEY (uid),
 	FOREIGN KEY(uid) REFERENCES User(uid)
 );
