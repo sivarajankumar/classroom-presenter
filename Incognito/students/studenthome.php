@@ -12,6 +12,8 @@
 		<link href="pages.css" type="text/css" rel="stylesheet" />
 		<script type="text/javascript" src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script>
 		<script type="text/javascript" src="../../jscript/uiViews/HomeView.js"></script>
+		<script type="text/javascript" src="../../jscript/uiController/studentUIcontroller.js"></script>
+		<script type="text/javascript" src="../../jscript/libs/jquery-1.5.2.js"></script>
 
 	</head>
 
@@ -35,7 +37,7 @@
 		</div>
 		
 		<div id = "maincontent">
-			<form action="../../jscript/uiController/studentUIcontroller.js" method="post">
+			<form id="submitform">
 				<div class="submissioncontent">	<!-- Includes: "Submit as", textbox, & submit button -->
 					<div id="typeAreaHome">
 						<span>Submit as:
@@ -44,7 +46,7 @@
 						</span>
 						<textarea name="texthome" id="ac-input" rows="10" cols="80"></textarea>
 					</div>
-					<div id="submitbuttondiv"><button type="submit" id="submitbutton">Submit</button></div>
+					<div id="submitbuttondiv"><button type="button" id="submitbutton" onClick="onSubmit()">Submit</button></div>
 				</div>
 			</form>
 		</div>
@@ -56,12 +58,27 @@ YUI({ filter: 'raw' }).use("autocomplete", "autocomplete-filters", "autocomplete
 
 
 
-  	     	]
+  	     	];
 
   Y.one('#ac-input').plug(Y.Plugin.AutoComplete, {
     resultFilters    : 'phraseMatch',
     resultHighlighter: 'phraseMatch',
-    source           : states
+    source           : function(query) {
+		$.ajax({
+			type: "POST",
+			url: "../../DB/lookup_questions.php",
+			data: "sid=22222", // still need to retrieve the session ID dynamically.
+			success: function(msg){
+				data = new Array();
+				for (var i = 0; i < msg.length; i++)
+				{
+					//alert( msg[i].text );
+					data[i] = msg[i].text;
+				}
+			}
+		});
+		return data;
+	}
   });
 });
 </script>
