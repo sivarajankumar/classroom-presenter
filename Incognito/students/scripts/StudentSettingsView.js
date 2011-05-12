@@ -13,7 +13,31 @@ function getCourses(studentId, handleCourses) {
 	$.post("scripts/get_courses.php",
 			{uid: studentId},
 			function(data) {
-				results = JSON.parse(data);
+				var results = JSON.parse(data);
 				handleCourses(results);
 			});
+}
+
+// This function, given a studentId and a courseId will 
+// add to the database that the student is attending the course.
+//
+// TODO: Add a error handling function, need to coordinate with
+//		 front-end team about this. 
+function addCourse(studentId, courseId) {
+	
+	// Make the AJAX call to the backend
+	$.post("scripts/add_course.php",
+			{uid: studentId, cid: courseId});
+}
+
+// This function, given a studentId and a courseId will remove
+// the student from attendance of that specific course. 
+//
+// TODO: Add a error handling function, need to coordinate with
+//       the front-end team about this. 
+function removeCourse(studentId, courseId) {
+	
+	// Make the AJAX call to the backend
+	$.post("scripts/delete_course.php",
+			{uid: studentId, cid: courseId});
 }

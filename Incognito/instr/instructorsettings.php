@@ -6,6 +6,8 @@
 
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="pages.css" type="text/css" rel="stylesheet" />
+		<script src="jquery-1.5.2.js" type="text/javascript"></script>
+		<script type="text/javascript" src="testing.js"></script>  <!-- for unit tests-->
 	</head>
 
 	<body>
@@ -34,9 +36,10 @@
 
 			<div id="feedbox">
 				<div>
-					<h1>Your Current Courses:</h1>
-					CSE403 Remove [add code] 
-					<button type="submit" id="addCourseButton">Add Course</button>
+					<h1>Your Current Courses:</h1>	
+					<div id="courseInfo"></div>		
+					Add course: <input type="text" id="courseName"/>
+					<button type="submit" id="courseSubmitButton"/>Add!</button>
 				</div>
 					<h1> Edit Profile </h1>
 					Change Password <br>

@@ -1,4 +1,27 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<script src="jquery-1.5.2.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="studentfeed.js"></script>		
+
+<script type="text/javascript">
+  $(document).ready(function()
+  {
+    $("#submit").click(
+    function()
+    {
+      var query_string = '';
+
+      $("input[@type='checkbox'][@name='checkbox_name']").each(
+      function()
+      {
+        if(this.checked)
+        {
+          query_string += "&checkbox_name[]=" + this.value;
+        }
+      });
+    });
+  });
+</script>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head>
@@ -27,7 +50,7 @@
 		</div>
 		
 		<div id = "maincontent">
-			<form method="post">
+			<form action method="post">
 			
 				<div class="submissioncontent">	<!-- Includes: "Submit as", textbox, & submit button -->
 					<div id="typeAreaFeed">
@@ -35,7 +58,8 @@
 							<label><input type="radio" name="submitType" value="Q" checked="checked"/> Question</label>
 							<label><input type="radio" name="submitType" value="F"/> Feedback </label>
 						</span> <br />
-						<textarea name="textfeed" rows="2" cols="70"></textarea>					
+						<input type="text" name="txtValue" value="" id="txtValue" size="80" maxlength="8"">
+            <div id="display"></div>
 						<button type="submit" id="submitbutton">Submit</button>
 					</div>
 				</div>
@@ -77,6 +101,9 @@
 				
 				<hr />	
 			</div>
+      
+      <input type="text" name="txtVal" value="" id="txtVal" size="80" maxlength="8"">
+      <div id="displayfeed"></div>
 			
 		</div>
 

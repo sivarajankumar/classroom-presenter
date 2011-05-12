@@ -33,14 +33,16 @@ CREATE TABLE Attends
        uid		INT,
        cid		INT,
        FOREIGN KEY(uid) REFERENCES Student(uid),
-       FOREIGN KEY(cid) REFERENCES Course(cid)
+       FOREIGN KEY(cid) REFERENCES Course(cid),
+       PRIMARY KEY(uid, cid)
 );
 CREATE TABLE Teaches
 (
        uid		INT,
        cid		INT,
        FOREIGN KEY(uid) REFERENCES Teacher(uid),
-       FOREIGN KEY(cid) REFERENCES Course(cid)
+       FOREIGN KEY(cid) REFERENCES Course(cid),
+       PRIMARY KEY(uid, cid)
 );
 CREATE TABLE Session
 (
