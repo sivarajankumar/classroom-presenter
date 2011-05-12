@@ -5,4 +5,21 @@
  * of Incognito.  
  */
 
+var data;
 
+window.onload = function() {
+	$.ajax({
+		type: "POST",
+		url: "../../DB/lookup_questions.php",
+		data: "sid=22222",
+		success: function(msg){
+			data = new Array();
+			for (var i = 0; i < msg.length; i++)
+			{
+				//alert( msg[i].question );
+				data[i] = msg[i].question;
+			}
+			return data;
+		}
+	});
+};

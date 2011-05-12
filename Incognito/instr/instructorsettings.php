@@ -13,7 +13,7 @@
 		<div id="topbanner"> <!-- Includes logo & person's information/help/logout, & feed status -->			
 			<img src="logo.png" alt="logo" />
 			<div id="greeting">
-				Hello [teacher's name]! | <a href="instructorsettings.php">Your Settings</a> | <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
+				<?php echo 'Hello '.($_COOKIE['session']!='' ? $_COOKIE['session'] : 'Guest') ?>  | <a href="instructorsettings.php">Your Settings</a> | <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
 				<a href="">[course name]</a> feed is currently: 
 				<label><input type="radio" name="feedstatus" value="Open"/> Open </label>
 				<label><input type="radio" name="feedstatus" value="Closed" checked="checked"/> Closed</label>

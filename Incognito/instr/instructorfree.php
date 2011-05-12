@@ -13,7 +13,7 @@
 		<div id="topbanner"> 		<!-- Includes logo & person's information/help/logout, & feed status -->	
 			<img src="logo.png" alt="logo" />
 			<div id="greeting">
-				Hello [teacher's name]! | <a href="instructorsettings.php">Your Settings</a> | <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
+				<?php echo 'Hello '.($_COOKIE['session']!='' ? $_COOKIE['session'] : 'Guest') ?>  | <a href="instructorsettings.php">Your Settings</a> | <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
 				<a href="">[course name]</a> feed is currently: 
 				<label><input type="radio" name="feedstatus" value="Open"/> Open </label>
 				<label><input type="radio" name="feedstatus" value="Closed" checked="checked"/> Closed</label>
@@ -41,15 +41,16 @@
 					<div id="freeArea">
 						<textarea name="textfeed" rows="2" cols="79"></textarea>	
 					</div>
-					
-					<div id="multArea" class="surveyHidden">
-						<textarea name="textfeed" rows="2" cols="79"></textarea>		
-						Option 1) <input type="text" name="name" size="16"/> <br /> <!--fix these options later!!!!!!!-->
-						Option 2) <input type="text" name="name" size="16"/> <br /> 	
-						Option 3) <input type="text" name="name" size="16"/> + -<br /> 
-					</div>
+					<form action="../../DB/submit_survey.php" method="post">
+            <div id="multArea" class="surveyHidden">
+              <textarea name="text" rows="2" cols="79"></textarea>		
+              Option 1) <input type="text" name="name" size="16"/> <br /> <!--fix these options later!!!!!!!-->
+              Option 2) <input type="text" name="name" size="16"/> <br /> 	
+              Option 3) <input type="text" name="name" size="16"/> + -<br /> 
+            </div>
 				
-					<button type="submit" id="submitbutton">Create!</button> <br />
+            <button type="submit" id="submitbutton">Create!</button> <br />
+          </form>
 				</div>
 				<input id="createSurvey" type="checkbox" name="createSurvey" /> I do not want to create a survey.
 			</div>
