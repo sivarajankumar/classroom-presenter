@@ -20,7 +20,7 @@
 		
 		// Do an check to ensure that the user is a student
 		$uid = $_POST['uid'];
-		$query = sprintf("SELECT * FROM Student WHERE s.uid = %d;", $uid);
+		$query = sprintf("SELECT * FROM Student WHERE uid = %d;", $uid);
 		$results = mysql_query($query, $db_conn);
 		
 		// Check if we have no results
