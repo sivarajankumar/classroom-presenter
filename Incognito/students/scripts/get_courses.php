@@ -19,6 +19,7 @@
 		mysql_select_db($db_name, $db_conn);
 		
 		// Now run the query to fetch all of the courses
+		$uid = $_POST['uid'];
 		$query = sprintf("SELECT c.cid, c.name, c.mailinglist FROM Course c, Attends a WHERE a.uid = %d AND a.cid = c.cid;",
 						$uid);
 		$results = mysql_query($query, $db_conn);
