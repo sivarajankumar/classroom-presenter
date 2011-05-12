@@ -13,7 +13,7 @@ function getCourses(studentId, handleCourses) {
 	$.post("scripts/get_courses.php",
 			{uid: studentId},
 			function(data) {
-				results = JSON.parse(data);
+				var results = JSON.parse(data);
 				handleCourses(results);
 			});
 }
