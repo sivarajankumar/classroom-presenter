@@ -17,3 +17,15 @@ function getCourses(studentId, handleCourses) {
 				handleCourses(results);
 			});
 }
+
+// This function, given a studentId and a courseId will 
+// add to the database that the student is attending the course.
+//
+// TODO: Add a error handling function, need to coordinate with
+//		 front-end team about this. 
+function addCourse(studentId, courseId) {
+	
+	// Make the AJAX call to the backend
+	$.post("scripts/add_course.php",
+			{uid: studentId, cid: courseId});
+}
