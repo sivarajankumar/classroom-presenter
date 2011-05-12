@@ -4,7 +4,7 @@
 	// will add the student as someone who attends that course.
 	
 	// First check that we are given a uid (user id) and a session id (sid)
-	if (isset($_POST['uid']) && isset($_POST['sid'])) {
+	if (isset($_POST['uid']) && isset($_POST['cid'])) {
 		
 		// Connect to the database
 		$username = "schwer";
@@ -20,8 +20,8 @@
 		
 		// Now insert the student, session pair in the attends table
 		$uid = $_POST['uid'];
-		$sid = $_POST['sid'];
-		$query = sprintf("INSERT INTO Attends Values (%d, %d);")
+		$sid = $_POST['cid'];
+		$query = sprintf("INSERT INTO Attends VALUES (%d, %d);", $uid, $sid);
 		$results = mysql_query($query, $db_conn);
 		
 		// Do some error checking
