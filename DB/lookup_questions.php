@@ -26,8 +26,17 @@
 	$rows = array();
 	while($r = mysql_fetch_assoc($results))
 	{
-		$rows[] = array('question'=>$r["text"],'votes'=>$r["numvotes"]);
+		$rows[] = array('text'=>$r["text"],'votes'=>$r["numvotes"],'answered'=>$r["answered"],'type'=>'Q');
 	}
+	
+	$query = sprintf("SELECT * FROM Feedback WHERE sid = %d", $sid);
+	$results = mysql_query($query, $db_conn);
+	while($r = mysql_fetch_assoc($results))
+	{
+		$rows[] = array('text'=>$r["text"],'votes'=>$r["numvotes"],'isread'=>$r["isread"],'type'=>'F');
+	}
+	
+	header('Content-type: application/json');
 	echo json_encode($rows);
 
 ?>
