@@ -25,6 +25,7 @@ function getFeed(sid)
 				{
 					data[i][2] = msg[i].isread;
 				}
+				data[i][3] = msg[i].type;
 			}
 		}
 	});
