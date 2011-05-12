@@ -40,6 +40,8 @@
 		<script src="instructorfeed.js"></script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="pages.css" type="text/css" rel="stylesheet" />
+		<script src="jquery-1.5.2.js" type="text/javascript"></script>
+		<script type="text/javascript" src="testingInstructorFeed.js"></script
 	</head>
 
 	<body>
@@ -50,7 +52,6 @@
 				<?php echo 'Hello '.($_COOKIE['session']!='' ? $_COOKIE['session'] : 'Guest') ?> | <a href="instructorsettings.php">Your Settings</a> | <a class="aboutlink" href="help.php">Help</a> | <a href="../logout.php">Logout</a> <br />
 				<a href="">[course name]</a> feed is currently: 
 				<label><input type="radio" name="feedstatus" value="Open"/> Open </label>
-				<label><input type="radio" name="feedstatus" value="Closed" checked="checked"/> Closed</label>
 			</div>
 		</div>			
 
@@ -86,20 +87,26 @@
 				
 				<span>
 					SORT BY:
-					<a href="" >NEWEST</a> | <a href="" >HIGHEST PRIORITY</a>
+					<a href="#feedbox" id="newest" >NEWEST</a> | <a href="#feedbox" id="priority">HIGHEST PRIORITY</a>
 				</span>				  
 			</div>
 			
 			<div id="feedbox">
 				<div class="nonSubCol">Votes	<!-- Column names in feed -->
+					<div id = "viewVotesCol" class="feed">
+					</div>
 				</div>
-				<div id="subCol">Feed				
+				<div id="subCol">Feed		
+					<div id = "feedCol" class="feed">
+					</div>				
 				</div>
 				<div class="nonSubCol">Answered/Read?
+					<div id = "answerCol" class="feed">
+					</div>
 				</div>					
 				<hr />
 				
-				<span id="blankfeed">(Today&#39;s feed has not yet been open. To open, refer to  top-right of window.)</span>						
+				<span id="blankfeed"><!--(Today&#39;s feed has not yet been open. To open, refer to your settings.)--></span>						
 			</div>
 			
 		</div>
