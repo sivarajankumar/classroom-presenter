@@ -17,22 +17,18 @@
 		
 		mysql_select_db($db_name, $db_conn);
 		
-		// First check whether the user sent is a instructor
-		$uid = $_POST['uid']; 
-		$query = sprintf("SELECT * FROM Instructor WHERE uid = %d", $uid);
-		$results = mysql_query($query, $db_conn);
-		
-		// If the results are empty then we throw an error
-		if (!mysql_fetch_row($results)) {
-			die("Unauthorized access to this website");
-		}
-		
 		// Now add the course to the Course table
+		$uid = $_POST['uid'];
 		$name = $_POST['name'];
 		$email = $_POST['email'];
 		$query = sprintf("INSERT INTO Course (name, mailinglist) VALUES ('%s', '%s');", 
 							$name, $email);
-		mysql_query($query, $db_conn);
+		$results = mysql_query($query, $db_conn);
+		
+		// Do some error checking
+		if (!$results) {
+			die("Error: " + mysql_error($db_conn));
+		}
 		
 		// We also need to insert the course id and the uid pair into the 
 		// Teaches table, but first we need to get the uid
