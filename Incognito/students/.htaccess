@@ -1,0 +1,3 @@
+AuthType UWNetID
+Require type student
+Require valid-user
