@@ -23,10 +23,14 @@
 	$sid = $_POST['sid'];
 	$query = sprintf("SELECT text FROM Survey, FreeResponse WHERE sessionid = 22222 and Survey.sid = FreeResponse.sid", $sid);
 	$results = mysql_query($query, $db_conn);
+
+	echo "what is going on?";
+	echo "<br />";
 	
 	while($row = mysql_fetch_array($result))
  	{
-  		echo $row['text'];
+		echo "hello";
+  		echo "Question: " . $row['text'] . "    cool!";
   		echo "<br />";
 	}
 
