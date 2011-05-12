@@ -13,7 +13,7 @@
 		<div id="topbanner"> <!-- Includes logo & person's information/help/logout, & feed status -->			
 			<img src="logo.png" alt="logo" />
 			<div id="greeting">
-				Hello [student's alias]! | <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
+				<?php echo 'Hello '.($_COOKIE['session']!='' ? $_COOKIE['session'] : 'Guest') ?>  | <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
 				You are currently looking at [course name].
 			</div>
 		</div>			
@@ -34,7 +34,7 @@
 				<div>
 					<h1>Your Current Courses:</h1>
 					CSE403 Leave Course					
-					<button type="submit" id="joinCourseButton">Add Course</button>
+					<button type="submit" id="joinCourseButton" onclick="">Add Course</button>
 				</div>
 					<h1> Edit Profile </h1>
 					Change Username <br />

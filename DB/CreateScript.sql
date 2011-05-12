@@ -6,7 +6,6 @@ CREATE TABLE User
 (
 	uid		INT NOT NULL AUTO_INCREMENT,
 	email   	VARCHAR(50) NOT NULL,
-	pass_hash	VARCHAR(50) NOT NULL,
 PRIMARY KEY (uid)
 );
 CREATE TABLE Student
@@ -47,7 +46,9 @@ CREATE TABLE Session
 (
        sid		INT NOT NULL AUTO_INCREMENT,
        cid		INT,
-       TimeStamp	TIME,
+       uid    INT,
+       start_time	TIMESTAMP DEFAULT NOW(),
+       stop_time TIMESTAMP,
        PRIMARY KEY(sid),
        FOREIGN KEY(cid) REFERENCES Course(cid)
 );

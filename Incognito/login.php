@@ -26,17 +26,14 @@
 						<div class="logintext">Sign me in as a...
 						</div>
 						<form>
-						<input type="button" class="loginType" value="Student" onclick="studenthome()">					
-						<input type="button" class="loginType" value="Instructor" onclick="instructorfeed()">
+						<input type="button" class="loginType" value="Student" onclick="redirect('students/studenthome.php')">					
+						<input type="button" class="loginType" value="Instructor" onclick="redirect('instr/instructorfeed.php')">
 						</form>
 						<script>
-							function studenthome(){
-								window.location = "students/studenthome.php";
-							}
-
-							function instructorfeed(){
-								window.location = "instr/instructorfeed.php"
-							}
+							function redirect(url)
+              {
+               location.href = url;
+              }
 						</script>						
 						
 					</div>
