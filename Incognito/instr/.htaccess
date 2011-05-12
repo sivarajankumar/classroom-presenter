@@ -1,0 +1,3 @@
+AuthType UWNetID
+Require type faculty
+Require valid-user
