@@ -29,3 +29,15 @@ function addCourse(studentId, courseId) {
 	$.post("scripts/add_course.php",
 			{uid: studentId, cid: courseId});
 }
+
+// This function, given a studentId and a courseId will remove
+// the student from attendance of that specific course. 
+//
+// TODO: Add a error handling function, need to coordinate with
+//       the front-end team about this. 
+function removeCourse(studentId, courseId) {
+	
+	// Make the AJAX call to the backend
+	$.post("scripts/delete_course.php",
+			{uid: studentId, cid: courseId});
+}
