@@ -32,9 +32,8 @@
 		$row = mysql_fetch_row($results);
 
 		// Now insert the student, session pair in the attends table
-		$uid = $_POST['uid'];
-		$sid = $row[0];
-		$query = sprintf("INSERT INTO Attends VALUES (%d, %d);", $uid, $sid);
+		$uid = $row[0];
+		$query = sprintf("INSERT INTO Attends (uid, cid) VALUES (%d, %d);", $uid, $cid);
 		$results = mysql_query($query, $db_conn);
 
 		// Do some error checking
