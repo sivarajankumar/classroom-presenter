@@ -107,12 +107,20 @@ CREATE TABLE Choices
        text		TEXT,
        FOREIGN KEY(sid) REFERENCES Survey(sid)
 );
-CREATE TABLE VotedOn
+CREATE TABLE QuestionVotedOn
 (
        uid        	INT,
        qid        	INT,
        FOREIGN KEY(qid) REFERENCES Question(qid),
        FOREIGN KEY(uid) REFERENCES Student(uid)
+);
+
+CREATE TABLE FeedbackVotedOn
+(
+	uid				INT,
+	fid				INT,
+	FOREIGN KEY(fid) REFERENCES Feedback(fid),
+	FOREIGN KEY(uid) REFERENCES Student(uid)
 );
 
 CREATE TABLE Joined
