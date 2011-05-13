@@ -3,43 +3,6 @@
 <script type="text/javascript" src="studentfeed.js"></script>
 <script type="text/javascript" src="studentUIcontroller.js"></script>		
 
-<script type="text/javascript">
-  $(document).ready(function()
-  {
-    $("#submit").click(
-    function()
-    {
-      var query_string = '';
-
-      $("input[@type='checkbox'][@name='checkbox_name']").each(
-      function()
-      {
-        if(this.checked)
-        {
-          query_string += "&checkbox_name[]=" + this.value;
-        }
-      });
-      $.ajax(
-      {
-        type: "POST",
-        url: "postdata.php",
-        data: "id=1" + query_string,
-        success: 
-        function(t) 
-        {
-          $("div#content").empty().append(t);
-        },
-        error:
-        function()
-        {
-          $("div#content").append("An error 
-          occured during processing");
-        }
-      }); 
-    });
-  });
-</script>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head>
@@ -151,15 +114,27 @@
 				
 				<hr />	
 			</div>
-
-      <input type="checkbox" name="checkbox_name" value="English">First Feed<br>
-      <input type="checkbox" name="checkbox_name" value="Hindi">Second Feed<br>
-      <input type="checkbox" name="checkbox_name" value="French">Third Feed<br>
-      <input type="checkbox" name="checkbox_name" value="Japanese">Fourth Feed<br>
-
-      <input type="submit" id="submit" value='Submit' />
-
-      <p> </p>
+      
+      <div id="feed">
+        <?php 
+          $feed = array( array("checked", "First Feed" , "answered"),
+                         array("unchecked", "First Feed" , "unanswered"),
+                         array("checked", "First Feed" , "answered") 
+                       );
+          
+          echo "<table>";
+          for($row = 0; $row < 3; $row++)
+          {
+            echo "<tr>";
+            for($col = 0; $col < 3; $col++)
+            {
+              echo "<td>".$feed[$row][$col]."</td>";
+            }
+            echo "</tr>";
+          }
+          echo "</table>";
+        ?>
+      </div>
 			
 		</div>
 
