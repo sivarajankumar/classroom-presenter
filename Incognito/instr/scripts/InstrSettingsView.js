@@ -61,4 +61,14 @@ function updateStudents(studentEmail, courseId) {
 	$.post("scripts/addStudent.php",
 			{email: studentEmail, cid: courseId});
 }
+
+// This function takes a courseId and removes the course from the database.
+//
+// TODO: Eventually this function will have a callback that indicates the 
+//       success or failure of this function call. 
+function deleteCourse(courseId) {
+	
+	$.post("scripts/delete_course.php",
+			{cid: courseId});
+}
 	
