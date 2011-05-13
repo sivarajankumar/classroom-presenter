@@ -11,13 +11,13 @@
 		endSession(sessionId);
 	});
 	
-	$("#courseSubmitButton").click(function(event)
+	$("#courseSubmitButton").click(function(event){
 		var courseIs = $("#courseName").val();
 		var mailIs = $("#mailingList").val();
 		createCourse(courseIs, mailIs);
 		place = getCourses(cookieSession_uwid);
 		$("#courseInfo").html(place);
-	)};
+	});
 });
  
  
