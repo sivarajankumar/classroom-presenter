@@ -5,6 +5,18 @@
  * manage the state of the setting view.  
  */
 
+// This function, given a courseId, will create a session for that course
+function startSession(courseId) {
+	$.post("scripts/start_session.php",
+			{cid: courseId});
+}
+
+// This function, given a sessionId, will end and delete that session
+function endSession(sessionId) {
+	$.post("scripts/end_session.php",
+			{sid: sessionId});
+}
+
 // This function will make an http request to retreive 
 // course information pertaining to a specific instructor
 // given the email of the instructor. In addition, you must
