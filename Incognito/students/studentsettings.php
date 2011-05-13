@@ -7,7 +7,10 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="pages.css" type="text/css" rel="stylesheet" />
 		<script src="jquery-1.5.2.js" type="text/javascript"></script>
-		<script type="text/javascript" src="testing.js"></script>  <!-- for unit tests-->
+		<!--<script type="text/javascript" src="testing.js"></script>   for unit tests-->
+		<script type="text/javascript" src="studentSettings.js"></script>
+		<script type="text/javascript" src="jquery.cookie.js"></script>
+		<script type="text/javascript" src="scripts/StudentSettingsView.js"></script>
 	</head>
 
 	<body>
@@ -15,7 +18,7 @@
 		<div id="topbanner"> <!-- Includes logo & person's information/help/logout, & feed status -->			
 			<img src="logo.png" alt="logo" />
 			<div id="greeting">
-				<?php echo 'Hello '.($_COOKIE['session']!='' ? $_COOKIE['session'] : 'Guest') ?>  | <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
+				<span id="cook"><?php echo 'Hello '.($_COOKIE['session']!='' ? $_COOKIE['session'] : 'Guest') ?></span> | <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
 				You are currently looking at [course name].
 			</div>
 		</div>			
@@ -40,8 +43,11 @@
 					<button type="submit" id="courseSubmitButton"/>Add!</button>-->
 				</div>
 					<h1> Edit Profile </h1>
-					Change Username:  <br /> <!--<?php# SETCOOKIE('session', '$studentchangedname');?> -->
+					Change Alias:  <input type="text" id="aliasName"/>
+					<button type="submit" id="aliasChangeButton"/>Change!</button>
+					<br /> <!--<?php# SETCOOKIE('session', '$studentchangedname');?> -->
 			</div>
+			
 			
 		</div>
 
