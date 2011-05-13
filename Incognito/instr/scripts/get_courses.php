@@ -20,20 +20,20 @@
 		
 		// Query the database for all courses that the teacher teaches
 		$email = $_POST['email'];
-		$query = sprintf("SELECT c.name, s.open FROM User u, Teaches t, Course c, Session s WHERE u.email = '%s' AND t.uid = u.uid AND t.cid = c.cid AND s.cid = t.cid;", $email);
+		$query = sprintf("SELECT c.cid, c.name, s.open FROM User u, Teaches t, Course c, Session s WHERE u.email = '%s' AND t.uid = u.uid AND t.cid = c.cid AND s.cid = t.cid;", $email);
 		$results = mysql_query($query, $db_conn);
 		
 		// Then return the results in HTML form
 		while ($row = mysql_fetch_row($results)) {
 			
 			// Check if the course is closed
-			if ($row[1] == 1) {
+			if ($row[2] == 1) {
 				
-				echo  "<button class='closeOptionButton'  id=' . $row[0] . '>Close?</button>";
+				echo  "<br />$row[1]:<button class='closeOptionButton'  id='$row[0]'>Close?</button>";
 		
 			} else {
 				
-				echo  "<button class='openOptionButton' id=' . $row[0] . '>Open?</button>";
+				echo  "<br />$row[1]:<button class='openOptionButton' id='$row[0]'>Open?</button>";
 				
 			}
 		}
