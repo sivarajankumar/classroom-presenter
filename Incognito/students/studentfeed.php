@@ -2,24 +2,8 @@
 <script src="jquery-1.5.2.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="studentfeed.js"></script>
 <script type="text/javascript" src="studentUIcontroller.js"></script>	
-
-<script type="text/javascript">
-  function print_2d_string_array(array) 
-  { 
-    document.writeln ("<table border>") ;
-    var row; for (row = 0; row < ; 			
-    array.length; ++row)
-    { 
-      document.writeln (" <tr>");
-        var col for (col = 0; col < array
-        [row].length; ++col) 
-        document.writeln (" <td>" + array
-          [row] [col] + "</td>"); 
-        document.writeln (" </tr>"); 
-    } 
-    document.writeln ("</table>");
-  }
-</script>
+<script type="text/javascript" src="studentSettings.js"></script>
+<script type="text/javascript" src="jquery.cookie.js"></script>	
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -34,7 +18,7 @@
 		<div id="topbanner"> 	<!-- Includes logo & person's information/help/logout, & course name -->		
 			<img src="logo.png" alt="logo" />
 			<div id="greeting">
-				<?php echo 'Hello '.($_COOKIE['session']!='' ? $_COOKIE['session'] : 'Guest') ?>  | <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
+				<span id="cook"><?php echo 'Hello '.($_COOKIE['session']!='' ? $_COOKIE['session'] : 'Guest') ?></span> | <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
 				You are currently looking at [course name].
 			</div>
 		</div>			
@@ -78,7 +62,7 @@
               source           : function(query) {
               $.ajax({
                 type: "POST",
-                url: "../../DB/studenthome_lookup_questions.php",
+                url: "../../DB/lookup_questions.php",
                 data: "sid=22222", // still need to retrieve the session ID dynamically.
                 success: function(msg){
                   data = new Array();
