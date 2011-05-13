@@ -10,8 +10,8 @@ function getFeed(sid)
 			for (var i = 0; i < msg.length; i++)
 			{
 				data[i] = new Array();
-				data[i][0] = msg[i].text;
-				data[i][1] = msg[i].votes;
+				data[i][0] = msg[i].votes;
+				data[i][1] = msg[i].text;
 				if (msg[i].type == 'Q')
 				{
 					data[i][2] = msg[i].answered;
