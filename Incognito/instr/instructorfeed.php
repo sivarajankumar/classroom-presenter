@@ -50,8 +50,6 @@
 			<img src="logo.png" alt="logo" />
 			<div id="greeting">
 				<?php echo 'Hello '.($_COOKIE['session']!='' ? $_COOKIE['session'] : 'Guest') ?> | <a href="instructorsettings.php">Your Settings</a> | <a class="aboutlink" href="help.php">Help</a> | <a href="../logout.php">Logout</a> <br />
-				<a href="">[course name]</a> feed is currently: 
-				<label><input type="radio" name="feedstatus" value="Open"/> Open </label>
 			</div>
 		</div>			
 
