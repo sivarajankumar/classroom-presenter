@@ -4,18 +4,22 @@
 <script type="text/javascript" src="studentUIcontroller.js"></script>	
 
 <script type="text/javascript">
-  function print_2d_string_array(array) 
+
+    $(document).ready(function(){
+      print_2d_string_array()
+    });
+
+  function print_2d_string_array() 
   { 
-    document.writeln ("<table border>") ;
-    var row; for (row = 0; row < ; 			
-    array.length; ++row)
+    var array = getFeed(22222, $_COOKIE['session'], "QBoth", "newest");
+    document.writeln ("<table>") ;
+    for (row = 0; row < 3; ++row)
     { 
-      document.writeln (" <tr>");
-        var col for (col = 0; col < array
-        [row].length; ++col) 
-        document.writeln (" <td>" + array
-          [row] [col] + "</td>"); 
-        document.writeln (" </tr>"); 
+      document.writeln ("<tr>");
+      for (col = 0; col < 3; ++col) {
+        document.writeln("<td>" + array[row][col] + "</td>"); 
+      }
+      document.writeln("</tr>");
     } 
     document.writeln ("</table>");
   }
@@ -78,7 +82,7 @@
               source           : function(query) {
               $.ajax({
                 type: "POST",
-                url: "../../DB/studenthome_lookup_questions.php",
+                url: "../../DB/lookup_questions.php",
                 data: "sid=22222", // still need to retrieve the session ID dynamically.
                 success: function(msg){
                   data = new Array();
@@ -134,6 +138,11 @@
 			</div>
       
       <div id="feed">
+      
+        <script type="text/javascript">
+          print_2d_string_array();
+        </script>
+      
         <?php 
           $feed = array( array("checked", "First Feed" , "answered"),
                          array("unchecked", "First Feed" , "unanswered"),
