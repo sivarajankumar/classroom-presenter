@@ -47,7 +47,7 @@
 						</span>
 						<textarea name="texthome" id="ac-input" rows="10" cols="80"></textarea>
 					</div>
-					<div id="submitbuttondiv"><button type="button" id="submitbutton" onClick="onSubmit()">Submit</button></div>
+					<div id="submitbuttondiv"><button type="submit" id="submitbutton" onClick="onSubmit()">Submit</button></div>
 				</div>
 			</form>
 		</div>
