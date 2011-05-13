@@ -45,5 +45,8 @@ VALUES (33333, 1, 'choice two');
 INSERT INTO Choices(sid, count, text)
 VALUES (33333, 3, 'choice three');
 
-INSERT INTO VotedOn(uid, qid)
+INSERT INTO QuestionVotedOn(uid, qid)
 VALUES (23456, 65432);
+
+INSERT INTO FeedbackVotedOn(uid, fid)
+VALUES (23456, 34567);
