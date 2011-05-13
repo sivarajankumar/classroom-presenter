@@ -1,11 +1,13 @@
  /* This file handles the events for Instructor Settings page. */
+  function printToScreen(data){
+	$("#courseInfo").html(data);
+ }
  
  $(document).ready(function() {
 	var sessionId;
 	var courseId;
 	//initially puts courses on page
-	var place = getCourses($.cookie("session"));
-	$("#courseInfo").html(place);
+	getCourses("schwer@cs.washington.edu",printToScreen);
  
 	// starts a session
    $(".closeOptionButton").live('click',function(event) {
@@ -22,7 +24,7 @@
 		var courseIs = $("#courseName").val();
 		var mailIs = $("#mailingList").val();
 		courseId = createCourse(courseIs, mailIs);
-		place = getCourses($.cookie("session"));
+		getCourses("schwer@cs.washington.edu",printToScreen);
 		$("#courseInfo").html(place);
 	});
 });
