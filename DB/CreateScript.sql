@@ -53,7 +53,7 @@ CREATE TABLE Session
        open		INT,
        start_time	TIMESTAMP DEFAULT NOW(),
        stop_time TIMESTAMP,
-       PRIMARY KEY(sid),
+       PRIMARY KEY(sid, cid),
        FOREIGN KEY(cid) REFERENCES Course(cid)
 );
 CREATE TABLE Feedback
