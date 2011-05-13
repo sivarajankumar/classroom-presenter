@@ -5,6 +5,21 @@
  * manage the state of the setting view.  
  */
 
+// This function will make an http request to retreive 
+// course information pertaining to a specific instructor
+// given the email of the instructor. In addition, you must
+// provide a callback function that will be called with the 
+// HTTP response. 
+function getCourses(instrMail, callback) {
+	
+	// Make the HTTP request
+	$.post("scripts/get_courses.php",
+			{mail: instrMail},
+			function(data) {
+				callback(data);
+			});
+}
+
 // This function will make an http request to the create_course
 // php script that will insert a course in our database. This
 // function takes a userId, a courseName, a mailingList, and 
