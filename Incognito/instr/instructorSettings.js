@@ -6,8 +6,9 @@
  $(document).ready(function() {
 	var sessionId;
 	var courseId;
+	var mailIs;
 	//initially puts courses on page
-	getCourses("schwer@cs.washington.edu",printToScreen);
+	getCourses($.cookie("alias"),printToScreen);
  
 	// starts a session
    $(".closeOptionButton").live('click',function(event) {
@@ -19,13 +20,19 @@
 		endSession(sessionId);
 	});
 	
-	//Adds a course given course, mailingList
+	//Adds a InstructorID, courseName, mailingList, callbackFunction
 	$("#courseSubmitButton").click(function(event){
 		var courseIs = $("#courseName").val();
-		var mailIs = $("#mailingList").val();
-		courseId = createCourse(courseIs, mailIs);
-		getCourses("schwer@cs.washington.edu",printToScreen);
+		mailIs = $("#mailingList").val();
+		courseId = createCourse($.cookie("session"), courseIs, mailIs, printToScreen);
+		getCourses($.cookie("alias"),printToScreen);
 		$("#courseInfo").html(place);
+	});
+	
+	//user deletes a course
+	$(".courseRemoveButton").live('click',function(event) {
+		deleteCourse($.cookie("session"), $(this).attr('id'), mailIs, printToScreen);
+		getCourses($.cookie("session"),printToScreen);
 	});
 });
  
