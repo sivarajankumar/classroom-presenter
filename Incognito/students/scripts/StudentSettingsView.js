@@ -4,6 +4,14 @@
  * a user interface element. StudentSettin.gsVewi inherits from SettingsView
  */
 
+// This function, given a student email and an alias, will change the student's
+// alias to the given alias. In addition, this will update the state of the 
+// database. 
+function addAlias(studentEmail, studentAlias) {
+	$.post("scripts/add_alias.php",
+			{mail: studentEmail, alias: studentAlias});
+}
+
 // This function, given a session id and a student email, will remove a student
 // from a session
 function exitSession(studentEmail, sessionId) {
