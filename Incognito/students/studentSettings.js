@@ -4,8 +4,7 @@
  }
  
  $(document).ready(function() {
-	var alias; 
-	
+	var alias; 	
 	//initially puts courses on page
 	getCourses($.cookie("session"),printToScreen);
 	//user joins a session
@@ -24,11 +23,12 @@
 		getCourses($.cookie("session"),printToScreen);
 	});
 
-	//user change alias name
+	//user change alias name, studentID, newAlias
 	$("#aliasChangeButton").click(function(event){
 		alias = $("#aliasName").val();
 		$.cookie("alias", alias, { path: '/' });
 		$("#cook").html("Hello " + alias);
+		addAlias($.cookie("session"), alias);
 	});
 
 
