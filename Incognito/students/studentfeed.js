@@ -4,7 +4,7 @@ function getFeed(sid, filter, sort)
 	$.ajax({
 		type: "POST",
 		url: "../../DB/lookup_questions.php",
-		data: "sid="+sid+"&filter="+filter+"&sort="+sort,
+		data: "sid="+sid+"&filter=none&sort=none",
 		success: function(msg){
 			data = new Array();
 			for (var i = 0; i < msg.length; i++)
