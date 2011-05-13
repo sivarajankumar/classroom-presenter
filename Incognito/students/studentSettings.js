@@ -4,8 +4,10 @@
  }
  
  $(document).ready(function() {
+	var alias; 
+	
 	//initially puts courses on page
-	getCourses("schwer@cs.washington.edu",printToScreen);
+	getCourses($.cookie("session"),printToScreen);
 	//user joins a session
    $(".joinButton").live('click',function(event) {
 		joinSession($.cookie("session"), $(this).attr('id'));
@@ -18,15 +20,14 @@
 	
 	//user deletes a course
 	$(".courseRemoveButton").live('click',function(event) {
-		alert($(this).attr('id'));
-		//deleteCourse($.cookie("session"), $(this).attr('id'));
-		//place = getCourses($.cookie("session"),printToScreen);
+		removeCourse($.cookie("session"), $(this).attr('id'));
+		getCourses($.cookie("session"),printToScreen);
 	});
 
 	//user change alias name
 	$("#aliasChangeButton").click(function(event){
-		var alias = $("#aliasName").val();
-		$.cookie("session", alias, { path: '/' });
+		alias = $("#aliasName").val();
+		$.cookie("alias", alias, { path: '/' });
 		$("#cook").html("Hello " + alias);
 	});
 

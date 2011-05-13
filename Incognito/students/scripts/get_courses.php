@@ -7,12 +7,12 @@
 	if (isset($_POST['email'])) {
 		
 		// Connect to our database (change for different user) 
-		$username = "schwer";
-		$password = "Egh8vF5d";
-		$db_name = "schwer_Incognito";
-		//$username = "chriacua";
-		//$password = "b67wwpAH";
-		//$db_name = "chriacua_testui";
+		//$username = "schwer";
+		//$password = "Egh8vF5d";
+		//$db_name = "schwer_Incognito";
+		$username = "chriacua";
+		$password = "b67wwpAH";
+		$db_name = "chriacua_testui";
 		
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 		if (!$db_conn) {
