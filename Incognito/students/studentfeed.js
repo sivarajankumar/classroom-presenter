@@ -1,10 +1,10 @@
-function getFeed(sid)
+function getFeed(sid, filter, sort)
 {
 	var data;
 	$.ajax({
 		type: "POST",
 		url: "../../DB/lookup_questions.php",
-		data: "sid="+sid,
+		data: "sid="+sid+"&filter="+filter+"&sort="+sort,
 		success: function(msg){
 			data = new Array();
 			for (var i = 0; i < msg.length; i++)
