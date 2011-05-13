@@ -18,4 +18,17 @@ function insertCourse(userId, courseName, mailingList, getCid) {
 			getCid(data);
 		});
 }
+
+// This function takes a courseId and a student email and then adds the student
+// to the course. 
+//
+// TODO: Eventually this function will have some sort of handler that informs
+// 		 the caller of whether or not the student was successfully added to the 
+//		 course. 
+function updateStudents(studentEmail, courseId) {
+	
+	// Make the HTTP requeset through AJAX
+	$.post("scripts/addStudent.php",
+			{email: studentEmail, cid: courseId});
+}
 	
