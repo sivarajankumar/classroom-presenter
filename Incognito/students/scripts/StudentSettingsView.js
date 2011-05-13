@@ -8,13 +8,11 @@
 // the courses, and gives the courses to the handleCourses handler. In addition, the
 // caller must pass a valid studentId. 
 function getCourses(studentEmail, handleCourses) {
-	
 	// Make the AJAX call to the backend
 	$.post("scripts/get_courses.php",
-			{uid: studentEmail},
+			{email: studentEmail},
 			function(data) {
-				var results = JSON.parse(data);
-				handleCourses(results);
+				handleCourses(data);
 			});
 }
 

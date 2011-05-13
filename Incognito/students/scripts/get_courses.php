@@ -4,7 +4,7 @@
 	// all of the courses that the student belongs too given a student id.
 	
 	// Check if we are given a user id
-	if (isset($_GET['email'])) {
+	if (isset($_POST['email'])) {
 		
 		// Connect to our database (change for different user) 
 		$username = "schwer";
@@ -19,7 +19,7 @@
 		mysql_select_db($db_name, $db_conn);
 		
 		// Now run the query to fetch all of the courses
-		$email = $_GET['email'];
+		$email = $_POST['email'];
 		$query = sprintf("SELECT u.uid, s.sid, a.cid, s.open, c.name FROM User u, Attends a, Session s, Course c WHERE u.email = '%s' AND a.uid = u.uid AND s.cid = a.cid AND c.cid = a.cid;",
 						$email);
 		$results = mysql_query($query, $db_conn);
@@ -54,7 +54,7 @@
 				}
 			} else {
 				
-				echo "<p class =\"”  . $row[4] . “\">" . $row[4] . 
+				echo "<p class =\""  . $row[4] . "\">" . $row[4] . 
 				"<button id=\"" . $row[4] . "\" class=\"courseRemoveButton\">Delete</button></p>";
 				
 			}
