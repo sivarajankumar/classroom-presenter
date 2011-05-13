@@ -1,6 +1,8 @@
 <?php
 
-	// This file looks up all questions associated with a given session
+	// This file looks up all questions associated with a given session. It's designed for
+	// the instructor feed, so it doesn't accept a username parameter, and it returns
+	// the total votes for each question or feedback.
 
 	// Connect to the database
 
