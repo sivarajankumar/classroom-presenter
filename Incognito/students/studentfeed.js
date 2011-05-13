@@ -1,4 +1,4 @@
-function getFeed(sid, filter, sort)
+function getFeed(sid, uid, filter, sort)
 {
 	var data;
 	$.ajax({
