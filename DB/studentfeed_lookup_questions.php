@@ -9,9 +9,9 @@
 
 	// These variables need to be changed for every person who wants to use their local db.
 	// Production DB: ashen; 2kV2cNct; ashen_403_Local
-	$username = "furby16";
-	$password = "oYveR99b"; 
-	$db_name = "furby16_incognito"; 
+	$username = "ashen";
+	$password = "2kV2cNct"; 
+	$db_name = "ashen_403_Local"; 
 
 	$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
  
