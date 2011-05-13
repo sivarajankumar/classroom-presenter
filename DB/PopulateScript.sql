@@ -18,8 +18,8 @@ VALUES (23456, 11111);
 INSERT INTO Teaches(uid, cid)
 VALUES (12345, 11111);
 
-INSERT INTO Session(sid, cid)
-VALUES (22222, 11111);
+INSERT INTO Session(sid, cid, TimeStamp)
+VALUES (22222, 11111, '1970-01-01 00:00:01');
 
 INSERT INTO Feedback(fid, numvotes, isread, text, sid)
 VALUES (34567, 3, 0, 'feedback here', 22222);
@@ -45,5 +45,8 @@ VALUES (33333, 1, 'choice two');
 INSERT INTO Choices(sid, count, text)
 VALUES (33333, 3, 'choice three');
 
-INSERT INTO VotedOn(uid, qid)
+INSERT INTO QuestionVotedOn(uid, qid)
 VALUES (23456, 65432);
+
+INSERT INTO FeedbackVotedOn(uid, fid)
+VALUES (23456, 34567);
