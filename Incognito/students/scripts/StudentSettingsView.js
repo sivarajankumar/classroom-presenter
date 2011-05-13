@@ -12,6 +12,17 @@ function addAlias(studentEmail, studentAlias) {
 			{mail: studentEmail, alias: studentAlias});
 }
 
+// This function, given a student email and a callback function, this function
+// does the HTTP request and then calls the callback function when the response 
+// comes back. The response contains the alias of the student. 
+function getAlias(studentEmail, callback) {
+	$.post("scripts/get_alias.php",
+			{mail: studentEmail},
+			function(data) {
+				callback(data);
+			});
+}
+
 // This function, given a session id and a student email, will remove a student
 // from a session
 function exitSession(studentEmail, sessionId) {
