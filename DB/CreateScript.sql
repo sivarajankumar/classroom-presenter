@@ -49,7 +49,8 @@ CREATE TABLE Session
 (
        sid		INT NOT NULL AUTO_INCREMENT,
        cid		INT,
-       uid    INT,
+       uid    	INT,
+       open		INT,
        start_time	TIMESTAMP DEFAULT NOW(),
        stop_time TIMESTAMP,
        PRIMARY KEY(sid),
@@ -110,4 +111,13 @@ CREATE TABLE VotedOn
        qid        	INT,
        FOREIGN KEY(qid) REFERENCES Question(qid),
        FOREIGN KEY(uid) REFERENCES Student(uid)
+);
+
+CREATE TABLE Joined
+(
+		sid			INT,
+		uid			INT,
+		FOREIGN KEY(sid) REFERENCES Session(sid),
+		FOREIGN KEY(uid) REFERENCES Student(uid),
+		PRIMARY KEY(sid, uid)
 );
