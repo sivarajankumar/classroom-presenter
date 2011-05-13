@@ -4,6 +4,20 @@
  * a user interface element. StudentSettin.gsVewi inherits from SettingsView
  */
 
+// This function, given a session id and a student email, will remove a student
+// from a session
+function exitSession(studentEmail, sessionId) {
+	$.post("scripts/exit_session.php",
+			{mail: studentEmail, sid: sessionId});
+}
+
+// This function, given a session id and a student email, will add that student
+// to the given session. 
+function joinSession(studentEmail, sessionId) {
+	$.post("scripts/join_session.php",
+			{mail: studentEmail, sid: sessionId});
+}
+
 // This function will makes an HTTP Request to the get_courses php script, retrieves
 // the courses, and gives the courses to the handleCourses handler. In addition, the
 // caller must pass a valid studentId. 
