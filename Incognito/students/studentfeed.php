@@ -1,7 +1,25 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <script src="jquery-1.5.2.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="studentfeed.js"></script>
-<script type="text/javascript" src="studentUIcontroller.js"></script>		
+<script type="text/javascript" src="studentUIcontroller.js"></script>	
+
+<script type="text/javascript">
+  function print_2d_string_array(array) 
+  { 
+    document.writeln ("<table border>") ;
+    var row; for (row = 0; row < ; 			
+    array.length; ++row)
+    { 
+      document.writeln (" <tr>");
+        var col for (col = 0; col < array
+        [row].length; ++col) 
+        document.writeln (" <td>" + array
+          [row] [col] + "</td>"); 
+        document.writeln (" </tr>"); 
+    } 
+    document.writeln ("</table>");
+  }
+</script>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
