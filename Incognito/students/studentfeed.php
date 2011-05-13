@@ -1,7 +1,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <script src="jquery-1.5.2.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="studentfeed.js"></script>
-<script type="text/javascript" src="studentUIcontroller.js"></script>		
+<script type="text/javascript" src="studentUIcontroller.js"></script>	
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+      print_2d_string_array()
+    });
+
+  function print_2d_string_array() 
+  { 
+    var array = getFeed(22222, $_COOKIE['session'], "QBoth", "newest");
+    document.writeln ("<table>") ;
+    for (row = 0; row < 3; ++row)
+    { 
+      document.writeln ("<tr>");
+      for (col = 0; col < 3; ++col) {
+        document.writeln("<td>" + array[row][col] + "</td>"); 
+      }
+      document.writeln("</tr>");
+    } 
+    document.writeln ("</table>");
+  }
+</script>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -116,6 +138,11 @@
 			</div>
       
       <div id="feed">
+      
+        <script type="text/javascript">
+          print_2d_string_array();
+        </script>
+      
         <?php 
           $feed = array( array("checked", "First Feed" , "answered"),
                          array("unchecked", "First Feed" , "unanswered"),
