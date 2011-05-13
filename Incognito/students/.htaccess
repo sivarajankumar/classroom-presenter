@@ -1,0 +1,3 @@
+AuthType CSENetID
+CSENetIDAuthGroupFile /www/auth/group
+require group ugrad_cs ugrad_ce
