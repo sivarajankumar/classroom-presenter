@@ -4,6 +4,18 @@
  * a user interface element. StudentSettin.gsVewi inherits from SettingsView
  */
 
+// This function, given a courseId, will create a session for that course
+function startSession(courseId) {
+	$.post("scripts/start_session.php",
+			{cid: courseId});
+}
+
+// This function, given a sessionId, will end and delete that session
+function endSession(sessionId) {
+	$.post("scripts/end_session.php",
+			{sid: sessionId});
+}
+
 // This function, given a student email and an alias, will change the student's
 // alias to the given alias. In addition, this will update the state of the 
 // database. 
