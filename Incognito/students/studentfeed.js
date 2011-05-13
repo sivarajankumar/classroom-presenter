@@ -3,7 +3,7 @@ function getFeed(sid, username, filter, sort)
 	var data;
 	$.ajax({
 		type: "POST",
-		url: "../../DB/lookup_questions.php",
+		url: "../../DB/studentfeed_lookup_questions.php",
 		data: "sid="+sid+"&filter=none&sort=none"+"&username="+username,
 		success: function(msg){
 			data = new Array();
