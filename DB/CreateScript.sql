@@ -62,6 +62,7 @@ CREATE TABLE Feedback
        isread		INT,
        text		TEXT, 
        sid		INT,
+       time		TIMESTAMP DEFAULT NOW(),
        PRIMARY KEY(fid),
        FOREIGN KEY(sid) REFERENCES Session(sid)
 );
@@ -72,6 +73,7 @@ CREATE TABLE Question
        numvotes		INT,
        answered		INT,
        sid		INT,
+       time		TIMESTAMP DEFAULT NOW(),
        FOREIGN KEY(sid) REFERENCES Session(sid),
        PRIMARY KEY(qid)
 );
