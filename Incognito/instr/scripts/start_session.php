@@ -26,6 +26,18 @@
 		if (!$results) {
 			die("Error: " + mysql_error($db_conn));
 		}
+		
+		// Find the sid that was just created
+		$query = sprintf("SELECT sid FROM Session WHERE cid = %d ORDER BY sid DESC;", $cid);
+		$results = mysql_query($query, $db_conn);
+		
+		// Error check
+		if (!$results) {
+			die("Error: " + mysql_error($db_conn));
+		}
+		
+		$row = mysql_fetch_row($results);
+		echo $row[0];
 	}
 
 ?>
