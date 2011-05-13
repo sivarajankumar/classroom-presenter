@@ -4,7 +4,7 @@
 	// course id
 	
 	// Check if the email and cid have been set
-	if (isset($_POST['email']) && isset($_POST['cid'])) {
+	if (isset($_GET['email']) && isset($_GET['cid'])) {
 		
 		// Connect to the database
 		$username = "schwer";
@@ -19,8 +19,8 @@
 		mysql_select_db($db_name, $db_conn);
 		
 		// First get the uid for the student based off of the email
-		$email = $_POST['email'];
-		$cid = $_POST['cid'];
+		$email = $_GET['email'];
+		$cid = $_GET['cid'];
 		$query = sprintf("SELECT uid FROM User WHERE email = '%s';", $email);
 		$results = mysql_query($query, $db_conn);
 		
@@ -32,9 +32,8 @@
 		$row = mysql_fetch_row($results);
 
 		// Now insert the student, session pair in the attends table
-		$uid = $_POST['uid'];
-		$sid = $row[0];
-		$query = sprintf("INSERT INTO Attends VALUES (%d, %d);", $uid, $sid);
+		$uid = $row[0];
+		$query = sprintf("INSERT INTO Attends (uid, cid) VALUES (%d, %d);", $uid, $cid);
 		$results = mysql_query($query, $db_conn);
 
 		// Do some error checking
