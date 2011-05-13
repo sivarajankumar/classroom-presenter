@@ -6,9 +6,12 @@
  */
 
 // This function, given a courseId, will create a session for that course
-function startSession(courseId) {
+function startSession(courseId, callback) {
 	$.post("scripts/start_session.php",
-			{cid: courseId});
+			{cid: courseId},
+			function(data) {
+				callback(data);
+			});
 }
 
 // This function, given a sessionId, will end and delete that session
