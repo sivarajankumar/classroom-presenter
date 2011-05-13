@@ -116,12 +116,12 @@ CREATE TABLE QuestionVotedOn
 );
 
 CREATE TABLE FeedbackVotedOn
-{
+(
 	uid				INT,
 	fid				INT,
 	FOREIGN KEY(fid) REFERENCES Feedback(fid),
 	FOREIGN KEY(uid) REFERENCES Student(uid)
-};
+);
 
 CREATE TABLE Joined
 (
