@@ -20,7 +20,7 @@
 		// Find the uid of the student
 		$mail = $_POST['mail'];
 		$query = sprintf("SELECT uid FROM User WHERE email = '%s';", $mail);
-		$results = $mysql_query($query, $db_conn);
+		$results = mysql_query($query, $db_conn);
 		
 		// Error check
 		if (!$results) {
