@@ -91,21 +91,61 @@
 			
 			<div id="feedbox">
 				<div class="nonSubCol">Votes	<!-- Column names in feed -->
-					<div id = "viewVotesCol" class="feed">
-					</div>
 				</div>
-				<div id="subCol">Feed		
-					<div id = "feedCol" class="feed">
-					</div>				
+				<div id="subCol">Feed					
 				</div>
 				<div class="nonSubCol">Answered/Read?
-					<div id = "answerCol" class="feed">
-					</div>
 				</div>					
 				<hr />
 				
 				<span id="blankfeed"><!--(Today&#39;s feed has not yet been open. To open, refer to your settings.)--></span>						
 			</div>
+      
+            <div id="feed">
+        <?php 
+          $feed = array( array("43", "Why is 403 the most awesome class ever??? OMG" , "answered"),
+                         array("100", "What is worse than 403?" , "read"),
+                         array("2000", "What is a good design pattern for graduating as soon as possible?" , "answered") 
+                       );
+          
+          echo "<table id=feedTable>";
+          for($row = 0; $row < 3; $row++)
+          {
+            if($row % 2 == 1)
+            {
+              echo "<tr class=alt>";
+            }
+            else
+            {
+              echo "<tr>";
+            }
+            for($col = 0; $col < 3; $col++)
+            {
+              if($col == 2)
+              {
+                if(strcmp($feed[$row][$col], "answered") == 0)
+                {
+                  echo "<td class=check><input type=checkbox id=check checked=true /></td>";
+                }
+                else
+                {
+                  echo "<td class=check><input type=checkbox id=check /></td>";
+                }
+              }
+              elseif($col == 1)
+              {
+                echo "<td class=feed>".$feed[$row][$col]."</td>";
+              }
+              else
+              {
+                echo "<td class=votes>".$feed[$row][$col]."</td>";
+              }
+            }
+            echo "</tr>";
+          }
+          echo "</table>";
+        ?>
+      </div>
 			
 		</div>
 

@@ -135,6 +135,29 @@ span {
 	margin-bottom: 30px;
 }
 
+#feedTable td.checked
+{
+  text-align:center;
+  width:120px;
+}
+
+#feedTable td.feed
+{
+  text-align:left;
+  width:700px;
+}
+
+#feedTable td.votes
+{
+  text-align:center;
+  width:87px;
+}
+
+#feedTable tr.alt td 
+{
+  color:#000000;
+  background-color:#EAF2D3;
+}
 
 /************ Links **************/
 
