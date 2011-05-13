@@ -30,11 +30,13 @@
 			// Check if the course is closed
 			if ($row[2] == 1) {
 				
-				echo  "<br />$row[1]:<button class='closeOptionButton'  id='$row[0]'>Close?</button>";
+				echo  "<br />$row[1]:<button class='closeOptionButton'  id='$row[0]'>Close?</button>
+						<button id='$row[0]' class='courseRemoveButton'>Delete</button>";
 		
 			} else {
 				
-				echo  "<br />$row[1]:<button class='openOptionButton' id='$row[0]'>Open?</button>";
+				echo  "<br />$row[1]:<button class='openOptionButton' id='$row[0]'>Open?</button>
+						<button id='$row[0]' class='courseRemoveButton'>Delete</button>";
 				
 			}
 		}

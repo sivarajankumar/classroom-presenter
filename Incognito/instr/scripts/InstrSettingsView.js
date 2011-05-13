@@ -6,9 +6,12 @@
  */
 
 // This function, given a courseId, will create a session for that course
-function startSession(courseId) {
+function startSession(courseId, callback) {
 	$.post("scripts/start_session.php",
-			{cid: courseId});
+			{cid: courseId},
+			function(data) {
+				callback(data);
+			});
 }
 
 // This function, given a sessionId, will end and delete that session
@@ -57,5 +60,15 @@ function updateStudents(studentEmail, courseId) {
 	// Make the HTTP requeset through AJAX
 	$.post("scripts/addStudent.php",
 			{email: studentEmail, cid: courseId});
+}
+
+// This function takes a courseId and removes the course from the database.
+//
+// TODO: Eventually this function will have a callback that indicates the 
+//       success or failure of this function call. 
+function deleteCourse(courseId) {
+	
+	$.post("scripts/delete_course.php",
+			{cid: courseId});
 }
 	
