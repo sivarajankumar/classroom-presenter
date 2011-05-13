@@ -1,7 +1,7 @@
-INSERT INTO User (uid, email, pass_hash)
-VALUES (12345, 'alice@foo.com', 'abcdefg');
-INSERT INTO User (uid, email, pass_hash)
-VALUES (23456, 'bob@foo.com', 'bcdefgh');
+INSERT INTO User (uid, email)
+VALUES (12345, 'alice@foo.com');
+INSERT INTO User (uid, email)
+VALUES (23456, 'bob@foo.com');
 
 INSERT INTO Student (uid, spam_count)
 VALUES (23456, 0);

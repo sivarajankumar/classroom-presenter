@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <script src="jquery-1.5.2.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="studentfeed.js"></script>		
+<script type="text/javascript" src="studentfeed.js"></script>
+<script type="text/javascript" src="studentUIcontroller.js"></script>		
 
 <script type="text/javascript">
   $(document).ready(function()
@@ -18,6 +19,23 @@
           query_string += "&checkbox_name[]=" + this.value;
         }
       });
+      $.ajax(
+      {
+        type: "POST",
+        url: "postdata.php",
+        data: "id=1" + query_string,
+        success: 
+        function(t) 
+        {
+          $("div#content").empty().append(t);
+        },
+        error:
+        function()
+        {
+          $("div#content").append("An error 
+          occured during processing");
+        }
+      }); 
     });
   });
 </script>
@@ -50,20 +68,52 @@
 		</div>
 		
 		<div id = "maincontent">
-			<form action method="post">
-			
+			<form id="submitform">
 				<div class="submissioncontent">	<!-- Includes: "Submit as", textbox, & submit button -->
 					<div id="typeAreaFeed">
 						<span>Submit as:
 							<label><input type="radio" name="submitType" value="Q" checked="checked"/> Question</label>
 							<label><input type="radio" name="submitType" value="F"/> Feedback </label>
 						</span> <br />
-						<input type="text" name="txtValue" value="" id="txtValue" size="80" maxlength="8"">
+						<input type="text" name="texthome" value="" id="texthome" size="80" maxlength="50">
             <div id="display"></div>
-						<button type="submit" id="submitbutton">Submit</button>
+						<button type="submit" id="submitbutton" onClick="onSubmit()">Submit</button>
 					</div>
 				</div>
 				
+        <script>
+          YUI({ filter: 'raw' }).use("autocomplete", "autocomplete-filters", "autocomplete-highlighters", function (Y) {
+            states = [
+
+
+
+
+
+                    ];
+
+            Y.one('#ac-input').plug(Y.Plugin.AutoComplete, {
+              resultFilters    : 'phraseMatch',
+              resultHighlighter: 'phraseMatch',
+              source           : function(query) {
+              $.ajax({
+                type: "POST",
+                url: "../../DB/lookup_questions.php",
+                data: "sid=22222", // still need to retrieve the session ID dynamically.
+                success: function(msg){
+                  data = new Array();
+                  for (var i = 0; i < msg.length; i++)
+                  {
+                    //alert( msg[i].text );
+                    data[i] = msg[i].text;
+                  }
+                }
+              });
+              return data;
+            }
+            });
+          });
+        </script>
+        
 			</form>
 			
 			<div id="filterandsort">	<!-- Filtering & Sorting -->
@@ -101,9 +151,15 @@
 				
 				<hr />	
 			</div>
-      
-      <input type="text" name="txtVal" value="" id="txtVal" size="80" maxlength="8"">
-      <div id="displayfeed"></div>
+
+      <input type="checkbox" name="checkbox_name" value="English">First Feed<br>
+      <input type="checkbox" name="checkbox_name" value="Hindi">Second Feed<br>
+      <input type="checkbox" name="checkbox_name" value="French">Third Feed<br>
+      <input type="checkbox" name="checkbox_name" value="Japanese">Fourth Feed<br>
+
+      <input type="submit" id="submit" value='Submit' />
+
+      <p> </p>
 			
 		</div>
 
