@@ -10,6 +10,9 @@
 		$username = "schwer";
 		$password = "Egh8vF5d";
 		$db_name = "schwer_Incognito";
+		//$username = "chriacua";
+		//$password = "b67wwpAH";
+		//$db_name = "chriacua_testui";
 		
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 		if (!$db_conn) {
