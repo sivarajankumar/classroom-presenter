@@ -2,8 +2,23 @@
 <script src="jquery-1.5.2.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="studentfeed.js"></script>
 <script type="text/javascript" src="studentUIcontroller.js"></script>	
-<script type="text/javascript" src="studentSettings.js"></script>
-<script type="text/javascript" src="jquery.cookie.js"></script>	
+
+<script type="text/javascript">
+  function print_2d_string_array() 
+  { 
+    var array = getFeed(22222, $_COOKIE['session'], "QBoth", "newest");
+    document.writeln ("<table>") ;
+    for (row = 0; row < 3; ++row)
+    { 
+      document.writeln ("<tr>");
+      for (col = 0; col < 3; ++col) {
+        document.writeln("<td>" + array[row][col] + "</td>"); 
+      }
+      document.writeln("</tr>");
+    } 
+    document.writeln ("</table>");
+  }
+</script>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -18,7 +33,7 @@
 		<div id="topbanner"> 	<!-- Includes logo & person's information/help/logout, & course name -->		
 			<img src="logo.png" alt="logo" />
 			<div id="greeting">
-				<span id="cook"><?php echo 'Hello '.($_COOKIE['session']!='' ? $_COOKIE['session'] : 'Guest') ?></span> | <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
+				<?php echo 'Hello '.($_COOKIE['session']!='' ? $_COOKIE['session'] : 'Guest') ?>  | <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
 				You are currently looking at [course name].
 			</div>
 		</div>			
@@ -119,18 +134,43 @@
       
       <div id="feed">
         <?php 
-          $feed = array( array("checked", "First Feed" , "answered"),
-                         array("unchecked", "First Feed" , "unanswered"),
-                         array("checked", "First Feed" , "answered") 
+          $feed = array( array("checked", "Why is 403 the most awesome class ever??? OMG" , "answered"),
+                         array("unchecked", "What is worse than 403?" , "read"),
+                         array("checked", "What is a good design pattern for graduating as soon as possible?" , "answered") 
                        );
           
-          echo "<table>";
+          echo "<table id=feedTable>";
           for($row = 0; $row < 3; $row++)
           {
-            echo "<tr>";
+            if($row % 2 == 1)
+            {
+              echo "<tr class=alt>";
+            }
+            else
+            {
+              echo "<tr>";
+            }
             for($col = 0; $col < 3; $col++)
             {
-              echo "<td>".$feed[$row][$col]."</td>";
+              if($col == 0)
+              {
+                if(strcmp($feed[$row][$col], "checked") == 0)
+                {
+                  echo "<td class=check><input type=checkbox id=check checked=true /></td>";
+                }
+                else
+                {
+                  echo "<td class=check><input type=checkbox id=check /></td>";
+                }
+              }
+              elseif($col == 1)
+              {
+                echo "<td class=feed>".$feed[$row][$col]."</td>";
+              }
+              else
+              {
+                echo "<td class=answered>".$feed[$row][$col]."</td>";
+              }
             }
             echo "</tr>";
           }
