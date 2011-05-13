@@ -24,7 +24,7 @@
 		courseId = createCourse(courseIs, mailIs);
 		place = getCourses($.cookie("session"));
 		$("#courseInfo").html(place);
-	)};
+	});
 });
  
  

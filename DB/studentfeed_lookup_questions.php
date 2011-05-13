@@ -9,9 +9,9 @@
 
 	// These variables need to be changed for every person who wants to use their local db.
 	// Production DB: ashen; 2kV2cNct; ashen_403_Local
-	$username = "ashen";
-	$password = "2kV2cNct"; 
-	$db_name = "ashen_403_Local"; 
+	$username = "furby16";
+	$password = "oYveR99b"; 
+	$db_name = "furby16_incognito"; 
 
 	$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
  
@@ -29,10 +29,10 @@
 	$username = $_POST['username'];
 	
 	// Do a preliminary query to get the student's user ID for later use
-	$uidquery = sprintf("SELECT uid FROM Student WHERE alias = %s", $username);
+	$uidquery = sprintf("SELECT uid FROM Student WHERE alias = '%s'", $username);
 	$uidresult = mysql_query($uidquery, $db_conn);
 	$uidrow = mysql_fetch_assoc($uidresult);
-	$uid = $uidrow["uid"];
+	$uid = (int)$uidrow["uid"];
 	
 	$rows = array();
 	$query = null;
@@ -58,10 +58,11 @@
 		$results = mysql_query($query1, $db_conn);
 		while($r = mysql_fetch_assoc($results))
 		{
-			$votequery = sprintf("SELECT * FROM QuestionVotedOn WHERE qid = %d AND uid = %d", $r["qid"], $uid);
+			$qid = (int)$r["qid"];
+			$votequery = sprintf("SELECT * FROM QuestionVotedOn WHERE qid = %d AND uid = %d", $qid, $uid);
 			$voteresults = mysql_query($votequery, $db_conn);
 			$voted = 0;
-			if (mysql_fetch_assoc($voteresults))
+			if ($vr = mysql_fetch_assoc($voteresults))
 			{
 				$voted = 1;
 			}
@@ -70,10 +71,11 @@
 		$results = mysql_query($query2, $db_conn);
 		while($r = mysql_fetch_assoc($results))
 		{
-			$votequery = sprintf("SELECT * FROM FeedbackVotedOn WHERE fid = %d AND uid = %d", $r["fid"], $uid);
+			$fid = (int)$r["fid"];
+			$votequery = sprintf("SELECT * FROM FeedbackVotedOn WHERE fid = %d AND uid = %d", $fid, $uid);
 			$voteresults = mysql_query($votequery, $db_conn);
 			$voted = 0;
-			if (mysql_fetch_assoc($voteresults))
+			if ($vr = mysql_fetch_assoc($voteresults))
 			{
 				$voted = 1;
 			}
@@ -97,10 +99,11 @@
 		$results = mysql_query($query, $db_conn);
 		while($r = mysql_fetch_assoc($results))
 		{
-			$votequery = sprintf("SELECT * FROM QuestionVotedOn WHERE qid = %d AND uid = %d", $r["qid"], $uid);
+			$qid = (int)$r["qid"];
+			$votequery = sprintf("SELECT * FROM QuestionVotedOn WHERE qid = %d AND uid = %d", $qid, $uid);
 			$voteresults = mysql_query($votequery, $db_conn);
 			$voted = 0;
-			if (mysql_fetch_assoc($voteresults))
+			if ($vr = mysql_fetch_assoc($voteresults))
 			{
 				$voted = 1;
 			}
@@ -124,10 +127,11 @@
 		$results = mysql_query($query, $db_conn);
 		while($r = mysql_fetch_assoc($results))
 		{
-			$votequery = sprintf("SELECT * FROM FeedbackVotedOn WHERE fid = %d AND uid = %d", $r["fid"], $uid);
+			$fid = (int)$r["fid"];
+			$votequery = sprintf("SELECT * FROM FeedbackVotedOn WHERE fid = %d AND uid = %d", $fid, $uid);
 			$voteresults = mysql_query($votequery, $db_conn);
 			$voted = 0;
-			if (mysql_fetch_assoc($voteresults))
+			if ($vr = mysql_fetch_assoc($voteresults))
 			{
 				$voted = 1;
 			}
@@ -152,10 +156,11 @@
 		$rows = array();
 		while($r = mysql_fetch_assoc($results))
 		{
-			$votequery = sprintf("SELECT * FROM QuestionVotedOn WHERE qid = %d AND uid = %d", $r["qid"], $uid);
+			$qid = (int)$r["qid"];
+			$votequery = sprintf("SELECT * FROM QuestionVotedOn WHERE qid = %d AND uid = %d", $qid, $uid);
 			$voteresults = mysql_query($votequery, $db_conn);
 			$voted = 0;
-			if (mysql_fetch_assoc($voteresults))
+			if ($vr = mysql_fetch_assoc($voteresults))
 			{
 				$voted = 1;
 			}
@@ -180,10 +185,11 @@
 		$rows = array();
 		while($r = mysql_fetch_assoc($results))
 		{
-			$votequery = sprintf("SELECT * FROM QuestionVotedOn WHERE qid = %d AND uid = %d", $r["qid"], $uid);
+			$qid = (int)$r["qid"];
+			$votequery = sprintf("SELECT * FROM QuestionVotedOn WHERE qid = %d AND uid = %d", $qid, $uid);
 			$voteresults = mysql_query($votequery, $db_conn);
 			$voted = 0;
-			if (mysql_fetch_assoc($voteresults))
+			if ($vr = mysql_fetch_assoc($voteresults))
 			{
 				$voted = 1;
 			}
@@ -207,10 +213,11 @@
 		$results = mysql_query($query, $db_conn);
 		while($r = mysql_fetch_assoc($results))
 		{
-			$votequery = sprintf("SELECT * FROM FeedbackVotedOn WHERE fid = %d AND uid = %d", $r["fid"], $uid);
+			$fid = (int)$r["fid"];
+			$votequery = sprintf("SELECT * FROM FeedbackVotedOn WHERE fid = %d AND uid = %d", $fid, $uid);
 			$voteresults = mysql_query($votequery, $db_conn);
 			$voted = 0;
-			if (mysql_fetch_assoc($voteresults))
+			if ($vr = mysql_fetch_assoc($voteresults))
 			{
 				$voted = 1;
 			}
@@ -234,10 +241,11 @@
 		$results = mysql_query($query, $db_conn);
 		while($r = mysql_fetch_assoc($results))
 		{
-			$votequery = sprintf("SELECT * FROM FeedbackVotedOn WHERE fid = %d AND uid = %d", $r["fid"], $uid);
+			$fid = (int)$r["fid"];
+			$votequery = sprintf("SELECT * FROM FeedbackVotedOn WHERE fid = %d AND uid = %d", $fid, $uid);
 			$voteresults = mysql_query($votequery, $db_conn);
 			$voted = 0;
-			if (mysql_fetch_assoc($voteresults))
+			if ($vr = mysql_fetch_assoc($voteresults))
 			{
 				$voted = 1;
 			}
@@ -267,3 +275,4 @@
 	echo json_encode($rows);
 
 ?>
+	
