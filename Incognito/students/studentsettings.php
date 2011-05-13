@@ -36,8 +36,8 @@
 				<div>
 					<h1>Your Current Courses:</h1>	
 					<div id="courseInfo"></div>		
-					Add course: <input type="text" id="courseName"/>
-					<button type="submit" id="courseSubmitButton"/>Add!</button>
+					<!--Add course: <input type="text" id="courseName"/>
+					<button type="submit" id="courseSubmitButton"/>Add!</button>-->
 				</div>
 					<h1> Edit Profile </h1>
 					Change Username:  <br /> <!--<?php# SETCOOKIE('session', '$studentchangedname');?> -->
