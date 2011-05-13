@@ -1,5 +1,5 @@
 <?php
-
+	include 'db_credentials.php';
 	// This php file, given a student uw email address and a session id
 	// will allow a student to join the session
 	
@@ -7,9 +7,9 @@
 	if (isset($_POST['mail']) && isset($_POST['sid'])) {
 		
 		// Connect to our database (change for different user) 
-		$username = "schwer";
-		$password = "Egh8vF5d";
-		$db_name = "schwer_Incognito";
+		//$username = "schwer";
+		//$password = "Egh8vF5d";
+		//$db_name = "schwer_Incognito";
 		
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 		if (!$db_conn) {

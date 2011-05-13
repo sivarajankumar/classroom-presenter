@@ -1,14 +1,15 @@
 <?php
-
+	include 'db_credentials.php';
 	// This php script, given a course id, will create a new session for
 	// that course
 	
 	if (isset($_POST['cid'])) {
 		
 		// Connect to the database
-		$username = "schwer";
-		$password = "Egh8vF5d";
-		$db_name = "schwer_Incognito";
+		// Connect to the database
+		//$username = "ashen";
+		//$password = "2kV2cNct";
+		//$db_name = "ashen_403_Local";
 
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 		if (!$db_conn) {

@@ -1,14 +1,15 @@
 <?php
-
+	include 'db_credentials.php';
 	// This file adds a new course to the database and returns the cid
 	
 	// Check if the proper variables were sent
 	if (isset($_POST['uid'])) {
 		
 		// Connect to our database (change for different user) 
-		$username = "schwer";
-		$password = "Egh8vF5d";
-		$db_name = "schwer_Incognito";
+		// Connect to the database
+		//$username = "ashen";
+		//$password = "2kV2cNct";
+		//$db_name = "ashen_403_Local";
 		
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 		if (!$db_conn) {

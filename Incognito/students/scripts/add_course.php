@@ -1,5 +1,5 @@
 <?php
-
+	include 'db_credentials.php';
 	// This php script file, given a unique student id and a session id
 	// will add the student as someone who attends that course.
 	
@@ -7,9 +7,9 @@
 	if (isset($_POST['uid']) && isset($_POST['cid'])) {
 		
 		// Connect to the database
-		$username = "schwer";
-		$password = "Egh8vF5d";
-		$db_name = "schwer_Incognito";
+		//$username = "schwer";
+		//$password = "Egh8vF5d";
+		//$db_name = "schwer_Incognito";
 		
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 		if (!$db_conn) {

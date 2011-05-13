@@ -1,13 +1,13 @@
 <?php
-
+	include 'db_credentials.php';
 	// This file, given a sid, will end the session
 	
 	if (isset($_POST['sid'])) {
 		
 		// Connect to the database
-		$username = "schwer";
-		$password = "Egh8vF5d";
-		$db_name = "schwer_Incognito";
+		//$username = "ashen";
+		//$password = "2kV2cNct";
+		//$db_name = "ashen_403_Local";
 
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 		if (!$db_conn) {

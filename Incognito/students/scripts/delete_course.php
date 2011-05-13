@@ -1,5 +1,5 @@
 <?php
-
+	include 'db_credentials.php';
 	// This php file will delete a course from a student's course list
 	// given a uid for the student and a cid for the course
 	
@@ -7,12 +7,10 @@
 	if (isset($_POST['uid']) && isset($_POST['cid'])) {
 		
 		// Connect to the database
-		$username = "schwer";
-		$password = "Egh8vF5d";
-		$db_name = "schwer_Incognito";
-		//$username = "chriacua";
-		//$password = "b67wwpAH";
-		//$db_name = "chriacua_testui";
+		//$username = "schwer";
+		//$password = "Egh8vF5d";
+		//$db_name = "schwer_Incognito";
+	
 		
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 		if (!$db_conn) {

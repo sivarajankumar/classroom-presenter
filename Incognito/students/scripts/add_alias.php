@@ -1,14 +1,14 @@
 <?php
-
+	include 'db_credentials.php';
 	// This function, given a student email and an alias
 	// will update the student's alias. 
 	
 	if (isset($_POST['mail']) && isset($_POST['alias'])) {
 		
 		// Connect to our database (change for different user) 
-		$username = "schwer";
-		$password = "Egh8vF5d";
-		$db_name = "schwer_Incognito";
+		//$username = "schwer";
+		//$password = "Egh8vF5d";
+		//$db_name = "schwer_Incognito";
 		
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 		if (!$db_conn) {

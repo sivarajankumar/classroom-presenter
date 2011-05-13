@@ -1,5 +1,5 @@
 <?php
-
+	include 'db_credentials.php';
 	// This php script get's all of the courses that a instructor 
 	// teaches and prints some html for buttons
 	
@@ -7,9 +7,10 @@
 	if (isset($_POST['mail'])) {
 		
 		// Connect to our database (change for different user) 
-		$username = "schwer";
-		$password = "Egh8vF5d";
-		$db_name = "schwer_Incognito";
+		// Connect to the database
+		//$username = "ashen";
+		//$password = "2kV2cNct";
+		//$db_name = "ashen_403_Local";
 		
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 		if (!$db_conn) {
