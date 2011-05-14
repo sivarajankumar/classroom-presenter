@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <script src="jquery-1.5.2.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="studentfeed.js"></script>
-<script type="text/javascript" src="studentUIcontroller.js"></script>	
+<script type="text/javascript" src="studentUIcontroller.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script>	
 
 <script type="text/javascript">
   function printToScreen(data){
@@ -73,7 +74,7 @@
               $.ajax({
                 type: "POST",
                 url: "../../DB/studenthome_lookup_questions.php",
-                data: "sid=22222", // still need to retrieve the session ID dynamically.
+                data: "sid=23456", // still need to retrieve the session ID dynamically.
                 success: function(msg){
                   data = new Array();
                   for (var i = 0; i < msg.length; i++)
