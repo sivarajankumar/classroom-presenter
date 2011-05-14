@@ -13,6 +13,10 @@
         </exec>
          </target>
 
-
+ <target name="testGetAlias">
+   <exec dir="." executable="phpunit" failonerror="false">
+     <arg line="test-alias.php" />
+       </exec>
+         </target>
  <target name="build" depends="simpleTest, anotherTest"/>
  </project>
