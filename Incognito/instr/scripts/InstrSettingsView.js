@@ -43,7 +43,7 @@ function insertCourse(userId, courseName, mailingList, getCid) {
 	
 	// Do the AJAX call
 	$.post("scripts/create_course.php", 
-		{uid: userId, name: courseName, mailinglist: mailingList}, 
+		{email: userId, name: courseName, mailinglist: mailingList}, 
 		function(data) {
 			getCid(data);
 		});
