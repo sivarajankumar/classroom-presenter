@@ -1,3 +1,33 @@
+<?php
+
+  // Change this for whoever is using the php script
+  // These variables need to be changed for every person who sets this up
+  // Production DB: ashen; 2kV2cNct; ashen_403_Local
+  $username = "ashen";
+	$password = "2kV2cNct"; 
+	$db_name = "ashen_403_Local"; 
+
+  // Connect to server
+  $db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+ 
+  if (!$db_conn) {
+    die("Failed to connect to the mysql server"); 
+  }
+  
+  // Select the correct database
+  mysql_select_db($db_name, $db_conn); 
+  
+  // Current timestamp is auto-inserted
+  $query = sprintf("INSERT INTO Session (cid)  
+            VALUES (11111)");
+  
+  if(!mysql_query($query, $db_conn)) {
+    die("Query error: " . mysql_error());
+  }	
+  
+  mysql_close($db_conn);
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -8,6 +38,7 @@
 		<link href="pages.css" type="text/css" rel="stylesheet" />
 		<script src="jquery-1.5.2.js" type="text/javascript"></script>
 		<script type="text/javascript" src="instructorSettings.js"></script> 
+		<script type="text/javascript" src="jquery.cookie.js"></script> 
 		<script type="text/javascript" src="scripts/InstrSettingsView.js"></script>
 		<!--<script type="text/javascript" src="testingInstructorSettings.js"></script>  -- for unit tests-->
 	</head>
@@ -40,7 +71,11 @@
 					<div id="courseInfo"></div>		
 					Course: <input type="text" id="courseName"/> 
 					Mailing List: <input type="text" id="mailingList"/>
-					<button type="submit" id="courseSubmitButton"/>Add!</button>
+					<button type="submit" id="courseSubmitButton"/>Add Course!</button><br />
+					
+					Student's NetID: <input type="text" id="studentToAdd"/>
+					Course Name (i.e. "CSE 440"): <input type="text" id="addStudentCourse"/>
+					<button type="submit" id="addStudentButton"/>Add Student!</button> <br />
 				</div>
 			</div>
 			
