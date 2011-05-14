@@ -4,10 +4,13 @@
 <script type="text/javascript" src="studentUIcontroller.js"></script>	
 
 <script type="text/javascript">
+  function printToScreen(data){
+    $("#feed").html(data);
+  }
+
   window.onload = function() {
-    getFeed(1, "mcmk", "None", "None");
     $('#filter').change(function() {
-      alert('Handler for .change() called.');
+      getFeed(1, "mcmk", "none", "newest", printToScreen);
     });
   };
 </script>
@@ -25,7 +28,7 @@
 		<div id="topbanner"> 	<!-- Includes logo & person's information/help/logout, & course name -->		
 			<img src="logo.png" alt="logo" />
 			<div id="greeting">
-				<?php echo 'Hello '.($_COOKIE['session']!='' ? $_COOKIE['session'] : 'Guest') ?>  | <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
+				<?php echo 'Hello '.($_COOKIE['netid']!='' ? $_COOKIE['netid'] : 'Guest') ?>  | <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
 				You are currently looking at [course name].
 			</div>
 		</div>			
@@ -125,50 +128,6 @@
 			</div>
       
       <div id="feed"></div>
-			
-        <?php 
-          $feed = array( array("checked", "Why is 403 the most awesome class ever??? OMG" , "answered"),
-                         array("unchecked", "What is worse than 403?" , "read"),
-                         array("checked", "What is a good design pattern for graduating as soon as possible?" , "answered") 
-                       );
-          
-          echo "<table id=feedTable>";
-          for($row = 0; $row < 3; $row++)
-          {
-            if($row % 2 == 1)
-            {
-              echo "<tr class=alt>";
-            }
-            else
-            {
-              echo "<tr>";
-            }
-            for($col = 0; $col < 3; $col++)
-            {
-              if($col == 0)
-              {
-                if(strcmp($feed[$row][$col], "checked") == 0)
-                {
-                  echo "<td class=check><input type=checkbox id=check checked=true /></td>";
-                }
-                else
-                {
-                  echo "<td class=check><input type=checkbox id=check /></td>";
-                }
-              }
-              elseif($col == 1)
-              {
-                echo "<td class=feed>".$feed[$row][$col]."</td>";
-              }
-              else
-              {
-                echo "<td class=answered>".$feed[$row][$col]."</td>";
-              }
-            }
-            echo "</tr>";
-          }
-          echo "</table>";
-        ?>
       
 		</div>
 
