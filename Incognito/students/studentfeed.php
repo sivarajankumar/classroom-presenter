@@ -10,7 +10,7 @@
 
   window.onload = function() {
     $('#filter').change(function() {
-      getFeed(23456, $_COOKIE['netid'], "none", "newest", printToScreen);
+      getFeed(23456, "mcmk", "none", "newest", printToScreen);
     });
   };
 </script>
