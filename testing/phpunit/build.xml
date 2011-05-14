@@ -1,0 +1,22 @@
+<project name="phpunitExample" default="build">
+
+
+ <target name="simpleTest">
+   <exec dir=".." executable="phpunit" failonerror="false">
+      <arg line="testTesting.php" />
+        </exec>
+         </target>
+
+ <target name="anotherTest">
+   <exec dir=".." executable="phpunit" failonerror="false">
+      <arg line="testTesting.php" />
+        </exec>
+         </target>
+
+ <target name="testGetAlias">
+   <exec dir="." executable="phpunit" failonerror="false">
+     <arg line="test-alias.php" />
+       </exec>
+         </target>
+ <target name="build" depends="simpleTest, anotherTest"/>
+ </project>
