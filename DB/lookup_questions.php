@@ -33,7 +33,6 @@
 		$query2 = null;
 		if ( $sort == "newest" )
 		{
-      echo "I am here.";
 			$query1 = sprintf("SELECT * FROM Question WHERE sid = %d ORDER BY time DESC", $sid);
 			$query2 = sprintf("SELECT * FROM Feedback WHERE sid = %d ORDER BY time DESC", $sid);
 		}
