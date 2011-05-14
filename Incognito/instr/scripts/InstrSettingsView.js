@@ -41,7 +41,6 @@ function getCourses(instrMail, callback) {
 // a function getCid that passes the cid back to the front-end.  
 function insertCourse(userId, courseName, mailingList, getCid) {
 	
-	alert(userId);
 	// Do the AJAX call
 	$.post("scripts/create_course.php", 
 		{email: userId, name: courseName, mailinglist: mailingList}, 
