@@ -67,7 +67,7 @@ YUI({ filter: 'raw' }).use("autocomplete", "autocomplete-filters", "autocomplete
     source           : function(query) {
 		$.ajax({
 			type: "POST",
-			url: "../../DB/studenthome_lookup_questions.php",
+			url: "studenthome_lookup_questions.php",
 			data: "sid=22222", // still need to retrieve the session ID dynamically.
 			success: function(msg){
 				data = new Array();
