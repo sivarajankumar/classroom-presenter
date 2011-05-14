@@ -3,9 +3,9 @@
 	// Change this for whoever is using the php script
 	// These variables need to be changed for every person who sets this up
 	// Production DB: ashen; 2kV2cNct; ashen_403_Local
-	$username = "mcmk";
-	$password = "hyi2Uq7B"; 
-	$db_name = "mcmk_ballerdb"; 
+	$username = "ashen";
+	$password = "2kV2cNct"; 
+	$db_name = "ashen_403_Local"; 
 
 	// Connect to server
 	$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
