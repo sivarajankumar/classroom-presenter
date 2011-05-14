@@ -70,5 +70,5 @@ function removeCourse(studentId, courseId) {
 	
 	// Make the AJAX call to the backend
 	$.post("scripts/delete_course.php",
-			{uid: studentId, cid: courseId});
+			{email: studentId, cid: courseId});
 }

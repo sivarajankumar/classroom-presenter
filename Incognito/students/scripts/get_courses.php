@@ -44,19 +44,19 @@
 					
 					echo "<p class =\""  . $row[4] . "\">" . $row[4] .
 					"<button id=\"" . $row[1] . "\" class=\"joinButton\">Join Session</button><button id=\"" .
-					$row[4] . "\" class=\"courseRemoveButton\">Delete</button></p>";
+					$row[2] . "\" class=\"courseRemoveButton\">Delete</button></p>";
 
 				} else {
 					
 					echo "<p class =\""  . $row[4] . "\">" . $row[4] . 
 					"<button id=\"" . $row[1] . "\" class=\"quitButton\">Quit Session</button><button id=\"" . 
-					$row[4] . "\" class=\"courseRemoveButton\">Delete</button></p>";
+					$row[2] . "\" class=\"courseRemoveButton\">Delete</button></p>";
 					
 				}
 			} else {
 				
 				echo "<p class =\""  . $row[4] . "\">" . $row[4] . 
-				"<button id=\"" . $row[4] . "\" class=\"courseRemoveButton\">Delete</button></p>";
+				"<button id=\"" . $row[2] . "\" class=\"courseRemoveButton\">Delete</button></p>";
 				
 			}
 

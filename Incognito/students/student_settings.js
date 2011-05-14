@@ -1,6 +1,12 @@
  $(document).ready(function() {
-	var place = getCourses(cookieSession_uwid);
-	$("#courseInfo").html(place);
+	var place;
+	alert("Please print");  
+	getCourses(cookieSession_uwid, function(data) {
+		place = data;
+		alert(data); 
+		$("#courseInfo").html(place);
+	});
+	
 	
    $(".joinButton").live('click',function(event) {
 		joinSession(cookieSession_uwid, $(this).attr('id'));
@@ -12,8 +18,11 @@
 	
 	$(".courseRemoveButton").live('click',function(event) {
 		deleteCourse(cookieSession_uwid, $(this).attr('id'));
-		place = getCourses(cookieSession_uwid);
-		$("#courseInfo").html(place);
+		getCourses(cookieSession_uwid, function(data) {
+			place = data;
+			$("#courseInfo").html(place); 
+		});
+		
 	});
 
 });
