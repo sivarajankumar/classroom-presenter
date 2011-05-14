@@ -34,7 +34,12 @@
 	$uidrow = mysql_fetch_assoc($uidresult);
 	$uid = (int)$uidrow["uid"];
 	
-	$rows = array();
+  echo $sid;
+  echo $filter;
+  echo $sort;
+  echo $username;
+  
+	$feed = array();
 	$query = null;
 	if ( $filter == "none" )	// no filtering, so query both Question and Feedback
 	{
@@ -66,7 +71,7 @@
 			{
 				$voted = 1;
 			}
-			$rows[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q');
+			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q');
 		}
 		$results = mysql_query($query2, $db_conn);
 		while($r = mysql_fetch_assoc($results))
@@ -79,7 +84,7 @@
 			{
 				$voted = 1;
 			}
-			$rows[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F');
+			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F');
 		}
 	}
 	elseif ( $filter == "qboth" )	// we only want questions
@@ -107,7 +112,7 @@
 			{
 				$voted = 1;
 			}
-			$rows[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q');
+			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q');
 		}
 	}
 	elseif ( $filter == "fboth" )	// we only want feedback
@@ -135,7 +140,7 @@
 			{
 				$voted = 1;
 			}
-			$rows[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F');
+			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F');
 		}
 	}
 	elseif ( $filter == "answered" )	// we only want answered questions
@@ -153,7 +158,7 @@
 			$query = sprintf("SELECT * FROM Question WHERE sid = %d AND answered = 1", $sid);
 		}
 		$results = mysql_query($query, $db_conn);
-		$rows = array();
+		$feed = array();
 		while($r = mysql_fetch_assoc($results))
 		{
 			$qid = (int)$r["qid"];
@@ -164,7 +169,7 @@
 			{
 				$voted = 1;
 			}
-			$rows[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q');
+			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q');
 		}
 	}
 	elseif ( $filter == "unanswered" )	// we only want unanswered questions
@@ -182,7 +187,7 @@
 			$query = sprintf("SELECT * FROM Question WHERE sid = %d AND answered = 0", $sid);
 		}
 		$results = mysql_query($query, $db_conn);
-		$rows = array();
+		$feed = array();
 		while($r = mysql_fetch_assoc($results))
 		{
 			$qid = (int)$r["qid"];
@@ -193,7 +198,7 @@
 			{
 				$voted = 1;
 			}
-			$rows[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q');
+			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q');
 		}
 	}
 	elseif ( $filter == "unread" )	// we only want unread feedback
@@ -221,7 +226,7 @@
 			{
 				$voted = 1;
 			}
-			$rows[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F');
+			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F');
 		}
 	}
 	elseif ( $filter == "read" )	// we only want read feedback
@@ -249,7 +254,7 @@
 			{
 				$voted = 1;
 			}
-			$rows[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F');
+			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F');
 		}
 	}
 	
@@ -270,9 +275,42 @@
 	}
 	*/
 	
-	
-	header('Content-type: application/json');
-	echo json_encode($rows);
+  echo "<table id=feedTable>";
+  for($row = 0; $row < 3; $row++)
+  {
+    if($row % 2 == 1)
+    {
+      echo "<tr class=alt>";
+    }
+    else
+    {
+      echo "<tr>";
+    }
+    for($col = 0; $col < 3; $col++)
+    {
+      if($col == 0)
+      {
+        if(strcmp($feed[$row][$col], "checked") == 0)
+        {
+          echo "<td class=check><input type=checkbox id=check checked=true /></td>";
+        }
+        else
+        {
+          echo "<td class=check><input type=checkbox id=check /></td>";
+        }
+      }
+      elseif($col == 1)
+      {
+        echo "<td class=feed>".$feed[$row][$col]."</td>";
+      }
+      else
+      {
+        echo "<td class=answered>".$feed[$row][$col]."</td>";
+      }
+    }
+    echo "</tr>";
+  }
+  echo "</table>";
 
 ?>
 	

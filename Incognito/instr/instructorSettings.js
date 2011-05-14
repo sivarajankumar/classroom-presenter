@@ -8,7 +8,7 @@
 	var courseId;
 	var mailIs;
 	//initially puts courses on page
-	getCourses($.cookie("alias"),printToScreen);
+	getCourses($.cookie("session"),printToScreen);
  
 	// starts a session
    $(".closeOptionButton").live('click',function(event) {
@@ -25,8 +25,8 @@
 		var courseIs = $("#courseName").val();
 		mailIs = $("#mailingList").val();
 		courseId = createCourse($.cookie("session"), courseIs, mailIs, printToScreen);
-		getCourses($.cookie("alias"),printToScreen);
-		$("#courseInfo").html(place);
+		getCourses($.cookie("session"),printToScreen);
+		//$("#courseInfo").html(place);
 	});
 	
 	//user deletes a course
