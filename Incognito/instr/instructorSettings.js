@@ -1,6 +1,6 @@
  /* This file handles the events for Instructor Settings page. */
   function printToScreen(data){
-	$("#courseInfo").html(data);
+	//$("#courseInfo").html(data);
  }
  
  $(document).ready(function() {
@@ -24,7 +24,7 @@
 	$("#courseSubmitButton").click(function(event){
 		var courseIs = $("#courseName").val();
 		mailIs = $("#mailingList").val();
-		courseId = createCourse($.cookie("session"), courseIs, mailIs, printToScreen);
+		courseId = insertCourse($.cookie("session"), courseIs, mailIs, printToScreen);
 		getCourses($.cookie("session"),printToScreen);
 		//$("#courseInfo").html(place);
 	});
