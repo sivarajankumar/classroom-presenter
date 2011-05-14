@@ -2,8 +2,18 @@
 <script src="jquery-1.5.2.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="studentfeed.js"></script>
 <script type="text/javascript" src="studentUIcontroller.js"></script>	
-<script type="text/javascript" src="studentSettings.js"></script>
-<script type="text/javascript" src="jquery.cookie.js"></script>	
+
+<script type="text/javascript">
+  function printToScreen(data){
+    $("#feed").html(data);
+  }
+
+  window.onload = function() {
+    $('#filter').change(function() {
+      getFeed(1, "mcmk", "none", "newest", printToScreen);
+    });
+  };
+</script>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -18,7 +28,7 @@
 		<div id="topbanner"> 	<!-- Includes logo & person's information/help/logout, & course name -->		
 			<img src="logo.png" alt="logo" />
 			<div id="greeting">
-				<span id="cook"><?php echo 'Hello '.($_COOKIE['alias']!='' ? $_COOKIE['alias'] : 'Guest') ?></span> | <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
+				<?php echo 'Hello '.($_COOKIE['netid']!='' ? $_COOKIE['netid'] : 'Guest') ?>  | <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
 				You are currently looking at [course name].
 			</div>
 		</div>			
@@ -84,7 +94,7 @@
 			<div id="filterandsort">	<!-- Filtering & Sorting -->
 				<span>
 					FILTER BY: 
-					<select name="filter">
+					<select name="filter" id="filter">
 						<option selected="selected"> None
 						</option>
 						<optgroup label="Questions">
@@ -117,27 +127,8 @@
 				<hr />	
 			</div>
       
-      <div id="feed">
-        <?php 
-          $feed = array( array("checked", "First Feed" , "answered"),
-                         array("unchecked", "First Feed" , "unanswered"),
-                         array("checked", "First Feed" , "answered") 
-                       );
-          
-          echo "<table>";
-          for($row = 0; $row < 3; $row++)
-          {
-            echo "<tr>";
-            for($col = 0; $col < 3; $col++)
-            {
-              echo "<td>".$feed[$row][$col]."</td>";
-            }
-            echo "</tr>";
-          }
-          echo "</table>";
-        ?>
-      </div>
-			
+      <div id="feed"></div>
+      
 		</div>
 
 		

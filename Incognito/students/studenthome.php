@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <?php
-  setcookie('session', $_SERVER['REMOTE_USER']);
+  setcookie('netid', $_SERVER['REMOTE_USER']);
 ?>
 	<head>
 		<title>Incognito</title>
@@ -47,7 +47,7 @@
 						</span>
 						<textarea name="texthome" id="ac-input" rows="10" cols="80"></textarea>
 					</div>
-					<div id="submitbuttondiv"><button type="button" id="submitbutton" onClick="onSubmit()">Submit</button></div>
+					<div id="submitbuttondiv"><button type="submit" id="submitbutton" onClick="onSubmit()">Submit</button></div>
 				</div>
 			</form>
 		</div>
@@ -67,7 +67,7 @@ YUI({ filter: 'raw' }).use("autocomplete", "autocomplete-filters", "autocomplete
     source           : function(query) {
 		$.ajax({
 			type: "POST",
-			url: "../../DB/studenthome_lookup_questions.php",
+			url: "studenthome_lookup_questions.php",
 			data: "sid=22222", // still need to retrieve the session ID dynamically.
 			success: function(msg){
 				data = new Array();
