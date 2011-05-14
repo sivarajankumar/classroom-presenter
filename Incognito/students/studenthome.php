@@ -38,18 +38,18 @@
 		</div>
 		
 		<div id = "maincontent">
-			<form id="submitform">
+    <form id="submitform">
 				<div class="submissioncontent">	<!-- Includes: "Submit as", textbox, & submit button -->
-					<div id="typeAreaHome">
+					<div id="typeAreaFeed">
 						<span>Submit as:
 							<label><input type="radio" name="submitType" value="Q" checked="checked"/> Question</label>
 							<label><input type="radio" name="submitType" value="F"/> Feedback </label>
-						</span>
-						<textarea name="texthome" id="ac-input" rows="10" cols="80"></textarea>
+						</span> <br />
+						<input type="textbox" name="texthome" value="" id="texthome" height="1000" size="80" maxlength="50">
+            <div id="display"></div>
+						<button type="submit" id="submitbutton" onClick="onSubmit()">Submit</button>
 					</div>
-					<div id="submitbuttondiv"><button type="submit" id="submitbutton" onClick="onSubmit()">Submit</button></div>
 				</div>
-			</form>
 		</div>
 <script>
 YUI({ filter: 'raw' }).use("autocomplete", "autocomplete-filters", "autocomplete-highlighters", function (Y) {
@@ -67,7 +67,7 @@ YUI({ filter: 'raw' }).use("autocomplete", "autocomplete-filters", "autocomplete
     source           : function(query) {
 		$.ajax({
 			type: "POST",
-			url: "studenthome_lookup_questions.php",
+			url: "../../DB/lookup_questions.php",
 			data: "sid=22222", // still need to retrieve the session ID dynamically.
 			success: function(msg){
 				data = new Array();
