@@ -198,7 +198,33 @@
 	*/
 	
 	
-	header('Content-type: application/json');
-	echo json_encode($rows);
+	//header('Content-type: application/json');
+	//echo json_encode($rows);
+	
+	//$rows[] = array('text'=>$r["text"],'votes'=>$r["numvotes"],'isread'=>$r["isread"],'type'=>'F');
+	echo "<table id=feedTable>";
+	  for($row = 0; $row < 3; $row++)
+	  {
+	    if($row % 2 == 1)
+	    {
+	      echo "<tr class=alt>";
+	    }
+	    else
+	    {
+	      echo "<tr>";
+	    }
+	    if($feed[$row]["answered"] == 1)
+	    {
+	      echo "<td class=check><input type=checkbox id=check checked=true /></td>";
+	    }
+	    else
+	    {
+	      echo "<td class=check><input type=checkbox id=check /></td>";
+	    }
+	    echo "<td class=feed>".$feed[$row]["text"]."</td>";
+	    echo "<td class=answered>".$feed[$row]["votes"]."</td>";
+	    echo "</tr>";
+	  }
+	  echo "</table>";
 
 ?>
