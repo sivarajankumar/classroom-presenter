@@ -1,0 +1,19 @@
+<project name="phpunitExample" default="build">
+
+
+ <target name="simpleTest">
+   <exec dir=".." executable="phpunit" failonerror="false">
+      <arg line="testTesting.php" />
+        </exec>
+         </target>
+
+ <target name="testLogout">
+   <exec dir=".." executable="phpunit" failonerror="false">
+      <arg line="testLogout.php" />
+        </exec>
+         </target>
+
+
+ <target name="build" depends="simpleTest"/>
+ <target name="logout" depends="testLogout"/>
+ </project>
