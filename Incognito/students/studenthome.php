@@ -45,7 +45,7 @@
 							<label><input type="radio" name="submitType" value="Q" checked="checked"/> Question</label>
 							<label><input type="radio" name="submitType" value="F"/> Feedback </label>
 						</span> <br />
-						<input type="textbox" name="texthome" value="" id="texthome" height="1000" size="80" maxlength="50">
+						<input type="textbox" name="texthome" value="" id="ac-input" height="1000" size="80" maxlength="50">
             <div id="display"></div>
 						<button type="submit" id="submitbutton" onClick="onSubmit()">Submit</button>
 					</div>
@@ -68,7 +68,7 @@ YUI({ filter: 'raw' }).use("autocomplete", "autocomplete-filters", "autocomplete
 		$.ajax({
 			type: "POST",
 			url: "../../DB/studenthome_lookup_questions.php",
-			data: "sid=22222", // still need to retrieve the session ID dynamically.
+			data: "sid=23456", // still need to retrieve the session ID dynamically.
 			success: function(msg){
 				data = new Array();
 				for (var i = 0; i < msg.length; i++)
