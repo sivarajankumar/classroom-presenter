@@ -3,14 +3,12 @@
 	// This file adds a new course to the database and returns the cid
 	
 	// Check if the proper variables were sent
-	if (isset($_POST['uid'])) {
-		
+	if (isset($_POST['email'])) {
 		// Connect to our database (change for different user) 
 		// Connect to the database
 		//$username = "ashen";
 		//$password = "2kV2cNct";
 		//$db_name = "ashen_403_Local";
-		
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 		if (!$db_conn) {
 			die("Could not connect");
@@ -18,12 +16,25 @@
 		
 		mysql_select_db($db_name, $db_conn);
 		
-		// Now add the course to the Course table
-		$uid = $_POST['uid'];
-		$name = $_POST['name'];
+		// Get the user's uid
 		$email = $_POST['email'];
+		echo $email;
+		$query = sprintf("SELECT uid FROM User WHERE email = '%s';", $email); 
+		$results = mysql_query($query, $db_conn);
+		
+		// Check errors
+		if (!$results) {
+			die("Error: " + mysql_error($db_conn)); 
+		}
+		
+		$row = mysql_fetch_row($results);  
+
+		// Now add the course to the Course table
+		$uid = $row[0];
+		$name = $_POST['name'];
+		$mainlinglist = $_POST['mailinglist'];
 		$query = sprintf("INSERT INTO Course (name, mailinglist) VALUES ('%s', '%s');", 
-							$name, $email);
+							$name, $mailinglist);
 		$results = mysql_query($query, $db_conn);
 		
 		// Do some error checking

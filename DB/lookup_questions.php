@@ -33,6 +33,7 @@
 		$query2 = null;
 		if ( $sort == "newest" )
 		{
+      echo "I am here.";
 			$query1 = sprintf("SELECT * FROM Question WHERE sid = %d ORDER BY time DESC", $sid);
 			$query2 = sprintf("SELECT * FROM Feedback WHERE sid = %d ORDER BY time DESC", $sid);
 		}
@@ -213,16 +214,16 @@
 	    {
 	      echo "<tr>";
 	    }
+      echo "<td class=votes>".$rows[$row]["votes"]."</td>";
+      echo "<td class=feed>".$rows[$row]["text"]."</td>";
 	    if($feed[$row]["answered"] == 1)
 	    {
-	      echo "<td class=check><input type=checkbox id=check checked=true /></td>";
+	      echo "<td class=checked><input type=checkbox id=check checked=true /></td>";
 	    }
 	    else
 	    {
-	      echo "<td class=check><input type=checkbox id=check /></td>";
+	      echo "<td class=checked><input type=checkbox id=check /></td>";
 	    }
-	    echo "<td class=feed>".$feed[$row]["text"]."</td>";
-	    echo "<td class=answered>".$feed[$row]["votes"]."</td>";
 	    echo "</tr>";
 	  }
 	  echo "</table>";

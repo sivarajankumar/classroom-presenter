@@ -11,9 +11,22 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="pages.css" type="text/css" rel="stylesheet" />
 		<script src="jquery-1.5.2.js" type="text/javascript"></script>
+		<script type="text/javascript" src="jquery.cookie.js"></script>
 		<script type="text/javascript" src="testingInstructorFeed.js"></script
 	</head>
 
+  <script type="text/javascript">
+  function printToScreen(data){
+    $("#feed").html(data);
+  }
+
+  window.onload = function() {
+    $('#filter').change(function() {
+      getFeed(23456, "none", "newest", printToScreen);
+    });
+  };
+  </script>
+  
 	<body>
 		
 		<div id="topbanner"> <!-- Includes logo & person's information/help/logout, & feed status -->			
@@ -37,7 +50,7 @@
 			<div id="filterandsort">	<!-- Filtering & Sorting -->
 				<span>
 					FILTER BY: 
-					<select name="filter">
+					<select name="filter" id="filter">
 						<option selected="selected"> None
 						</option>
 						<optgroup label="Questions">
@@ -71,51 +84,7 @@
 				<span id="blankfeed"><!--(Today&#39;s feed has not yet been open. To open, refer to your settings.)--></span>						
 			</div>
       
-            <div id="feed">
-        <?php 
-          $feed = array( array("43", "Why is 403 the most awesome class ever??? OMG" , "answered"),
-                         array("100", "What is worse than 403?" , "read"),
-                         array("2000", "What is a good design pattern for graduating as soon as possible?" , "answered") 
-                       );
-          
-          echo "<table id=feedTable>";
-          for($row = 0; $row < 3; $row++)
-          {
-            if($row % 2 == 1)
-            {
-              echo "<tr class=alt>";
-            }
-            else
-            {
-              echo "<tr>";
-            }
-            for($col = 0; $col < 3; $col++)
-            {
-              if($col == 2)
-              {
-                if(strcmp($feed[$row][$col], "answered") == 0)
-                {
-                  echo "<td class=check><input type=checkbox id=check checked=true /></td>";
-                }
-                else
-                {
-                  echo "<td class=check><input type=checkbox id=check /></td>";
-                }
-              }
-              elseif($col == 1)
-              {
-                echo "<td class=feed>".$feed[$row][$col]."</td>";
-              }
-              else
-              {
-                echo "<td class=votes>".$feed[$row][$col]."</td>";
-              }
-            }
-            echo "</tr>";
-          }
-          echo "</table>";
-        ?>
-      </div>
+      <div id="feed"></div>
 			
 		</div>
 
