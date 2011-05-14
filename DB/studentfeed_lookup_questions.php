@@ -33,11 +33,6 @@
 	$uidresult = mysql_query($uidquery, $db_conn);
 	$uidrow = mysql_fetch_assoc($uidresult);
 	$uid = (int)$uidrow["uid"];
-	
-  echo $sid;
-  echo $filter;
-  echo $sort;
-  echo $username;
   
 	$feed = array();
 	$query = null;
@@ -64,6 +59,7 @@
 		while($r = mysql_fetch_assoc($results))
 		{
 			$qid = (int)$r["qid"];
+      // echo $qid;
 			$votequery = sprintf("SELECT * FROM QuestionVotedOn WHERE qid = %d AND uid = %d", $qid, $uid);
 			$voteresults = mysql_query($votequery, $db_conn);
 			$voted = 0;
@@ -77,6 +73,7 @@
 		while($r = mysql_fetch_assoc($results))
 		{
 			$fid = (int)$r["fid"];
+      // echo $fid;
 			$votequery = sprintf("SELECT * FROM FeedbackVotedOn WHERE fid = %d AND uid = %d", $fid, $uid);
 			$voteresults = mysql_query($votequery, $db_conn);
 			$voted = 0;
@@ -133,6 +130,7 @@
 		while($r = mysql_fetch_assoc($results))
 		{
 			$fid = (int)$r["fid"];
+      // echo $fid;
 			$votequery = sprintf("SELECT * FROM FeedbackVotedOn WHERE fid = %d AND uid = %d", $fid, $uid);
 			$voteresults = mysql_query($votequery, $db_conn);
 			$voted = 0;
@@ -219,6 +217,7 @@
 		while($r = mysql_fetch_assoc($results))
 		{
 			$fid = (int)$r["fid"];
+      // echo $fid;
 			$votequery = sprintf("SELECT * FROM FeedbackVotedOn WHERE fid = %d AND uid = %d", $fid, $uid);
 			$voteresults = mysql_query($votequery, $db_conn);
 			$voted = 0;
@@ -247,6 +246,7 @@
 		while($r = mysql_fetch_assoc($results))
 		{
 			$fid = (int)$r["fid"];
+      // echo $fid;
 			$votequery = sprintf("SELECT * FROM FeedbackVotedOn WHERE fid = %d AND uid = %d", $fid, $uid);
 			$voteresults = mysql_query($votequery, $db_conn);
 			$voted = 0;
@@ -257,7 +257,10 @@
 			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F');
 		}
 	}
+  
+  echo $feed[0][0];
 	
+  
 	/*
 	$query = sprintf("SELECT * FROM Question WHERE sid = %d", $sid);
 	$results = mysql_query($query, $db_conn);
@@ -286,28 +289,16 @@
     {
       echo "<tr>";
     }
-    for($col = 0; $col < 3; $col++)
+    if($feed[$row]["voted"] == 1)
     {
-      if($col == 0)
-      {
-        if(strcmp($feed[$row][$col], "checked") == 0)
-        {
-          echo "<td class=check><input type=checkbox id=check checked=true /></td>";
-        }
-        else
-        {
-          echo "<td class=check><input type=checkbox id=check /></td>";
-        }
-      }
-      elseif($col == 1)
-      {
-        echo "<td class=feed>".$feed[$row][$col]."</td>";
-      }
-      else
-      {
-        echo "<td class=answered>".$feed[$row][$col]."</td>";
-      }
+      echo "<td class=check><input type=checkbox id=check checked=true /></td>";
     }
+    else
+    {
+      echo "<td class=check><input type=checkbox id=check /></td>";
+    }
+    echo "<td class=feed>".$feed[$row]["text"]."</td>";
+    echo "<td class=answered>".$feed[$row]["answered"]."</td>";
     echo "</tr>";
   }
   echo "</table>";
