@@ -10,7 +10,7 @@
 
   window.onload = function() {
     $('#filter').change(function() {
-      getFeed(1, "mcmk", "none", "newest", printToScreen);
+      getFeed(23456, $_COOKIE['netid'], "none", "newest", printToScreen);
     });
   };
 </script>
@@ -72,7 +72,7 @@
               source           : function(query) {
               $.ajax({
                 type: "POST",
-                url: "../../DB/lookup_questions.php",
+                url: "../../DB/studenthome_lookup_questions.php",
                 data: "sid=22222", // still need to retrieve the session ID dynamically.
                 success: function(msg){
                   data = new Array();
