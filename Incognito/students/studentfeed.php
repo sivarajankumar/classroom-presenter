@@ -4,33 +4,6 @@
 <script type="text/javascript" src="studentUIcontroller.js"></script>
 <script type="text/javascript" src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script>
 
-<script type="text/javascript">
-
-	// Prints the data to the feed div
-	function printToScreen(data){
-    	$("#feed").html(data);
-	}
-
-	// Handles the event of when the filter select boxes change
-	function onFilterChange() {
-		var filter = $("#filter option:selected");
-		if (filter.val() != 0)
-			getFeed(23456, "mcmk", filter.text(), "newest", printToScreen);
-	}
-
-	// Handles the event of when the sort link has been clicked
-	function onSortChange() {
-
-	}
-
-
-	window.onload = function() {
-    	$('#filter').change(onFilterChange);
-    	$('#sort').change(onSortChange);
-	};
-
-</script>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head>
@@ -116,18 +89,18 @@
 						<optgroup label="Questions">
 							<option>Answered</option>
 							<option>Unanswered</option>
-							<option>Both</option>
+							<option>All Questions</option>
 						</optgroup>
 						<optgroup label="Feedback">
 							<option>Read</option>
 							<option>Unread</option>
-							<option>Both</option>
+							<option>All Feedback</option>
 						</optgroup>
 					</select>
 				</span>
 
 				<span> SORT BY:
-					<a href="" >NEWEST</a> | <a href="" >HIGHEST PRIORITY</a>
+					<a id="newest">NEWEST</a> | <a id="priority">HIGHEST PRIORITY</a>
 				</span>
 			</div>
 
