@@ -73,7 +73,7 @@
 			{
 				$voted = 1;
 			}
-			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q');
+			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q','id'=>$r["qid"]);
 		}
 		$results = mysql_query($query2, $db_conn);
 		while($r = mysql_fetch_assoc($results))
@@ -87,7 +87,7 @@
 			{
 				$voted = 1;
 			}
-			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F');
+			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F','id'=>$r["fid"]);
 		}
 	}
 	elseif ( $filter == "All Questions" )	// we only want questions
@@ -119,7 +119,7 @@
 			{
 				$voted = 1;
 			}
-			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q');
+			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q','id'=>$r["qid"]);
 		}
 	}
 	elseif ( $filter == "All Feedback" )	// we only want feedback
@@ -152,7 +152,7 @@
 			{
 				$voted = 1;
 			}
-			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F');
+			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F','id'=>$r["fid"]);
 		}
 	}
 	elseif ( $filter == "Answered" )	// we only want answered questions
@@ -185,7 +185,7 @@
 			{
 				$voted = 1;
 			}
-			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q');
+			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q','id'=>$r["qid"]);
 		}
 	}
 	elseif ( $filter == "Unanswered" )	// we only want unanswered questions
@@ -218,7 +218,7 @@
 			{
 				$voted = 1;
 			}
-			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q');
+			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q','id'=>$r["qid"]);
 		}
 	}
 	elseif ( $filter == "Unread" )	// we only want unread feedback
@@ -251,7 +251,7 @@
 			{
 				$voted = 1;
 			}
-			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F');
+			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F','id'=>$r["fid"]);
 		}
 	}
 	elseif ( $filter == "Read" )	// we only want read feedback
@@ -284,11 +284,11 @@
 			{
 				$voted = 1;
 			}
-			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F');
+			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F','id'=>$r["fid"]);
 		}
 	}
   
-  echo $feed[0][0];
+    echo $feed[0][0];
 	
   
 	/*
@@ -297,14 +297,14 @@
 	$rows = array();
 	while($r = mysql_fetch_assoc($results))
 	{
-		$rows[] = array('text'=>$r["text"],'votes'=>$r["numvotes"],'answered'=>$r["answered"],'type'=>'Q');
+		$rows[] = array('text'=>$r["text"],'votes'=>$r["numvotes"],'answered'=>$r["answered"],'type'=>'Q','id'=>$r["qid"]);
 	}
 	
 	$query = sprintf("SELECT * FROM Feedback WHERE sid = %d", $sid);
 	$results = mysql_query($query, $db_conn);
 	while($r = mysql_fetch_assoc($results))
 	{
-		$rows[] = array('text'=>$r["text"],'votes'=>$r["numvotes"],'isread'=>$r["isread"],'type'=>'F');
+		$rows[] = array('text'=>$r["text"],'votes'=>$r["numvotes"],'isread'=>$r["isread"],'type'=>'F','id'=>$r["fid"]);
 	}
 	*/
 	
@@ -317,9 +317,9 @@
             else
                 echo "<tr>";
             if($feed[$row]["voted"] == 1)
-                echo "<td class=check><input type=checkbox id=check checked=true /></td>";
+                echo "<td class=check><input type=checkbox id=check_".$feed[$row]["type"].$feed[$row]["id"]." checked=true /></td>";
             else
-                echo "<td class=check><input type=checkbox id=check /></td>";
+                echo "<td class=check><input type=checkbox id=check_".$feed[$row]["type"].$feed[$row]["id"]." /></td>";
             echo "<td class=feed>".$feed[$row]["text"]."</td>";
             echo "<td class=answered>".$feed[$row]["answered"]."</td>";
             echo "</tr>";

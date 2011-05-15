@@ -23,7 +23,7 @@ function onUpdate(){
 function onSubmit(){
 	var text = submitform.elements["texthome"].value; // Haven't figured out the jQuery for this yet.
 	var type = $('input[name=submitType]:checked', '#submitform').val();
-	//alert( type );
+	// alert( type );
 	var sid = 23456;
 	var dataString;
 	var numvotes;
@@ -37,7 +37,7 @@ function onSubmit(){
 			url: "../../DB/submit_question.php",
 			data: dataString,
 			success: function(){
-				//alert( 'Success!' );
+				// alert( 'Success!' );
 			}
 		});
 	}
@@ -51,7 +51,7 @@ function onSubmit(){
 			url: "../../DB/submit_question.php",
 			data: dataString,
 			success: function(){
-				//alert( 'Success!' );
+				// alert( 'Success!' );
 			}
 		});
 	}
