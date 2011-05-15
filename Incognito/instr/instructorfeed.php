@@ -12,20 +12,9 @@
 		<link href="pages.css" type="text/css" rel="stylesheet" />
 		<script src="jquery-1.5.2.js" type="text/javascript"></script>
 		<script type="text/javascript" src="jquery.cookie.js"></script>
-		<script type="text/javascript" src="testingInstructorFeed.js"></script
+		<script type="text/javascript" src="testingInstructorFeed.js"></script>
+        <script type="text/javascript" src="instructorfeed.js"></script>
 	</head>
-
-  <script type="text/javascript">
-  function printToScreen(data){
-    $("#feed").html(data);
-  }
-
-  window.onload = function() {
-    $('#filter').change(function() {
-      getFeed(23456, "none", "newest", printToScreen);
-    });
-  };
-  </script>
   
 	<body>
 		
@@ -56,19 +45,19 @@
 						<optgroup label="Questions">
 							<option>Answered</option>
 							<option>Unanswered</option>
-							<option>Both</option>
+							<option>All Questions</option>
 						</optgroup>
 						<optgroup label="Feedback">
 							<option>Read</option>
 							<option>Unread</option>
-							<option>Both</option>
+							<option>All Feedback</option>
 						</optgroup>
 					</select>
 				</span>
 				
 				<span>
 					SORT BY:
-					<a href="#feedbox" id="newest" >NEWEST</a> | <a href="#feedbox" id="priority">HIGHEST PRIORITY</a>
+					<a id="newest" >NEWEST</a> | <a id="priority">HIGHEST PRIORITY</a>
 				</span>				  
 			</div>
 			
@@ -84,7 +73,7 @@
 				<span id="blankfeed"><!--(Today&#39;s feed has not yet been open. To open, refer to your settings.)--></span>						
 			</div>
       
-      <div id="feed"></div>
+            <div id="feed"></div>
 			
 		</div>
 
