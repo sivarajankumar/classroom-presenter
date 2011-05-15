@@ -9,7 +9,7 @@
 	var mailIs;
 	//initially puts courses on page
 
-	getCourses($.cookie("session"),printToScreen;
+	getCourses($.cookie("session"),printToScreen);
  
 	// starts a session
    $(".closeOptionButton").live('click',function(event) {

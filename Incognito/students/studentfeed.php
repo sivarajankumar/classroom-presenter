@@ -2,18 +2,33 @@
 <script src="jquery-1.5.2.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="studentfeed.js"></script>
 <script type="text/javascript" src="studentUIcontroller.js"></script>
-<script type="text/javascript" src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script>	
+<script type="text/javascript" src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script>
 
 <script type="text/javascript">
-  function printToScreen(data){
-    $("#feed").html(data);
-  }
 
-  window.onload = function() {
-    $('#filter').change(function() {
-      getFeed(23456, "mcmk", "none", "newest", printToScreen);
-    });
-  };
+	// Prints the data to the feed div
+	function printToScreen(data){
+    	$("#feed").html(data);
+	}
+
+	// Handles the event of when the filter select boxes change
+	function onFilterChange() {
+		var filter = $("#filter option:selected");
+		if (filter.val() != 0)
+			getFeed(23456, "mcmk", filter.text(), "newest", printToScreen);
+	}
+
+	// Handles the event of when the sort link has been clicked
+	function onSortChange() {
+
+	}
+
+
+	window.onload = function() {
+    	$('#filter').change(onFilterChange);
+    	$('#sort').change(onSortChange);
+	};
+
 </script>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -25,24 +40,24 @@
 	</head>
 
 	<body>
-		
-		<div id="topbanner"> 	<!-- Includes logo & person's information/help/logout, & course name -->		
+
+		<div id="topbanner"> 	<!-- Includes logo & person's information/help/logout, & course name -->
 			<img src="logo.png" alt="logo" />
 			<div id="greeting">
 				<?php echo 'Hello '.($_COOKIE['alias']!='' ? $_COOKIE['alias'] : 'Guest') ?>  | <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
 				You are currently looking at [course name].
 			</div>
-		</div>			
+		</div>
 
-		
+
 		<div id="navigation"> <!-- Navigation bar -->
 			<ul>
 				<li><span><a class="tab" href="studenthome.php">Home</a></span></li>
 				<li><span><a class="tab" href="studentfeed.php">Feed</a></span></li>
 				<li><span><a class="tab" href="studentsurveys.php">Surveys</a></span></li>
-			</ul>		
+			</ul>
 		</div>
-		
+
 		<div id = "maincontent">
 			<form id="submitform">
 				<div class="submissioncontent">	<!-- Includes: "Submit as", textbox, & submit button -->
@@ -56,7 +71,7 @@
 						<button type="submit" id="submitbutton" onClick="onSubmit()">Submit</button>
 					</div>
 				</div>
-				
+
         <script>
           YUI({ filter: 'raw' }).use("autocomplete", "autocomplete-filters", "autocomplete-highlighters", function (Y) {
             states = [
@@ -89,12 +104,12 @@
             });
           });
         </script>
-        
+
 			</form>
-			
+
 			<div id="filterandsort">	<!-- Filtering & Sorting -->
 				<span>
-					FILTER BY: 
+					FILTER BY:
 					<select name="filter" id="filter">
 						<option selected="selected"> None
 						</option>
@@ -110,35 +125,35 @@
 						</optgroup>
 					</select>
 				</span>
-				
+
 				<span> SORT BY:
 					<a href="" >NEWEST</a> | <a href="" >HIGHEST PRIORITY</a>
-				</span>				  
+				</span>
 			</div>
-			
-			
-			<div id="feedbox"> 
+
+
+			<div id="feedbox">
 				<div class="nonSubCol"> Vote? <!-- Column names in feed -->
 				</div>
-				<div id="subCol"> Feed				
+				<div id="subCol"> Feed
 				</div>
 				<div class="nonSubCol"> Answered/Read?
-				</div>	
-				
-				<hr />	
+				</div>
+
+				<hr />
 			</div>
-      
+
       <div id="feed"></div>
-      
+
 		</div>
 
-		
+
 		<div class="bottomlinks">	<!-- Links at bottom of page -->
-			<a class="aboutlink" href="">Report Bug</a> | 
-			<a class="aboutlink" href="help.php">About</a> | 
-			<a class="aboutlink" href="help.php">Privacy Policy</a> | 
+			<a class="aboutlink" href="">Report Bug</a> |
+			<a class="aboutlink" href="help.php">About</a> |
+			<a class="aboutlink" href="help.php">Privacy Policy</a> |
 			<a class="aboutlink" href="help.php">Contact Us</a>
 		</div>
-		
+
 	</body>
 </html>
