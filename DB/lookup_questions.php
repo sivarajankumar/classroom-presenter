@@ -202,29 +202,24 @@
 	//echo json_encode($rows);
 	
 	//$rows[] = array('text'=>$r["text"],'votes'=>$r["numvotes"],'isread'=>$r["isread"],'type'=>'F');
-	echo "<table id=feedTable>";
-	  for($row = 0; $row < 3; $row++)
-	  {
-	    if($row % 2 == 1)
-	    {
-	      echo "<tr class=alt>";
-	    }
-	    else
-	    {
-	      echo "<tr>";
-	    }
-      echo "<td class=votes>".$rows[$row]["votes"]."</td>";
-      echo "<td class=feed>".$rows[$row]["text"]."</td>";
-	    if($feed[$row]["answered"] == 1)
-	    {
-	      echo "<td class=checked><input type=checkbox id=check checked=true /></td>";
-	    }
-	    else
-	    {
-	      echo "<td class=checked><input type=checkbox id=check /></td>";
-	    }
-	    echo "</tr>";
-	  }
-	  echo "</table>";
+    
+    // Prints out the feed data in a nice html format
+    echo "<table id=feedTable>";
+    for($row = 0; $row < 3; $row++) {
+        if(!empty($rows[$row])) {
+            if($row % 2 == 1)
+                echo "<tr class=alt>";
+            else
+                echo "<tr>";
+            echo "<td class=votes>".$rows[$row]["votes"]."</td>";
+            echo "<td class=feed>".$rows[$row]["text"]."</td>";
+            if($feed[$row]["answered"] == 1)
+                echo "<td class=checked><input type=checkbox id=check checked=true /></td>";
+            else
+                echo "<td class=checked><input type=checkbox id=check /></td>";
+            echo "</tr>";
+        }
+    }
+    echo "</table>";
 
 ?>

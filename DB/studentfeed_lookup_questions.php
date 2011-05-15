@@ -308,30 +308,24 @@
 	}
 	*/
 	
-  echo "<table id=feedTable>";
-  for($row = 0; $row < 5; $row++)
-  {
-    if($row % 2 == 1)
-    {
-      echo "<tr class=alt>";
+    // Prints the feed data in a nice html format
+    echo "<table id=feedTable>";
+    for($row = 0; $row < 5; $row++) {
+        if(!empty($feed[$row])) {
+            if($row % 2 == 1)
+                echo "<tr class=alt>";
+            else
+                echo "<tr>";
+            if($feed[$row]["voted"] == 1)
+                echo "<td class=check><input type=checkbox id=check checked=true /></td>";
+            else
+                echo "<td class=check><input type=checkbox id=check /></td>";
+            echo "<td class=feed>".$feed[$row]["text"]."</td>";
+            echo "<td class=answered>".$feed[$row]["answered"]."</td>";
+            echo "</tr>";
+        }
     }
-    else
-    {
-      echo "<tr>";
-    }
-    if($feed[$row]["voted"] == 1)
-    {
-      echo "<td class=check><input type=checkbox id=check checked=true /></td>";
-    }
-    else
-    {
-      echo "<td class=check><input type=checkbox id=check /></td>";
-    }
-    echo "<td class=feed>".$feed[$row]["text"]."</td>";
-    echo "<td class=answered>".$feed[$row]["answered"]."</td>";
-    echo "</tr>";
-  }
-  echo "</table>";
+    echo "</table>";
 
 ?>
 	
