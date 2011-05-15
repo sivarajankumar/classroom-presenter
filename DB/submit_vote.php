@@ -18,10 +18,10 @@
 
 	mysql_select_db($db_name, $db_conn); 
 	
-	$type = $_GET['type'];			// Type of the submission ('Q' or 'F')
-	$id = $_GET['id'];				// ID of the question or feedback
-	$username = $_GET['username'];	// User's alias
-	$vote = $_GET['vote'];			// "true" if we want to submit a vote, "false" if we want to undo a previous submission
+	$type = $_POST['type'];			// Type of the submission ('Q' or 'F')
+	$id = $_POST['id'];				// ID of the question or feedback
+	$username = $_POST['username'];	// User's alias
+	$vote = $_POST['vote'];			// "true" if we want to submit a vote, "false" if we want to undo a previous submission
 	
 	// Do a preliminary query to get the student's user ID for later use
 	$uidquery = sprintf("SELECT uid FROM Student WHERE alias = '%s'", $username);
