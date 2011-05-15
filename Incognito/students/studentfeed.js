@@ -1,3 +1,4 @@
+// Makes the call to the backend to retrieve feed data
 function getFeed(sid, username, filter, sort, callback) {
   // Make the HTTP request
   $.post("../../DB/studentfeed_lookup_questions.php",
