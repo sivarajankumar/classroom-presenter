@@ -11,7 +11,7 @@
 	// Production DB: ashen; 2kV2cNct; ashen_403_Local
 	$username = "ashen";
 	$password = "2kV2cNct";
-	$db_name = "ashen_403_Local"; 
+	$db_name = "ashen_403_Local";
 
 	$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
  
@@ -27,6 +27,8 @@
 	$filter = $_POST['filter'];
 	$sort = $_POST['sort'];
 	$username = $_POST['username'];
+    
+    // echo $sort;
 	
 	// Do a preliminary query to get the student's user ID for later use
 	$uidquery = sprintf("SELECT uid FROM Student WHERE alias = '%s'", $username);
@@ -36,22 +38,26 @@
   
 	$feed = array();
 	$query = null;
-	if ( $filter == "none" )	// no filtering, so query both Question and Feedback
+	if ( $filter == "None" )	// no filtering, so query both Question and Feedback
 	{
+        // echo "Filter By: None</br>";
 		$query1 = null;
 		$query2 = null;
-		if ( $sort == "newest" )
+		if ( $sort == "Newest" )
 		{
+            // echo "Sorting by: Newest</br>";
 			$query1 = sprintf("SELECT * FROM Question WHERE sid = %d ORDER BY time DESC", $sid);
 			$query2 = sprintf("SELECT * FROM Feedback WHERE sid = %d ORDER BY time DESC", $sid);
 		}
-		elseif ( $sort == "priority" )
+		elseif ( $sort == "Priority" )
 		{
+            // echo "Sorting by: Priority</br>";
 			$query1 = sprintf("SELECT * FROM Question WHERE sid = %d ORDER BY numvotes DESC", $sid);
 			$query2 = sprintf("SELECT * FROM Feedback WHERE sid = %d ORDER BY numvotes DESC", $sid);
 		}
 		else
 		{
+            // echo "Sorting by: None</br>";
 			$query1 = sprintf("SELECT * FROM Question WHERE sid = %d", $sid);
 			$query2 = sprintf("SELECT * FROM Feedback WHERE sid = %d", $sid);
 		}
@@ -84,18 +90,22 @@
 			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F');
 		}
 	}
-	elseif ( $filter == "qboth" )	// we only want questions
+	elseif ( $filter == "All Questions" )	// we only want questions
 	{
-		if ( $sort == "newest" )
+        // echo "Filter By: All Questions</br>";
+		if ( $sort == "Newest" )
 		{
+            // echo "Sort By: Newest</br>";
 			$query = sprintf("SELECT * FROM Question WHERE sid = %d ORDER BY time DESC", $sid);
 		}
-		elseif ( $sort == "priority" )
+		elseif ( $sort == "Priority" )
 		{
+            // echo "Sort By: Priority</br>";
 			$query = sprintf("SELECT * FROM Question WHERE sid = %d ORDER BY numvotes DESC", $sid);
 		}
 		else
 		{
+            // echo "Sort By: None</br>";
 			$query = sprintf("SELECT * FROM Question WHERE sid = %d", $sid);
 		}
 		$results = mysql_query($query, $db_conn);
@@ -112,18 +122,22 @@
 			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q');
 		}
 	}
-	elseif ( $filter == "fboth" )	// we only want feedback
+	elseif ( $filter == "All Feedback" )	// we only want feedback
 	{
-		if ( $sort == "newest" )
+        // echo "Filter By: All Feedback</br>";
+		if ( $sort == "Newest" )
 		{
+            // echo "Sort By: Newest</br>";
 			$query = sprintf("SELECT * FROM Feedback WHERE sid = %d ORDER BY time DESC", $sid);
 		}
-		elseif ( $sort == "priority" )
+		elseif ( $sort == "Priority" )
 		{
+            // echo "Sort By: Priority</br>";
 			$query = sprintf("SELECT * FROM Feedback WHERE sid = %d ORDER BY numvotes DESC", $sid);
 		}
 		else
 		{
+            // echo "Sort By: None</br>";
 			$query = sprintf("SELECT * FROM Feedback WHERE sid = %d", $sid);
 		}
 		$results = mysql_query($query, $db_conn);
@@ -141,18 +155,22 @@
 			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F');
 		}
 	}
-	elseif ( $filter == "answered" )	// we only want answered questions
+	elseif ( $filter == "Answered" )	// we only want answered questions
 	{
-		if ( $sort == "newest" )
+        // echo "Filter By: Answered</br>";
+		if ( $sort == "Newest" )
 		{
+            // echo "Sort By: Answered</br>";
 			$query = sprintf("SELECT * FROM Question WHERE sid = %d AND answered = 1 ORDER BY time DESC", $sid);
 		}
-		elseif ( $sort == "priority" )
+		elseif ( $sort == "Priority" )
 		{
+            // echo "Sort By: Priority</br>";
 			$query = sprintf("SELECT * FROM Question WHERE sid = %d AND answered = 1 ORDER BY numvotes DESC", $sid);
 		}
 		else
 		{
+            // echo "Sort By: None</br>";
 			$query = sprintf("SELECT * FROM Question WHERE sid = %d AND answered = 1", $sid);
 		}
 		$results = mysql_query($query, $db_conn);
@@ -170,18 +188,22 @@
 			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q');
 		}
 	}
-	elseif ( $filter == "unanswered" )	// we only want unanswered questions
+	elseif ( $filter == "Unanswered" )	// we only want unanswered questions
 	{
-		if ( $sort == "newest" )
+        // echo "Filter By: Unanswered</br>";
+		if ( $sort == "Newest" )
 		{
+            // echo "Sort By: Newest</br>";
 			$query = sprintf("SELECT * FROM Question WHERE sid = %d AND answered = 0 ORDER BY time DESC", $sid);
 		}
-		elseif ( $sort == "priority" )
+		elseif ( $sort == "Priority" )
 		{
+            // echo "Sort By: Priority</br>";
 			$query = sprintf("SELECT * FROM Question WHERE sid = %d AND answered = 0 ORDER BY numvotes DESC", $sid);
 		}
 		else
 		{
+            // echo "Sort By: None</br>";
 			$query = sprintf("SELECT * FROM Question WHERE sid = %d AND answered = 0", $sid);
 		}
 		$results = mysql_query($query, $db_conn);
@@ -199,18 +221,22 @@
 			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q');
 		}
 	}
-	elseif ( $filter == "unread" )	// we only want unread feedback
+	elseif ( $filter == "Unread" )	// we only want unread feedback
 	{
-		if ( $sort == "newest" )
+        // echo "Filter By: Unread</br>";
+		if ( $sort == "Newest" )
 		{
+            // echo "Sort By: Newest</br>";
 			$query = sprintf("SELECT * FROM Feedback WHERE sid = %d AND isread = 0 ORDER BY time DESC", $sid);
 		}
-		elseif ( $sort == "priority" )
+		elseif ( $sort == "Priority" )
 		{
+            // echo "Sort By: Priority</br>";
 			$query = sprintf("SELECT * FROM Feedback WHERE sid = %d AND isread = 0 ORDER BY numvotes DESC", $sid);
 		}
 		else
 		{
+            // echo "Sort By: None</br>";
 			$query = sprintf("SELECT * FROM Feedback WHERE sid = %d AND isread = 0", $sid);
 		}
 		$results = mysql_query($query, $db_conn);
@@ -228,18 +254,22 @@
 			$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F');
 		}
 	}
-	elseif ( $filter == "read" )	// we only want read feedback
+	elseif ( $filter == "Read" )	// we only want read feedback
 	{
-		if ( $sort == "newest" )
+        // echo "Filter By: Read</br>";
+		if ( $sort == "Newest" )
 		{
+            // echo "Sort By: Newest</br>";
 			$query = sprintf("SELECT * FROM Feedback WHERE sid = %d AND isread = 1 ORDER BY time DESC", $sid);
 		}
-		elseif ( $sort == "priority" )
+		elseif ( $sort == "Priority" )
 		{
+            // echo "Sort By: Priority</br>";
 			$query = sprintf("SELECT * FROM Feedback WHERE sid = %d AND isread = 1 ORDER BY numvotes DESC", $sid);
 		}
 		else
 		{
+            // echo "Sort By: None</br>";
 			$query = sprintf("SELECT * FROM Feedback WHERE sid = %d AND isread = 1", $sid);
 		}
 		$results = mysql_query($query, $db_conn);
@@ -279,7 +309,7 @@
 	*/
 	
   echo "<table id=feedTable>";
-  for($row = 0; $row < 3; $row++)
+  for($row = 0; $row < 5; $row++)
   {
     if($row % 2 == 1)
     {
