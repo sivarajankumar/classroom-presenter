@@ -1,10 +1,20 @@
-// Makes the call to the backend to retrieve feed data
+// Makes the call to retrieve feed data
 function getFeed(sid, username, filter, sort, callback) {
-  // Make the HTTP request
-  $.post("../../DB/studentfeed_lookup_questions.php",
+    // Make the HTTP request
+    $.post("../../DB/studentfeed_lookup_questions.php",
     {sid: sid, username: username, filter: filter, sort: sort, callback: callback},
     function(data) {
-      callback(data);
+        callback(data);
+    });
+}
+
+// Makes the call to send a vote in
+function onVote(id, type, username, vote) {
+    // Make the HTTP request
+    $.post("../../DB/submit_vote.php",
+    {id: id, type: type, username: username, vote: vote},
+    function(data) {
+        // alert('Success!');
     });
 }
 
@@ -36,12 +46,23 @@ function onPrioritySortChange() {
     getFeed(23456, "mcmk", window.filter, window.sort, printToScreen);
 }
 
+// Handles the event of when checkboxes are checked
+function onCheck() {
+    alert("Success!");
+    alert(this.checked);
+}
+
 // On initial window load, initialize events and reset
 // filter and sort variables
 window.onload = function() {
     filter = "None";
     sort = "Newest"; // default to sorting by newest
+    getFeed(23456, "mcmk", window.filter, window.sort, printToScreen);
     $('#filter').change(onFilterChange);
     $('#newest').click(onNewestSortChange);
     $('#priority').click(onPrioritySortChange);
+    $('.check').live('click', function () {
+        onVote(this.id.substr(7),this.id.charAt(6),"mcmk",this.checked);
+        onVote(this.id.substr(7),this.id.charAt(6),"mcmk",this.checked);
+    });
 };
