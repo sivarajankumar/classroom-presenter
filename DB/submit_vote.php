@@ -18,30 +18,30 @@
 
 	mysql_select_db($db_name, $db_conn); 
 	
-	$type = $_POST['type'];			// Type of the submission ('Q' or 'F')
-	$id = $_POST['id'];				// ID of the question or feedback
-	$username = $_POST['username'];	// User's alias
-	$vote = $_POST['vote'];			// "true" if we want to submit a vote, "false" if we want to undo a previous submission
+	$type = $_GET['type'];			// Type of the submission ('Q' or 'F')
+	$id = $_GET['id'];				// ID of the question or feedback
+	$username = $_GET['username'];	// User's alias
+	$vote = $_GET['vote'];			// "true" if we want to submit a vote, "false" if we want to undo a previous submission
 	
 	// Do a preliminary query to get the student's user ID for later use
 	$uidquery = sprintf("SELECT uid FROM Student WHERE alias = '%s'", $username);
 	$uidresult = mysql_query($uidquery, $db_conn);
 	$uidrow = mysql_fetch_assoc($uidresult);
-	$uid = (int)$uidrow["uid"];
-	
+	$uid = (int)$uidrow["uid"];	
+
 	if ( $type == 'Q' )
 	{
 		// Get the current vote count
 		$query = sprintf("SELECT numvotes FROM Question WHERE qid = %d", $id);
 		$result = mysql_query($query, $db_conn);
 		$r = mysql_fetch_assoc($result);
-		$vote_count = (int)$r["numvotes"];
-		
-		if (strcmp($vote, "true") == 0)
+		$vote_count = (int)$r["numvotes"];		
+
+		if ($vote == "true")
 		{
 			// submit a vote
 			$vote_count = $vote_count + 1;
-			$query = sprintf("UPDATE Question SET numvotes = %d WHERE qid = %d", $votes, $id);
+			$query = sprintf("UPDATE Question SET numvotes = %d WHERE qid = %d", $vote_count, $id);
 			if(!mysql_query($query, $db_conn)) {
 				die("Query error: " . mysql_error());
 			}
@@ -56,7 +56,7 @@
 		{
 			// undo a vote submission
 			$vote_count = $vote_count - 1;
-			$query = sprintf("UPDATE Question SET numvotes = %d WHERE qid = %d", $votes, $id);
+			$query = sprintf("UPDATE Question SET numvotes = %d WHERE qid = %d", $vote_count, $id);
 			if(!mysql_query($query, $db_conn)) {
 				die("Query error: " . mysql_error());
 			}
@@ -77,11 +77,11 @@
 		$r = mysql_fetch_assoc($result);
 		$vote_count = (int)$r["numvotes"];
 		
-		if (strcmp($vote, "true"))
+		if ($vote == "true")
 		{
 			// submit a vote
 			$vote_count = $vote_count + 1;
-			$query = sprintf("UPDATE Feedback SET numvotes = %d WHERE fid = %d", $votes, $id);
+			$query = sprintf("UPDATE Feedback SET numvotes = %d WHERE fid = %d", $vote_count, $id);
 			if(!mysql_query($query, $db_conn)) {
 				die("Query error: " . mysql_error());
 			}
@@ -96,7 +96,7 @@
 		{
 			// undo a vote submission
 			$vote_count = $vote_count - 1;
-			$query = sprintf("UPDATE Feedback SET numvotes = %d WHERE qid = %d", $votes, $id);
+			$query = sprintf("UPDATE Feedback SET numvotes = %d WHERE qid = %d", $vote_count, $id);
 			if(!mysql_query($query, $db_conn)) {
 				die("Query error: " . mysql_error());
 			}
