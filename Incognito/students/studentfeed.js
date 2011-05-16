@@ -14,7 +14,7 @@ function onVote(id, type, username, vote) {
     $.post("../../DB/submit_vote.php",
     {id: id, type: type, username: username, vote: vote},
     function(data) {
-        alert($.cookie('netid'));
+        // alert($.cookie('netid'));
     });
 }
 
@@ -56,7 +56,7 @@ window.onload = function() {
     $('#newest').click(onNewestSortChange);
     $('#priority').click(onPrioritySortChange);
     $('.check').live('click', function () {
-        onVote(this.id.substr(7),this.id.charAt(6),"mcmk",this.checked);
-        onVote(this.id.substr(7),this.id.charAt(6),"mcmk",this.checked);
+        onVote(this.id.substr(7),this.id.charAt(6),"ashen",this.checked);
+        onVote(this.id.substr(7),this.id.charAt(6),"ashen",this.checked);
     });
 };

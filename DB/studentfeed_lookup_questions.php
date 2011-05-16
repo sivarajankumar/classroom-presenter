@@ -317,9 +317,9 @@
             else
                 echo "<tr>";
             if($feed[$row]["voted"] == 1)
-                echo "<td><input class=check type=checkbox id=check_".$feed[$row]["type"].$feed[$row]["id"]." checked=true /></td>";
+                echo "<td class=checked><input class=check type=checkbox id=check_".$feed[$row]["type"].$feed[$row]["id"]." checked=true /></td>";
             else
-                echo "<td><input class=check type=checkbox id=check_".$feed[$row]["type"].$feed[$row]["id"]." /></td>";
+                echo "<td class=checked><input class=check type=checkbox id=check_".$feed[$row]["type"].$feed[$row]["id"]." /></td>";
             echo "<td class=feed>".$feed[$row]["text"]."</td>";
             echo "<td class=answered>".$feed[$row]["answered"]."</td>";
             echo "</tr>";
