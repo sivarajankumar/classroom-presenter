@@ -2,23 +2,31 @@
   function printToScreen(data){
 	$("#courseInfo").html(data);
  }
- 
+
+  function setSession(data) {
+  	sessionId = data; 
+  }
+
+  var sessionId;
+  var courseId;
+  var mailIs;
+
  $(document).ready(function() {
-	var sessionId;
-	var courseId;
-	var mailIs;
+	
 	//initially puts courses on page
 
 	getCourses($.cookie("uid"),printToScreen);
 
-	// starts a session
+	// ends a session
    $(".closeOptionButton").live('click',function(event) {
-		sessionId = startSession($(this).attr('id'));
+		endSession($(this).attr('id'));
+		getCourses($.cookie("uid"), printToScreen);
 	});
    
-    //ends a session
+    //starts a session
 	$(".openOptionButton").live('click',function(event) { 
-		endSession(sessionId);
+		startSession($(this).attr('id'), setSession);
+		getCourses($.cookie("uid"), printToScreen); 
 	});
 	
 	//Adds a InstructorID, courseName, mailingList, callbackFunction
@@ -44,6 +52,14 @@
 		var course = $("#studentCourseButton").val();
 		updateStudents(student, course);
 		alert("student added!");
+	});
+
+	// Adds a student
+	$("#addStudentButton").live('click',function(event) {
+		var cookie = $.cookie("uid");
+                var student = $("#studentToAdd").val();
+		var course = $("#studentCourseButton").val();
+		updateStudents(student, course);
 	});
 });
  
