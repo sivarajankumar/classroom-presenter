@@ -21,7 +21,7 @@
 		
 		// Query the database for all courses that the teacher teaches
 		$email = $_POST['mail'];
-		$query = sprintf("SELECT c.cid, c.name, s.open FROM User u, Teaches t, Course c, Session s WHERE u.email = '%s' AND t.uid = u.uid AND t.cid = c.cid AND s.cid = t.cid;", $email);
+		$query = sprintf("SELECT DISTINCT c.cid, c.name, s.open FROM User u, Teaches t, Course c, Session s WHERE u.email = '%s' AND t.uid = u.uid AND t.cid = c.cid AND s.cid = t.cid;", $email);
 		$results = mysql_query($query, $db_conn);
 		
 		// Then return the results in HTML form
