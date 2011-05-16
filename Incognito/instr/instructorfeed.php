@@ -2,18 +2,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <?php
   setcookie('netid', $_SERVER['REMOTE_USER']);
+  setcookie('alias', $_SERVER['REMOTE_USER']);
 ?>
 
 	<head>
 		<title>Incognito</title>
 		<script src="/homes/cubist/chriacua/classroom-presenter/jscript/libs/jquery-1.5.2.js"></script>
-		<script src="instructorfeed.js"></script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="pages.css" type="text/css" rel="stylesheet" />
 		<script src="jquery-1.5.2.js" type="text/javascript"></script>
 		<script type="text/javascript" src="jquery.cookie.js"></script>
-		<script type="text/javascript" src="testingInstructorFeed.js"></script>
+		<script type="text/javascript" src="instructorSettings.js"></script>
         <script type="text/javascript" src="instructorfeed.js"></script>
+        <script type="text/javascript" src="scripts/InstrSettingsView.js"></script>
 	</head>
   
 	<body>
@@ -21,7 +22,7 @@
 		<div id="topbanner"> <!-- Includes logo & person's information/help/logout, & feed status -->			
 			<img src="logo.png" alt="logo" />
 			<div id="greeting">
-				<?php echo 'Hello '.($_COOKIE['netid']!='' ? $_COOKIE['netid'] : 'Guest') ?> | <a href="instructorsettings.php">Your Settings</a> | <a class="aboutlink" href="help.php">Help</a> | <a href="../logout.php">Logout</a> <br />
+				<?php echo 'Hello '.($_COOKIE['alias']!='' ? $_COOKIE['alias'] : 'Guest') ?> | <a href="instructorsettings.php">Your Settings</a> | <a class="aboutlink" href="help.php">Help</a> | <a href="../logout.php">Logout</a> <br />
 			</div>
 		</div>			
 

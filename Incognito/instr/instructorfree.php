@@ -7,16 +7,19 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="pages.css" type="text/css" rel="stylesheet" />
 		<script type="text/javascript" src="instructorsurvey.js"></script>
+		<script src="jquery-1.5.2.js" type="text/javascript"></script>
+		<script type="text/javascript" src="jquery.cookie.js"></script>
+		<script type="text/javascript" src="instructorSettings.js"></script>
+        <script type="text/javascript" src="instructorfeed.js"></script>
+        <script type="text/javascript" src="scripts/InstrSettingsView.js"></script>
 	</head>
 
 	<body>		
 		<div id="topbanner"> 		<!-- Includes logo & person's information/help/logout, & feed status -->	
 			<img src="logo.png" alt="logo" />
 			<div id="greeting">
-				Hello [teacher's name]! | <a href="instructorsettings.php">Your Settings</a> | <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
-				<a href="">[course name]</a> feed is currently: 
-				<label><input type="radio" name="feedstatus" value="Open"/> Open </label>
-				<label><input type="radio" name="feedstatus" value="Closed" checked="checked"/> Closed</label>
+				<?php echo 'Hello '.($_COOKIE['alias']!='' ? $_COOKIE['alias'] : 'Guest') ?>  | <a href="instructorsettings.php">Your Settings</a> | <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
+	
 			</div>
 		</div>			
 
