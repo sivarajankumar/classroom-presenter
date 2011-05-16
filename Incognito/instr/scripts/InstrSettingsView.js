@@ -15,9 +15,9 @@ function startSession(courseId, callback) {
 }
 
 // This function, given a sessionId, will end and delete that session
-function endSession(sessionId) {
+function endSession(courseId) {
 	$.post("scripts/end_session.php",
-			{sid: sessionId});
+			{cid: courseId});
 }
 
 // This function will make an http request to retreive 
@@ -66,9 +66,9 @@ function updateStudents(studentEmail, courseId) {
 //
 // TODO: Eventually this function will have a callback that indicates the 
 //       success or failure of this function call. 
-function deleteCourse(courseId) {
+function deleteCourse(userId, courseId) {
 	
 	$.post("scripts/delete_course.php",
-			{cid: courseId});
+			{email: userId, cid: courseId});
 }
 	
