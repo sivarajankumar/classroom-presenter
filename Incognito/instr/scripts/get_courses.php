@@ -21,7 +21,7 @@
 		
 		// Query the database for all courses that the teacher teaches
 		$email = $_POST['mail'];
-		$query = sprintf("SELECT c.cid, c.name, s.open FROM User u, Teaches t, Course c, Session s WHERE u.email = '%s' AND t.uid = u.uid AND t.cid = c.cid AND s.cid = t.cid;", $email);
+		$query = sprintf("SELECT DISTINCT c.cid, c.name, s.open FROM User u, Teaches t, Course c, Session s WHERE u.email = '%s' AND t.uid = u.uid AND t.cid = c.cid AND s.cid = t.cid;", $email);
 		$results = mysql_query($query, $db_conn);
 		
 		// Then return the results in HTML form
@@ -30,15 +30,20 @@
 			// Check if the course is closed
 			if ($row[2] == 1) {
 				
-				echo  "<br />$row[1]:<button class='closeOptionButton'  id='$row[0]'>Close?</button>
-						<button id='$row[0]' class='courseRemoveButton'>Delete</button>";
+				echo  "<br />$row[1]:<button class='closeOptionButton' id='$row[0]'>Close?</button>
+						<button id='$row[0]' class='courseRemoveButton'>Delete</button>
+						Student NetId: <input type='text' id='studentToAdd'/>
+                                                <button id='$row[0]' class='addStudentButton'>Add Student</button>";
 		
 			} else {
 				
 				echo  "<br />$row[1]:<button class='openOptionButton' id='$row[0]'>Open?</button>
-						<button id='$row[0]' class='courseRemoveButton'>Delete</button>";
+						<button id='$row[0]' class='courseRemoveButton'>Delete</button>
+						Student NetId: <input type='text' id='studentToAdd'/>
+                                                <button id='$row[0]' class='addStudentButton'>Add Student</button>";
 				
 			}
+			echo "<p />";
 		}
 	}
 
