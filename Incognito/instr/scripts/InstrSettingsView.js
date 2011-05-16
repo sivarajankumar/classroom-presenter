@@ -66,9 +66,9 @@ function updateStudents(studentEmail, courseId) {
 //
 // TODO: Eventually this function will have a callback that indicates the 
 //       success or failure of this function call. 
-function deleteCourse(courseId) {
+function deleteCourse(userId, courseId) {
 	
 	$.post("scripts/delete_course.php",
-			{cid: courseId});
+			{email: userId, cid: courseId});
 }
 	

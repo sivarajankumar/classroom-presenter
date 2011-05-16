@@ -31,7 +31,7 @@
 	
 	//user deletes a course
 	$(".courseRemoveButton").live('click',function(event) {
-		deleteCourse($.cookie("uid"), $(this).attr('id'), mailIs, printToScreen);
+		deleteCourse($.cookie("uid"), $(this).attr('id'));
 		getCourses($.cookie("uid"),printToScreen);
 	});
 	
