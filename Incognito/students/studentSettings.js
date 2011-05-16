@@ -10,11 +10,13 @@
 	//user joins a session
    $(".joinButton").live('click',function(event) {
 		joinSession($.cookie("uid"), $(this).attr('id'));
+		getCourses($.cookie("uid"),printToScreen);
 	});
    
     //user leaves a session
 	$(".quitButton").live('click',function(event) { 
 		exitSession($.cookie("uid"), $(this).attr('id'));
+		getCourses($.cookie("uid"),printToScreen);
 	});
 	
 	//user deletes a course
