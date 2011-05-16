@@ -45,21 +45,11 @@
 	
 	
 	//Adds a student
-	$("#addStudentButton").live('click',function(event) {
+	$(".addStudentButton").live('click',function(event) {
 		//var cookie = $.cookie("uid");
 		//alert(cookie);
 		var student = $("#studentToAdd").val();
-		var course = $("#studentCourseButton").val();
-		updateStudents(student, course);
-		alert("student added!");
-	});
-
-	// Adds a student
-	$("#addStudentButton").live('click',function(event) {
-		var cookie = $.cookie("uid");
-                var student = $("#studentToAdd").val();
-		var course = $("#studentCourseButton").val();
-		updateStudents(student, course);
+		updateStudents(student, $(this).attr('id'));
 	});
 });
  
