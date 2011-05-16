@@ -18,7 +18,6 @@
 		
 		// Get the user's uid
 		$email = $_POST['email'];
-		echo $email;
 		$query = sprintf("SELECT uid FROM User WHERE email = '%s';", $email); 
 		$results = mysql_query($query, $db_conn);
 		
@@ -32,7 +31,7 @@
 		// Now add the course to the Course table
 		$uid = $row[0];
 		$name = $_POST['name'];
-		$mainlinglist = $_POST['mailinglist'];
+		$mailinglist = $_POST['mailinglist'];
 		$query = sprintf("INSERT INTO Course (name, mailinglist) VALUES ('%s', '%s');", 
 							$name, $mailinglist);
 		$results = mysql_query($query, $db_conn);
@@ -45,7 +44,7 @@
 		// We also need to insert the course id and the uid pair into the 
 		// Teaches table, but first we need to get the uid
 		$query = sprintf("SELECT cid FROM Course WHERE name = '%s' AND mailinglist = '%s' ORDER BY cid DESC;",
-							$name, $email);
+							$name, $mailinglist);
 		$results = mysql_query($query, $db_conn);
 		
 		$row = mysql_fetch_row($results);
@@ -53,8 +52,22 @@
 	
 		// Now insert the pair
 		$query = sprintf("INSERT INTO Teaches VALUES (%d, %d);", $uid, $cid);
-		mysql_query($query, $db_conn);
-		
+		$results = mysql_query($query, $db_conn);
+
+		// Error checking
+		if(!$results) {
+			die("Error" + mysql_error($db_conn));
+		}
+	
+		// Add a closed session
+		$query = sprintf("INSERT INTO Session (cid, uid, open) VALUES (%d, %d, 0);", $cid, $uid); 
+		$results = mysql_query($query, $db_conn); 
+
+		// Error Checking
+		if (!$results) {
+			die("Error: " + mysql_error($db_conn));
+		}
+	
 		// Return the cid back to the user
 		echo $cid; 
 	}

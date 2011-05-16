@@ -40,7 +40,7 @@
 				$query = sprintf("SELECT * FROM Joined WHERE uid = %d AND sid = %d;",
 								$row[0], $row[1]);
 				$result = mysql_query($query, $db_conn);
-				if (mysql_num_rows($result) == 1) {
+				if (mysql_num_rows($result) == 0) {
 					
 					echo "<p class =\""  . $row[4] . "\">" . $row[4] .
 					"<button id=\"" . $row[1] . "\" class=\"joinButton\">Join Session</button><button id=\"" .

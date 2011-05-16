@@ -2,7 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <?php
   setcookie('uid', $_SERVER['REMOTE_USER']);
-   setcookie('alias', $_SERVER['REMOTE_USER']);
+  
+  // Check if the alias is already set
+  if (!isset($_COOKIE['alias'])) {
+	//setcookie('alias', $_SERVER['REMOTE_USER']);
+  }
 ?>
 	<head>
 		<title>Incognito</title>
