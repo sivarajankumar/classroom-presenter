@@ -9,7 +9,7 @@
 	var mailIs;
 	//initially puts courses on page
 
-	getCourses($.cookie("netid"),printToScreen);
+	getCourses($.cookie("uid"),printToScreen);
 
 	// starts a session
    $(".closeOptionButton").live('click',function(event) {
@@ -25,23 +25,22 @@
 	$("#courseSubmitButton").click(function(event){
 		var courseIs = $("#courseName").val();
 		mailIs = $("#mailingList").val();
-		courseId = insertCourse($.cookie("netid"), courseIs, mailIs, printToScreen);
-		getCourses($.cookie("netid"),printToScreen);
+		courseId = insertCourse($.cookie("uid"), courseIs, mailIs, printToScreen);
+		getCourses($.cookie("uid"),printToScreen);
 	});
 	
 	//user deletes a course
 	$(".courseRemoveButton").live('click',function(event) {
-		deleteCourse($.cookie("netid"), $(this).attr('id'), mailIs, printToScreen);
-		getCourses($.cookie("netid"),printToScreen);
+		deleteCourse($.cookie("uid"), $(this).attr('id'), mailIs, printToScreen);
+		getCourses($.cookie("uid"),printToScreen);
 	});
 	
 	
 	//Adds a student
 	$("#addStudentButton").live('click',function(event) {
-		//var cookie = $.cookie("netid");
+		//var cookie = $.cookie("uid");
 		//alert(cookie);
 		var student = $("#studentToAdd").val();
-		alert(student);
 		var course = $("#studentCourseButton").val();
 		updateStudents(student, course);
 		alert("student added!");
