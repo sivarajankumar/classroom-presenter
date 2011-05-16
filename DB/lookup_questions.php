@@ -27,30 +27,40 @@
 	$sort = $_POST['sort'];
 	$rows = array();
 	$query = null;
+	
+	// There are seven filtering options and three sorting options. Each combination
+	// of these options needs to be handled differently. 
 	if ( $filter == "None" )	// no filtering, so query both Question and Feedback
 	{
 		$query1 = null;
 		$query2 = null;
 		if ( $sort == "Newest" )
 		{
+			// Get results sorted by timestamp in descending order
 			$query1 = sprintf("SELECT * FROM Question WHERE sid = %d ORDER BY time DESC", $sid);
 			$query2 = sprintf("SELECT * FROM Feedback WHERE sid = %d ORDER BY time DESC", $sid);
 		}
 		elseif ( $sort == "Priority" )
 		{
+			// Get results sorted by the number of votes in descending order
 			$query1 = sprintf("SELECT * FROM Question WHERE sid = %d ORDER BY numvotes DESC", $sid);
 			$query2 = sprintf("SELECT * FROM Feedback WHERE sid = %d ORDER BY numvotes DESC", $sid);
 		}
 		else
 		{
+			// No sorting specified
 			$query1 = sprintf("SELECT * FROM Question WHERE sid = %d", $sid);
 			$query2 = sprintf("SELECT * FROM Feedback WHERE sid = %d", $sid);
 		}
+		
+		// Query the Question table and fetch results
 		$results = mysql_query($query1, $db_conn);
 		while($r = mysql_fetch_assoc($results))
 		{
 			$rows[] = array('text'=>$r["text"],'votes'=>$r["numvotes"],'answered'=>$r["answered"],'type'=>'Q','id'=>$r["qid"]);
 		}
+		
+		// Query the Feedback table and fetch results
 		$results = mysql_query($query2, $db_conn);
 		while($r = mysql_fetch_assoc($results))
 		{
@@ -61,16 +71,21 @@
 	{
 		if ( $sort == "Newest" )
 		{
+			// Get results sorted by timestamp in descending order
 			$query = sprintf("SELECT * FROM Question WHERE sid = %d ORDER BY time DESC", $sid);
 		}
 		elseif ( $sort == "Priority" )
 		{
+			// Get results sorted by the number of votes in descending order
 			$query = sprintf("SELECT * FROM Question WHERE sid = %d ORDER BY numvotes DESC", $sid);
 		}
 		else
 		{
+			// No sorting specified
 			$query = sprintf("SELECT * FROM Question WHERE sid = %d", $sid);
 		}
+		
+		// Run the query and fetch the results
 		$results = mysql_query($query, $db_conn);
 		while($r = mysql_fetch_assoc($results))
 		{
@@ -81,16 +96,21 @@
 	{
 		if ( $sort == "Newest" )
 		{
+			// Get results sorted by timestamp in descending order
 			$query = sprintf("SELECT * FROM Feedback WHERE sid = %d ORDER BY time DESC", $sid);
 		}
 		elseif ( $sort == "Priority" )
 		{
+			// Get results sorted by the number of votes in descending order
 			$query = sprintf("SELECT * FROM Feedback WHERE sid = %d ORDER BY numvotes DESC", $sid);
 		}
 		else
 		{
+			// No sorting specified
 			$query = sprintf("SELECT * FROM Feedback WHERE sid = %d", $sid);
 		}
+		
+		// Run the query and fetch the results
 		$results = mysql_query($query, $db_conn);
 		while($r = mysql_fetch_assoc($results))
 		{
@@ -101,16 +121,21 @@
 	{
 		if ( $sort == "Newest" )
 		{
+			// Get results sorted by timestamp in descending order
 			$query = sprintf("SELECT * FROM Question WHERE sid = %d AND answered = 1 ORDER BY time DESC", $sid);
 		}
 		elseif ( $sort == "Priority" )
 		{
+			// Get results sorted by the number of votes in descending order
 			$query = sprintf("SELECT * FROM Question WHERE sid = %d AND answered = 1 ORDER BY numvotes DESC", $sid);
 		}
 		else
 		{
+			// No sorting specified
 			$query = sprintf("SELECT * FROM Question WHERE sid = %d AND answered = 1", $sid);
 		}
+		
+		// Run the query and fetch the results
 		$results = mysql_query($query, $db_conn);
 		$rows = array();
 		while($r = mysql_fetch_assoc($results))
@@ -122,16 +147,21 @@
 	{
 		if ( $sort == "Newest" )
 		{
+			// Get results sorted by timestamp in descending order
 			$query = sprintf("SELECT * FROM Question WHERE sid = %d AND answered = 0 ORDER BY time DESC", $sid);
 		}
 		elseif ( $sort == "Priority" )
 		{
+			// Get results sorted by the number of votes in descending order
 			$query = sprintf("SELECT * FROM Question WHERE sid = %d AND answered = 0 ORDER BY numvotes DESC", $sid);
 		}
 		else
 		{
+			// No sorting specified
 			$query = sprintf("SELECT * FROM Question WHERE sid = %d AND answered = 0", $sid);
 		}
+		
+		// Run the query and fetch the results
 		$results = mysql_query($query, $db_conn);
 		$rows = array();
 		while($r = mysql_fetch_assoc($results))
@@ -143,16 +173,21 @@
 	{
 		if ( $sort == "Newest" )
 		{
+			// Get results sorted by timestamp in descending order
 			$query = sprintf("SELECT * FROM Feedback WHERE sid = %d AND isread = 0 ORDER BY time DESC", $sid);
 		}
 		elseif ( $sort == "Priority" )
 		{
+			// Get results sorted by the number of votes in descending order
 			$query = sprintf("SELECT * FROM Feedback WHERE sid = %d AND isread = 0 ORDER BY numvotes DESC", $sid);
 		}
 		else
 		{
+			// No sorting specified
 			$query = sprintf("SELECT * FROM Feedback WHERE sid = %d AND isread = 0", $sid);
 		}
+		
+		// Run the query and fetch the results
 		$results = mysql_query($query, $db_conn);
 		while($r = mysql_fetch_assoc($results))
 		{
@@ -163,16 +198,21 @@
 	{
 		if ( $sort == "Newest" )
 		{
+			// Get results sorted by timestamp in descending order
 			$query = sprintf("SELECT * FROM Feedback WHERE sid = %d AND isread = 1 ORDER BY time DESC", $sid);
 		}
 		elseif ( $sort == "Priority" )
 		{
+			// Get results sorted by the number of votes in descending order
 			$query = sprintf("SELECT * FROM Feedback WHERE sid = %d AND isread = 1 ORDER BY numvotes DESC", $sid);
 		}
 		else
 		{
+			// No sorting specified
 			$query = sprintf("SELECT * FROM Feedback WHERE sid = %d AND isread = 1", $sid);
 		}
+		
+		// Run the query and fetch the results
 		$results = mysql_query($query, $db_conn);
 		while($r = mysql_fetch_assoc($results))
 		{

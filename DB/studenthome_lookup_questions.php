@@ -23,6 +23,11 @@
 	// Now query the database for all of the questions associated
 	// with the current session
 	$sid = $_POST['sid'];
+	
+	// Since we want data for the autocomplete box, we want to get
+	// all questions and feedback in the database.
+	
+	// Query Question and fetch results
 	$query = sprintf("SELECT * FROM Question WHERE sid = %d", $sid);
 	$results = mysql_query($query, $db_conn);
 	$rows = array();
@@ -31,6 +36,7 @@
 		$rows[] = array('text'=>$r["text"],'votes'=>$r["numvotes"],'answered'=>$r["answered"],'type'=>'Q');
 	}
 	
+	// Query Feedback and fetch results
 	$query = sprintf("SELECT * FROM Feedback WHERE sid = %d", $sid);
 	$results = mysql_query($query, $db_conn);
 	while($r = mysql_fetch_assoc($results))
@@ -38,6 +44,8 @@
 		$rows[] = array('text'=>$r["text"],'votes'=>$r["numvotes"],'isread'=>$r["isread"],'type'=>'F');
 	}
 	
+	// Return the questions and feedback back to the calling Javascript
+	// as a JSON object
 	header('Content-type: application/json');
 	echo json_encode($rows);
 ?>
