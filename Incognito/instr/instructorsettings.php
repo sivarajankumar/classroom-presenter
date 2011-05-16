@@ -10,7 +10,6 @@
 		<script type="text/javascript" src="instructorSettings.js"></script>
 		<script type="text/javascript" src="jquery.cookie.js"></script> 
 		<script type="text/javascript" src="scripts/InstrSettingsView.js"></script>
-		<!--<script type="text/javascript" src="testingInstructorSettings.js"></script>  -- for unit tests-->
 	</head>
 
 	<body>
@@ -18,7 +17,7 @@
 		<div id="topbanner"> <!-- Includes logo & person's information/help/logout, & feed status -->			
 			<img src="logo.png" alt="logo" />
 			<div id="greeting">
-				<?php echo 'Hello '.($_COOKIE['session']!='' ? $_COOKIE['session'] : 'Guest') ?>  | <a href="instructorsettings.php">Your Settings</a> | <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
+				<?php echo 'Hello '.($_COOKIE['alias']!='' ? $_COOKIE['alias'] : 'Guest') ?>  | <a href="instructorsettings.php">Your Settings</a> | <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
 				
 			</div>
 		</div>			

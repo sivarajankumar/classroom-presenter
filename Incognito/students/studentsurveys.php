@@ -9,6 +9,7 @@
 		<script src="jquery-1.5.2.js" type="text/javascript"></script>
 		<script type="text/javascript" src="studentSettings.js"></script>
 		<script type="text/javascript" src="jquery.cookie.js"></script>
+		<script type="text/javascript" src="scripts/StudentSettingsView.js"></script>
 	</head>
 
 	<body>
@@ -17,8 +18,7 @@
 			
 			<img src="logo.png" alt="logo" />
 			<div id="greeting">
-				<span id="cook"><?php echo 'Hello '.($_COOKIE['netid']!='' ? $_COOKIE['netid'] : 'Guest') ?></span>  | <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
-				You are currently looking at [course name].
+				<span id="cook"><?php echo 'Hello '.($_COOKIE['alias']!='' ? $_COOKIE['alias'] : 'Guest') ?></span>  | <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
 			</div>
 		</div>			
 

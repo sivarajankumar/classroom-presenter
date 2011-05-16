@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <?php
   setcookie('netid', $_SERVER['REMOTE_USER']);
+   setcookie('alias', $_SERVER['REMOTE_USER']);
 ?>
 	<head>
 		<title>Incognito</title>
@@ -15,6 +16,7 @@
 		<script type="text/javascript" src="jquery-1.5.2.js"></script>
 		<script type="text/javascript" src="studentSettings.js"></script>
 		<script type="text/javascript" src="jquery.cookie.js"></script>
+		<script type="text/javascript" src="scripts/StudentSettingsView.js"></script>
 
 	</head>
 
