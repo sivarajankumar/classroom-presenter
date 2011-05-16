@@ -30,7 +30,7 @@ function onSubmit(){
 	if (type == 'Q')
 	{
 		var answered = 0;
-		numvotes = 1;
+		numvotes = 0;
 		dataString = 'text=' + text + '&sid=' + sid + '&answered=' + answered + '&numvotes=' + numvotes + '&type=' + type;
 		$.ajax({
 			type: "POST",
@@ -43,7 +43,7 @@ function onSubmit(){
 	}
 	else if (type == 'F')
 	{
-		numvotes = 1;
+		numvotes = 0;
 		var isread = 0;
 		dataString = 'text=' + text + '&sid=' + sid + '&numvotes=' + numvotes + '&isread=' + isread + '&type=' + type;
 		$.ajax({
