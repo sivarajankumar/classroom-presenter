@@ -38,6 +38,7 @@ function onPrioritySortChange() {
 window.onload = function() {
     filter = "None";
     sort = "Newest"; // default to sorting by newest
+    getFeed(23456, window.filter, window.sort, printToScreen);
     $('#filter').change(onFilterChange);
     $('#newest').click(onNewestSortChange);
     $('#priority').click(onPrioritySortChange);

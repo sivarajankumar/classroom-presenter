@@ -8,7 +8,6 @@
 	//setcookie('alias', $_SERVER['REMOTE_USER']);
   }
 ?>
-	<head>
 
 	<head>
 		<title>Incognito</title>
