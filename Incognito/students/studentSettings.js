@@ -6,21 +6,21 @@
  $(document).ready(function() {
 	var alias; 	
 	//initially puts courses on page
-	getCourses($.cookie("netid"),printToScreen);
+	getCourses($.cookie("uid"),printToScreen);
 	//user joins a session
    $(".joinButton").live('click',function(event) {
-		joinSession($.cookie("netid"), $(this).attr('id'));
+		joinSession($.cookie("uid"), $(this).attr('id'));
 	});
    
     //user leaves a session
 	$(".quitButton").live('click',function(event) { 
-		exitSession($.cookie("netid"), $(this).attr('id'));
+		exitSession($.cookie("uid"), $(this).attr('id'));
 	});
 	
 	//user deletes a course
 	$(".courseRemoveButton").live('click',function(event) {
-		removeCourse($.cookie("netid"), $(this).attr('id'));
-		getCourses($.cookie("netid"),printToScreen);
+		removeCourse($.cookie("uid"), $(this).attr('id'));
+		getCourses($.cookie("uid"),printToScreen);
 	});
 
 	//user change alias name, studentID, newAlias
@@ -28,7 +28,7 @@
 		alias = $("#aliasName").val();
 		$.cookie("alias", alias, { path: '/' });
 		$("#cook").html("Hello " + alias);
-		addAlias($.cookie("netid"), alias);
+		addAlias($.cookie("uid"), alias);
 	});
 
 
