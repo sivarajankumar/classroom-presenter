@@ -14,7 +14,7 @@ function onVote(id, type, username, vote) {
     $.post("../../DB/submit_vote.php",
     {id: id, type: type, username: username, vote: vote},
     function(data) {
-        // alert('Success!');
+        alert($.cookie('netid'));
     });
 }
 

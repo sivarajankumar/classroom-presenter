@@ -9,6 +9,8 @@
   }
 ?>
 	<head>
+
+	<head>
 		<title>Incognito</title>
 		
 		<script src="instructorfeed.js"></script>
