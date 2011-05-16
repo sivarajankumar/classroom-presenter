@@ -33,7 +33,7 @@
 		
 		// Now do the insert
 		$uid = $row[0];
-		$query = sprintf("INSERT INTO Joined VALUES (%d, %d);", $uid, $sid);
+		$query = sprintf("INSERT INTO Joined (sid, uid) VALUES (%d, %d);", $sid, $uid);
 		$results = mysql_query($query, $db_conn);
 		
 		// Check for more errors
