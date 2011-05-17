@@ -3,6 +3,10 @@
 	$("#courseInfo").html(data);
  }
 
+function getCourse(data) {
+	// This is just a place holder for when the cid's are returned to us
+}
+
   function setSession(data) {
   	sessionId = data; 
   }
@@ -33,7 +37,7 @@
 	$("#courseSubmitButton").click(function(event){
 		var courseIs = $("#courseName").val();
 		mailIs = $("#mailingList").val();
-		courseId = insertCourse($.cookie("uid"), courseIs, mailIs, printToScreen);
+		courseId = insertCourse($.cookie("uid"), courseIs, mailIs, getCourse);
 		getCourses($.cookie("uid"),printToScreen);
 	});
 	
