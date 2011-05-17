@@ -8,6 +8,16 @@ function getFeed(sid, filter, sort, callback) {
     });
 }
 
+// Makes the call to mark a Q/F as answered
+function onMarkAnswered(type, id, flag) {
+    // Make the HTTP request
+    $.post("../../DB/answer_question.php",
+    {type: type, id: id, flag: flag},
+    function(data) {
+        // alert($.cookie('netid'));
+    });
+}
+
 var filter;
 var sort;
 
@@ -35,6 +45,10 @@ function onPrioritySortChange() {
     getFeed(23456, window.filter, window.sort, printToScreen);
 }
 
+function onMarkAnswered() {
+
+}
+
 window.onload = function() {
     filter = "None";
     sort = "Newest"; // default to sorting by newest
@@ -42,4 +56,8 @@ window.onload = function() {
     $('#filter').change(onFilterChange);
     $('#newest').click(onNewestSortChange);
     $('#priority').click(onPrioritySortChange);
+    $('.check').live('click', function () {
+        onMarkAnswered(this.id.charAt(6),this.id.substr(7),this.checked);
+        onMarkAnswered(this.id.charAt(6),this.id.substr(7),this.checked);
+    });
 };
