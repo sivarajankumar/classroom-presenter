@@ -45,10 +45,6 @@ function onPrioritySortChange() {
     getFeed(23456, window.filter, window.sort, printToScreen);
 }
 
-function onMarkAnswered() {
-
-}
-
 window.onload = function() {
     filter = "None";
     sort = "Newest"; // default to sorting by newest
