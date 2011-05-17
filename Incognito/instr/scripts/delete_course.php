@@ -47,7 +47,6 @@
 
 		// Remove the session
 		$query = sprintf("DELETE FROM Session WHERE cid = %d AND uid = %d;", $cid, $uid);
-		echo $query; 
 		$results = mysql_query($query, $db_conn);
 
 		// Error check

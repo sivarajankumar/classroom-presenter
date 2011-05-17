@@ -21,7 +21,7 @@
 		
 		// Now run the query to fetch all of the courses
 		$email = $_POST['email'];
-		$query = sprintf("SELECT u.uid, s.sid, a.cid, s.open, c.name FROM User u, Attends a, Session s, Course c WHERE u.email = '%s' AND a.uid = u.uid AND s.cid = a.cid AND c.cid = a.cid;",
+		$query = sprintf("SELECT DISTINCT u.uid, s.sid, a.cid, s.open, c.name FROM User u, Attends a, Session s, Course c WHERE u.email = '%s' AND a.uid = u.uid AND s.cid = a.cid AND c.cid = a.cid;",
 						$email);
 		$results = mysql_query($query, $db_conn);
 	
