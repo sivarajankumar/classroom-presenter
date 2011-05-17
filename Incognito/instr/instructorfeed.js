@@ -14,7 +14,7 @@ function onMarkAnswered(type, id, flag) {
     $.post("../../DB/answer_question.php",
     {type: type, id: id, flag: flag},
     function(data) {
-        // alert($.cookie('netid'));
+        alert("Success!");
     });
 }
 
@@ -57,7 +57,6 @@ window.onload = function() {
     $('#newest').click(onNewestSortChange);
     $('#priority').click(onPrioritySortChange);
     $('.check').live('click', function () {
-        onMarkAnswered(this.id.charAt(6),this.id.substr(7),this.checked);
         onMarkAnswered(this.id.charAt(6),this.id.substr(7),this.checked);
     });
 };
