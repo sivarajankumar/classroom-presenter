@@ -73,7 +73,7 @@
 				<span id="blankfeed"><!--(Today&#39;s feed has not yet been open. To open, refer to your settings.)--></span>						
 			</div>
       
-            <div id="feed"></div>
+			<div id="feed"></div>
 			
 		</div>
 
