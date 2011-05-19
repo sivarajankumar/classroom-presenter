@@ -1,7 +1,7 @@
 // Makes the call to the backend to retrieve feed data
 function getFeed(sid, filter, sort, callback) {
     // Make the HTTP request
-    $.post("../../DB/lookup_questions.php",
+    $.post("scripts/lookup_questions.php",
     {sid: sid, filter: filter, sort: sort, callback: callback},
     function(data) {
         callback(data);
@@ -11,7 +11,7 @@ function getFeed(sid, filter, sort, callback) {
 // Makes the call to mark a Q/F as answered
 function onMarkAnswered(type, id, flag) {
     // Make the HTTP request
-    $.post("../../DB/answer_question.php",
+    $.post("scripts/answer_question.php",
     {type: type, id: id, flag: flag},
     function(data) {
         alert("Success!");

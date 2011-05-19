@@ -1,7 +1,7 @@
 // Makes the call to retrieve feed data
 function getFeed(sid, username, filter, sort, callback) {
     // Make the HTTP request
-    $.post("../../DB/studentfeed_lookup_questions.php",
+    $.post("scripts/studentfeed_lookup_questions.php",
     {sid: sid, username: username, filter: filter, sort: sort, callback: callback},
     function(data) {
         callback(data);
@@ -11,7 +11,7 @@ function getFeed(sid, username, filter, sort, callback) {
 // Makes the call to send a vote in
 function onVote(id, type, username, vote) {
     // Make the HTTP request
-    $.post("../../DB/submit_vote.php",
+    $.post("scripts/submit_vote.php",
     {id: id, type: type, username: username, vote: vote},
     function(data) {
         alert('Success!');
