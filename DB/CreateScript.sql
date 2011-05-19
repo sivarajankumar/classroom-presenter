@@ -94,12 +94,20 @@ CREATE TABLE MultipleChoice
 );
 CREATE TABLE FreeResponse
 (
-       frid		INT NOT NULL AUTO_INCREMENT,
        sid		INT,
        text		VARCHAR(50),
-       PRIMARY KEY(frid),
+       PRIMARY KEY(sid),
        FOREIGN KEY(sid) REFERENCES Survey(sid)
 );
+CREATE TABLE Answer
+(
+	   sid		INT, 
+	   text		INT,
+	   uid		INT,
+	   PRIMARY KEY(sid, uid),
+	   FOREIGN KEY(sid) REFERENCES Survey(sid),
+	   FOREIGN KEY(uid) REFERENCES Student(uid)
+);			
 CREATE TABLE Choices
 (
        sid		INT,
