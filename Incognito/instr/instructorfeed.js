@@ -55,10 +55,19 @@ window.onload = function() {
     $('.check').live('click', function () {
         onMarkAnswered(this.id.charAt(6),this.id.substr(7),this.checked);
     });
+	//document.getElementById("timeline").onclick = mypopup();
 };
+$("#timeline").live('click', function(event){
+	mypopup();
+});
+function mypopup(){
+    mywindow = window.open("https://cubist.cs.washington.edu/~chriacua/Incognito/instr/graph.php", "mywindow", "location=0,status=1,scrollbars=0,  width=300,height=300");
+    mywindow.moveTo(0, 0);
+}
 
 setInterval("feedRefresh()", 2000) // Refreshes the feed page every 2 seconds
 
 function feedRefresh() {
 	getFeed(23456, window.filter, window.sort, printToScreen);
 }
+
