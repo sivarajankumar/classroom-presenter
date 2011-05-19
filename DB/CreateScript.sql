@@ -80,7 +80,7 @@ CREATE TABLE Question
 );
 CREATE TABLE Survey
 (
-       sid		INT,
+       sid		INT NOT NULL AUTO_INCREMENT,
        sessionid        INT,
        FOREIGN KEY(sessionid) REFERENCES Session(sid),
        PRIMARY KEY(sid)
@@ -102,7 +102,7 @@ CREATE TABLE FreeResponse
 CREATE TABLE Answer
 (
 	   sid		INT, 
-	   text		INT,
+	   text		varchar(30),
 	   uid		INT,
 	   PRIMARY KEY(sid, uid),
 	   FOREIGN KEY(sid) REFERENCES Survey(sid),
