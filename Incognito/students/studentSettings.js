@@ -11,12 +11,18 @@
    $(".joinButton").live('click',function(event) {
 		joinSession($.cookie("uid"), $(this).attr('id'));
 		getCourses($.cookie("uid"),printToScreen);
+		
+		// Set a cookie to reflect the session the student just joined
+		$.cookie("course":$(this).attr('id'));
 	});
    
     //user leaves a session
 	$(".quitButton").live('click',function(event) { 
 		exitSession($.cookie("uid"), $(this).attr('id'));
 		getCourses($.cookie("uid"),printToScreen);
+		
+		// Delete the cookie corresponding to session the student is in
+		$.cookie("course", null);
 	});
 	
 	//user deletes a course
