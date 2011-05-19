@@ -384,7 +384,15 @@
             else
                 echo "<td class=checked><input class=check type=checkbox id=check_".$feed[$row]["type"].$feed[$row]["id"]." /></td>";
             echo "<td class=feed>".$feed[$row]["text"]."</td>";
-            echo "<td class=answered>".$feed[$row]["answered"]."</td>";
+            if(($feed[$row]["type"] == 'Q' && $feed[$row]["answered"] == 1) ||
+                ($feed[$row]["type"] == 'F' && $feed[$row]["isread"] == 1))
+            {
+                echo "<td class=answered>Yes</td>";
+            }
+            else
+            {
+                echo "<td class=answered>No</td>";
+            }            
             echo "</tr>";
         }
     }
