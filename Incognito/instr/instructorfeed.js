@@ -56,3 +56,9 @@ window.onload = function() {
         onMarkAnswered(this.id.charAt(6),this.id.substr(7),this.checked);
     });
 };
+
+setInterval("feedRefresh()", 2000) // Refreshes the feed page every 2 seconds
+
+function feedRefresh() {
+	getFeed(23456, window.filter, window.sort, printToScreen);
+}
