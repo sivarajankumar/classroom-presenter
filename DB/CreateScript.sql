@@ -139,3 +139,11 @@ CREATE TABLE Joined
 		FOREIGN KEY(uid) REFERENCES Student(uid),
 		PRIMARY KEY(sid, uid)
 );
+
+CREATE TABLE BugReports
+(
+	summary VARCHAR(100),
+	description VARCHAR(1000),
+	id INT NOT NULL AUTO_INCREMENT,
+	PRIMARY KEY(id)
+);
