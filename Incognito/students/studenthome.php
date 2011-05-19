@@ -1,12 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <?php
-  setcookie('uid', $_SERVER['REMOTE_USER']);
+	setcookie('uid', $_SERVER['REMOTE_USER']);
   
-  // Check if the alias is already set
-  if (!isset($_COOKIE['alias'])) {
-	//setcookie('alias', $_SERVER['REMOTE_USER']);
-  }
+	// Check if the alias is already set
+	if (!isset($_COOKIE['alias'])) {
+		//setcookie('alias', $_SERVER['REMOTE_USER']);
+	}
+
+	// Check if the current course is set
+	if (!isset($_COOKIE['course'])) {
+
+	}
 ?>
 
 	<head>
@@ -30,8 +35,8 @@
 		<div id="topbanner"> 	<!-- Includes logo & person's information/help/logout, & course name -->
 			<img src="logo.png" alt="logo" />
 			<div id="greeting">
-				<span id="cook"><?php echo 'Hello '.($_COOKIE['alias']!='' ? $_COOKIE['alias'] : 'Guest') ?></span>| <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
-				You are currently looking at [course name].
+				<span id="cook"><?php echo 'Hello '.($_COOKIE['alias']!='' ? $_COOKIE['alias'] : 'Guest')." " ?></span>| <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
+				You are currently looking at <?php echo ($_COOKIE['course'] != '' ? $_COOKIE['course'] : 'no courses') ?>.
 			</div>
 		</div>			
 
