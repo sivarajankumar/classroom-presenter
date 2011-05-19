@@ -55,7 +55,6 @@ window.onload = function() {
     $('.check').live('click', function () {
         onMarkAnswered(this.id.charAt(6),this.id.substr(7),this.checked);
     });
-	//document.getElementById("timeline").onclick = mypopup();
 };
 $("#timeline").live('click', function(event){
 	mypopup();

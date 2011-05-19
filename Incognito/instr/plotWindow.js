@@ -1,13 +1,11 @@
- window.onload =function(){
-	alert("WTF");
- }
- /*
  var data1 = []; 
  var options = {
         lines: { show: true },
         points: { show: true },
         xaxis: { tickDecimals: 0, tickSize: 5 }
     };
+
+
 	
 var c=1;
 var t;
@@ -22,7 +20,6 @@ function timedCount(){
 }
 
 function doTimer(){
-	alert("WTF");
 	if (!timer_is_on)
 	  {
 	  timer_is_on=1;
@@ -79,4 +76,4 @@ function sendValue(str){
     //How you want the data formated when it is returned from the server.
     "html"
     );   
-}*/
+}
