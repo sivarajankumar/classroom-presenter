@@ -204,13 +204,13 @@ a:hover {	/* Link hover rule */
 #feedTable td.feed
 {
   text-align:left;
-  width:680px;
+  width:650px;
 }
 
 #feedTable td.answered
 {
-  text-align:right;
-  width:50px;
+  text-align:center;
+  width:105px;
 }
 
 #feedTable tr.alt td 
