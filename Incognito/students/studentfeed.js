@@ -52,6 +52,7 @@ window.onload = function() {
     filter = "None";
     sort = "Newest"; // default to sorting by newest
     getFeed(23456, "ashen", window.filter, window.sort, printToScreen);
+
     $('#filter').change(onFilterChange);
     $('#newest').click(onNewestSortChange);
     $('#priority').click(onPrioritySortChange);
@@ -59,3 +60,10 @@ window.onload = function() {
         onVote(this.id.substr(7),this.id.charAt(6),"ashen",this.checked);
     });
 };
+
+setInterval("refreshFeed()", 2000); // refresh every 2000 milliseconds
+
+function refreshFeed() {
+	getFeed(23456, "ashen", window.filter, window.sort, printToScreen);
+}
+
