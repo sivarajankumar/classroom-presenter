@@ -66,6 +66,25 @@
 			die("Error: " . mysql_error($db_conn));
 		}
 		
+		// If we did a multiple choice survey, we need to insert the 
+		// choices
+		if ($type == 'mc' && isset($_POST['choices'])) {
+			
+			$choices = json_decode($_POST['choices']);
+			
+			// Go through each choices and insert it in the Choices table
+			for ($i = 0; $i < count($choices); $i++) {
+				$query = sprintf("INSERT INTO Choices VALUES (%d, 0, '%s');",
+									$surveyId, $choices[$i]);
+				$results = mysql_query($query, $db_conn);
+				
+				// Error check
+				if (!$results) {
+					die("Error: " . mysql_error($db_conn));
+				}
+			}
+		}
+		
 		// Respond with the new survey id
 		echo $surveyId; 
 	}
