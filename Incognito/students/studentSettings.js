@@ -6,7 +6,6 @@
  $(document).ready(function() {
 	var alias;
     var cookie = readCookie('uid');
-    alert(cookie);
     if(cookie != null) {
     
         //initially puts courses on page
@@ -17,7 +16,7 @@
             getCourses(cookie,printToScreen);
             
             // Set a cookie to reflect the session the student just joined
-            $.cookie("sid":$(this).attr('id'));
+            $.cookie("sid",$(this).attr('id'));
         });
        
         //user leaves a session
