@@ -55,7 +55,6 @@
 						<input type="textbox" name="textfeed" value="" height="1000" size="100" maxlength="120">
 					</div>
                 <button type="submit" id="submitbutton" onClick="onCreateFree()">Create</button>
-                <div id="display"></div>
           </form>
 				</div>
 				<input id="createSurvey" type="checkbox" name="createSurvey" /> I do not want to create a survey.
