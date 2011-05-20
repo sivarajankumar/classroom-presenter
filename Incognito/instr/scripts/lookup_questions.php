@@ -225,7 +225,7 @@
 		
 		// Prints out the feed data in a nice html format
 		echo "<table id=feedTable>";
-		for($row = 0; $row < 5; $row++) {
+		for($row = 0; $row < 200; $row++) {
 			if(!empty($rows[$row])) {
 				if($row % 2 == 1)
 					echo "<tr class=alt>";
