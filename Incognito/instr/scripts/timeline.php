@@ -8,7 +8,7 @@
 	include 'db_credentials.php'; 
 	
 	// Ensure that we are given a session id
-	if (isset($_GET['id']) && isset($_GET['time'])) {
+	if (isset($_POST['id']) && isset($_POST['time'])) {
 		
 		// Connect and select the correct database
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
@@ -20,7 +20,7 @@
 		
 		// Query the database for all of the questions in this 
 		// session that are within 5 minutes of the time
-		$sid = $_GET['sid'];
+		$sid = $_POST['sid'];
 		$query = sprintf("SELECT count(*) FROM Question WHERE ((NOW() - time) < 5)
 							AND sid = %d;", $sid);
 		$results = mysql_query($query, $db_conn);
@@ -32,7 +32,7 @@
 		
 		// Do the response
 		$row = mysql_fetch_row($results);
-		$time = $_GET['time'];
+		$time = $_POST['time'];
 		$response[0] = $time; 
 		$response[1] = $row[0];
 		
