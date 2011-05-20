@@ -1,6 +1,6 @@
 <?php
 
-    include "get_uid.php";
+    include "../get_uid.php";
     
     setcookie('unetid', $_SERVER['REMOTE_USER']);
     $id = $_COOKIE['unetid'];
@@ -42,7 +42,7 @@
 		<div id="topbanner"> 	<!-- Includes logo & person's information/help/logout, & course name -->
 			<img src="logo.png" alt="logo" />
 			<div id="greeting">
-				<?php echo 'Hello '.($_COOKIE['alias']!='' ? $_COOKIE['alias'] : 'Guest').' ' ?>  | <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="./../logout.php">Logout</a> <br />
+				<?php echo 'Hello '.($_COOKIE['alias']!='' ? $_COOKIE['alias'] : 'Guest').' ' ?>  | <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
 				You are currently looking at <?php echo ($COOKIE['course'] != '' ? $_COOKIE['course'] : 'no courses') ?>.
 			</div>
 		</div>
