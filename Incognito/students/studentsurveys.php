@@ -14,6 +14,7 @@
 		<script type="text/javascript" src="jquery.cookie.js"></script>
 		<script type="text/javascript" src="scripts/StudentSettingsView.js"></script>
         <script type="text/javascript" src="jquery-impromptu.3.1.js"></script>
+        <script type="text/javascript" src="scripts/StudentSurveyView.js"></script>
         <script type="text/javascript" src="studentsurveys.js"></script>
 	</head>
 
@@ -54,7 +55,6 @@
 					<a id="newest" >NEWEST</a> | <a id="priority" >HIGHEST PRIORITY</a>
 				</span>
 
-                <div id="feed"></div>
 			</div>
 			
 			<div id="feedbox">
