@@ -9,10 +9,12 @@
 	
 	// Include the db_credentials
 	include 'db_credentials.php';
-
+    
+    echo "testing";
+    
 	// Check if the variables are set
 	if(isset($_POST['sid']) && isset($_POST['answer']) && isset($_POST['type'])) {
-		
+        
 		// Connect and select the correct database
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 		if (!$db_conn) {
