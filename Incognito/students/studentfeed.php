@@ -86,8 +86,9 @@
 				<span>
 					FILTER BY:
 					<select name="filter" id="filter">
-						<option selected="selected"> None
-						</option>
+						<optgroup>
+							<option selected="selected">None</option>
+						</optgroup>
 						<optgroup label="Questions">
 							<option>Answered</option>
 							<option>Unanswered</option>
@@ -118,7 +119,7 @@
 				<hr />
 			</div>
 
-      <div id="feed"></div>
+            <div id="feed"></div>
 
 		</div>
 
