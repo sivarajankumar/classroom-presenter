@@ -1,14 +1,14 @@
 <?php
 
     include "../get_uid.php";
-    
-    setcookie('unetid', $_SERVER['REMOTE_USER']);
-    $id = $_COOKIE['unetid'];
-    
-    get_user_id($id);
-    
-    setcookie("unetid", "", time()-3600);
-    
+    if(!isset($_COOKIE['uid'])) {
+        setcookie('unetid', $_SERVER['REMOTE_USER']);
+        $id = $_COOKIE['unetid'];
+        
+        get_user_id($id);
+        
+        setcookie("unetid", "", time()-3600);
+    }
 	// Check if the alias is already set
 	if (!isset($_COOKIE['alias'])) {
 		//setcookie('alias', $_SERVER['REMOTE_USER']);

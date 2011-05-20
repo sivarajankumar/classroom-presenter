@@ -27,8 +27,6 @@
 	$filter = $_POST['filter'];		
 	$sort = $_POST['sort'];
 	$uid = $_POST['uid'];
-    
-    // echo $sort;
 	
 	// Do a preliminary query to get the student's user ID for later use
     /*
@@ -94,7 +92,7 @@
 		while($r = mysql_fetch_assoc($results))
 		{
 			$fid = (int)$r["fid"];
-      // echo $fid;
+            // echo $fid;
       
 			// Query FeedbackVotedOn to see if the user has voted for this feedback
 			$votequery = sprintf("SELECT * FROM FeedbackVotedOn WHERE fid = %d AND uid = %d", $fid, $uid);

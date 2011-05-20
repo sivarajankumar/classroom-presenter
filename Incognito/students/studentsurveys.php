@@ -1,13 +1,14 @@
 <?php
 
     include "../get_uid.php";
-    
-    setcookie('unetid', $_SERVER['REMOTE_USER']);
-    $id = $_COOKIE['unetid'];
-    
-    get_user_id($id);
-    
-    setcookie("unetid", "", time()-3600);
+    if(!isset($_COOKIE['uid'])) {
+        setcookie('unetid', $_SERVER['REMOTE_USER']);
+        $id = $_COOKIE['unetid'];
+        
+        get_user_id($id);
+        
+        setcookie("unetid", "", time()-3600);
+    }
     
 	// Check if the alias is already set
 	if (!isset($_COOKIE['alias'])) {
@@ -34,7 +35,6 @@
 		<script type="text/javascript" src="scripts/StudentSettingsView.js"></script>
         <script type="text/javascript" src="jquery-impromptu.3.1.js"></script>
         <script type="text/javascript" src="studentsurveys.js"></script>
-        <script type="text/javascript" src="studentSettings.js"></script>
 	</head>
 
 	<body>
