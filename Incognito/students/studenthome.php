@@ -1,8 +1,49 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <?php
-	setcookie('uid', $_SERVER['REMOTE_USER']);
-  
+
+    setcookie('unetid', $_SERVER['REMOTE_USER']);
+
+    // Connect to the production database
+    $username = "ashen";
+    $password = "2kV2cNct";
+    $db_name = "ashen_403_Local";
+    
+    // Connect to your own db
+    
+    //$username = "schwer";
+    //$password = "Egh8vF5d";
+    //$db_name = "schwer_Incognito";
+    
+    //$username = "chriacua";
+    //$password = "b67wwpAH";
+    //$db_name = "chriacua_testui";
+    
+	// This function, given a student email and an alias
+	// will update the student's alias. 
+    
+    $db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+    if (!$db_conn) {
+        die("Could not connect");
+    }
+    
+    mysql_select_db($db_name, $db_conn);
+    if(isset($_COOKIE['unetid'])) {
+        $mail = $_COOKIE['unetid'];
+        $query = sprintf("SELECT uid FROM User WHERE email = '%s';", $mail);
+        $results = mysql_query($query, $db_conn);
+        
+        // Error check
+        if (!$results) {
+            die("Error: " + mysql_error($db_conn));
+        }
+        
+        // Get the uid and then do the update
+        $row = mysql_fetch_row($results);
+        
+        if(!empty($row))
+            setcookie('uid', $row[0]);
+    }
 	// Check if the alias is already set
 	if (!isset($_COOKIE['alias'])) {
 		//setcookie('alias', $_SERVER['REMOTE_USER']);

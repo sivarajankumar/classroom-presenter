@@ -2,14 +2,18 @@
 
 	// This php script takes a survey id, an answer, and a survey type and submits the
 	// answer to the Answers table. In addition, we need a uid if the survey is a free
-	// response
+	// response.
+	// 
+	// Type Argument: 'mc' submits multiple choice answers
+	//				  'fr' submits a free response answer
 	
 	// Include the db_credentials
 	include 'db_credentials.php';
 
 	// Check if the variables are set
-	if(isset($_POST['sid']) && isset($_POST['answer']) && isset($_POST['type'])) {
+	if(isset($_GET['sid']) && isset($_GET['answer']) && isset($_GET['type'])) {
 		
+		// Connect and select the correct database
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 		if (!$db_conn) {
 			die("Could not connect");
@@ -18,12 +22,12 @@
 		mysql_select_db($db_name, $db_conn);
 		
 		// Now run the queries on the db based on the type of survey
-		$type = $_POST['type'];
+		$type = $_GET['type'];
 		if($type == "mc") {
 			
 			// First see how many of that type of answer there are 
-			$answer = $_POST['answer'];
-			$sid = $_POST['sid'];
+			$answer = $_GET['answer'];
+			$sid = $_GET['sid'];
 			$query = sprintf("SELECT count FROM Choices WHERE sid = %d AND text = '%s';", 
 								$sid, $answer);
 			$results = mysql_query($query, $db_conn);
@@ -48,12 +52,12 @@
 		} else if ($type == "fr") {
 			
 			// First check if we are given a uid
-			if (isset($_POST['uid'])) {
+			if (isset($_GET['uid'])) {
 			
 				// Insert the answer into the table with the appropriate values
-				$answer = $_POST['answer'];
-				$sid = $_POST['sid'];
-				$uid = $_POST['uid'];
+				$answer = $_GET['answer'];
+				$sid = $_GET['sid'];
+				$uid = $_GET['uid'];
 					
 				$query = sprintf("INSERT INTO Answer (sid, text, uid) VALUES (%d, '%s', %d);",
 									$sid, $answer, $uid);

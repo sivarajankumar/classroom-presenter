@@ -244,15 +244,28 @@
 	//$rows[] = array('text'=>$r["text"],'votes'=>$r["numvotes"],'isread'=>$r["isread"],'type'=>'F','id'=>$r["fid"]);
     
     // Prints out the feed data in a nice html format
+	// 1 => indicates true
+
     echo "<table id=feedTable>";
-    for($row = 0; $row < 5; $row++) {
+
+    for($row = 0; $row < 200; $row++) {
+
+		// Make sure the rows are not empty
         if(!empty($rows[$row])) {
+
+			// Unique styling for each  alternating row
             if($row % 2 == 1)
                 echo "<tr class=alt>";
             else
                 echo "<tr>";
+
+			// Display the number of votes on the left most column
             echo "<td class=votes>".$rows[$row]["votes"]."</td>";
+
+			// Display the feed text in the middle column
             echo "<td class=feed>".$rows[$row]["text"]."</td>";
+
+			// Display checkboxes => check the box if it has already been answered or read
             if($rows[$row]["answered"] == 1)
                 echo "<td class=checked><input class=check type=checkbox id=check_".$rows[$row]["type"].$rows[$row]["id"]." checked=true /></td>";
             else

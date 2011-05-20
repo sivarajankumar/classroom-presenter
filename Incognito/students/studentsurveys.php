@@ -7,9 +7,11 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="pages.css" type="text/css" rel="stylesheet" />
 		<script src="jquery-1.5.2.js" type="text/javascript"></script>
-		<script type="text/javascript" src="studentSettings.js"></script>
 		<script type="text/javascript" src="jquery.cookie.js"></script>
 		<script type="text/javascript" src="scripts/StudentSettingsView.js"></script>
+        <script type="text/javascript" src="jquery-impromptu.3.1.js"></script>
+        <script type="text/javascript" src="studentsurveys.js"></script>
+        <script type="text/javascript" src="studentSettings.js"></script>
 	</head>
 
 	<body>
@@ -32,19 +34,21 @@
 		</div>
 		
 		<div id = "maincontent">
-			<div id="filterandsort">	
+			<div id="filterandsort">
 				<span>
 					FILTER BY: 
-					<select name="filter">
-						<option selected="selected"> None </option>
-						<option>Free Response</option>
-						<option>Multiple Choice</option>
+					<select name="filter" id="filter">
+                        <optgroup>
+                            <option selected="selected"> None </option>
+                            <option>Free Response</option>
+                            <option>Multiple Choice</option>
+                        </optgroup>
 					</select>
 				</span>
 				
 				<span>
 					SORT BY:
-					<a href="" >NEWEST</a> | <a href="" >HIGHEST PRIORITY</a>
+					<a id="newest" >NEWEST</a> | <a id="priority" >HIGHEST PRIORITY</a>
 				</span>				  
 			</div>
 			
@@ -59,7 +63,9 @@
 					<hr />		
 				</span>				
 			</div>
-			
+
+			<div id="feed"></div>
+            
 		</div>
 
 		

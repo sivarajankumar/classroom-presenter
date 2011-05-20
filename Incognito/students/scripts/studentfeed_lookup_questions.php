@@ -26,16 +26,18 @@
 	$sid = $_POST['sid'];
 	$filter = $_POST['filter'];		
 	$sort = $_POST['sort'];
-	$username = $_POST['username'];
+	$uid = $_POST['uid'];
     
     // echo $sort;
 	
 	// Do a preliminary query to get the student's user ID for later use
+    /*
 	$uidquery = sprintf("SELECT uid FROM Student WHERE alias = '%s'", $username);
 	$uidresult = mysql_query($uidquery, $db_conn);
 	$uidrow = mysql_fetch_assoc($uidresult);
 	$uid = (int)$uidrow["uid"];
-  
+    */
+    
 	$feed = array();
 	$query = null;
 	
@@ -370,29 +372,46 @@
 		$rows[] = array('text'=>$r["text"],'votes'=>$r["numvotes"],'isread'=>$r["isread"],'type'=>'F','id'=>$r["fid"]);
 	}
 	*/
-	
+
     // Prints the feed data in a nice html format
+    // 1 => indicates that the attribute is true
+
     echo "<table id=feedTable>";
-    for($row = 0; $row < 5; $row++) {
+
+    for($row = 0; $row < 200; $row++) {
+
         if(!empty($feed[$row])) {
-            if($row % 2 == 1)
+
+            // Alternate the CSS style every other row
+            if($feed[$row]["type"] == 'Q')
                 echo "<tr class=alt>";
             else
                 echo "<tr>";
+
+            // Prints the Voted checkboxes on the left column
             if($feed[$row]["voted"] == 1)
                 echo "<td class=checked><input class=check type=checkbox id=check_".$feed[$row]["type"].$feed[$row]["id"]." checked=true /></td>";
             else
                 echo "<td class=checked><input class=check type=checkbox id=check_".$feed[$row]["type"].$feed[$row]["id"]." /></td>";
+
+            // Prints the feed in the middle column
             echo "<td class=feed>".$feed[$row]["text"]."</td>";
-            if(($feed[$row]["type"] == 'Q' && $feed[$row]["answered"] == 1) ||
-                ($feed[$row]["type"] == 'F' && $feed[$row]["isread"] == 1))
-            {
-                echo "<td class=answered>Yes</td>";
+
+            // Prints the Answered attribute on the right column
+            if($feed[$row]["type"] == 'Q') {
+                if(!empty($feed[$row]["answered"]))
+                    echo "<td class=answered>Yes</td>";
+                else
+                	echo "<td class=answered>No</td>";
+
+            // Prints the IsRead attribute on the right column
+            } elseif($feed[$row]["type"] == 'F') {
+                if(!empty($feed[$row]["isread"]))
+                    echo "<td class=answered>Yes</td>";
+				else
+                    echo "<td class=answered>No</td>";
             }
-            else
-            {
-                echo "<td class=answered>No</td>";
-            }            
+                                
             echo "</tr>";
         }
     }
