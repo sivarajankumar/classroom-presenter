@@ -36,7 +36,7 @@ function stopSurvey(sessionId) {
 			{sid: sessionId});
 }
 
-// This function, given a sessionId, a filter setting, a sort setting, 
+// This function, given a surveyId, a filter setting, a sort setting, 
 // and a handler, get's the surveys associated with the setting. 
 //
 // Filter args: 'fr' Filters everything except free response surveys
@@ -45,12 +45,23 @@ function stopSurvey(sessionId) {
 //
 // Sort args:	'mr' Sorts by the most recent entries
 //				'none' No sorting applied
-function getSurvey(sessionId, filter, sort, handler) {
+function getSurvey(surveyId, filter, sort, handler) {
 	
 	$.post("scripts/get_survey.php",
-			{sid: sessionId, filter: filter, sort: sort},
+			{sid: surveyId, filter: filter, sort: sort},
 			function(data) {
 				handler(data);
 			});
 }
 
+// This function takes a handler and a survey id. The function will
+// then do an AJAX call to the get survey script, which will respond
+// back with the survey results, which will be passed to the handler. 
+function getResults(surveyId, handler) {
+	
+	$.post("scripts/get_results.php",
+			{sid: surveyId},
+			function(data) {
+				handler(data);
+			});
+}
