@@ -16,10 +16,22 @@ function createMC(sessionId, questionText, getSurvey) {
 //This function takes a session id and question text, 
 //then creates a new free response survey. 
 function createFR(sessionId, questionText, getSurvey) {
-	alert(questionText);
 	$.post("scripts/create_survey.php", 
 			{sid: sessionId, text:questionText, type:'fr'},
 			function(data) {
 				getSurvey(data);
 			});
+}
+
+// This function takes a survey id and opens the survey.
+function startSurvey(sessionId) {
+	$.post("scripts/start_survey.php",
+			{sid: sessionId});
+}
+
+// This function takes a survey id and closes the survey
+//This function takes a survey id and opens the survey.
+function stopSurvey(sessionId) {
+	$.post("scripts/close_survey.php",
+			{sid: sessionId});
 }
