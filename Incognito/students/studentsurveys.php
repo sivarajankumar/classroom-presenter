@@ -59,6 +59,8 @@
 					<hr />		
 				</span>				
 			</div>
+
+			<div id="feed"></div>
 			
 		</div>
 

@@ -14,7 +14,7 @@ function onVote(id, type, username, vote) {
     $.post("scripts/submit_vote.php",
     {id: id, type: type, username: username, vote: vote},
     function(data) {
-        alert('Success!');
+        // alert('Success!');
     });
 }
 
@@ -61,9 +61,9 @@ window.onload = function() {
     });
 };
 
-// setInterval("refreshFeed()", 2000); // refresh every 2000 milliseconds
+setInterval("refreshFeed()", 2000); // refresh every 2000 milliseconds
 
-// function refreshFeed() {
-// 	getFeed(23456, "ashen", window.filter, window.sort, printToScreen);
-// }
+function refreshFeed() {
+	getFeed(23456, "ashen", window.filter, window.sort, printToScreen);
+}
 
