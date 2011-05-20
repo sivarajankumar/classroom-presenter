@@ -24,8 +24,13 @@
 	$type = $_POST['type'];
 	$numvotes = $_POST['numvotes'];
 	$text = $_POST['text'];
+	// Preprocess the text to escape any apostrophes, since they'll
+	//	mess up the SQL queries otherwise
+	$text = mysql_real_escape_string($text, $db_conn);
+		
 	$sid = $_POST['sid'];
 	$alias = $_POST['username'];
+	$alias = mysql_real_escape_string($alias, $db_conn);
 	
 	// Do a preliminary query to get the student's user ID for later use
 	$uidquery = sprintf("SELECT uid FROM Student WHERE alias = '%s'", $alias);
