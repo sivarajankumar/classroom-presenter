@@ -1,43 +1,39 @@
 <?php
 	
-	// Change this for whoever is using the php script
-	$database = "mcmk_ballerdb";
+	include 'db_credentials.php';
 
-	// Connect to the mysql server
-	$db_conn = mysql_connect("cubist.cs.washington.edu", "mcmk", "hyi2Uq7B"); 
+    // Check for the correct arguments
+    if (isset($_POST['text'])) {
+        // Check if we connected properly
+        if (!$db_conn) {
+            die("Could not connect to the mysql server");
+        }
+        
+        // Select the correct database
+        mysql_select_db($database, $db_conn); 
 
-	// Check if we connected properly
-	if (!$db_conn) {
-		die("Could not connect to the mysql server");
-	}
-	
-	// Select the correct database
-	mysql_select_db($database, $db_conn); 
-
-	// Insert the question into the table given
-	// all of the relevent fields
-	$text = $_POST['text'];
-	echo $text;
-	$sql_query1 = "INSERT INTO Survey (sid,sessionid)
-              VALUES (13578,22222)";
-  if (mysql_query($sql_query1,$db_conn))
-  {
-    echo "Created a Survey.\n";
-  }
-  else
-  {
-    echo "Error: " . mysql_error();
-  }
-  $sql_query2 = "INSERT INTO FreeResponse (sid,text)
-              VALUES (13578,'$text')";
-  if (mysql_query($sql_query2,$db_conn))
-  {
-    echo "Created a FreeResponse.\n";
-  }
-  else
-  {
-    echo "Error: " . mysql_error();
-  }
-  echo "1 record added.\n";
-  mysql_close($db_conn)
+        // Insert the question into the table given
+        // all of the relevent fields
+        $text = $_POST['text'];
+        $sid = $_POST['sid'];
+        echo $text;
+        $sql_query1 = sprintf("INSERT INTO Survey (sessionid) VALUES (%d);", $sid);
+        $results1 = mysql_query($query, $db_conn);
+		
+		// Do some error checking
+		if (!$results1) {
+			die("Error: " + mysql_error($db_conn));
+		}
+        
+        // Getting the the most recent survey added
+        $sql_query2 = sprintf("SELECT sid FROM Survey ORDER BY sid DESC;");
+        $results2 = mysql_query($query1, $db_conn);
+        
+        // Do some more error checking
+		if (!$results2) {
+			die("Error: " + mysql_error($db_conn));
+		}
+        
+        
+    }
 ?>

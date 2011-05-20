@@ -10,6 +10,7 @@
         
         setcookie("unetid", "", time()-3600);
     }
+    
 	// Check if the alias is already set
 	if (!isset($_COOKIE['alias'])) {
 		//setcookie('alias', $_SERVER['REMOTE_USER']);
@@ -39,7 +40,7 @@
 		<div id="topbanner"> 	<!-- Includes logo & person's information/help/logout, & course name -->
 			<img src="logo.png" alt="logo" />
 			<div id="greeting">
-				<span id="cook"><?php echo 'Hello '.($_COOKIE['alias']!='' ? $_COOKIE['alias'] : 'Guest')." " ?></span>| <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="scripts/logout.php">Logout</a> <br />
+				<span id="cook"><?php echo 'Hello '.($_COOKIE['alias']!='' ? $_COOKIE['alias'] : 'Guest')." " ?></span>| <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
 				You are currently looking at <?php echo ($_COOKIE['course'] != '' ? $_COOKIE['course'] : 'no courses') ?>.
 			</div>
 		</div>			
@@ -54,7 +55,7 @@
 		</div>
 		
 		<div id = "maincontent">
-    <form id="submitform">
+            <form id="submitform">
 				<div class="submissioncontent">	<!-- Includes: "Submit as", textbox, & submit button -->
 					<div id="typeAreaFeed">
 						<span>Submit as:
@@ -62,7 +63,7 @@
 							<label><input type="radio" name="submitType" value="F"/> Feedback </label>
 						</span> <br />
 						<input type="textbox" name="texthome" value="" id="ac-input" height="1000" size="80" maxlength="50">
-            <div id="display"></div>
+                        <div id="display"></div>
 						<button type="submit" id="submitbutton" onClick="onSubmit()">Submit</button>
 					</div>
 				</div>
