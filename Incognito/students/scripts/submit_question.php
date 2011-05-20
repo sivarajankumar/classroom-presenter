@@ -20,18 +20,21 @@
 		return $db_conn;
 	}
 	
-	function submit($type, $numvotes, $text, $sid, $alias)
+	function submit($type, $numvotes, $text, $sid, $uid)
 	{
 		$db_conn = connectToDB(); 
+		
+		$text = mysql_real_escape_string($text, $db_conn);
 
 		// Insert the question/feedback into the table given
 		// all of the relevant fields
 		
 		// Do a preliminary query to get the student's user ID for later use
-		$uidquery = sprintf("SELECT uid FROM Student WHERE alias = '%s'", $alias);
-		$uidresult = mysql_query($uidquery, $db_conn);
-		$uidrow = mysql_fetch_assoc($uidresult);
-		$uid = (int)$uidrow["uid"];
+		//$uidquery = sprintf("SELECT uid FROM Student WHERE alias = '%s'", $alias);
+		//$uidresult = mysql_query($uidquery, $db_conn);
+		//$uidrow = mysql_fetch_assoc($uidresult);
+		//$uid = (int)$uidrow["uid"];
+		
 		
 		// Execute the appropriate query depending on whether the submitted text
 		//	is a question or a feedback
@@ -64,9 +67,9 @@
 			}
 			else
 			{
-				$answered = $_POST['answered'];
+				//$answered = $_POST['answered'];
 				$query = sprintf("INSERT INTO Question (text, numvotes, answered, sid) 
-								VALUES ('%s', %d, %d, %d)", $text, $numvotes, $answered, $sid);
+								VALUES ('%s', %d, %d, %d)", $text, $numvotes, 0, $sid);
 				if(!mysql_query($query, $db_conn)) {
 					die("Query error: " . mysql_error());
 				}
@@ -101,9 +104,9 @@
 			}
 			else
 			{
-				$isread = $_POST['isread'];
+				//$isread = $_POST['isread'];
 				$query = sprintf("INSERT INTO Feedback (text, numvotes, isread, sid)
-								VALUES ('%s', %d, %d, %d)", $text, $numvotes, $isread, $sid);
+								VALUES ('%s', %d, %d, %d)", $text, $numvotes, 0, $sid);
 				if(!mysql_query($query, $db_conn)) {
 					die("Query error: " . mysql_error());
 				}
@@ -119,8 +122,7 @@
 	$type = $_POST['type'];
 	$numvotes = $_POST['numvotes'];
 	$text = $_POST['text'];
-	$text = mysql_real_escape_string($text, $db_conn);
 	$sid = $_POST['sid'];
-	$alias = $_POST['username'];
-	submit($type, $numvotes, $text, $sid, $alias);
+	$uid = $_POST['uid'];
+	submit($type, $numvotes, $text, $sid, $uid);
 ?>
