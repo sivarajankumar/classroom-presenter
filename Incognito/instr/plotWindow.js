@@ -1,6 +1,8 @@
  
  $(document).ready(function() {
+ 	//alert("HI");
 	doTimer();
+ 	//alert("WTF");
 });
 
  var feedPoints = []; //keeps track of all [x,y] points
@@ -16,16 +18,21 @@ var currentTime = 0; //used to keep track of where to plot on x-axis
 var timer_is_on=0;
 
 function timedCount(){
-	getActivity(subtotal, currentTime);
+	//alert("WTF4");
+	getActivity(23456, currentTime);	//$.cookie("sid")
+	//alert("WTF6");
 	currentTime = currentTime+5;
 	t=setTimeout("timedCount()",5000);
 }
 
 function doTimer(){
+	//alert("WTF");
 	if (!timer_is_on)
 	  {
+	 // alert("WTF2");
 	  timer_is_on=1;
 	  timedCount();
+	  //alert("WTF3");
 	  }
 }
 
@@ -45,14 +52,16 @@ $("#test2").live('click', function(event){
 
 // Function to handle ajax.
 function getActivity(str, curTime){
+	//alert("WTF5");
     // get(file, data, callback, type); (only "file" is required)
     $.get(      
-    "testingajax.php", //Ajax file
+    "scripts/timeline.php", //Ajax file
     { id: str,
 	  time: curTime	},  // create an object will all values
     //function that is called when server returns a value.
-    function(data){	
-		
+    function(data){		
+		alert(data[0]);
+		alert(data[1]);
 		var temp = data[1];
 		data[1] = data[1] - subtotal;
 		subtotal = temp;
