@@ -1,5 +1,6 @@
 <?php
     include "../get_uid.php";
+	$thisPage = 'Feed';
  //   if(!isset($_COOKIE['uid'])) {
   //      get_user_id($_SERVER['REMOTE_USER']);
 //    }
@@ -30,9 +31,8 @@
 		
 		<div id="navigation">	<!-- Navigation bar -->
 			<ul>
-				<li><span><a class="tab" href="instructorfeed.php">Feed</a></span></li>
-				<li><span><a class="tab" href="instructorfree.php">Surveys</a></span></li>
-				<li><span><a class="tab" href="instructorhistory.php">History</a></span></li>
+				<li <?=($thisPage=='Feed') ? ' id="currentpage"' : ' id="feed"' ?>><span><a class="tab" href="instructorfeed.php">Feed</a></span></li>
+				<li <?=($thisPage=='Surveys') ? ' id="currentpage"' : ' id="surveys"' ?>><span><a class="tab" href="instructorfree.php">Surveys</a></span></li>
 			</ul>		
 			<a href=""><span id="timeline">VIEW TIMELINE </span></a>
 		</div>
