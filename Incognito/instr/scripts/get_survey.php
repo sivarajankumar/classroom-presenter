@@ -3,6 +3,8 @@
 	// This php script will return all surveys given a session id
 	// that the surveys belong too. In addition, this php script
 	// takes variables indicating how the results are to be filtered/sorted.
+	// In addition, check if the user wants to filter by open or closed. Note
+	// that we take a -1 if the user does not want to filter by open or closed. 
 	//
 	// Filtering arguments: 'mc' for only multiple choice
 	//						'fr' for only free response
@@ -15,7 +17,8 @@
 	include 'db_credentials.php';		
 
 	// Check for the correct arguments
-	if (isset($_POST['sid']) && isset($_POST['filter']) && isset($_POST['sort'])) {
+	if (isset($_POST['sid']) && isset($_POST['filter']) && isset($_POST['sort'])
+			&& isset($_POST['open'])) {
 		
 		// Connect and select the correct database
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
@@ -33,23 +36,33 @@
 		$sid = $_POST['sid'];
 		if ($filter == 'mc') {
 			$query = sprintf("SELECT mc.sid, mc.text FROM Survey s, MultipleChoice mc 
-								WHERE s.sid = mc.sid AND s.sessionId = %d AND s.open = 1", 
+								WHERE s.sid = mc.sid AND s.sessionId = %d", 
 								$sid); 
 		} else if ($filter == 'fr') {
 			$query = sprintf("SELECT fr.sid, fr.text FROM Survey s, FreeResponse fr 
-								WHERE s.sid = fr.sid AND s.sessionId = %d AND s.open = 0", 
+								WHERE s.sid = fr.sid AND s.sessionId = %d", 
 								$sid);
 		} else if ($filter == 'none') {
-			$query = sprintf("SELECT * FROM ((SELECT 'mc', s.sid, mc.text FROM Survey s, 
-								MultipleChoice mc WHERE s.sid = mc.sid 
-								AND s.sessionId = %d AND s.open = 1) UNION 
-								(SELECT 'fr', s.sid, fr.text FROM Survey s, 
-								FreeResponse fr WHERE s.sid = fr.sid AND 
-								s.sessionId = %d AND s.open = 1)) as sub", 
+			$query = sprintf("SELECT * FROM ((SELECT 'mc', s.sid, mc.text, s.open 
+								FROM Survey s, MultipleChoice mc WHERE s.sid = mc.sid 
+								AND s.sessionId = %d) UNION (SELECT 'fr', s.sid, fr.text, 
+								s.open FROM Survey s, FreeResponse fr WHERE s.sid = fr.sid 
+								AND s.sessionId = %d)) as sub", 
 								$sid, $sid);
 		} else {
 			die("Incorrect filter argument");
 		}
+					
+		// Check whether we want open or closed
+		$open = $_POST['open'];
+		if ($open == 1) {
+			$query = $query . " WHERE sub.open = 1";
+		} else if ($open == 0) {
+			$query = $query . " WHERE sub.open = 0";
+		} else if ($open != -1) {
+			die("Incorrect arguments");
+		}
+
 			
 		// Now check the sort argument
 		$sort = $_POST['sort'];
