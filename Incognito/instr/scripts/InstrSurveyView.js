@@ -35,3 +35,22 @@ function stopSurvey(sessionId) {
 	$.post("scripts/close_survey.php",
 			{sid: sessionId});
 }
+
+// This function, given a sessionId, a filter setting, a sort setting, 
+// and a handler, get's the surveys associated with the setting. 
+//
+// Filter args: 'fr' Filters everything except free response surveys
+//				'mc' Filters everything except multiple choice surveys
+//				'none' Does not filter anything
+//
+// Sort args:	'mr' Sorts by the most recent entries
+//				'none' No sorting applied
+function getSurvey(sessionId, filter, sort, handler) {
+	
+	$.post("scripts/get_survey.php",
+			{sid: sessionId, filter: filter, sort: sort},
+			function(data) {
+				handler(data);
+			});
+}
+
