@@ -37,7 +37,7 @@
 								$sid); 
 		} else if ($filter == 'fr') {
 			$query = sprintf("SELECT fr.sid, fr.text FROM Survey s, FreeResponse fr 
-								WHERE s.sid = fr.sid AND s.sessionId = %d AND s.open = 1", 
+								WHERE s.sid = fr.sid AND s.sessionId = %d AND s.open = 0", 
 								$sid);
 		} else if ($filter == 'none') {
 			$query = sprintf("SELECT * FROM ((SELECT 'mc', s.sid, mc.text FROM Survey s, 
@@ -73,36 +73,20 @@
 		
 		// For now I am just going to echo a json_encoded array,
 		// this can change later if we want to echo direct HTML code
-
+		$rows;
 		$i = 0;
         echo "<table id=surveyFeed>";
 		while ($row = mysql_fetch_row($results)) {
-            if($i % 2 == 1)
-                echo "<tr class=alt>";
-            else
-                echo "<tr>";
+            echo "<tr class=alt>";
             
-            // $i represents the index of the row
-            // Since there is no filter, there is an additional
-            // attribute of whether or not it is mc or fr
-            $i = 1;
-            if( $filter == 'none' ) {
-                $filter = $row[0];
-                $i = $i + 1;
-            }
-            
-            if( $filter == 'fr' )
-                echo "<td class=surveytype>Free Response</td>";
-            else if( $filter == 'mc' )
-                echo "<td class=surveytype>Multiple Choice</td>";
-            else
-                echo "<td class=surveytype>".$filter."</td>";
+            // Print out # of responses - currently prints out the id
+            echo "<td class=surveytype>".$row[0]."</td>";
             
             // Print out the question for the survey
-            echo "<td class=question>".$row[$i]."</td>";
+            echo "<td class=question>".$row[1]."</td>";
             
             // Print out the Respond button
-            echo "<td class=respond><button type=button id=question_".$row[$i - 1].">Respond</button></td>";
+            echo "<td class=response><button type=button id=question_".$row[0].">Respond</button></td>";
 
             echo "</tr>";
 		}

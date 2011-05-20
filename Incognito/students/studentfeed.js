@@ -38,6 +38,8 @@ function onFilterChange() {
 
 // Handles the event of when the newest sort link has been clicked
 function onNewestSortChange() {
+	$("#newest").html("font-weight: bold");
+	$("#priority").html("font-weight: normal");
     window.sort = "Newest";
     var cookie = readCookie('uid');
     if(cookie != null)
@@ -46,6 +48,8 @@ function onNewestSortChange() {
 
 // Handles the event of when the priority sort link has been clicked
 function onPrioritySortChange() {
+	$("#newest").html("font-weight: normal");
+	$("#priority").html("font-weight: bold");
     window.sort = "Priority";
     var cookie = readCookie('uid');
     if(cookie != null)

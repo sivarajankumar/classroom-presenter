@@ -1,14 +1,12 @@
 <?php
-    include "../get_uid.php";
- //   if(!isset($_COOKIE['uid'])) {
-  //      get_user_id($_SERVER['REMOTE_USER']);
-//    }
-	?>
+    include "../doLogin.php";
+	$thisPage='Feed';
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title>Incognito</title>
-		<script src="/homes/cubist/chriacua/classroom-presenter/jscript/libs/jquery-1.5.2.js"></script>
+		<script src="jquery-1.5.2.js"></script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="pages.css" type="text/css" rel="stylesheet" />
 		<script src="jquery-1.5.2.js" type="text/javascript"></script>
@@ -21,18 +19,21 @@
 	<body>
 		
 		<div id="topbanner"> <!-- Includes logo & person's information/help/logout, & feed status -->			
-			<img src="logo.png" alt="logo" />
+			<a href="instructorfeed.php"><img src="logo.png" alt="logo" /></a>
 			<div id="greeting">
-				<?php echo 'Hello '.($_COOKIE['alias']!='' ? $_COOKIE['alias'] : 'Guest') ?> | <a href="instructorsettings.php">Your Settings</a> | <a class="aboutlink" href="help.php">Help</a> | <a href="scripts/logout.php">Logout</a> <br />
+				<?php echo 'Hello '.($_COOKIE['alias']!='' ? $_COOKIE['alias'] : 'Instructor') ?> 
+				| <a href="instructorsettings.php">Your Settings</a> 
+				| <a class="../help.com" href="help.php">Help</a> 
+				| <a href="scripts/logout.php">Logout</a> <br />
 			</div>
 		</div>			
 
 		
 		<div id="navigation">	<!-- Navigation bar -->
 			<ul>
-				<li><span><a class="tab" href="instructorfeed.php">Feed</a></span></li>
-				<li><span><a class="tab" href="instructorfree.php">Surveys</a></span></li>
-				<li><span><a class="tab" href="instructorhistory.php">History</a></span></li>
+				<li <?=($thisPage=='Feed') ? ' id="currentpage"' : ' id="feedTab"' ?>><span><a class="tab" href="instructorfeed.php">Feed</a></span></li>
+				<li <?=($thisPage=='Surveys') ? ' id="currentpage"' : ' id="surveys"' ?>><span><a class="tab" href="instructorfree.php">Surveys</a></span></li>
+				<!--<li><span><a class="tab" href="instructorhistory.php">History</a></span></li>-->
 			</ul>		
 			<a href=""><span id="timeline">VIEW TIMELINE </span></a>
 		</div>
@@ -60,7 +61,7 @@
 				
 				<span>
 					SORT BY:
-					<a id="newest" >NEWEST</a> | <a id="priority">HIGHEST PRIORITY</a>
+					<a class="sortingBy" id="newest" >NEWEST</a> | <a class="sortingBy" id="priority">HIGHEST PRIORITY</a>
 				</span>				  
 			</div>
 			
@@ -82,11 +83,12 @@
 
 		
 		
-		<div class="bottomlinks">	<!-- Links at bottom of page -->
-			<a class="aboutlink" href="">Report Bug</a> | 
-			<a class="aboutlink" href="help.php">About</a> | 
-			<a class="aboutlink" href="help.php">Privacy Policy</a> | 
-			<a class="aboutlink" href="help.php">Contact Us</a>
+
+		<div class="bottomlinks">
+			<a class="aboutlink" href="../bugreport.php">Report Bug</a> | 
+			<a class="aboutlink" href="http://code.google.com/p/classroom-presenter/wiki/HomePage">About</a> | 
+			<a class="aboutlink" >Privacy Policy</a> | 
+			<a class="aboutlink" href="mailto:fu11h0use@googlegroups.com">Contact Us</a>
 		</div>
 		
 	</body>
