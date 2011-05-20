@@ -11,7 +11,7 @@
 	<body>
 		
 		<div id="topbanner"> 			
-			<img src="logo.png" alt="logo" />
+			<a href="login.php"><img src="logo.png" alt="logo" /></a>
 		</div>			
 
 		
