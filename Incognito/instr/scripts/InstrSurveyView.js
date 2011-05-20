@@ -22,7 +22,7 @@ function createMC(sessionId, questionText, getSurvey, choices) {
 function createFR(sessionId, questionText, getSurvey) {
 	
 	$.post("scripts/create_survey.php", 
-			{sid: sessionId, text:questionText, type:'fc'},
+			{sid: sessionId, text:questionText, type:'fr'},
 			function(data) {
 				getSurvey(data);
 			});
