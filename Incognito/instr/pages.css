@@ -73,6 +73,10 @@ li { 		/* For list items */
 	vertical-align: bottom;
 } 
 
+#newest, #priority {
+	cursor: pointer;
+}
+
 .nonSubCol, .surveyCol {		/* 1st & 3rd columns for Teacher & Student feed*/
 	width: 100px;
 	float:left;
