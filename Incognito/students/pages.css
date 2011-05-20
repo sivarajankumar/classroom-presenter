@@ -205,7 +205,7 @@ a:hover {	/* Link hover rule */
 }
 
 /* survey feed styles */
-#surveyFeed td.responses
+#surveyFeed td.surveytype
 {
     text-align:center;
     width:95px;
@@ -216,6 +216,13 @@ a:hover {	/* Link hover rule */
 {
     text-align:left;
     width:650px;
+    font-family: Calibri;
+}
+
+#surveyFeed td.response
+{
+    text-align:center;
+    width:95px;
     font-family: Calibri;
 }
 

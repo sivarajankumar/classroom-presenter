@@ -80,22 +80,17 @@
             echo "<tr class=alt>";
             
             // Print out # of responses - currently prints out the id
-            echo "<td class=responses>".$row[0]."</td>";
+            echo "<td class=surveytype>".$row[0]."</td>";
             
             // Print out the question for the survey
-            echo "<td><a class=question id=question_".$row[0].">".$row[1]."</a></td>";
+            echo "<td class=question>".$row[1]."</td>";
             
-            
-            /*
-			$rows[$i] = $row;
-			$i = $i + 1;
-            */
+            // Print out the Respond button
+            echo "<td class=response><button type=button id=question_".$row[0].">Respond</button></td>";
+
+            echo "</tr>";
 		}
         echo "</table>";
-        /*
-        echo "Successful! But no rows!";
-		echo json_encode($rows); 
-        */
 	}
 
 ?>

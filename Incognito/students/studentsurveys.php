@@ -59,7 +59,7 @@
 			
 			<div id="feedbox">
 				<span>
-					<div class="nonSubCol"> # Responses
+					<div class="nonSubCol"> Survey Type
 					</div>
 					<div id="subCol"> Question				
 					</div>
