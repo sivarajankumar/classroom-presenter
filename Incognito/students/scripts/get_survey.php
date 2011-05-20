@@ -40,10 +40,10 @@
 								WHERE s.sid = fr.sid AND s.sessionId = %d AND s.open = 0", 
 								$sid);
 		} else if ($filter == 'none') {
-			$query = sprintf("SELECT * FROM ((SELECT s.sid, mc.text FROM Survey s, 
+			$query = sprintf("SELECT * FROM ((SELECT 'mc', s.sid, mc.text FROM Survey s, 
 								MultipleChoice mc WHERE s.sid = mc.sid 
 								AND s.sessionId = %d AND s.open = 1) UNION 
-								(SELECT s.sid, fr.text FROM Survey s, 
+								(SELECT 'fr', s.sid, fr.text FROM Survey s, 
 								FreeResponse fr WHERE s.sid = fr.sid AND 
 								s.sessionId = %d AND s.open = 1)) as sub", 
 								$sid, $sid);
