@@ -4,7 +4,7 @@
 	// given a uid for the student and a cid for the course
 	
 	// Check if we are given a uid and a cid
-	if (isset($_POST['email']) && isset($_POST['cid'])) {
+	if (isset($_POST['uid']) && isset($_POST['cid'])) {
 		
 		// Connect to the database
 		//$username = "schwer";
@@ -18,19 +18,8 @@
 		}
 		
 		mysql_select_db($db_name, $db_conn);
-		
-		// Now run the query on the database
-		$email = $_POST['email'];
-		$query = sprintf("SELECT uid FROM User WHERE email = '%s';", $email); 
-		$results = mysql_query($query, $db_conn); 
-		
-		// Check for errors
-		if (!$results) {
-			die("Error: " + mysql_error($db_conn)); 
-		}
-
-		$row = mysql_fetch_row($results); 
-		$uid = $row[0];
+ 
+		$uid = $_POST['uid'];
 
 		$cid = $_POST['cid'];
 		$query = sprintf("DELETE FROM Attends WHERE uid = %d AND cid = %d;", $uid, $cid);

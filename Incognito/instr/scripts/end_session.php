@@ -2,7 +2,7 @@
 	include 'db_credentials.php';
 	// This file, given a sid, will end the session
 	
-	if (isset($_POST['sid'])) {
+	if (isset($_POST['cid'])) {
 		
 		// Connect to the database
 		//$username = "ashen";
@@ -17,8 +17,8 @@
 		mysql_select_db($db_name, $db_conn);
 		
 		// Delete the session from the Session table
-		$sid = $_POST['sid'];
-		$query = sprintf("DELETE FROM Session WHERE sid = %d;", $sid);
+		$cid = $_POST['cid'];
+		$query = sprintf("UPDATE Session SET open = 0 WHERE cid = %d;", $cid);
 		$results = mysql_query($query, $db_conn);
 		
 		// Error Checking
