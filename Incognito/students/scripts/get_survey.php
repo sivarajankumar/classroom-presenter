@@ -11,6 +11,9 @@
 	// Sorting Arguments: 	'mr' for most recent surveys
 	//						'none' for no sorting
 
+	// Get our current db_crendentials
+	include 'db_credentials.php';		
+
 	// Check for the correct arguments
 	if (isset($_POST['sid']) && isset($_POST['filter']) && isset($_POST['sort'])) {
 		
@@ -35,19 +38,26 @@
 			$query = sprintf("SELECT fr.sid, fr.text FROM Survey s, FreeResponse fr 
 								WHERE s.sid = fr.sid AND s.sessionId = %d", $sid);
 		} else if ($filter == 'none') {
-			$query = sprintf("SELECT * FROM Survey s, FreeResponse fr, MultipleChoice mc
-								WHERE (s.sid = mc.sid OR s.sid = fr.sid) AND
-								s.sessionId = %d", $sid);
+			$query = sprintf("SELECT * FROM ((SELECT s.sid, mc.text FROM Survey s, 
+								MultipleChoice mc WHERE s.sid = mc.sid 
+								AND s.sessionId = %d) UNION 
+								(SELECT s.sid, fr.text FROM Survey s, 
+								FreeResponse fr WHERE s.sid = fr.sid AND 
+								s.sessionId = %d)) as sub", $sid, $sid);
 		} else {
 			die("Incorrect filter argument");
 		}
-		
+			
 		// Now check the sort argument
 		$sort = $_POST['sort'];
-		if ($sort == 'mr') {
-			$query = $query . " ORDER BY s.sid DESC;";
+		if ($sort == 'mr' && $filter == 'none') {
+			$query = $query . " ORDER BY sub.sid DESC;";
+		} else if ($sort == 'mr') {
+			$query = $query . " ORDER BY s.sid DESC;"; 
 		} else if ($sort == 'none') {
 			$query = $query . ";";
+		} else {
+			die("Incorrect sort argument"); 
 		}
 		
 		// Now run the query and return the results
@@ -63,7 +73,8 @@
 		$rows;
 		$i = 0;
 		while ($row = mysql_fetch_row($results)) {
-			$rows[i] = $row; 
+			$rows[$i] = $row;
+			$i = $i + 1;  
 		} 
 		echo json_encode($rows); 
 	}
