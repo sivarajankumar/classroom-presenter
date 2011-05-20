@@ -4,7 +4,7 @@
 	// will allow a student to join the session
 	
 	// Make sure we are given the email and the session id
-	if (isset($_POST['mail']) && isset($_POST['sid'])) {
+	if (isset($_POST['uid']) && isset($_POST['sid'])) {
 		
 		// Connect to our database (change for different user) 
 		//$username = "schwer";
@@ -18,21 +18,10 @@
 		
 		mysql_select_db($db_name, $db_conn);
 		
-		// First we need to find the uid
-		$mail = $_POST['mail'];
 		$sid = $_POST['sid'];
-		$query = sprintf("SELECT uid FROM User WHERE email = '%s';", $mail);
-		$results = mysql_query($query, $db_conn);
-		
-		// Check if our query ran
-		if (!$results) {
-			die("Error: " + mysql_error($db_conn));
-		}
-		
-		$row = mysql_fetch_row($results);
 		
 		// Now do the insert
-		$uid = $row[0];
+		$uid = $_POST['uid'];
 		$query = sprintf("INSERT INTO Joined (sid, uid) VALUES (%d, %d);", $sid, $uid);
 		$results = mysql_query($query, $db_conn);
 		

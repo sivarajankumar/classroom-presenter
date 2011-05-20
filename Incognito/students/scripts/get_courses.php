@@ -4,7 +4,7 @@
 	// all of the courses that the student belongs too given a student id.
 	
 	// Check if we are given a user id
-	if (isset($_POST['email'])) {
+	if (isset($_POST['uid'])) {
 		
 		// Connect to our database (change for different user) 
 		//$username = "schwer";
@@ -19,8 +19,13 @@
 		
 		mysql_select_db($db_name, $db_conn);
 		
-		// Now run the query to fetch all of the courses
-		$email = $_POST['email'];
+		$uid = $_POST['uid'];
+        
+        $query = sprintf("SELECT email FROM User WHERE uid = %d;", $uid);
+		$results = mysql_query($query, $db_conn);
+		
+		$row = mysql_fetch_row($results);
+		$email = $row[0];
 		$query = sprintf("SELECT DISTINCT u.uid, s.sid, a.cid, s.open, c.name FROM User u, Attends a, Session s, Course c WHERE u.email = '%s' AND a.uid = u.uid AND s.cid = a.cid AND c.cid = a.cid;",
 						$email);
 		$results = mysql_query($query, $db_conn);

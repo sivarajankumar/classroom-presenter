@@ -9,7 +9,7 @@
     if(cookie != null) {
     
         //initially puts courses on page
-        getCourses(cookie,printToScreen);
+        getCourses(cookie, printToScreen);
         //user joins a session
         $(".joinButton").live('click',function(event) {
             joinSession(cookie, $(this).attr('id'));
