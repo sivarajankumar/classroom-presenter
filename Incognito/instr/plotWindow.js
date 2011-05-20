@@ -65,6 +65,7 @@ function getActivity(str, curTime){
 		//alert(data[0]);
 		//alert(data[1]);
 		var temp = data[1];
+		alert(data[1]);
 		if ((data[1] - subtotal) < 0) {
 			data[1] = 0;
 		} else {
