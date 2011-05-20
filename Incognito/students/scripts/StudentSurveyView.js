@@ -35,7 +35,7 @@ function submitMultipleChoice(surveyId, choice) {
 function getSurvey(sessionId, filter, sort, handler) {
 	
 	$.post("scripts/get_survey.php",
-			{sid: sessionId, filter: filter, sort: sort},
+			{sid: sessionId, filter: filter, sort: sort, handler: handler},
 			function(data) {
 				handler(data);
 			});

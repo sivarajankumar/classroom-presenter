@@ -25,11 +25,11 @@ function endSession(courseId) {
 // given the email of the instructor. In addition, you must
 // provide a callback function that will be called with the 
 // HTTP response. 
-function getCourses(instrMail, callback) {
+function getCourses(uid, callback) {
 	
 	// Make the HTTP request
 	$.post("scripts/get_courses.php",
-			{mail: instrMail},
+			{uid: uid},
 			function(data) {
 				callback(data);
 			});
@@ -43,7 +43,7 @@ function insertCourse(userId, courseName, mailingList, getCid) {
 	
 	// Do the AJAX call
 	$.post("scripts/create_course.php", 
-		{email: userId, name: courseName, mailinglist: mailingList}, 
+		{uid: userId, name: courseName, mailinglist: mailingList}, 
 		function(data) {
 			getCid(data);
 		});
@@ -55,11 +55,11 @@ function insertCourse(userId, courseName, mailingList, getCid) {
 // TODO: Eventually this function will have some sort of handler that informs
 // 		 the caller of whether or not the student was successfully added to the 
 //		 course. 
-function updateStudents(studentEmail, courseId) {
+function updateStudents(userId, courseId) {
 	
 	// Make the HTTP requeset through AJAX
 	$.post("scripts/addStudent.php",
-			{email: studentEmail, cid: courseId});
+			{uid: userId, cid: courseId});
 }
 
 // This function takes a courseId and removes the course from the database.
@@ -69,6 +69,6 @@ function updateStudents(studentEmail, courseId) {
 function deleteCourse(userId, courseId) {
 	
 	$.post("scripts/delete_course.php",
-			{email: userId, cid: courseId});
+			{uid: userId, cid: courseId});
 }
 	

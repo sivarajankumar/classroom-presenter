@@ -16,9 +16,9 @@ function createMC(sessionId, questionText, getSurvey) {
 //This function takes a session id and question text, 
 //then creates a new free response survey. 
 function createFR(sessionId, questionText, getSurvey) {
-	
+	alert(questionText);
 	$.post("scripts/create_survey.php", 
-			{sid: sessionId, text:questionText, type:'fc'},
+			{sid: sessionId, text:questionText, type:'fr'},
 			function(data) {
 				getSurvey(data);
 			});

@@ -19,3 +19,21 @@ function showHide() {
 		}
 	}	
 }
+
+function printToScreen(data){
+    $("#display").html(data);
+}
+
+// creates a new free-response survey
+function onCreateFree() {
+    var text = submitform.elements["textfeed"].value;
+    // var type = submitsurvey.elements["typeSurvey"].value;
+    if ( text.length == 0 )
+	{
+		alert("Please enter a free-response survey in the text box before submitting.");
+	}
+	else
+	{
+        createFR(24104, text, printToScreen);
+    }
+}

@@ -37,7 +37,7 @@
 								$sid); 
 		} else if ($filter == 'fr') {
 			$query = sprintf("SELECT fr.sid, fr.text FROM Survey s, FreeResponse fr 
-								WHERE s.sid = fr.sid AND s.sessionId = %d AND s.open = 1", 
+								WHERE s.sid = fr.sid AND s.sessionId = %d AND s.open = 0", 
 								$sid);
 		} else if ($filter == 'none') {
 			$query = sprintf("SELECT * FROM ((SELECT s.sid, mc.text FROM Survey s, 
@@ -75,11 +75,27 @@
 		// this can change later if we want to echo direct HTML code
 		$rows;
 		$i = 0;
+        echo "<table id=surveyFeed>";
 		while ($row = mysql_fetch_row($results)) {
+            echo "<tr class=alt>";
+            
+            // Print out # of responses - currently prints out the id
+            echo "<td class=responses>".$row[0]."</td>";
+            
+            // Print out the question for the survey
+            echo "<td><a class=question id=question_".$row[0].">".$row[1]."</a></td>";
+            
+            
+            /*
 			$rows[$i] = $row;
-			$i = $i + 1;  
-		} 
+			$i = $i + 1;
+            */
+		}
+        echo "</table>";
+        /*
+        echo "Successful! But no rows!";
 		echo json_encode($rows); 
+        */
 	}
 
 ?>

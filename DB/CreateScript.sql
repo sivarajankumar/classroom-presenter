@@ -115,7 +115,7 @@ CREATE TABLE Choices
        sid		INT,
        count		INT,
        text		TEXT,
-       FOREIGN KEY(sid) REFERENCES Survey(sid)
+       FOREIGN KEY(sid) REFERENCES MultipleChoice(sid)
 );
 CREATE TABLE QuestionVotedOn
 (

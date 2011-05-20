@@ -1,25 +1,5 @@
 <?php
-
     include "../get_uid.php";
-    if(!isset($_COOKIE['uid'])) {
-        setcookie('unetid', $_SERVER['REMOTE_USER']);
-        $id = $_COOKIE['unetid'];
-        
-        get_user_id($id);
-        
-        setcookie("unetid", "", time()-3600);
-    }
-    
-	// Check if the alias is already set
-	if (!isset($_COOKIE['alias'])) {
-		//setcookie('alias', $_SERVER['REMOTE_USER']);
-	}
-
-	// Check if the current course is set
-	if (!isset($_COOKIE['course'])) {
-
-	}
-    
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -34,6 +14,7 @@
 		<script type="text/javascript" src="jquery.cookie.js"></script>
 		<script type="text/javascript" src="scripts/StudentSettingsView.js"></script>
         <script type="text/javascript" src="jquery-impromptu.3.1.js"></script>
+        <script type="text/javascript" src="scripts/StudentSurveyView.js"></script>
         <script type="text/javascript" src="studentsurveys.js"></script>
 	</head>
 
@@ -74,7 +55,6 @@
 					<a id="newest" >NEWEST</a> | <a id="priority" >HIGHEST PRIORITY</a>
 				</span>
 
-                <div id="feed"></div>
 			</div>
 			
 			<div id="feedbox">

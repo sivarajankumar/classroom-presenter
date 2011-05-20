@@ -2,23 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <?php
     include "../get_uid.php";
-    if(!isset($_COOKIE['uid'])) {
-        setcookie('unetid', $_SERVER['REMOTE_USER']);
-        $id = $_COOKIE['unetid'];
-        
-        get_user_id($id);
-        
-        setcookie("unetid", "", time()-3600);
-    }
-	// Check if the alias is already set
-	if (!isset($_COOKIE['alias'])) {
-		//setcookie('alias', $_SERVER['REMOTE_USER']);
-	}
-
-	// Check if the current course is set
-	if (!isset($_COOKIE['course'])) {
-
-	}
 ?>
 
 	<head>
