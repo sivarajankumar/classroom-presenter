@@ -11,5 +11,13 @@ use to interact with all of the state held in the database. */
 function submitFreeResponse(surveyId, studentAnswer, userId) {
 	
 	$.post("scripts/submit_survey_answer.php",
-			{sid: surveyId, answer: studentAnswer, type:'fr', uid: userId});;
+			{sid: surveyId, answer: studentAnswer, type: "fr", uid: userId});;
+}
+
+// This function handles submitting a multiple choice answer given
+// a survey id and the choice that the student gave. 
+function submitMultipleChoice(surveyId, choice) {
+	
+	$.post("scripts/submit_survey_answer.php", 
+			{sid: surveyId, answer: choice, type: "mc"});
 }
