@@ -26,16 +26,18 @@
 	$sid = $_POST['sid'];
 	$filter = $_POST['filter'];		
 	$sort = $_POST['sort'];
-	$username = $_POST['username'];
+	$uid = $_POST['uid'];
     
     // echo $sort;
 	
 	// Do a preliminary query to get the student's user ID for later use
+    /*
 	$uidquery = sprintf("SELECT uid FROM Student WHERE alias = '%s'", $username);
 	$uidresult = mysql_query($uidquery, $db_conn);
 	$uidrow = mysql_fetch_assoc($uidresult);
 	$uid = (int)$uidrow["uid"];
-  
+    */
+    
 	$feed = array();
 	$query = null;
 	

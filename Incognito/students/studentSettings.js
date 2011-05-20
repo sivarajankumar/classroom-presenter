@@ -13,7 +13,7 @@
 		getCourses($.cookie("uid"),printToScreen);
 		
 		// Set a cookie to reflect the session the student just joined
-		$.cookie("course":$(this).attr('id'));
+		// $.cookie("course":$(this).attr('id'));
 	});
    
     //user leaves a session
