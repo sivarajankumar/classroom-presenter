@@ -12,6 +12,13 @@ body{
 	
 }
 
+#currentpage .tab
+{
+	background-color: black;
+	height: 60px;
+	padding: 5px;
+}
+
 #topbanner {		/* Incognito logo (and its div) */
 	text-align:left;
 	font-size: 12pt;
