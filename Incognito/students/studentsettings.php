@@ -19,7 +19,7 @@
 	<body>
 		
 		<div id="topbanner"> <!-- Includes logo & person's information/help/logout, & feed status -->			
-			<img src="logo.png" alt="logo" />
+			<a href="studenthome.php"><img src="logo.png" alt="logo" /></a>
 			<div id="greeting"> <!--<span id="cook"></span> -->
 				<span id="cook"><?php echo 'Hello '.($_COOKIE['alias']!='' ? $_COOKIE['alias'] : 'Guest') ?></span> | <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="scripts/logout.php">Logout</a> <br />
 				You are currently looking at [course name].
