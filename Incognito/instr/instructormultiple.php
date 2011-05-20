@@ -1,5 +1,6 @@
 <?php
     include "../get_uid.php";
+	$thisPage = 'Surveys';
 	?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -24,9 +25,8 @@
 		
 		<div id="navigation">	<!-- Navigation bar -->
 			<ul>
-				<li><span><a class="tab" href="instructorfeed.php">Feed</a></span></li>
-				<li><span><a class="tab" href="instructorfree.php">Surveys</a></span></li>
-				<li><span><a class="tab" href="instructorhistory.php">History</a></span></li>
+				<li <?=($thisPage=='Feed') ? ' id="currentpage"' : ' id="feed"' ?>><span><a class="tab" href="instructorfeed.php">Feed</a></span></li>
+				<li <?=($thisPage=='Surveys') ? ' id="currentpage"' : ' id="surveys"' ?>><span><a class="tab" href="instructorfree.php">Surveys</a></span></li>
 			</ul>		
 			<a href=""><span id="timeline">VIEW TIMELINE </span></a>
 		</div>
