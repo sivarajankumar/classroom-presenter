@@ -37,7 +37,9 @@ function stopSurvey(sessionId) {
 }
 
 // This function, given a surveyId, a filter setting, a sort setting, 
-// and a handler, get's the surveys associated with the setting. 
+// and a handler, get's the surveys associated with the setting. In addition
+// you can filter by open and closed surveys. Note that you can pass a negative
+// 1 if you do note care. 
 //
 // Filter args: 'fr' Filters everything except free response surveys
 //				'mc' Filters everything except multiple choice surveys
@@ -45,7 +47,7 @@ function stopSurvey(sessionId) {
 //
 // Sort args:	'mr' Sorts by the most recent entries
 //				'none' No sorting applied
-function getSurvey(surveyId, filter, sort, handler) {
+function getSurvey(surveyId, filter, sort, open, handler) {
 	
 	$.post("scripts/get_survey.php",
 			{sid: surveyId, filter: filter, sort: sort},
