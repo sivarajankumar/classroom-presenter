@@ -204,6 +204,21 @@ a:hover {	/* Link hover rule */
     text-align: left;
 }
 
+/* survey feed styles */
+#surveyFeed td.responses
+{
+    text-align:center;
+    width:95px;
+    font-family: Calibri;
+}
+
+#surveyFeed td.question
+{
+    text-align:left;
+    width:650px;
+    font-family: Calibri;
+}
+
 #customers td, #customers th 
 {
   font-size:1em;

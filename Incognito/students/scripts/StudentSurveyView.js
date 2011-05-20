@@ -33,9 +33,9 @@ function submitMultipleChoice(surveyId, choice) {
 // Sorting arguments: 	'mr' This will sort the results by the most recent surveys
 //						'none' This will not order the results
 function getSurvey(sessionId, filter, sort, handler) {
-	
+	alert("Success!");
 	$.post("scripts/get_survey.php",
-			{sid: sessionId, filter: filter, sort: sort},
+			{sid: sessionId, filter: filter, sort: sort, handler: handler},
 			function(data) {
 				handler(data);
 			});
