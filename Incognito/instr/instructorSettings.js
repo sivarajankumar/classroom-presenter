@@ -31,7 +31,9 @@ function getCourse(data) {
     //starts a session
 	$(".openOptionButton").live('click',function(event) { 
 		startSession($(this).attr('id'), setSession);
-		getCourses($.cookie("uid"), printToScreen); 
+		getCourses($.cookie("uid"), printToScreen);
+        
+        $.cookie("sid", $(this).attr('id'), { expires: 7 });
 	});
 	
 	//Adds a InstructorID, courseName, mailingList, callbackFunction
