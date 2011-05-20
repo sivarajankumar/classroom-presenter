@@ -7,8 +7,8 @@
 	// Type: 'mc' Create a multiple choice survey
 	//		 'fr' Create a free response survey
 
-	include 'db_credentials.php'; 
-	
+	include 'db_credentials.php';
+		
 	// Check if we are given the correct arguments
 	if (isset($_POST['sid']) && isset($_POST['text']) && isset($_POST['type'])) {
 		
@@ -25,14 +25,14 @@
 		$sid = $_POST['sid'];
 		$query = sprintf("INSERT INTO Survey (sessionId, open) VALUES (%d, 0);", $sid);
 		$results = mysql_query($query, $db_conn);
-		
+	
 		// Error check
 		if (!$results) {
 			die("Error: " . mysql_error($db_conn));
 		}
 		
 		// Now we need to get the survey id from the survey we just created
-		$query = sprintf("SELECT sid FROM Survey WHERE sessionId = %d ORDER BY sid DESC;"
+		$query = sprintf("SELECT sid FROM Survey WHERE sessionId = %d ORDER BY sid DESC;",
 							$sid);
 		$results = mysql_query($query, $db_conn);
 		
