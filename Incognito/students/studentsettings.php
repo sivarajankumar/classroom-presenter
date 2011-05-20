@@ -35,7 +35,6 @@
 				<li><span><a class="tab" href="studentfeed.php">Feed</a></span></li>
 				<li><span><a class="tab" href="studentsurveys.php">Surveys</a></span></li>
 			</ul>		
-			<a href=""><span id="timeline">VIEW TIMELINE </span></a>
 		</div>
 		
 		<div id = "maincontent">
