@@ -22,37 +22,44 @@ function onUpdate(){
 
 function onSubmit(){
 	var text = submitform.elements["texthome"].value; // Haven't figured out the jQuery for this yet.
-	var type = $('input[name=submitType]:checked', '#submitform').val();
-	//alert( type );
-	var sid = 23456;
-	var dataString;
-	var numvotes;
-	if (type == 'Q')
+	if ( text.length == 0 )
 	{
-		var answered = 0;
-		numvotes = 1;
-		dataString = 'text=' + text + '&sid=' + sid + '&answered=' + answered + '&numvotes=' + numvotes + '&type=' + type;
-		$.ajax({
-			type: "POST",
-			url: "../../DB/submit_question.php",
-			data: dataString,
-			success: function(){
-				//alert( 'Success!' );
-			}
-		});
+		alert("Please enter a question or comment in the text box before submitting.");
 	}
-	else if (type == 'F')
+	else
 	{
-		numvotes = 1;
-		var isread = 0;
-		dataString = 'text=' + text + '&sid=' + sid + '&numvotes=' + numvotes + '&isread=' + isread + '&type=' + type;
-		$.ajax({
-			type: "POST",
-			url: "../../DB/submit_question.php",
-			data: dataString,
-			success: function(){
-				//alert( 'Success!' );
-			}
-		});
+		var type = $('input[name=submitType]:checked', '#submitform').val();
+		// alert( type );
+		var sid = 23456;
+		var dataString;
+		var numvotes;
+		if (type == 'Q')
+		{
+			var answered = 0;
+			numvotes = 0;
+			dataString = 'text=' + text + '&sid=' + sid + '&answered=' + answered + '&numvotes=' + numvotes + '&type=' + type;
+			$.ajax({
+				type: "POST",
+				url: "scripts/submit_question.php",
+				data: dataString,
+				success: function(){
+					// alert( 'Success!' );
+				}
+			});
+		}
+		else if (type == 'F')
+		{
+			numvotes = 0;
+			var isread = 0;
+			dataString = 'text=' + text + '&sid=' + sid + '&numvotes=' + numvotes + '&isread=' + isread + '&type=' + type;
+			$.ajax({
+				type: "POST",
+				url: "scripts/submit_question.php",
+				data: dataString,
+				success: function(){
+					// alert( 'Success!' );
+				}
+			});
+		}
 	}
 }

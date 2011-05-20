@@ -4,7 +4,7 @@
 	// the session. 
 	
 	// Ensure we have the proper variables declared
-	if (isset($_POST['mail']) && isset($_POST['sid'])) {
+	if (isset($_POST['uid']) && isset($_POST['sid'])) {
 		
 		// Connect to our database (change for different user) 
 		//$username = "schwer";
@@ -18,20 +18,7 @@
 		
 		mysql_select_db($db_name, $db_conn);
 		
-		// Now fetch the user's uid
-		$mail = $_POST['mail'];
 		$sid = $_POST['sid'];
-		$query = sprintf("SELECT uid FROM User WHERE email = '%s';", $mail);
-		$results = mysql_query($query, $db_conn);
-		
-		// Check for errors
-		if (!$results) {
-			die("Error: " + mysql_error($db_conn));
-		}
-		
-		// Now delete the uid, sid tuple from Joined
-		$row = mysql_fetch_row($results);
-		$uid = $row[0];
 		$query = sprintf("DELETE FROM Joined WHERE uid = %d AND sid = %d;", 
 							$uid, $sid);
 		$results = mysql_query($query, $db_conn);

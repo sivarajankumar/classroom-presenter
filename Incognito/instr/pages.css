@@ -12,6 +12,13 @@ body{
 	
 }
 
+#currentpage .tab
+{
+	background-color: black;
+	height: 60px;
+	padding: 5px;
+}
+
 #topbanner {		/* Incognito logo (and its div) */
 	text-align:left;
 	font-size: 12pt;
@@ -65,6 +72,10 @@ li { 		/* For list items */
 	margin-right: 20px;
 	vertical-align: bottom;
 } 
+
+#newest, #priority {
+	cursor: pointer;
+}
 
 .nonSubCol, .surveyCol {		/* 1st & 3rd columns for Teacher & Student feed*/
 	width: 100px;
@@ -144,7 +155,7 @@ span {
 #feedTable td.feed
 {
   text-align:left;
-  width:700px;
+  width:650px;
 }
 
 #feedTable td.votes

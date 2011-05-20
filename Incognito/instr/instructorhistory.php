@@ -1,3 +1,6 @@
+<?php
+    include "../doLogin.php";
+	?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -23,12 +26,12 @@
 		</div>
 
 		
-		
-		<div class="bottomlinks">	<!-- Links at bottom of page -->
-			<a class="aboutlink" href="">Report Bug</a> | 
-			<a class="aboutlink" href="help.php">About</a> | 
-			<a class="aboutlink" href="help.php">Privacy Policy</a> | 
-			<a class="aboutlink" href="help.php">Contact Us</a>
+
+		<div class="bottomlinks">
+			<a class="aboutlink" href="../bugreport.php">Report Bug</a> | 
+			<a class="aboutlink" href="http://code.google.com/p/classroom-presenter/wiki/HomePage">About</a> | 
+			<a class="aboutlink" >Privacy Policy</a> | 
+			<a class="aboutlink" href="mailto:fu11h0use@googlegroups.com">Contact Us</a>
 		</div>
 		
 	</body>

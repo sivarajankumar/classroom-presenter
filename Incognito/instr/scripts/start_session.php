@@ -4,7 +4,6 @@
 	// that course
 	
 	if (isset($_POST['cid'])) {
-		
 		// Connect to the database
 		// Connect to the database
 		//$username = "ashen";
@@ -20,9 +19,8 @@
 		
 		// Now insert a new session into the Session table
 		$cid = $_POST['cid'];
-		$query = sprintf("INSERT INTO Session (cid, open) VALUES (%d, 1);", $cid);
+		$query = sprintf("UPDATE Session SET open = 1 WHERE cid = %d;", $cid);
 		$results = mysql_query($query, $db_conn);
-		
 		// Error Check
 		if (!$results) {
 			die("Error: " + mysql_error($db_conn));

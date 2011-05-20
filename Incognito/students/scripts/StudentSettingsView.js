@@ -7,17 +7,17 @@
 // This function, given a student email and an alias, will change the student's
 // alias to the given alias. In addition, this will update the state of the 
 // database. 
-function addAlias(studentEmail, studentAlias) {
+function addAlias(studentId, studentAlias) {
 	$.post("scripts/add_alias.php",
-			{mail: studentEmail, alias: studentAlias});
+			{uid: studentId, alias: studentAlias});
 }
 
 // This function, given a student email and a callback function, this function
 // does the HTTP request and then calls the callback function when the response 
 // comes back. The response contains the alias of the student. 
-function getAlias(studentEmail, callback) {
+function getAlias(studentId, callback) {
 	$.post("scripts/get_alias.php",
-			{mail: studentEmail},
+			{uid: studentId},
 			function(data) {
 				callback(data);
 			});
@@ -25,25 +25,25 @@ function getAlias(studentEmail, callback) {
 
 // This function, given a session id and a student email, will remove a student
 // from a session
-function exitSession(studentEmail, sessionId) {
+function exitSession(studentId, sessionId) {
 	$.post("scripts/exit_session.php",
-			{mail: studentEmail, sid: sessionId});
+			{uid: studentId, sid: sessionId});
 }
 
 // This function, given a session id and a student email, will add that student
 // to the given session. 
-function joinSession(studentEmail, sessionId) {
+function joinSession(studentId, sessionId) {
 	$.post("scripts/join_session.php",
-			{mail: studentEmail, sid: sessionId});
+			{uid: studentId, sid: sessionId});
 }
 
 // This function will makes an HTTP Request to the get_courses php script, retrieves
 // the courses, and gives the courses to the handleCourses handler. In addition, the
 // caller must pass a valid studentId. 
-function getCourses(studentEmail, handleCourses) {
+function getCourses(uid, handleCourses) {
 	// Make the AJAX call to the backend
 	$.post("scripts/get_courses.php",
-			{email: studentEmail},
+			{uid: uid},
 			function(data) {
 				handleCourses(data);
 			});
@@ -70,5 +70,5 @@ function removeCourse(studentId, courseId) {
 	
 	// Make the AJAX call to the backend
 	$.post("scripts/delete_course.php",
-			{email: studentId, cid: courseId});
+			{uid: studentId, cid: courseId});
 }
