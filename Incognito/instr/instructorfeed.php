@@ -60,7 +60,7 @@
 				
 				<span>
 					SORT BY:
-					<a id="newest" >NEWEST</a> | <a id="priority">HIGHEST PRIORITY</a>
+					<a class="sortingBy" id="newest" >NEWEST</a> | <a class="sortingBy" id="priority">HIGHEST PRIORITY</a>
 				</span>				  
 			</div>
 			
