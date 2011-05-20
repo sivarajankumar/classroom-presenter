@@ -12,6 +12,13 @@ body{
 	
 }
 
+#currentpage .tab
+{
+	background-color: black;
+	height: 60px;
+	padding: 5px;
+}
+
 #topbanner {		/* Incognito logo (and its div) */
 	text-align:left;
 	font-size: 12pt;
@@ -66,8 +73,12 @@ li { 		/* For list items */
 	vertical-align: bottom;
 } 
 
+#newest, #priority {
+	cursor: pointer;
+}
+
 .nonSubCol, .surveyCol {		/* 1st & 3rd columns for Teacher & Student feed*/
-	width: 100px;
+	width: 115px;
 	float:left;
 	text-align:center;
 }
@@ -205,11 +216,12 @@ a:hover {	/* Link hover rule */
 }
 
 /* survey feed styles */
-#surveyFeed td.responses
+#surveyFeed td.surveytype
 {
     text-align:center;
     width:95px;
     font-family: Calibri;
+    padding:5px;
 }
 
 #surveyFeed td.question
@@ -217,6 +229,20 @@ a:hover {	/* Link hover rule */
     text-align:left;
     width:650px;
     font-family: Calibri;
+    padding:7px;
+}
+
+#surveyFeed td.respond
+{
+    text-align:center;
+    width:105px;
+    font-family: Calibri;
+}
+
+#surveyFeed tr.alt td 
+{
+  color:#000000;
+  background-color:#EAF2D3;
 }
 
 #customers td, #customers th 
@@ -230,20 +256,21 @@ a:hover {	/* Link hover rule */
 #feedTable td.checked
 {
   text-align:center;
-  width:90px;
+  width:97px;
 }
 
 #feedTable td.feed
 {
   text-align:left;
-  width:650px;
+  width:653px;
   font-family: Calibri;
+  padding: 5px;
 }
 
 #feedTable td.answered
 {
   text-align:center;
-  width:105px;
+  width:120px;
   font-family: Calibri;
 }
 
