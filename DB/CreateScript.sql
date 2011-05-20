@@ -82,6 +82,7 @@ CREATE TABLE Survey
 (
        sid		INT NOT NULL AUTO_INCREMENT,
        sessionid        INT,
+       open				INT, 
        FOREIGN KEY(sessionid) REFERENCES Session(sid),
        PRIMARY KEY(sid)
 );

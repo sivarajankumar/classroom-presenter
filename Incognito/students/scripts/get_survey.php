@@ -33,17 +33,20 @@
 		$sid = $_POST['sid'];
 		if ($filter == 'mc') {
 			$query = sprintf("SELECT mc.sid, mc.text FROM Survey s, MultipleChoice mc 
-								WHERE s.sid = mc.sid AND s.sessionId = %d", $sid); 
+								WHERE s.sid = mc.sid AND s.sessionId = %d AND s.open = 1", 
+								$sid); 
 		} else if ($filter == 'fr') {
 			$query = sprintf("SELECT fr.sid, fr.text FROM Survey s, FreeResponse fr 
-								WHERE s.sid = fr.sid AND s.sessionId = %d", $sid);
+								WHERE s.sid = fr.sid AND s.sessionId = %d AND s.open = 1", 
+								$sid);
 		} else if ($filter == 'none') {
 			$query = sprintf("SELECT * FROM ((SELECT s.sid, mc.text FROM Survey s, 
 								MultipleChoice mc WHERE s.sid = mc.sid 
-								AND s.sessionId = %d) UNION 
+								AND s.sessionId = %d AND s.open = 1) UNION 
 								(SELECT s.sid, fr.text FROM Survey s, 
 								FreeResponse fr WHERE s.sid = fr.sid AND 
-								s.sessionId = %d)) as sub", $sid, $sid);
+								s.sessionId = %d AND s.open = 1)) as sub", 
+								$sid, $sid);
 		} else {
 			die("Incorrect filter argument");
 		}
