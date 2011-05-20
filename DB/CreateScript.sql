@@ -12,6 +12,7 @@ CREATE TABLE Student
 (
 	uid		INT NOT NULL,
 	spam_count	INT NOT NULL,
+    netid   VARCHAR(30),
 	alias	VARCHAR(30), 
 	PRIMARY KEY (uid),
 	FOREIGN KEY(uid) REFERENCES User(uid)
@@ -139,4 +140,12 @@ CREATE TABLE Joined
 		FOREIGN KEY(sid) REFERENCES Session(sid),
 		FOREIGN KEY(uid) REFERENCES Student(uid),
 		PRIMARY KEY(sid, uid)
+);
+
+CREATE TABLE BugReports
+(
+	summary VARCHAR(100),
+	description VARCHAR(1000),
+	id INT NOT NULL AUTO_INCREMENT,
+	PRIMARY KEY(id)
 );
