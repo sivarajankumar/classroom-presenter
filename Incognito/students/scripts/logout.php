@@ -24,7 +24,8 @@ include 'db_credentials.php';
 		mysql_close($db_conn);
 	}
 	// delete cookie
-	setcookie("uid", "", time()-3600,"/~ashen/Incognito/students/");
-	setcookie("alias", "", time()-3600, "/~ashen/Incognito/students/");
+	setcookie("uid", "", time()-3600,"/");
+	setcookie("alias", "", time()-3600, "/");
+	setcookie("sid", "", time()-3600, "/");
 	header("Location: http://cubist.cs.washington.edu/~ashen/Incognito/login.php");
 ?>
