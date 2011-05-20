@@ -79,11 +79,11 @@
 		while ($row = mysql_fetch_row($results)) {
             echo "<tr class=alt>";
             
-            // Print out # of responses
+            // Print out # of responses - currently prints out the id
             echo "<td class=responses>".$row[0]."</td>";
             
             // Print out the question for the survey
-            echo "<td class=question><a id=question_".$row[0].">".$row[1]."</a></td>";
+            echo "<td><a class=question id=question_".$row[0].">".$row[1]."</a></td>";
             
             
             /*
