@@ -17,6 +17,7 @@ function getCourse(data) {
 
  $(document).ready(function() {
 	
+    // alert($.cookie("uid"));
 	//initially puts courses on page
 
 	getCourses($.cookie("uid"),printToScreen);
@@ -52,8 +53,8 @@ function getCourse(data) {
 	$(".addStudentButton").live('click',function(event) {
 		//var cookie = $.cookie("uid");
 		//alert(cookie);
-		var student = $("#studentToAdd").val();
-		updateStudents(student, $(this).attr('id'));
+		// var student = $("#studentToAdd").val();
+		updateStudents($.cookie("uid"), $(this).attr('id'));
 	});
 });
  

@@ -25,7 +25,7 @@
         
         // Get the uid and then do the update
         $row = mysql_fetch_row($results);
-       
+        
         $expire=time()+60*60*24*30;
         if(!empty($row))
             setcookie('uid', $row[0], $expire);

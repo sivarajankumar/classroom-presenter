@@ -2,9 +2,9 @@
 	include 'db_credentials.php';
 	// This php script get's all of the courses that a instructor 
 	// teaches and prints some html for buttons
-	
+
 	// Check if we are given an email
-	if (isset($_POST['mail'])) {
+	if (isset($_POST['uid'])) {
 		
 		// Connect to our database (change for different user) 
 		// Connect to the database
@@ -20,12 +20,19 @@
 		mysql_select_db($db_name, $db_conn);
 		
 		// Query the database for all courses that the teacher teaches
-		$email = $_POST['mail'];
-		$query = sprintf("SELECT DISTINCT c.cid, c.name, s.open FROM User u, Teaches t, Course c, Session s WHERE u.email = '%s' AND t.uid = u.uid AND t.cid = c.cid AND s.cid = t.cid;", $email);
+		$uid = $_POST['uid'];
+        
+        $query = sprintf("SELECT email FROM User WHERE uid = %d;", $uid);
 		$results = mysql_query($query, $db_conn);
 		
+		$row = mysql_fetch_row($results);
+		$email = $row[0];
+        
+		$query2 = sprintf("SELECT DISTINCT c.cid, c.name, s.open FROM User u, Teaches t, Course c, Session s WHERE u.email = '%s' AND t.uid = u.uid AND t.cid = c.cid AND s.cid = t.cid;", $email);
+		$results2 = mysql_query($query2, $db_conn);
+		
 		// Then return the results in HTML form
-		while ($row = mysql_fetch_row($results)) {
+		while ($row = mysql_fetch_row($results2)) {
 			
 			// Check if the course is closed
 			if ($row[2] == 1) {
