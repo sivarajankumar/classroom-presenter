@@ -21,7 +21,7 @@
 	<body>
 
 		<div id="topbanner"> 	<!-- Includes logo & person's information/help/logout, & course name -->
-			<img src="logo.png" alt="logo" />
+			<a href="studenthome.php"><img src="logo.png" alt="logo" /></a>
 			<div id="greeting">
 				<?php echo 'Hello '.($_COOKIE['alias']!='' ? $_COOKIE['alias'] : 'Guest').' ' ?>  | <a href="studentsettings.php">Your Settings</a> |  <a class="aboutlink" href="help.php">Help</a> | <a href="scripts/logout.php">Logout</a> <br />
 				You are currently looking at <?php echo ($COOKIE['course'] != '' ? $_COOKIE['course'] : 'no courses') ?>.

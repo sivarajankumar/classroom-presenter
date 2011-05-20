@@ -21,7 +21,7 @@
 
 	<body>		
 		<div id="topbanner"> 		<!-- Includes logo & person's information/help/logout, & feed status -->	
-			<img src="logo.png" alt="logo" />
+			<a href="instructorfeed.php"><img src="logo.png" alt="logo" /></a>
 			<div id="greeting">
 				<?php echo 'Hello '.($_COOKIE['alias']!='' ? $_COOKIE['alias'] : 'Guest') ?>  | <a href="instructorsettings.php">Your Settings</a> | <a class="aboutlink" href="help.php">Help</a> | <a href="login.php">Logout</a> <br />
 	
