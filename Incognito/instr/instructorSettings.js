@@ -59,6 +59,14 @@ function getCourse(data) {
 		updateStudents($.cookie("uid"), $(this).attr('id'));
 	});
 });
+
+$("#timeline").live('click', function(event){
+	mypopup();
+});
+function mypopup(){
+    mywindow = window.open("https://cubist.cs.washington.edu/~chriacua/Incognito/instr/graph.php", "mywindow", "location=0,status=1,scrollbars=0,  width=300,height=300");
+    mywindow.moveTo(0, 0);
+}
  
  
  

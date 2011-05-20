@@ -53,8 +53,8 @@ $("#test2").live('click', function(event){
 // Function to handle ajax.
 function getActivity(str, curTime){
 	//alert("WTF5");
-	alert(str);
-	alert(curTime);
+	//alert(str);
+	//alert(curTime);
     // get(file, data, callback, type); (only "file" is required)
     $.post(      
     "scripts/timeline.php", //Ajax file
@@ -62,8 +62,8 @@ function getActivity(str, curTime){
 	  time: curTime	},  // create an object will all values
     //function that is called when server returns a value.
     function(data){		
-		alert(data[0]);
-		alert(data[1]);
+		//alert(data[0]);
+		//alert(data[1]);
 		var temp = data[1];
 		data[1] = data[1] - subtotal;
 		subtotal = temp;
