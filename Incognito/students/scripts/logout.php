@@ -3,7 +3,6 @@ include 'db_credentials.php';
 	// This php script does all the logout dirty work
 	$uid = $_COOKIE["uid"];
   	if ($uid) {
-echo "uid is set";
 		// Connect to server
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 	 
@@ -25,7 +24,7 @@ echo "uid is set";
 		mysql_close($db_conn);
 	}
 	// delete cookie
-	setcookie("uid", "", time()-3600);
-	setcookie("alias", "", time()-3600);
-//	header("Location: http://cubist.cs.washington.edu/~ashen/Incognito/login.php");
+	setcookie("uid", "", time()-3600,"/~ashen/Incognito");
+	setcookie("alias", "", time()-3600, "/~ashen/Incognito");
+	header("Location: http://cubist.cs.washington.edu/~ashen/Incognito/login.php");
 ?>

@@ -19,7 +19,7 @@ var timer_is_on=0;
 
 function timedCount(){
 	//alert("WTF4");
-	getActivity(23456, currentTime);	//$.cookie("sid")
+	getActivity("23456", currentTime);	//$.cookie("sid")
 	//alert("WTF6");
 	currentTime = currentTime+5;
 	t=setTimeout("timedCount()",5000);
@@ -53,8 +53,10 @@ $("#test2").live('click', function(event){
 // Function to handle ajax.
 function getActivity(str, curTime){
 	//alert("WTF5");
+	alert(str);
+	alert(curTime);
     // get(file, data, callback, type); (only "file" is required)
-    $.get(      
+    $.post(      
     "scripts/timeline.php", //Ajax file
     { id: str,
 	  time: curTime	},  // create an object will all values
