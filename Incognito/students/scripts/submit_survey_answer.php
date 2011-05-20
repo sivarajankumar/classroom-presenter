@@ -2,7 +2,10 @@
 
 	// This php script takes a survey id, an answer, and a survey type and submits the
 	// answer to the Answers table. In addition, we need a uid if the survey is a free
-	// response
+	// response.
+	// 
+	// Type Argument: 'mc' submits multiple choice answers
+	//				  'fr' submits a free response answer
 	
 	// Include the db_credentials
 	include 'db_credentials.php';
@@ -10,6 +13,7 @@
 	// Check if the variables are set
 	if(isset($_POST['sid']) && isset($_POST['answer']) && isset($_POST['type'])) {
 		
+		// Connect and select the correct database
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 		if (!$db_conn) {
 			die("Could not connect");
