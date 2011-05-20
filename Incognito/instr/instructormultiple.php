@@ -25,7 +25,7 @@
 		
 		<div id="navigation">	<!-- Navigation bar -->
 			<ul>
-				<li <?=($thisPage=='Feed') ? ' id="currentpage"' : ' id="feed"' ?>><span><a class="tab" href="instructorfeed.php">Feed</a></span></li>
+				<li <?=($thisPage=='Feed') ? ' id="currentpage"' : ' id="feedTab"' ?>><span><a class="tab" href="instructorfeed.php">Feed</a></span></li>
 				<li <?=($thisPage=='Surveys') ? ' id="currentpage"' : ' id="surveys"' ?>><span><a class="tab" href="instructorfree.php">Surveys</a></span></li>
 			</ul>		
 			<a href=""><span id="timeline">VIEW TIMELINE </span></a>
