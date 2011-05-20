@@ -40,10 +40,10 @@
 								WHERE s.sid = fr.sid AND s.sessionId = %d AND s.open = 0", 
 								$sid);
 		} else if ($filter == 'none') {
-			$query = sprintf("SELECT * FROM ((SELECT s.sid, mc.text FROM Survey s, 
+			$query = sprintf("SELECT * FROM ((SELECT 'mc', s.sid, mc.text FROM Survey s, 
 								MultipleChoice mc WHERE s.sid = mc.sid 
 								AND s.sessionId = %d AND s.open = 1) UNION 
-								(SELECT s.sid, fr.text FROM Survey s, 
+								(SELECT 'fr', s.sid, fr.text FROM Survey s, 
 								FreeResponse fr WHERE s.sid = fr.sid AND 
 								s.sessionId = %d AND s.open = 1)) as sub", 
 								$sid, $sid);
@@ -80,17 +80,22 @@
             echo "<tr class=alt>";
             
             // Print out # of responses - currently prints out the id
-            echo "<td class=surveytype>".$row[0]."</td>";
+            echo "<td class=responses>".$row[0]."</td>";
             
             // Print out the question for the survey
-            echo "<td class=question>".$row[1]."</td>";
+            echo "<td><a class=question id=question_".$row[0].">".$row[1]."</a></td>";
             
-            // Print out the Respond button
-            echo "<td class=response><button type=button id=question_".$row[0].">Respond</button></td>";
-
-            echo "</tr>";
+            
+            /*
+			$rows[$i] = $row;
+			$i = $i + 1;
+            */
 		}
         echo "</table>";
+        /*
+        echo "Successful! But no rows!";
+		echo json_encode($rows); 
+        */
 	}
 
 ?>
