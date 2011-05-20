@@ -1,6 +1,9 @@
 <?php
-    function get_user_id($netid) {
+    if(!isset($_COOKIE['uid'])) {
+        get_user_id($_SERVER['REMOTE_USER']);
+    }
 
+    function get_user_id($netid) {
         // Connect to the production database
         $username = "ashen";
         $password = "2kV2cNct";
@@ -22,9 +25,8 @@
         
         // Get the uid and then do the update
         $row = mysql_fetch_row($results);
-        
+       
         $expire=time()+60*60*24*30;
-        
         if(!empty($row))
             setcookie('uid', $row[0], $expire);
             
