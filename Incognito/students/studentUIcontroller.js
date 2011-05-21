@@ -22,7 +22,8 @@ function onUpdate(){
 
 function onSubmit(){
 	var text = submitform.elements["texthome"].value; // Haven't figured out the jQuery for this yet.
-	var uid = 444;
+	//var uid = 444;
+	var uid = $.cookie('uid');
 	if ( text.length == 0 )
 	{
 		alert("Please enter a question or comment in the text box before submitting.");
