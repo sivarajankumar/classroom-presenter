@@ -29,14 +29,15 @@
 	$text = mysql_real_escape_string($text, $db_conn);
 		
 	$sid = $_POST['sid'];
-	$alias = $_POST['username'];
-	$alias = mysql_real_escape_string($alias, $db_conn);
+	//$alias = $_POST['username'];
+	//$alias = mysql_real_escape_string($alias, $db_conn);
+	$uid = (int)$_POST['uid'];
 	
 	// Do a preliminary query to get the student's user ID for later use
-	$uidquery = sprintf("SELECT uid FROM Student WHERE alias = '%s'", $alias);
-	$uidresult = mysql_query($uidquery, $db_conn);
-	$uidrow = mysql_fetch_assoc($uidresult);
-	$uid = (int)$uidrow["uid"];
+	//$uidquery = sprintf("SELECT uid FROM Student WHERE alias = '%s'", $alias);
+	//$uidresult = mysql_query($uidquery, $db_conn);
+	//$uidrow = mysql_fetch_assoc($uidresult);
+	//$uid = (int)$uidrow["uid"];
 	
 	// Execute the appropriate query depending on whether the submitted text
 	//	is a question or a feedback
@@ -69,7 +70,7 @@
 		}
 		else
 		{
-			$answered = $_POST['answered'];
+			//$answered = $_POST['answered'];
 			$query = sprintf("INSERT INTO Question (text, numvotes, answered, sid) 
 							VALUES ('%s', %d, %d, %d)", $text, $numvotes, $answered, $sid);
 			if(!mysql_query($query, $db_conn)) {
@@ -106,7 +107,7 @@
 		}
 		else
 		{
-			$isread = $_POST['isread'];
+			//$isread = $_POST['isread'];
 			$query = sprintf("INSERT INTO Feedback (text, numvotes, isread, sid)
 							VALUES ('%s', %d, %d, %d)", $text, $numvotes, $isread, $sid);
 			if(!mysql_query($query, $db_conn)) {
