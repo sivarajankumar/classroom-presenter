@@ -19,7 +19,6 @@
 			<ul>
 				<li><span><a class="tab" href="instructorfeed.php">Feed</a></span></li>
 				<li><span><a class="tab" href="instructorfree.php">Surveys</a></span></li>
-				<li><span><a class="tab" href="instructorhistory.php">History</a></span></li>
 			</ul>		
 			<a href=""><span id="timeline">VIEW TIMELINE </span></a>
 		</div>
@@ -40,29 +39,29 @@
 			response they want.<br />
 			<h2>Creating A Multiple Choice Question</h2>1.&nbsp;&nbsp;&nbsp; 
 			Go to the Survey page.<br />
-			2.&nbsp;&nbsp;&nbsp; Select “Multiple Choice” from the options above the text box. <br />
-			3.&nbsp;&nbsp;&nbsp; Type the poll’s prompt into the text box. <br />
-			4.&nbsp;&nbsp;&nbsp; Type the answer options into the fields below the text box. To add another option, click the “+” button to the right of the last option. To remove an option, click the “-” button to the right of the last option.<br /> 
-			5.&nbsp;&nbsp;&nbsp; Click “Create."<br />
+			2.&nbsp;&nbsp;&nbsp; Select â€œMultiple Choiceâ€� from the options above the text box. <br />
+			3.&nbsp;&nbsp;&nbsp; Type the pollâ€™s prompt into the text box. <br />
+			4.&nbsp;&nbsp;&nbsp; Type the answer options into the fields below the text box. To add another option, click the â€œ+â€� button to the right of the last option. To remove an option, click the â€œ-â€� button to the right of the last option.<br /> 
+			5.&nbsp;&nbsp;&nbsp; Click â€œCreate."<br />
 			<h2>Creating A Free Response Question</h2>
 		1.&nbsp;&nbsp;&nbsp; 
 			Go to the Survey page.<br />
-			2.&nbsp;&nbsp;&nbsp; Select “Free Response” from the options above the text box.<br /> 
-			3.&nbsp;&nbsp;&nbsp; Type the question’s prompt into the text box.<br /> 
-			4.&nbsp;&nbsp;&nbsp; Click “Create."<br />
+			2.&nbsp;&nbsp;&nbsp; Select â€œFree Responseâ€� from the options above the text box.<br /> 
+			3.&nbsp;&nbsp;&nbsp; Type the questionâ€™s prompt into the text box.<br /> 
+			4.&nbsp;&nbsp;&nbsp; Click â€œCreate."<br />
 			<h2>Closing A Survey</h2>1.&nbsp;&nbsp;&nbsp; 
 			Go to the Survey page.<br />
-		2.&nbsp;&nbsp;&nbsp; Select “Closed” from the drop-down menu 
+		2.&nbsp;&nbsp;&nbsp; Select â€œClosedâ€� from the drop-down menu 
 			to the left of the survey you want to close. <br />
 			<br />
-			<i>Note:</i> A survey can only be closed if its status is currently “Open.”<br />
+			<i>Note:</i> A survey can only be closed if its status is currently â€œOpen.â€�<br />
 			<h2>Viewing Survey Responses</h2>1.&nbsp;&nbsp;&nbsp; 
 			Go to the Survey page.<br />
 			2.&nbsp;&nbsp;&nbsp; Close the survey that you want to see responses 
 			for.<br />
 		2.&nbsp;&nbsp;&nbsp; 
 			After the survey has been closed, a drop-down menu will appear in 
-			the “View Responses” column. Select “Yes” from the drop-down menu to the right of the desired survey.<br />
+			the â€œView Responsesâ€� column. Select â€œYesâ€� from the drop-down menu to the right of the desired survey.<br />
 			
 		</div>
 
