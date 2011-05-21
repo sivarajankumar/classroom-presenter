@@ -19,7 +19,6 @@
 			<ul>
 				<li><span><a class="tab" href="instructorfeed.php">Feed</a></span></li>
 				<li><span><a class="tab" href="instructorfree.php">Surveys</a></span></li>
-				<li><span><a class="tab" href="instructorhistory.php">History</a></span></li>
 			</ul>		
 			<a href=""><span id="timeline">VIEW TIMELINE </span></a>
 		</div>
