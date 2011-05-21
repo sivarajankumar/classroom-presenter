@@ -29,13 +29,14 @@
 	$text = mysql_real_escape_string($text, $db_conn);
 		
 	$sid = $_POST['sid'];
-	$uid = (int)$_POST['uid'];
+	$alias = $_POST['username'];
+	$alias = mysql_real_escape_string($alias, $db_conn);
 	
 	// Do a preliminary query to get the student's user ID for later use
-	//$uidquery = sprintf("SELECT uid FROM Student WHERE alias = '%s'", $alias);
-	//$uidresult = mysql_query($uidquery, $db_conn);
-	//$uidrow = mysql_fetch_assoc($uidresult);
-	//$uid = (int)$uidrow["uid"];
+	$uidquery = sprintf("SELECT uid FROM Student WHERE alias = '%s'", $alias);
+	$uidresult = mysql_query($uidquery, $db_conn);
+	$uidrow = mysql_fetch_assoc($uidresult);
+	$uid = (int)$uidrow["uid"];
 	
 	// Execute the appropriate query depending on whether the submitted text
 	//	is a question or a feedback
