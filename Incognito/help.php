@@ -20,8 +20,8 @@
 		</div>
 		
 		<div id="maincontent">
-		<a href="help_students.php">Students</a>
-		<br /> <a href="help_instructors.php">Instructors</a>
+		<a href="students/help_students.php">Students</a>
+		<br /> <a href="instr/help_instructors.php">Instructors</a>
 		<br /> <a href="video_tutorial.php">Video Tutorial</a>
 		</div>
 
