@@ -4,10 +4,10 @@ database. */
 
 // This function takes a session id and question text, 
 // then creates a new multiple choice survey. 
-function createMC(sessionId, questionText, getSurvey) {
+function createMC(sessionId, questionText, getSurvey, choices) {
 	
 	$.post("scripts/create_survey.php", 
-			{sid: sessionId, text:questionText, type:'mc'},
+			{sid: sessionId, text:questionText, type:'mc', choices: choices},
 			function(data) {
 				getSurvey(data);
 			});
