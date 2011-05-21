@@ -32,8 +32,9 @@
 
 		
 		<div id = "maincontent">
-		<h1>Instructor Help Index</h1>
-&nbsp;<br />
+		<h1>Instructor Help Index</h1>Welcome to Incognito's instructor help. 
+			Use the links below the navigation bar to select a topic.<br />
+		
 		<br />		
 		</div>
 
