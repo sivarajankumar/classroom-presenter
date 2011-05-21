@@ -1,7 +1,7 @@
 window.onload = function() {
-	document.getElementById("frButton").onclick = showHide;
-	document.getElementById("mcButton").onclick = showHide;
-	document.getElementById("createSurvey").onclick = showHide;
+	//document.getElementById("frButton").onclick = showHide;
+	//document.getElementById("mcButton").onclick = showHide;
+	//document.getElementById("createSurvey").onclick = showHide;
 };
 
 function showHide() {
@@ -21,7 +21,7 @@ function showHide() {
 }
 
 function printToScreen(data){
-    $("#display").html(data);
+    $("#feed").html(data);
 }
 
 // creates a new free-response survey
@@ -34,9 +34,16 @@ function onCreateFree() {
 	}
 	else
 	{
-        createFR(24104, text, printToScreen);
+        var surveyId = createFR($.cookie('sid'), text, printToScreen);
+        $.cookie("surveyId",surveyId);
+        getSurvey(surveyId, "None", "Newest", printToScreen);
     }
 }
+
+window.onload = function() {
+    filter = "None";
+    sort = "Newest"; // default to sorting by newest
+};
 
 $("#timeline").live('click', function(event){
 	mypopup();

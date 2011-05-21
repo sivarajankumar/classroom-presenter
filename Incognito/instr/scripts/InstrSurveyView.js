@@ -37,9 +37,7 @@ function stopSurvey(sessionId) {
 }
 
 // This function, given a surveyId, a filter setting, a sort setting, 
-// and a handler, get's the surveys associated with the setting. In addition
-// you can filter by open and closed surveys. Note that you can pass a negative
-// 1 if you do note care. 
+// and a handler, get's the surveys associated with the setting. 
 //
 // Filter args: 'fr' Filters everything except free response surveys
 //				'mc' Filters everything except multiple choice surveys
@@ -47,7 +45,7 @@ function stopSurvey(sessionId) {
 //
 // Sort args:	'mr' Sorts by the most recent entries
 //				'none' No sorting applied
-function getSurvey(surveyId, filter, sort, open, handler) {
+function getSurvey(surveyId, filter, sort, handler) {
 	
 	$.post("scripts/get_survey.php",
 			{sid: surveyId, filter: filter, sort: sort},
@@ -67,3 +65,32 @@ function getResults(surveyId, handler) {
 				handler(data);
 			});
 }
+
+function printToScreen(data){
+    $("#feed").html(data);
+}
+
+setInterval("feedRefresh()", 2000) // Refreshes the feed page every 2 seconds
+
+function feedRefresh() {
+    var cookie = readCookie('sid');
+    if (cookie != null)
+        getSurvey(cookie, 'fr', 'none', printToScreen);
+}
+
+
+// Having problems reading in cookies using JQuery
+// Fix using Javascript
+function readCookie(name) {  
+  
+    var cookiename = name + "=";  
+    var ca = document.cookie.split(';');  
+    for(var i=0;i < ca.length;i++)  
+    {
+        var c = ca[i];  
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);  
+        if (c.indexOf(cookiename) == 0) return c.substring(cookiename.length,c.length);  
+    }
+    return null;
+    
+}  

@@ -33,19 +33,19 @@
 		$sid = $_POST['sid'];
 		if ($filter == 'mc') {
 			$query = sprintf("SELECT mc.sid, mc.text FROM Survey s, MultipleChoice mc 
-								WHERE s.sid = mc.sid AND s.sessionId = %d AND s.open = 1", 
+								WHERE s.sid = mc.sid AND s.sessionId = %d", 
 								$sid); 
 		} else if ($filter == 'fr') {
 			$query = sprintf("SELECT fr.sid, fr.text FROM Survey s, FreeResponse fr 
-								WHERE s.sid = fr.sid AND s.sessionId = %d AND s.open = 1", 
+								WHERE s.sid = fr.sid AND s.sessionId = %d", 
 								$sid);
 		} else if ($filter == 'none') {
 			$query = sprintf("SELECT * FROM ((SELECT 'mc', s.sid, mc.text FROM Survey s, 
 								MultipleChoice mc WHERE s.sid = mc.sid 
-								AND s.sessionId = %d AND s.open = 1) UNION 
+								AND s.sessionId = %d) UNION 
 								(SELECT 'fr', s.sid, fr.text FROM Survey s, 
 								FreeResponse fr WHERE s.sid = fr.sid AND 
-								s.sessionId = %d AND s.open = 1)) as sub", 
+								s.sessionId = %d)) as sub", 
 								$sid, $sid);
 		} else {
 			die("Incorrect filter argument");
@@ -77,30 +77,24 @@
 		$i = 0;
         echo "<table id=surveyFeed>";
 		while ($row = mysql_fetch_row($results)) {
-            if($i % 2 == 1)
-                echo "<tr class=alt>";
-            else
-                echo "<tr>";
-            
-            // $i represents the index of the row
+
+            echo "<tr class=alt>";
+
             // Since there is no filter, there is an additional
             // attribute of whether or not it is mc or fr
-            $i = 1;
-            if( $filter == 'none' ) {
-                $filter = $row[0];
-                $i = $i + 1;
-            }
-            
             if( $filter == 'fr' )
                 echo "<td class=surveytype>Free Response</td>";
             else if( $filter == 'mc' )
                 echo "<td class=surveytype>Multiple Choice</td>";
-            else
-                echo "<td class=surveytype>".$filter."</td>";
-            
-            // Print out the question for the survey
-            echo "<td class=question>".$row[$i]."</td>";
-            
+            if( $filter == 'none') {
+                if( $row[0] == 'fr' )
+                    echo "<td class=surveytype>Free Response</td>";
+                else if( $row[0] == 'mc' )
+                    echo "<td class=surveytype>Multiple Choice</td>";
+                echo "<td class=question>".$row[2]."</td>";
+            } else {
+                echo "<td class=question>".$row[1]."</td>";
+            }
             // Print out the Respond button
             echo "<td class=respond><button type=button id=question_".$row[$i - 1].">Respond</button></td>";
 
