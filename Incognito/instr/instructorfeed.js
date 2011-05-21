@@ -14,7 +14,7 @@ function onMarkAnswered(type, id, flag) {
     $.post("scripts/answer_question.php",
     {type: type, id: id, flag: flag},
     function(data) {
-        alert("Success!");
+        // alert("Success!");
     });
 }
 
