@@ -31,7 +31,7 @@
 			$query ="INSERT INTO Student VALUES ($uid, 0, 'testing');";
 			mysql_query($query, $db_conn);      	
 
-			$_POST['mail'] = 'test'; 
+			$_POST['uid'] = $uid; 
 	
 			include "../../Incognito/students/scripts/get_alias.php";
 
