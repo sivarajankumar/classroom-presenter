@@ -21,6 +21,6 @@
 
  <target name="build" depends="simpleTest"/>
  <target name="logout" depends="testLogout"/>
- <target name="alias" depends="testGetAlias"/>
+ <target name="alias" depends="testGetAlias"/> 
 
  </project>
