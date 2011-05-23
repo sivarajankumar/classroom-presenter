@@ -17,25 +17,25 @@
 		
 		<div id="navigation">	<!-- Navigation bar -->
 			<ul>
-				<li><span><a class="tab" href="studenthome.php">Home</a></span></li>
-				<li><span><a class="tab" href="studentfeed.php">Feed</a></span></li>
-				<li><span><a class="tab" href="studentsurveys.php">Surveys</a></span></li>
+				<li><span><a class="tab" href="instructorfeed.php">Feed</a></span></li>
+				<li><span><a class="tab" href="instructorfree.php">Surveys</a></span></li>
 			</ul>		
+			<a href=""><span id="timeline">VIEW TIMELINE </span></a>
 		</div>
 		
-		<div id="studenthelpnavigation">
-			<a href="help_questions_feedback.php">Questions and Feedback</a> | 
-		<a href="help_alias.php">Aliases</a> | 
-		<a href="help_student_courses.php">Your Courses</a> |  
-		<a href="help_student_feed.php">Using the Feed</a> | 
-		<a href="help_student_surveys.php">Surveys</a> | 
-		<a href="help_students.php">Troubleshooting</a> 
+		<div id="instrhelpnavigation">
+			<a href="help_instr_surveys.php">Survey Management</a> | 
+		<a href="help_instr_timeline.php">Timeline</a> | 
+		<a href="help_instr_courses.php">Course Management</a> |  
+		<a href="help_instr_questions_feedback.php">Questions and Feedback</a>
 		</div>
-				
+
+		
 		<div id = "maincontent">
-			<h1>Student Help Index</h1>Welcome to Incognito's student help. Use 
-			the links below the navigation bar to select a topic.<br />
-				
+		<h1>Instructor Help Index</h1>Welcome to Incognito's instructor help. 
+			Use the links below the navigation bar to select a topic.<br />
+		
+		<br />		
 		</div>
 
 		
