@@ -71,18 +71,17 @@
 			$_POST['uid'] = $uid;
 			$_POST['cid'] = $cid; 
 			
-			include '../../Incognito/students/scripts/addStudent.php';
+			include '../../Incognito/instr/scripts/addStudent.php';
 			
 			// Now run a query on the Attends table to see if the uid, cid 
 			// pair is in the Attends table
-			$query = "SELECT * FROM Attends WHERE cid = " . $cid . " uid = " . $uid . ";";
+			$query = "SELECT * FROM Attends WHERE cid = " . $cid . " AND uid = " . $uid . ";";
 			$results = mysql_query($query, $db_conn);
-			
+				
 			// Error Check
 			if (!$results) {
 				die("Error: " + mysql_error($db_conn));
 			}
-			
 			$this->assertEquals(1, mysql_num_rows($results));
 		}
 	}
