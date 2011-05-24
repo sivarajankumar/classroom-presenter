@@ -71,7 +71,7 @@
 		if ($type == 'mc' && isset($_POST['choices'])) {
 			
 			$choices = json_decode($_POST['choices']);
-			
+			echo $choices;
 			// Go through each choices and insert it in the Choices table
 			for ($i = 0; $i < count($choices); $i++) {
 				$query = sprintf("INSERT INTO Choices VALUES (%d, 0, '%s');",
