@@ -113,6 +113,13 @@ button, .loginType {
 	margin-left: 15px;
 }
 
+#instrs {
+    margin-left : 30px;
+    padding: 20pxw;
+    width: 50;
+    text-align: center;
+}
+
 .surveyCol {
 	width: 70px;
 }

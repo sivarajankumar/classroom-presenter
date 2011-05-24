@@ -9,11 +9,11 @@
     if(cookie != null) {
     
         //initially puts courses on page
-        getCourses(cookie, printToScreen);
+        getCourses(333, printToScreen);
         //user joins a session
         $(".joinButton").live('click',function(event) {
-            joinSession(cookie, $(this).attr('id'));
-            getCourses(cookie,printToScreen);
+            joinSession(333, $(this).attr('id'));
+            getCourses(333,printToScreen);
             
             // Set a cookie to reflect the session the student just joined
             $.cookie("sid",$(this).attr('id'));
@@ -21,17 +21,17 @@
        
         //user leaves a session
         $(".quitButton").live('click',function(event) { 
-            exitSession(cookie, $(this).attr('id'));
-            getCourses(cookie,printToScreen);
+            exitSession(333, $(this).attr('id'));
+            getCourses(333,printToScreen);
             
-            // Delete the cookie corresponding to session the student is in
+            // Delete the 333 corresponding to session the student is in
             $.cookie("course", null);
         });
         
         //user deletes a course
         $(".courseRemoveButton").live('click',function(event) {
-            removeCourse(cookie, $(this).attr('id'));
-            getCourses(cookie,printToScreen);
+            removeCourse(333, $(this).attr('id'));
+            getCourses(333,printToScreen);
         });
 
         //user change alias name, studentID, newAlias
@@ -39,7 +39,7 @@
             alias = $("#aliasName").val();
             $.cookie("alias", alias, { path: '/' });
             $("#cook").html("Hello " + alias);
-            addAlias(cookie, alias);
+            addAlias(333, alias);
         });
 
     }
