@@ -1,14 +1,9 @@
 <?php
 
+	include "db_credentials.php";
+
 	function connectToDB()
 	{
-		// Connect to the database
-
-		// These variables need to be changed for every person who wants to use their local db.
-		// Production DB: ashen; 2kV2cNct; ashen_403_Local
-		$username = "ashen";
-		$password = "2kV2cNct"; 
-		$db_name = "ashen_403_Local"; 
 
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 	 
@@ -44,11 +39,11 @@
 		{
 			if ($flag == "true")
 			{
-				$query = sprintf("UPDATE Feedback SET isread = 1 WHERE qid = %d", $id);
+				$query = sprintf("UPDATE Feedback SET isread = 1 WHERE fid = %d", $id);
 			}
 			else
 			{
-				$query = sprintf("UPDATE Feedback SET isread = 0 WHERE qid = %d", $id);
+				$query = sprintf("UPDATE Feedback SET isread = 0 WHERE fid = %d", $id);
 			}
 			if (!mysql_query($query, $db_conn)) {
 				die("Query error: " . mysql_error());
