@@ -17,10 +17,17 @@
      <arg line="test-alias.php" />
        </exec>
          </target>
+		 
+<target name="testSubmitQuestion">
+	<exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-submit-question.php" />
+		</exec>
+		 </target>
 
 
  <target name="build" depends="simpleTest"/>
  <target name="logout" depends="testLogout"/>
  <target name="alias" depends="testGetAlias"/> 
+ <target name="submitQuestion" depends="testSubmitQuestion"/>
 
  </project>
