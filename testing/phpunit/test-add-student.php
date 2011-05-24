@@ -1,6 +1,6 @@
 <?php
 
-	class testTesting extends PHPUnit_Framework_TestCase
+	class testAddStudent extends PHPUnit_Framework_TestCase
 	{
 		
 		// This function tests adding a student
