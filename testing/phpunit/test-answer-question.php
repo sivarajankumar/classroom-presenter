@@ -68,11 +68,11 @@
 			$row = mysql_fetch_row($results);
 			$qid = $row[0];
 			
-			return $qid
+			return $qid;
 		}
 	
 		// This function tests adding a student
-		public function answerQuestion() {
+		public function testAnswerQuestion() {
 			
 			// Add a question
 			$qid = addQuestion(0);
@@ -100,7 +100,7 @@
 		
 		// This function tests the ability to change a question
 		// from answered to unanswered
-		public function unanswerQuestion() {
+		public function testUnanswerQuestion() {
 			
 			// Add a question
 			$qid = addQuestion(1);
@@ -128,7 +128,7 @@
 		
 		// This function marks a piece of feedback as unread and 
 		// tests whether the state was changed in the database
-		public function unreadFeedback() {
+		public function testUnreadFeedback() {
 			
 			// First, add a piece of feedback we can unread
 			$fid = addFeedback(1);
@@ -156,7 +156,7 @@
 	
 		// This function attempts to read a piece of feedback and
 		// tests whether the state was changed in the database
-		public function readFeedback() {
+		public function tesReadFeedback() {
 
 			// First, add a piece of feedback we can read
 			$fid = addFeedback(0);
@@ -180,15 +180,6 @@
 			$row = mysql_fetch_row($results);
 				
 			$this->assertEquals(1, $row[0]);
-		}
-		
-		// This function runs all of the tests on the answering of questions/feedback
-		public function testQF() {
-			
-			answerQuestion(); 
-			unanswerQuestion(); 
-			readFeedback();
-			unreadFeedback(); 
 		}
 	}
 	
