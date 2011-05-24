@@ -1,6 +1,6 @@
 <?php
 
-	class testTesting extends PHPUnit_Framework_TestCase
+	class testAlias extends PHPUnit_Framework_TestCase
 	{
 		
 		// Test the get alias php script
