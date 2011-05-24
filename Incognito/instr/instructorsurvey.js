@@ -34,8 +34,8 @@ function onCreateFree() {
 	}
 	else
 	{
-        var surveyId = createFR($.cookie('sid'), text, printToScreen);
-        $.cookie("surveyId",surveyId);
+        var surveyId = createFR(24104, text, printToScreen);
+        // $.cookie("surveyId",surveyId);
         getSurvey(surveyId, "None", "Newest", printToScreen);
     }
 }

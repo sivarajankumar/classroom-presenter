@@ -79,15 +79,9 @@
 		while ($row = mysql_fetch_row($results)) {
             echo "<tr class=alt>";
             
-            // Print out # of responses - currently prints out the id
-            echo "<td class=surveytype>".$row[0]."</td>";
-            
             // Print out the question for the survey
-            echo "<td class=question>".$row[1]."</td>";
+            echo "<td class=instrs>".$row[1]."</td>";
             
-            // Print out the Respond button
-            echo "<td class=response><button type=button id=question_".$row[0].">Respond</button></td>";
-
             echo "</tr>";
 		}
         echo "</table>";

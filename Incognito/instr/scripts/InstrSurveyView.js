@@ -5,7 +5,7 @@ database. */
 // This function takes a session id and question text, 
 // then creates a new multiple choice survey. 
 function createMC(sessionId, questionText, getSurvey, choices) {
-	
+	alert("Success");
 	$.post("scripts/create_survey.php", 
 			{sid: sessionId, text:questionText, type:'mc', choices: choices},
 			function(data) {
@@ -75,7 +75,7 @@ setInterval("feedRefresh()", 2000) // Refreshes the feed page every 2 seconds
 function feedRefresh() {
     var cookie = readCookie('sid');
     if (cookie != null)
-        getSurvey(cookie, 'fr', 'none', printToScreen);
+        getSurvey(24104, 'none', 'none', printToScreen);
 }
 
 
