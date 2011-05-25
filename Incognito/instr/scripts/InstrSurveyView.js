@@ -57,12 +57,16 @@ function getSurvey(surveyId, filter, sort, handler) {
 // then do an AJAX call to the get survey script, which will respond
 // back with the survey results, which will be passed to the handler. 
 function getResults(surveyId, handler) {
-	
+
 	$.post("scripts/get_results.php",
 			{sid: surveyId},
 			function(data) {
 				handler(data);
 			});
+}
+
+function resultsPopup(data) {
+    $.prompt(data,{ buttons: { Ok: true }, prefix:'surveyPopup'});
 }
 
 window.onload = function() {
@@ -75,6 +79,12 @@ window.onload = function() {
             } else if($(this).attr("value") == 'open') {
                 stopSurvey(survey_id.substr(9));
             }
+            
+        });
+    
+    $('.getresults').live('click', function () {
+            var survey_id = $(this).attr("id");
+            getResults(survey_id.substr(9), resultsPopup);
             
         });
 };

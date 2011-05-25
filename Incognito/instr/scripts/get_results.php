@@ -28,15 +28,12 @@
 		
 		// Check the number of results
 		if (mysql_num_rows($results) > 0) {
-			
-			$rows;
-			$i = 0; 
+            echo "<table id=resultsPop>";
+            echo "<tr><td class=choice>Choice</td><td class=count>Count</td></tr>";
 			while ($row = mysql_fetch_row($results)) {
-				$rows[$i] = $row; 
-				$i++;
+				echo "<tr><td class=choice>".$row[0]."</td><td class=count>".$row[1]."</td></tr>";
 			}
-			
-			echo json_encode($rows);
+            echo "</table>";
 		} else {
 			
 			// Search the free response answers
@@ -48,14 +45,9 @@
 				die("Error: " . mysql_error($db_conn));
 			}
 			
-			$rows;
-			$i = 0; 
 			while ($row = mysql_fetch_row($results)) {
-				$rows[$i] = $row; 
-				$i++; 
+				echo $row[0]."<br />";
 			}
-			
-			echo json_encode($rows);
 		}
 	}
 

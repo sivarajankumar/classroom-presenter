@@ -120,12 +120,17 @@ button, .loginType {
 }
 
 #surveyQuestCol {
-	width:650px;
+	width:515px;
 	margin-left: 15px;
 }
 
+#surveyResCol {
+    margin-right:5px;
+    text-align: center;
+}
+
 .surveyCol {
-	width: 108px;
+	margin-right: 30px;
     text-align: center;
 }
 
@@ -145,6 +150,40 @@ span {
 #createSurvey {
 	margin-left: 20px;
 	margin-bottom: 30px;
+}
+
+#surveyPopup
+{
+    display: block;
+    position: absolute;
+    border-style:solid;
+    border-width:5px;
+    width:300px;
+    padding:10px;
+    border:5px solid grey;
+    margin:5px;
+    color: black;
+    background: white;
+    font-family: Calibri;
+    text-align: left;
+}
+
+
+/* results popup styles */
+#resultsPop td.choice
+{
+    text-align:center;
+    width:50px;
+    font-family: Calibri;
+    padding:5px;
+}
+
+#resultsPop td.count
+{
+    text-align:center;
+    width:50px;
+    font-family: Calibri;
+    padding:5px;
 }
 
 /* survey feed styles */
@@ -169,6 +208,13 @@ span {
     text-align:center;
     width:120px;
     font-family: Calibri;
+    padding:7px;
+}
+
+#surveyFeed td.results
+{
+    text-align:center;
+    width:120px;
     padding:7px;
 }
 
