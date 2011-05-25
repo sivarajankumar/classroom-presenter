@@ -21,7 +21,7 @@ function freeCallback(v,m,f){
         if(cookie != null) {
             // window.survey_id.substr(9) parse the sid out of the string
             // f.response is the answer that the customer submitted
-            submitFreeResponse(window.survey_id.substr(9), f.response, 333);
+            submitFreeResponse(window.survey_id.substr(9), f.response, cookie);
             $.prompt('Survey Successfully Submitted: ' + f.response, {prefix:'surveyPopup'});
         } else {
             $.prompt('Survey Failed to Submit', {prefix:'surveyPopup'});
@@ -68,10 +68,10 @@ function onPrioritySortChange() {
 // On initial window load, initialize events and reset
 // filter and sort variables
 window.onload = function() {
-    filter = "fr";
+    filter = "none";
     sort = "none"; // default to sorting by newest
     var cookie = readCookie('sid');
-    getSurvey(cookie, "none", "none", printToScreen);
+    getSurvey(cookie, window.filter, window.sort, printToScreen);
     
     $('.respond').live('click', function () {
         survey_id = $(this).attr("id");
@@ -80,6 +80,7 @@ window.onload = function() {
         
         // Handle the types of survey
         if(stype == 'Free Response') {
+        
             var survey_text = question + '<br /><input type="text" id="' + survey_id + '" name="response" value="Respond here" />';
             $.prompt(survey_text,{ callback: freeCallback, buttons: { Submit: true, Cancel: false }, prefix:'surveyPopup'});
         } else if(stype == 'Multiple Choice') {
@@ -99,7 +100,7 @@ setInterval("refreshFeed()", 2000); // refresh every 2000 milliseconds
 
 function refreshFeed() {
     var cookie = readCookie("sid");
-	getSurvey(cookie, "none", "none", printToScreen);
+	getSurvey(cookie, window.filter, window.sort, printToScreen);
 }
 
 
