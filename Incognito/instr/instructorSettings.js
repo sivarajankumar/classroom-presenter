@@ -18,36 +18,37 @@ function getCourse(data) {
  $(document).ready(function() {
 	
     // alert($.cookie("uid"));
-	//initially puts courses on page
-
-	getCourses(333,printToScreen);
+	//initially puts courses on page  
+	$uid = $.cookie('uid');
+	getCourses($uid, printToScreen);
 
 	// ends a session
    $(".closeOptionButton").live('click',function(event) {
 		endSession($(this).attr('id'));
-		getCourses(333, printToScreen);
+		getCourses($uid, printToScreen);
+		$.cookie('sid', '', {expires: -1, path: '/'});
 	});
    
     //starts a session
 	$(".openOptionButton").live('click',function(event) { 
 		startSession($(this).attr('id'), setSession);
-		getCourses(333, printToScreen);
+		getCourses($uid, printToScreen);
         
-        $.cookie("sid", $(this).attr('id'), { expires: 7 });
+        $.cookie("sid", $(this).attr('id'), { expires: 7, path: '/' });
 	});
 	
 	//Adds a InstructorID, courseName, mailingList, callbackFunction
 	$("#courseSubmitButton").click(function(event){
 		var courseIs = $("#courseName").val();
 		mailIs = $("#mailingList").val();
-		courseId = insertCourse(333, courseIs, mailIs, getCourse);
-		getCourses(333,printToScreen);
+		courseId = insertCourse($uid, courseIs, mailIs, getCourse);
+		getCourses($uid, printToScreen);
 	});
 	
 	//user deletes a course
 	$(".courseRemoveButton").live('click',function(event) {
-		deleteCourse(333, $(this).attr('id'));
-		getCourses(333,printToScreen);
+		deleteCourse($uid, $(this).attr('id'));
+		getCourses($uid,printToScreen);
 	});
 	
 	
@@ -56,7 +57,7 @@ function getCourse(data) {
 		//var cookie = $.cookie("uid");
 		//alert(cookie);
 		// var student = $("#studentToAdd").val();
-		updateStudents(333, $(this).attr('id'));
+		updateStudents($uid, $(this).attr('id'));
 	});
 });
 

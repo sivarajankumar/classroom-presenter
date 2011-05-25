@@ -4,19 +4,18 @@
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<script src="jquery-1.5.2.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="studentfeed.js"></script>
 <script type="text/javascript" src="studentUIcontroller.js"></script>
 <script type="text/javascript" src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script>
-
+<script src="jquery-1.5.2.js" type="text/javascript"></script>
+<script type="text/javascript" src="jquery.cookie.js"></script>
+		
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head>
 		<title>Incognito</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="pages.css" type="text/css" rel="stylesheet" />
-		<script type="text/javascript" src="jquery.cookie.js"></script>
-		<script src="jquery-1.5.2.js" type="text/javascript"></script>
 	</head>
 
 	<body>

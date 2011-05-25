@@ -5,41 +5,41 @@
  
  $(document).ready(function() {
 	var alias;
-    var cookie = readCookie('uid');
-    if(cookie != null) {
+    $uid = $.cookie('uid');
+    if($uid != null) {
     
         //initially puts courses on page
-        getCourses(333, printToScreen);
+        getCourses($uid, printToScreen);
         //user joins a session
         $(".joinButton").live('click',function(event) {
-            joinSession(333, $(this).attr('id'));
+            joinSession($uid, $(this).attr('id'));
             getCourses(333,printToScreen);
             
             // Set a cookie to reflect the session the student just joined
-            $.cookie("sid",$(this).attr('id'));
+            $.cookie("sid",$(this).attr('id'),{expires: 1, path: '/'});
         });
        
         //user leaves a session
         $(".quitButton").live('click',function(event) { 
-            exitSession(333, $(this).attr('id'));
-            getCourses(333,printToScreen);
+            exitSession($uid, $(this).attr('id'));
+            getCourses($uid, printToScreen);
             
             // Delete the 333 corresponding to session the student is in
-            $.cookie("course", null);
+            $.cookie("sid", "", {expires: -1, path: '/'});
         });
         
         //user deletes a course
         $(".courseRemoveButton").live('click',function(event) {
-            removeCourse(333, $(this).attr('id'));
-            getCourses(333,printToScreen);
+            removeCourse($uid, $(this).attr('id'));
+            getCourses($uid, printToScreen);
         });
 
         //user change alias name, studentID, newAlias
         $("#aliasChangeButton").click(function(event){
             alias = $("#aliasName").val();
-            $.cookie("alias", alias, { path: '/' });
+            $.cookie("alias", alias, { expires: 1, path: '/' });
             $("#cook").html("Hello " + alias);
-            addAlias(333, alias);
+            addAlias($uid, alias);
         });
 
     }
