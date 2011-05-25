@@ -47,7 +47,9 @@ function getCourse(data) {
 	
 	//user deletes a course
 	$(".courseRemoveButton").live('click',function(event) {
+		// if session is open , need to prompt to close session first
 		deleteCourse($uid, $(this).attr('id'));
+		// must delete only one course
 		getCourses($uid,printToScreen);
 	});
 	

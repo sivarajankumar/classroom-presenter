@@ -26,8 +26,8 @@
 		
 		$row = mysql_fetch_row($results);
 		$email = $row[0];
-		$query = sprintf("SELECT DISTINCT u.uid, s.sid, a.cid, s.open, c.name FROM User u, Attends a, Session s, Course c WHERE u.email = '%s' AND a.uid = u.uid AND s.cid = a.cid AND c.cid = a.cid;",
-						$email);
+		$query = sprintf("SELECT DISTINCT u.uid, s.sid, a.cid, s.open, c.name FROM User u, Attends a, Session s, Course c WHERE u.uid = %d AND a.uid = u.uid AND s.cid = a.cid AND c.cid = a.cid;",
+						$uid);
 		$results = mysql_query($query, $db_conn);
 	
 		// First do some error checking
