@@ -49,7 +49,10 @@
 		return json_encode($rows);
 	}
 	
-	$sid = $_POST['sid'];
-	$results = getQuestions($sid);
-	echo $results;
+	if (isset($_POST['sid']))
+	{
+		$sid = $_POST['sid'];
+		$results = getQuestions($sid);
+		echo $results;
+	}
 ?>
