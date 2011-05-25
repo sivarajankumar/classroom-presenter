@@ -77,7 +77,7 @@ window.onload = function() {
         survey_id = $(this).attr("id");
         var question = $(this).parent().parent().find('.question').text();
         var stype = $(this).parent().parent().find('.surveytype').text();
-        alert(stype);
+
         // Handle the types of survey
         if(stype == 'Free Response') {
         

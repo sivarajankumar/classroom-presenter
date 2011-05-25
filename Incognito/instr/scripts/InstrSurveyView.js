@@ -71,7 +71,6 @@ window.onload = function() {
     $('.respond').live('click', function () {
             var survey_id = $(this).attr("id");
             if($(this).attr("value") == 'close') {
-                alert(survey_id.substr(9));
                 startSurvey(survey_id.substr(9));
             } else if($(this).attr("value") == 'open') {
                 stopSurvey(survey_id.substr(9));
