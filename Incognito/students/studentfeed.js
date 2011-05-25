@@ -72,6 +72,7 @@ window.onload = function() {
     sort = "Newest"; // default to sorting by newest
     $sid = $.cookie('sid');
     $uid = $.cookie('uid');
+
     if($sid){
         getFeed($sid, $uid, window.filter, window.sort, printToScreen);
     }else{
@@ -90,6 +91,7 @@ setInterval("refreshFeed()", 2000); // refresh every 2000 milliseconds
 function refreshFeed() {
     $uid = $.cookie('uid');
     $sid = $.cookie('sid');
+    
     if($sid != null)
         getFeed($sid, $uid, window.filter, window.sort, printToScreen);
 }

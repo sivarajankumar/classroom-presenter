@@ -47,11 +47,9 @@
 	{
 		$db_conn = connectToDB(); 
 		
-		// Do a preliminary query to get the student's user ID for later use
-		$uidquery = sprintf("SELECT uid FROM Student WHERE alias = '%s'", $username);
-		$uidresult = mysql_query($uidquery, $db_conn);
-		$uidrow = mysql_fetch_assoc($uidresult);
-		$uid = (int)$uidrow["uid"];
+		$uid;
+        if(isset($_POST['sid']))
+            $uid = $_POST['uid'];
 	  
 		$feed = array();
 		$query = null;
@@ -300,7 +298,7 @@
 		}
 	  
 		echo $feed[0][0];
-				
+
 		// Prints the feed data in a nice html format
 		echo "<table id=feedTable>";
 		for($row = 0; $row < 200; $row++) {
@@ -309,8 +307,8 @@
 					echo "<tr class=alt>";
 				else
 					echo "<tr>";
-                echo $feed[$row]["voted"];
-				if((int)$feed[$row]["voted"] == 1)
+
+				if($feed[$row]["voted"] == 1)
 					echo "<td class=checked><input class=check type=checkbox id=check_".$feed[$row]["type"].$feed[$row]["id"]." checked=true /></td>";
 				else
 					echo "<td class=checked><input class=check type=checkbox id=check_".$feed[$row]["type"].$feed[$row]["id"]." /></td>";
