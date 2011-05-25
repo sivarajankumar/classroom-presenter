@@ -13,7 +13,7 @@
         //user joins a session
         $(".joinButton").live('click',function(event) {
             joinSession($uid, $(this).attr('id'));
-            getCourses(333,printToScreen);
+            getCourses($uid,printToScreen);
             
             // Set a cookie to reflect the session the student just joined
             $.cookie("sid",$(this).attr('id'),{expires: 1, path: '/'});

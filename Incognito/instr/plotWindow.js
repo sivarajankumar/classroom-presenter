@@ -16,7 +16,7 @@ var currentTime = 0; //used to keep track of where to plot on x-axis
 var timer_is_on=0;
 
 function timedCount(){
-	getActivity("23456", currentTime);	//$.cookie("sid")
+	getActivity($.cookie("sid"), currentTime);	//$.cookie("sid")
 	currentTime = currentTime+5;
 	t=setTimeout("timedCount()",5000);
 }
