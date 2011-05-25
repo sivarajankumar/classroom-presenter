@@ -1,6 +1,7 @@
 <?php
+   $user_type = $id;
     if(!isset($_COOKIE['uid'])) {
-        get_user_id($_SERVER['REMOTE_USER']);
+        get_user_id($_SERVER['REMOTE_USER'], $user_type);
     }
    // if(!isset($_COOKIE['alias'])){
    //     get_alias($_COOKIE['uid']);
@@ -10,9 +11,9 @@
 	//	get_sid($_COOKIE['uid'])
 	//}
 	
-    function get_user_id($netid) {
-		$db_name = "ashen_403_Local";
-		$db_conn = make_dbconn();
+    function get_user_id($netid, $user_type) {
+	$db_name = "ashen_403_Local";
+	$db_conn = make_dbconn();
 
         if (!$db_conn) {
             die("Could not connect");
@@ -29,9 +30,32 @@
         $row = mysql_fetch_row($results);
        
         $expire=time()+ 60*60*24*1;
-        if(!empty($row))
-            setcookie('uid', $row[0], $expire, "/");
-            
+        if(empty($row))
+     {
+	// if user doesn't exist yet, add to user table 
+         $query = sprintf("INSERT INTO User (`email`) VALUES ('%s');", $netid);
+ 	 $results = mysql_query($query, $db_conn);
+        $query = sprintf("SELECT uid FROM User WHERE email = '%s';", $netid);
+        $results = mysql_query($query, $db_conn);
+        
+        // Error check
+       if (!$results) {
+            die("Error: " + mysql_error($db_conn));
+        }
+        // Get the uid and then do the update
+        $row = mysql_fetch_row($results);
+   	// now insert the user into the instructor or student table.
+ 	// currently adds to both.
+	if($user_type == 1){
+	 $query = sprintf("INSERT INTO Student (`uid`, `netid`) VALUES ('%d', '%s');", $uid, $netid);
+	}else if($user_type ==2){
+		 $query = sprintf("INSERT INTO Instructor (`uid`) VALUES ('%d');", $uid);
+	}
+        mysql_query($query, $db_conn); 
+    }else{
+	$uid = $row[0];
+	}
+	  setcookie('uid', $uid, $expire, "/"); 
     }
 	
     function get_alias($id){

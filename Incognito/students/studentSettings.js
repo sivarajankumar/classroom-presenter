@@ -4,7 +4,7 @@
  }
  
  $(document).ready(function() {
-	var alias;
+    var alias;
     $uid = $.cookie('uid');
     if($uid != null) {
     

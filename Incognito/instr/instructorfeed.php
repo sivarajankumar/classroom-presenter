@@ -1,4 +1,5 @@
 <?php
+$id = 2;
     include "../doLogin.php";
 	include "common_instructor.php";
 ?>
