@@ -1,6 +1,6 @@
 <?php
 	
-	include 'db_credentials.php';
+	include '../../db_credentials.php';
 
     // Check for the correct arguments
     if (isset($_POST['text'])) {

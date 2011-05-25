@@ -6,7 +6,7 @@
 		function connectToDB()
 		{
 			// Connect to the database
-			include 'db_credentials.php';
+			include '../../db_credentials.php';
 
 			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 		 

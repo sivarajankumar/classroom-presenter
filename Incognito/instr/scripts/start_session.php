@@ -1,5 +1,5 @@
 <?php
-	include 'db_credentials.php';
+	include '../../db_credentials.php';
 	// This php script, given a course id, will create a new session for
 	// that course
 	

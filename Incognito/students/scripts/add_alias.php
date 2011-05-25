@@ -1,5 +1,5 @@
 <?php
-	include 'db_credentials.php';
+	include '../../db_credentials.php';
 	// This function, given a student email and an alias
 	// will update the student's alias. 
 	

@@ -1,5 +1,5 @@
 <?php
-	include 'db_credentials.php';
+	include '../../db_credentials.php';
 	// This file adds a new course to the database and returns the cid
 	
 	// Check if the proper variables were sent

@@ -1,5 +1,5 @@
 <?php
-	include 'db_credentials.php';
+	include '../../db_credentials.php';
 	// This php file, given a student uw email address and a session id
 	// will allow a student to join the session
 	

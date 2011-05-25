@@ -3,7 +3,7 @@
 	// Given a survey id, this php script will set a 
 	// survey as closed. 
 
-	include 'db_credentials.php';
+	include '../../db_credentials.php';
 	
 	// Check if the survey id was set
 	if (isset($_POST['sid'])) {

@@ -1,5 +1,5 @@
 <?php
-	include 'db_credentials.php';
+	include '../../db_credentials.php';
 	// This php script file, given a unique student id and a session id
 	// will add the student as someone who attends that course.
 	

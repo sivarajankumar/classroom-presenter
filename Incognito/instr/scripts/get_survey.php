@@ -12,7 +12,7 @@
 	//						'none' for no sorting
 
 	// Get our current db_crendentials
-	include 'db_credentials.php';		
+	include '../../db_credentials.php';		
     
 	// Check for the correct arguments
 	if (isset($_POST['sid']) && isset($_POST['filter']) && isset($_POST['sort'])) {

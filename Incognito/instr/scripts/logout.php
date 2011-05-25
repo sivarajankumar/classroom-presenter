@@ -1,5 +1,5 @@
 <?php
-include 'db_credentials.php';
+include '../../db_credentials.php';
 	// This php script does all the logout dirty work
 	$uid = $_COOKIE["uid"];
   	if ($uid) {

@@ -1,5 +1,5 @@
 <?php
-	include 'db_credentials.php';
+	include '../../db_credentials.php';
 	// Given an email address and a session id, remove the student from
 	// the session. 
 	
