@@ -6,7 +6,6 @@
 		function connectToDB()
 		{
 			// Connect to the database
-
 			include 'db_credentials.php';
 
 			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
@@ -96,7 +95,7 @@
 			}
 			else
 			{
-				$query = sprintf("UPDATE Feedback SET numvotes = %d WHERE qid = %d", $vote_count, $id);
+				$query = sprintf("UPDATE Feedback SET numvotes = %d WHERE fid = %d", $vote_count, $id);
 				if(!mysql_query($query, $db_conn)) {
 					die("Query error: " . mysql_error());
 				}
