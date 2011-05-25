@@ -219,7 +219,7 @@ a:hover {	/* Link hover rule */
 #surveyFeed td.surveytype
 {
     text-align:center;
-    width:95px;
+    width:93px;
     font-family: Calibri;
     padding:5px;
 }
@@ -232,7 +232,7 @@ a:hover {	/* Link hover rule */
     padding:7px;
 }
 
-#surveyFeed td.respond
+#surveyFeed td.respondbox
 {
     text-align:center;
     width:105px;

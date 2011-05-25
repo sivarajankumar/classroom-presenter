@@ -33,24 +33,24 @@
 		$sid = $_POST['sid'];
 		if ($filter == 'mc') {
 			$query = sprintf("SELECT mc.sid, mc.text FROM Survey s, MultipleChoice mc 
-								WHERE s.sid = mc.sid AND s.sessionId = %d", 
+								WHERE s.sid = mc.sid AND s.sessionId = %d AND s.open = 1", 
 								$sid); 
 		} else if ($filter == 'fr') {
 			$query = sprintf("SELECT fr.sid, fr.text FROM Survey s, FreeResponse fr 
-								WHERE s.sid = fr.sid AND s.sessionId = %d", 
+								WHERE s.sid = fr.sid AND s.sessionId = %d AND s.open = 0", 
 								$sid);
 		} else if ($filter == 'none') {
 			$query = sprintf("SELECT * FROM ((SELECT 'mc', s.sid, mc.text FROM Survey s, 
 								MultipleChoice mc WHERE s.sid = mc.sid 
-								AND s.sessionId = %d) UNION 
+								AND s.sessionId = %d AND s.open = 1) UNION 
 								(SELECT 'fr', s.sid, fr.text FROM Survey s, 
 								FreeResponse fr WHERE s.sid = fr.sid AND 
-								s.sessionId = %d)) as sub", 
+								s.sessionId = %d AND s.open = 1)) as sub", 
 								$sid, $sid);
 		} else {
 			die("Incorrect filter argument");
 		}
-			
+
 		// Now check the sort argument
 		$sort = $_POST['sort'];
 		if ($sort == 'mr' && $filter == 'none') {
@@ -97,7 +97,7 @@
                 echo "<td class=question>".$row[1]."</td>";
             }
             // Print out the Respond button
-            echo "<td class=respond><button type=button id=question_".$row[$i].">Respond</button></td>";
+            echo "<td class=respondbox><button class=respond type=button id=question_".$row[$i].">Respond</button></td>";
 
             echo "</tr>";
 		}
