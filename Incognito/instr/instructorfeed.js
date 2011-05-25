@@ -30,25 +30,29 @@ function onFilterChange() {
     window.filter = $("#filter option:selected").text();
     // Once we can get session ID from the backend, we retrieve
     // feeds from the correct session.
-    getFeed(23456, window.filter, window.sort, printToScreen);
+    $sid = $.cookie('sid');
+    getFeed($sid, window.filter, window.sort, printToScreen);
 }
 
 // Handles the event of when the newest sort link has been clicked
 function onNewestSortChange() {
     window.sort = "Newest";
-    getFeed(23456, window.filter, window.sort, printToScreen);
+    $sid = $.cookie('sid');
+    getFeed($sid, window.filter, window.sort, printToScreen);
 }
 
 // Handles the event of when the priority sort link has been clicked
 function onPrioritySortChange() {
     window.sort = "Priority";
-    getFeed(23456, window.filter, window.sort, printToScreen);
+    $sid = $.cookie('sid');
+    getFeed($sid, window.filter, window.sort, printToScreen);
 }
 
 window.onload = function() {
     filter = "None";
     sort = "Newest"; // default to sorting by newest
-    getFeed(23456, window.filter, window.sort, printToScreen);
+    $sid = $.cookie('sid');
+    getFeed($sid, window.filter, window.sort, printToScreen);
     $('#filter').change(onFilterChange);
     $('#newest').click(onNewestSortChange);
     $('#priority').click(onPrioritySortChange);
@@ -67,6 +71,7 @@ function mypopup(){
 setInterval("feedRefresh()", 2000) // Refreshes the feed page every 2 seconds
 
 function feedRefresh() {
-	getFeed(23456, window.filter, window.sort, printToScreen);
+    $sid = $.cookie('sid');
+	getFeed($sid, window.filter, window.sort, printToScreen);
 }
 

@@ -1,6 +1,5 @@
 <?php
     if(!isset($_COOKIE['uid'])) {
-	echo $_SERVER['REMOTE_USER'];
         get_user_id($_SERVER['REMOTE_USER']);
     }
    // if(!isset($_COOKIE['alias'])){
