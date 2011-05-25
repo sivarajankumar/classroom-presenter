@@ -46,9 +46,10 @@
 		// Return the questions and feedback back to the calling Javascript
 		// as a JSON object
 		header('Content-type: application/json');
-		echo json_encode($rows);
+		return json_encode($rows);
 	}
 	
 	$sid = $_POST['sid'];
-	getQuestions($sid);
+	$results = getQuestions($sid);
+	echo $results;
 ?>
