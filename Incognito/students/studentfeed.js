@@ -41,8 +41,8 @@ function onFilterChange() {
 
 // Handles the event of when the newest sort link has been clicked
 function onNewestSortChange() {
-	//$("#newest").html("font-weight: bold");
-	//$("#priority").html("font-weight: normal");
+	$("#newest").css({'font-weight': 'bold', 'color': 'black'});
+	$("#priority").css({'font-weight': 'normal', 'color': '#A00000'});
     window.sort = "Newest";
     $sid = $.cookie('sid');
     if($sid != null){
@@ -54,8 +54,8 @@ function onNewestSortChange() {
 
 // Handles the event of when the priority sort link has been clicked
 function onPrioritySortChange() {
-	//$("#newest").html("font-weight: normal");
-	//$("#priority").html("font-weight: bold");
+	$("#newest").css({'font-weight': 'normal', 'color': '#A00000'});
+	$("#priority").css({'font-weight': 'bold', 'color': 'black'});
     window.sort = "Priority";
     $sid = $.cookie('sid');
     if($sid != null){
@@ -84,6 +84,8 @@ window.onload = function() {
     $('.check').live('click', function () {
         onVote(this.id.substr(7) ,this.id.charAt(6), $uid, this.checked);
     });
+	$("#newest").css({'font-weight': 'bold', 'color': 'black'});
+	$("#priority").css({'font-weight': 'normal'});
 };
 
 setInterval("refreshFeed()", 2000); // refresh every 2000 milliseconds
