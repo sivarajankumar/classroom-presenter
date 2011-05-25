@@ -30,6 +30,7 @@
 		if (!$results) {
 			die("Error: " + mysql_error($db_conn));
 		}
+  
 	}
 
 ?>
