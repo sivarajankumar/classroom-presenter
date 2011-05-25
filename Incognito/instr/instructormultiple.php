@@ -67,6 +67,7 @@
 				<hr />				
 			</div>
 			
+            <div id="feed"></div>
 		</div>
 
 			

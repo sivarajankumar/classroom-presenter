@@ -12,7 +12,8 @@ var filter;
 var sort;
 var survey_id;
 
-// Called after the free response survey form has been submitted
+// Called after the submit button click event happens
+// for free-response surveys
 function freeCallback(v,m,f){
 
     // checks if the submit button was pressed
@@ -22,13 +23,15 @@ function freeCallback(v,m,f){
             // window.survey_id.substr(9) parse the sid out of the string
             // f.response is the answer that the customer submitted
             submitFreeResponse(window.survey_id.substr(9), f.response, cookie);
-            $.prompt('Survey Successfully Submitted: ' + f.response, {prefix:'surveyPopup'});
+            $.prompt('Survey Successfully Submitted', {prefix:'surveyPopup'});
         } else {
             $.prompt('Survey Failed to Submit', {prefix:'surveyPopup'});
         }
     }
 }
 
+// Called after the submit  button click event happens
+// for multiple-choice surveys
 function multiCallback(v,m,f) {
     if(v) {
         var option = f.option;
