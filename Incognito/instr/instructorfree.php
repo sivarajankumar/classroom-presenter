@@ -17,6 +17,7 @@
 		<!-- <script type="text/javascript" src="instructorSettings.js"></script> -->
         <!-- <script type="text/javascript" src="instructorfeed.js"></script> -->
         <!-- <script type="text/javascript" src="scripts/InstrSettingsView.js"></script> -->
+        <script type="text/javascript" src="jquery-impromptu.3.1.js"></script>
         <script type="text/javascript" src="scripts/InstrSurveyView.js"></script>
         <script type="text/javascript" src="instructorsurvey.js"></script>
 	</head>
@@ -69,13 +70,17 @@
 				</span>				  
 			</div>
 			
-			<div id="feedbox">
-				<div class="surveyCol"> Type	<!-- Column names in feed -->
-				</div>
-				<div id="surveyQuestCol"> Question
-				</div>	
-				<div class="surveyCol"> Start/Stop Survey
-				</div>	
+			<div id="surveyFeed">
+                <table>
+				<td class="surveytype"> Type	<!-- Column names in feed -->
+				</td>
+				<td class="question"> Question
+				</td>	
+				<td class="surveystrtstp"> Start/Stop Survey
+				</td>
+                <td class="results"> Results
+                </td>
+                </table>
 				<hr />				
 			</div>
 			

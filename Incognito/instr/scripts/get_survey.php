@@ -102,7 +102,9 @@
                 echo "<td class=surveystrtstp><button class=respond type=button id=question_".$row[$i]." value=close>Start Survey</button></td>";
             else
                 echo "<td class=surveystrtstp><button class=respond type=button id=question_".$row[$i]." value=open>Stop Survey</button></td>";
-
+            
+            echo "<td class=results><button class=getresults type=button id=question_".$row[$i]." value=open>Get Results</button></td>";
+            
             echo "</tr>";
 		}
         echo "</table>";

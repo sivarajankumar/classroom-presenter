@@ -13,6 +13,7 @@
 		<link href="pages.css" type="text/css" rel="stylesheet" />
         <script src="jquery-1.5.2.js" type="text/javascript"></script>
 		<script type="text/javascript" src="jquery.cookie.js"></script>
+        <script type="text/javascript" src="jquery-impromptu.3.1.js"></script>
         <script type="text/javascript" src="scripts/InstrSurveyView.js"></script>
         <script type="text/javascript" src="instructormultiple.js"></script>
 	</head>
@@ -57,13 +58,17 @@
 				</span>				  
 			</div>
 			
-			<div id="feedbox">
-				<div class="surveyCol"> Type	<!-- Column names in feed -->
-				</div>
-				<div id="surveyQuestCol"> Question
-				</div>	
-				<div class="surveyCol"> Start/Stop Survey
-				</div>	
+			<div id="surveyFeed">
+                <table>
+				<td class="surveytype"> Type	<!-- Column names in feed -->
+				</td>
+				<td class="question"> Question
+				</td>	
+				<td class="surveystrtstp"> Start/Stop Survey
+				</td>
+                <td class="results"> Results
+                </td>
+                </table>
 				<hr />				
 			</div>
 			
