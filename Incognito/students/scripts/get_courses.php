@@ -36,6 +36,7 @@
 		}
 		
 		// Now fetch all of the results and echo
+		$joined = 0; 
 		while ($row = mysql_fetch_row($results)) {
 			 
 			// Check the open status of the session
@@ -45,18 +46,19 @@
 				$query = sprintf("SELECT * FROM Joined WHERE uid = %d AND sid = %d;",
 								$row[0], $row[1]);
 				$result = mysql_query($query, $db_conn);
-				if (mysql_num_rows($result) == 0) {
+				if (mysql_num_rows($result) == 0 && !joined) {
 					
 					echo "<p class =\""  . $row[4] . "\">" . $row[4] .
 					"<button id=\"" . $row[1] . "\" class=\"joinButton\">Join Session</button><button id=\"" .
 					$row[2] . "\" class=\"courseRemoveButton\">Delete</button></p>";
-
+				} else if (mysql_num_rows($result) && joined) {
+					echo "<p class =\""  . $row[4] . "\">" . $row[4] . 
+						"<button id=\"" . $row[2] . "\" class=\"courseRemoveButton\">Delete</button></p>";
 				} else {
 					
 					echo "<p class =\""  . $row[4] . "\">" . $row[4] . 
-					"<button id=\"" . $row[1] . "\" class=\"quitButton\">Quit Session</button><button id=\"" . 
-					$row[2] . "\" class=\"courseRemoveButton\">Delete</button></p>";
-					
+					"<button id=\"" . $row[1] . "\" class=\"quitButton\">Quit Session</button>";
+					joined = 1; 	
 				}
 			} else {
 				
