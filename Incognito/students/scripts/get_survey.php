@@ -74,7 +74,7 @@
 		// For now I am just going to echo a json_encoded array,
 		// this can change later if we want to echo direct HTML code
 
-		$i = 0;
+		$i = 1;
         echo "<table id=surveyFeed>";
 		while ($row = mysql_fetch_row($results)) {
 
@@ -93,10 +93,11 @@
                     echo "<td class=surveytype>Multiple Choice</td>";
                 echo "<td class=question>".$row[2]."</td>";
             } else {
+                $i = $i - 1;
                 echo "<td class=question>".$row[1]."</td>";
             }
             // Print out the Respond button
-            echo "<td class=respond><button type=button id=question_".$row[$i - 1].">Respond</button></td>";
+            echo "<td class=respond><button type=button id=question_".$row[$i].">Respond</button></td>";
 
             echo "</tr>";
 		}
