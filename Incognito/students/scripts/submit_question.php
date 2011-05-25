@@ -1,6 +1,6 @@
 <?php
 	
-	include 'db_credentials.php';
+	include '../../db_credentials.php';
 	
 	// Connect to server
 	$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);

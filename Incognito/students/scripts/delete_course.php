@@ -1,5 +1,5 @@
 <?php
-	include 'db_credentials.php';
+	include '../../db_credentials.php';
 	// This php file will delete a course from a student's course list
 	// given a uid for the student and a cid for the course
 	

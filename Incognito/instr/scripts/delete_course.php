@@ -1,7 +1,7 @@
 <?php
 	
 	// Include the db credentials
-	include "db_credentials.php";	
+	include "../../db_credentials.php";	
 	 
 	// This function will delete a course given a course id.
 	if (isset($_POST['cid']) && isset($_POST['uid'])) {

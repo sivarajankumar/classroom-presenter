@@ -8,9 +8,8 @@
 	//				  'fr' submits a free response answer
 	
 	// Include the db_credentials
-	include 'db_credentials.php';
-    
-    echo "testing";
+	include '../../db_credentials.php';
+   
     
 	// Check if the variables are set
 	if(isset($_POST['sid']) && isset($_POST['answer']) && isset($_POST['type'])) {

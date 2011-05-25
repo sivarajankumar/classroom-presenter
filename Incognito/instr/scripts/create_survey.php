@@ -7,7 +7,7 @@
 	// Type: 'mc' Create a multiple choice survey
 	//		 'fr' Create a free response survey
 
-	include 'db_credentials.php';
+	include '../../db_credentials.php';
 		
 	// Check if we are given the correct arguments
 	if (isset($_POST['sid']) && isset($_POST['text']) && isset($_POST['type'])) {

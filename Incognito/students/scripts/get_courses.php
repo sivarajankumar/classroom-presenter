@@ -1,5 +1,5 @@
 <?php
-	include 'db_credentials.php';
+	include '../../db_credentials.php';
 	// This php script will take a student id and echo an array containing 
 	// all of the courses that the student belongs too given a student id.
 	

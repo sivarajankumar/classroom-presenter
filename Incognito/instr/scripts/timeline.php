@@ -5,7 +5,7 @@
 	// In addition, we are given a time so that we can return an array that
 	// has the following format: a = {time, count}
 
-	include 'db_credentials.php'; 
+	include '../../db_credentials.php'; 
 	
 	// Ensure that we are given a session id
 	if (isset($_POST['id']) && isset($_POST['time'])) {

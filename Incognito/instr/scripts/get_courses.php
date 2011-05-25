@@ -1,5 +1,5 @@
 <?php
-	include 'db_credentials.php';
+	include '../../db_credentials.php';
 	// This php script get's all of the courses that a instructor 
 	// teaches and prints some html for buttons
 

@@ -1,6 +1,6 @@
 <?php
 
-	include 'db_credentials.php';
+	include '../../db_credentials.php';
 
 	// This php script get's the alias for a student given a email
 	

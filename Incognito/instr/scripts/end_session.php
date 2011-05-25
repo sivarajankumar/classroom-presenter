@@ -1,5 +1,5 @@
 <?php
-	include 'db_credentials.php';
+	include '../../db_credentials.php';
 	// This file, given a sid, will end the session
 	
 	if (isset($_POST['cid'])) {

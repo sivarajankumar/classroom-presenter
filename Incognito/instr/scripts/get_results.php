@@ -3,7 +3,7 @@
 	// Given survey id this php script will return the current results of the 
 	// survey.
 	
-	include 'db_credentials.php';
+	include '../../db_credentials.php';
 	
 	// Check if we are given an sid
 	if ($_POST['sid']) {
