@@ -27,7 +27,7 @@ include '../../db_credentials.php';
 		if($row){
 			$sid = $row[0];
 			// close the session down
-			$query = sprintf("DELETE FROM Session where sid = %d;", $sid);
+			$query = sprintf("UPDATE Session SET open = 0 where uid='%d' and open=1", $uid);
 			$results = mysql_query($query, $db_conn);
 			// Error checking
 			if (!$results) {
