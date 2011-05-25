@@ -7,7 +7,8 @@
  var options = {
         lines: { show: true },
         points: { show: true },
-        xaxis: { tickDecimals: 0, tickSize: 5 }
+        xaxis: { min: 0, tickDecimals: 0, tickSize: 5 },
+        yaxis: { min: 0, max: 10, tickDecimals: 0, tickSize: 2 }
     };
 	
 var subtotal = 0;
@@ -16,7 +17,7 @@ var currentTime = 0; //used to keep track of where to plot on x-axis
 var timer_is_on=0;
 
 function timedCount(){
-	getActivity($.cookie("sid"), currentTime);	//$.cookie("sid")
+	getActivity(23456, currentTime);	//$.cookie("sid")
 	currentTime = currentTime+5;
 	t=setTimeout("timedCount()",5000);
 }
