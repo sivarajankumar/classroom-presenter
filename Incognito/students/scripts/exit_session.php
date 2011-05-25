@@ -19,6 +19,7 @@
 		mysql_select_db($db_name, $db_conn);
 		
 		$sid = $_POST['sid'];
+		$uid = $_POST['uid'];
 		$query = sprintf("DELETE FROM Joined WHERE uid = %d AND sid = %d;", 
 							$uid, $sid);
 		$results = mysql_query($query, $db_conn);
