@@ -1,10 +1,8 @@
-<?php
+<?php	
 
 	include "../../db_credentials.php";
-
 	function connectToDB()
 	{
-
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 	 
 		if (!$db_conn) {
@@ -17,10 +15,11 @@
 
 	function answer($type, $id, $flag)
 	{
-		$db_conn = connectToDB();
+				
 
 		$query = null;
-
+		$db_conn = connectToDB();
+		
 		if ($type == 'Q')
 		{
 			if ($flag == "true")
@@ -49,9 +48,8 @@
 				die("Query error: " . mysql_error());
 			}
 		}
-		mysql_close($db_conn);
-	}
-	
+	}	
+
 	$type = $_POST['type'];	// 'Q' for question, 'F' for feedback
 	$id = $_POST['id'];		// ID for the question or feedback
 	$flag = $_POST['flag'];	// "true" if we want to set the entry to answered/read, "false" for unanswered/not read
