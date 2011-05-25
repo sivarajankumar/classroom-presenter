@@ -60,7 +60,7 @@
 		} else if ($sort == 'none') {
 			$query = $query . ";";
 		} else {
-			die("Incorrect sort argument"); 
+			die("Incorrect sort argument");
 		}
 		
 		// Now run the query and return the results

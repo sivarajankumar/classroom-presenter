@@ -1,6 +1,3 @@
-var filter;
-var sort;
-
 function printToScreen(data){
     $("#feed").html(data);
 }
