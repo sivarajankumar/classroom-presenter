@@ -28,12 +28,14 @@
 		
 		// Check the number of results
 		if (mysql_num_rows($results) > 0) {
+            echo "<table id=resultsPop><tr><td class=choice>Choice</td><td class=count>Count</td></tr></table><hr>";
             echo "<table id=resultsPop>";
-            echo "<tr><td class=choice>Choice</td><td class=count>Count</td></tr>";
 			while ($row = mysql_fetch_row($results)) {
 				echo "<tr><td class=choice>".$row[0]."</td><td class=count>".$row[1]."</td></tr>";
 			}
+            echo"</hr>";
             echo "</table>";
+            echo "</br>";
 		} else {
 			
 			// Search the free response answers
@@ -44,10 +46,14 @@
 			if (!$results) {
 				die("Error: " . mysql_error($db_conn));
 			}
-			
+			echo "<table id=resultsPop><tr><td>Free Response</td></tr></table><hr>";
+            echo "<table id=resultsPop>";
 			while ($row = mysql_fetch_row($results)) {
-				echo $row[0]."<br />";
+				echo "<tr><td>".$row[0]."</td>";
 			}
+            echo "</hr>";
+            echo "</table>";
+            echo "</br>";
 		}
 	}
 

@@ -309,7 +309,8 @@
 					echo "<tr class=alt>";
 				else
 					echo "<tr>";
-				if($feed[$row]["voted"] == 1)
+                echo $feed[$row]["voted"];
+				if((int)$feed[$row]["voted"] == 1)
 					echo "<td class=checked><input class=check type=checkbox id=check_".$feed[$row]["type"].$feed[$row]["id"]." checked=true /></td>";
 				else
 					echo "<td class=checked><input class=check type=checkbox id=check_".$feed[$row]["type"].$feed[$row]["id"]." /></td>";
