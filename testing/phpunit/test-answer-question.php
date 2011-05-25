@@ -1,24 +1,42 @@
 <?php
-	
-	include 'db_credentials.php';
-	
-	// Connect to the database and insert an arbitrary question
-	$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
-	if (!$db_conn) {
-		die("Could not connect");
-	}
-	
-	mysql_select_db($db_name, $db_conn);
-	
+	 
+		
 	
 	// This test script tests the scripts that are designed to update
 	// the state in the database when an instructor marks a question as
 	// answered or feedback marked as read.
 	class testAnswerQuestion extends PHPUnit_Framework_TestCase
 	{
+		// This function sends test values to the script we are testing. In this case it is 
+		// the answer-question script
+		public function sendTestValues($id, $type, $flag) {
+			
+			// Test setting the question to answered
+			$_POST['type'] = $type;
+			$_POST['id'] = $id; 
+			$_POST['flag'] = $flag;  	
+			include_once "../../Incognito/instr/scripts/answer_question.php";
+			answer($type, $id, $flag); 
+		}
 	
+		// This function handles all of the connecting to a db
+		public function connectToDatabase() {
+			
+			include 'db_credentials.php';
+	
+			// Connect to the database and insert an arbitrary question
+			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+			if (!$db_conn) {
+				die("Could not connect");
+			}
+	
+			mysql_select_db($db_name, $db_conn);
+			
+			return $db_conn; 
+		}
+		
 		// This function adds feedback to the database
-		public function addFeedback($read) {
+		public function addFeedback($read, $db_conn) {
 			
 			// Insert the Feedback
 			$query = "INSERT INTO Feedback (text, numvotes, isread) VALUES ('test', 0, ". $read . ");";
@@ -45,7 +63,7 @@
 		}
 		
 		// This function adds a question to the database
-		public function addQuestion($answered) {
+		public function addQuestion($answered, $db_conn) {
 			
 			// Insert the question
 			$query = "INSERT INTO Question (text, numvotes, answered) VALUES ('test', 0, " . $answered . ");";
@@ -72,19 +90,17 @@
 		}
 	
 		// This function tests adding a student
-		public function testAnswerQuestion() {
+		public function testAnswerQ() {
+			$db_conn = $this->connectToDatabase();
 			
 			// Add a question
-			$qid = addQuestion(0);
+			$qid = $this->addQuestion(0, $db_conn);
 			
-			// Test setting the question to answered
-			$_POST['id'] = $qid;
-			$_POST['type'] = "Q";
-			$_POST['flag'] = "true";
-	
-			include "../../Incognito/students/scripts/answer_question.php";
-				
+			// Send the test values
+			$this->sendTestValues($qid, "Q", "true"); 	
+			
 			// Now run a query to ensure that the flag is set to true
+			$db_conn = $this->connectToDatabase(); 
 			$query = "SELECT answered FROM Question WHERE qid = " . $qid . ";";
 			$results = mysql_query($query, $db_conn);
 				
@@ -94,24 +110,21 @@
 			}
 				
 			$row = mysql_fetch_row($results);
-				
-			$this->assertEquals(1, $row[0]);
+			$ans = (integer)$row[0];	
+			$this->assertEquals(1, $ans);
 		}
 		
 		// This function tests the ability to change a question
 		// from answered to unanswered
 		public function testUnanswerQuestion() {
-			
+			$db_conn = $this->connectToDatabase();
+	
 			// Add a question
-			$qid = addQuestion(1);
+			$qid = $this->addQuestion(1, $db_conn);
 			
 			// Then test unanswering the question
-			$_POST['id'] = $qid;
-			$_POST['type'] = "Q";
-			$_POST['flag'] = "false";
-				
-			include "../../Incognito/students/scripts/answer_question.php";
-				
+			$this->sendTestValues($qid, "Q", "false"); 		
+		
 			// Now run a query to ensure that the flag is set to false
 			$query = "SELECT answered FROM Question WHERE qid = " . $qid . ";";
 			$results = mysql_query($query, $db_conn);
@@ -123,25 +136,22 @@
 				
 			$row = mysql_fetch_row($results);
 				
-			$this->assertEquals(0, $row[0]);
+			$this->assertEquals(0, (int)$row[0]);
 		}
 		
 		// This function marks a piece of feedback as unread and 
 		// tests whether the state was changed in the database
 		public function testUnreadFeedback() {
-			
+			$db_conn = $this->connectToDatabase();
+	
 			// First, add a piece of feedback we can unread
-			$fid = addFeedback(1);
+			$fid = $this->addFeedback(1, $db_conn);
 			
 			// Then test unanswering the question
-			$_POST['id'] = $fid;
-			$_POST['type'] = "F";
-			$_POST['flag'] = "false";
-				
-			include "../../Incognito/students/scripts/answer_question.php";
-				
+			$this->sendTestValues($fid, "F", "false"); 			
+	
 			// Now run a query to ensure that the flag is set to false
-			$query = "SELECT answered FROM Feedback WHERE fid = " . $qid . ";";
+			$query = "SELECT isread FROM Feedback WHERE fid = " . $fid . ";";
 			$results = mysql_query($query, $db_conn);
 				
 			// Error check
@@ -150,26 +160,22 @@
 			}
 				
 			$row = mysql_fetch_row($results);
-				
-			$this->assertEquals(0, $row[0]);
+			$this->assertEquals(0, (int)$row[0]);
 		}
 	
 		// This function attempts to read a piece of feedback and
 		// tests whether the state was changed in the database
-		public function tesReadFeedback() {
+		public function testReadFeedback() {
+			$db_conn = $this->connectToDatabase();
 
 			// First, add a piece of feedback we can read
-			$fid = addFeedback(0);
+			$fid = $this->addFeedback(0, $db_conn);
 			
 			// Test setting the question to answered
-			$_POST['id'] = $fid;
-			$_POST['type'] = "F";
-			$_POST['flag'] = "true";
+			$this->sendTestValues($fid, "F", "true"); 			
 	
-			include "../../Incognito/students/scripts/answer_question.php";
-				
 			// Now run a query to ensure that the flag is set to true
-			$query = "SELECT answered FROM Feedback WHERE fid = " . $fid . ";";
+			$query = "SELECT isread FROM Feedback WHERE fid = " . $fid . ";";
 			$results = mysql_query($query, $db_conn);
 				
 			// Error check
@@ -179,7 +185,7 @@
 				
 			$row = mysql_fetch_row($results);
 				
-			$this->assertEquals(1, $row[0]);
+			$this->assertEquals(1, (int)$row[0]);
 		}
 	}
 	
