@@ -70,13 +70,11 @@
 			</div>
 			
 			<div id="feedbox">
-				<div class="surveyCol"> Status	<!-- Column names in feed -->
-				</div>
-				<div class="surveyCol"> Responses				
+				<div class="surveyCol"> Type	<!-- Column names in feed -->
 				</div>
 				<div id="surveyQuestCol"> Question
 				</div>	
-				<div class="surveyCol"> View Responses
+				<div class="surveyCol"> Start/Stop Survey
 				</div>	
 				<hr />				
 			</div>
