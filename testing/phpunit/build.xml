@@ -35,6 +35,12 @@
 	 <arg line="test-studentfeed.php" />
 		</exec>
 		 </target>
+		 
+<target name="testAutoComplete">
+	<exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-autocomplete.php" />
+		</exec>
+		 </target>
 
  <target name="build" depends="simpleTest"/>
  <target name="logout" depends="testLogout"/>
@@ -42,5 +48,6 @@
  <target name="submitQuestion" depends="testSubmitQuestion"/>
  <target name="submitVote" depends="testSubmitVote"/>
  <target name="studentFeed" depends="testStudentFeed"/>
+ <target name="autocomplete" depends="testAutoComplete"/>
 
  </project>
