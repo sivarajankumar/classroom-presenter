@@ -38,7 +38,9 @@
 					</div>
 				</div>
 
-        <script>
+        <script type="text/javascript">
+        $sid = $.cookie('sid');
+        if($sid != null) {
           YUI({ filter: 'raw' }).use("autocomplete", "autocomplete-filters", "autocomplete-highlighters", function (Y) {
             Y.one('#ac-input').plug(Y.Plugin.AutoComplete, {
               resultFilters    : 'phraseMatch',
@@ -47,7 +49,7 @@
               $.ajax({
                 type: "POST",
                 url: "scripts/studenthome_lookup_questions.php",
-                data: "sid=23456", // still need to retrieve the session ID dynamically.
+                data: "sid=" + $sid, // still need to retrieve the session ID dynamically.
                 success: function(msg){
                   data = new Array();
                   for (var i = 0; i < msg.length; i++)
@@ -61,6 +63,7 @@
             }
             });
           });
+        }
         </script>
 
 			</form>
