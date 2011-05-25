@@ -36,6 +36,8 @@ function onFilterChange() {
 
 // Handles the event of when the newest sort link has been clicked
 function onNewestSortChange() {
+	$("#newest").css({'font-weight': 'bold', 'color': 'black'});
+	$("#priority").css({'font-weight': 'normal', 'color': '#A00000'});
     window.sort = "Newest";
     $sid = $.cookie('sid');
     getFeed($sid, window.filter, window.sort, printToScreen);
@@ -43,6 +45,8 @@ function onNewestSortChange() {
 
 // Handles the event of when the priority sort link has been clicked
 function onPrioritySortChange() {
+	$("#newest").css({'font-weight': 'normal', 'color': '#A00000'});
+	$("#priority").css({'font-weight': 'bold', 'color': 'black'});
     window.sort = "Priority";
     $sid = $.cookie('sid');
     getFeed($sid, window.filter, window.sort, printToScreen);
@@ -59,6 +63,8 @@ window.onload = function() {
     $('.check').live('click', function () {
         onMarkAnswered(this.id.charAt(6),this.id.substr(7),this.checked);
     });
+	$("#newest").css({'font-weight': 'bold', 'color': 'black'});
+	$("#priority").css({'font-weight': 'normal'});
 };
 $("#timeline").live('click', function(event){
 	mypopup();
