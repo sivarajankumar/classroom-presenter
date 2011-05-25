@@ -13,4 +13,8 @@
 		//$username = "chriacua";
 		//$password = "b67wwpAH";
 		//$db_name = "chriacua_testui";
+		
+		//$username = "furby16";
+		//$password = "oYveR99b";
+		//$db_name = "furby16_incognito";
 ?>
