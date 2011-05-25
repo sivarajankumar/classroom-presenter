@@ -49,21 +49,21 @@
 				if (mysql_num_rows($result) == 0 && !$joined) {
 					
 					echo "<p class =\""  . $row[4] . "\">" . $row[4] .
-					"<button id=\"" . $row[1] . "\" class=\"joinButton\">Join Session</button><button id=\"" .
+					" <button id=\"" . $row[1] . "\" class=\"joinButton\">Join Session</button><button id=\"" .
 					$row[2] . "\" class=\"courseRemoveButton\">Delete</button></p>";
 				} else if (mysql_num_rows($result) && $joined) {
 					echo "<p class =\""  . $row[4] . "\">" . $row[4] . 
-						"<button id=\"" . $row[2] . "\" class=\"courseRemoveButton\">Delete</button></p>";
+						" <button id=\"" . $row[2] . "\" class=\"courseRemoveButton\">Delete</button></p>";
 				} else {
 					
 					echo "<p class =\""  . $row[4] . "\">" . $row[4] . 
-					"<button id=\"" . $row[1] . "\" class=\"quitButton\">Quit Session</button>";
+					" <button id=\"" . $row[1] . "\" class=\"quitButton\">Quit Session</button>";
 					$joined = 1; 	
 				}
 			} else {
 				
 				echo "<p class =\""  . $row[4] . "\">" . $row[4] . 
-				"<button id=\"" . $row[2] . "\" class=\"courseRemoveButton\">Delete</button></p>";
+				" <button id=\"" . $row[2] . "\" class=\"courseRemoveButton\">Delete</button></p>";
 				
 			}
 
