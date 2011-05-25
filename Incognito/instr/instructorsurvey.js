@@ -30,6 +30,7 @@ function onCreateFree() {
     // If thre is no session, then no free response is
     // created.
     $sid = $.cookie('sid');
+    
     if($sid){
         var text = submitform.elements["textfeed"].value;
         // var type = submitsurvey.elements["typeSurvey"].value;
