@@ -16,7 +16,7 @@
     
 	// Check for the correct arguments
 	if (isset($_POST['sid']) && isset($_POST['filter']) && isset($_POST['sort'])) {
-		
+
 		// Connect and select the correct database
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 		if (!$db_conn) {
@@ -32,20 +32,20 @@
 		$filter = $_POST['filter'];
 		$sid = $_POST['sid'];
 		if ($filter == 'mc') {
-			$query = sprintf("SELECT mc.sid, mc.text FROM Survey s, MultipleChoice mc 
-								WHERE s.sid = mc.sid AND s.sessionId = %d AND s.open = 1", 
+			$query = sprintf("SELECT mc.sid, mc.text, s.open FROM Survey s, MultipleChoice mc 
+								WHERE s.sid = mc.sid AND s.sessionId = %d", 
 								$sid); 
 		} else if ($filter == 'fr') {
-			$query = sprintf("SELECT fr.sid, fr.text FROM Survey s, FreeResponse fr 
-								WHERE s.sid = fr.sid AND s.sessionId = %d AND s.open = 0", 
+			$query = sprintf("SELECT fr.sid, fr.text, s.open FROM Survey s, FreeResponse fr 
+								WHERE s.sid = fr.sid AND s.sessionId = %d", 
 								$sid);
 		} else if ($filter == 'none') {
-			$query = sprintf("SELECT * FROM ((SELECT 'mc', s.sid, mc.text FROM Survey s, 
+			$query = sprintf("SELECT * FROM ((SELECT 'mc', s.sid, mc.text, s.open FROM Survey s, 
 								MultipleChoice mc WHERE s.sid = mc.sid 
-								AND s.sessionId = %d AND s.open = 1) UNION 
-								(SELECT 'fr', s.sid, fr.text FROM Survey s, 
+								AND s.sessionId = %d) UNION 
+								(SELECT 'fr', s.sid, fr.text, s.open FROM Survey s, 
 								FreeResponse fr WHERE s.sid = fr.sid AND 
-								s.sessionId = %d AND s.open = 1)) as sub", 
+								s.sessionId = %d)) as sub", 
 								$sid, $sid);
 		} else {
 			die("Incorrect filter argument");
@@ -73,15 +73,36 @@
 		
 		// For now I am just going to echo a json_encoded array,
 		// this can change later if we want to echo direct HTML code
-		$rows;
-		$i = 0;
+
+		$i = 1;
         echo "<table id=surveyFeed>";
 		while ($row = mysql_fetch_row($results)) {
+        
             echo "<tr class=alt>";
+
+            // Since there is no filter, there is an additional
+            // attribute of whether or not it is mc or fr
+            if( $filter == 'fr' )
+                echo "<td class=surveytype>Free Response</td>";
+            else if( $filter == 'mc' )
+                echo "<td class=surveytype>Multiple Choice</td>";
+            if( $filter == 'none') {
+                if( $row[0] == 'fr' )
+                    echo "<td class=surveytype>Free Response</td>";
+                else if( $row[0] == 'mc' )
+                    echo "<td class=surveytype>Multiple Choice</td>";
+                echo "<td class=question>".$row[2]."</td>";
+            } else {
+                $i = $i - 1;
+                echo "<td class=question>".$row[1]."</td>";
+            }
             
-            // Print out the question for the survey
-            echo "<td class=instrs>".$row[1]."</td>";
-            
+            // Print out the Start/Stop Survey button
+            if($row[$i+2] == 0)
+                echo "<td class=surveystrtstp><button class=respond type=button id=question_".$row[$i]." value=close>Start Survey</button></td>";
+            else
+                echo "<td class=surveystrtstp><button class=respond type=button id=question_".$row[$i]." value=open>Stop Survey</button></td>";
+
             echo "</tr>";
 		}
         echo "</table>";

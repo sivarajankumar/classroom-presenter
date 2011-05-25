@@ -75,19 +75,19 @@ window.onload = function() {
     
     $('.respond').live('click', function () {
         survey_id = $(this).attr("id");
-        var question = $(this).parent().find('.question').text();
-        var stype = $(this).parent().find('.surveytype').text();
-        
+        var question = $(this).parent().parent().find('.question').text();
+        var stype = $(this).parent().parent().find('.surveytype').text();
+        alert(stype);
         // Handle the types of survey
         if(stype == 'Free Response') {
         
             var survey_text = question + '<br /><input type="text" id="' + survey_id + '" name="response" value="Respond here" />';
             $.prompt(survey_text,{ callback: freeCallback, buttons: { Submit: true, Cancel: false }, prefix:'surveyPopup'});
         } else if(stype == 'Multiple Choice') {
-            var option1 = "Test1";
-            var option2 = "Test2";
-            var option3 = "Test3";
-            var option4 = "Test4";
+            var option1 = "Option 1";
+            var option2 = "Option 2";
+            var option3 = "Option 3";
+            var option4 = "Option 4";
             
             var survey_text = question + '<br /><br /><input type="radio" name="option" value="1">' + option1 + '</input><br /><input type="radio" name="option" value="2">' + option2 + '</input><br /><input type="radio" name="option" value="3">' + option3 + '</input><br /><input type="radio" name="option" value="4">' + option4 + '</input><br /><br />';
             $.prompt(survey_text,{ callback: multiCallback, buttons: { Submit: true, Cancel: false }, prefix:'surveyPopup'});

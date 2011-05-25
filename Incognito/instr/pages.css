@@ -146,6 +146,37 @@ span {
 	margin-bottom: 30px;
 }
 
+/* survey feed styles */
+#surveyFeed td.surveytype
+{
+    text-align:center;
+    width:93px;
+    font-family: Calibri;
+    padding:5px;
+}
+
+#surveyFeed td.question
+{
+    text-align:left;
+    width:650px;
+    font-family: Calibri;
+    padding:7px;
+}
+
+#surveyFeed td.surveystrtstp
+{
+    text-align:center;
+    width:120px;
+    font-family: Calibri;
+    padding:7px;
+}
+
+#surveyFeed tr.alt td 
+{
+  color:#000000;
+  background-color:#EAF2D3;
+}
+
 #feedTable td.checked
 {
   text-align:center;

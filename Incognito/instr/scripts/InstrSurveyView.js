@@ -5,7 +5,6 @@ database. */
 // This function takes a session id and question text, 
 // then creates a new multiple choice survey. 
 function createMC(sessionId, questionText, getSurvey, choices) {
-	alert("Success");
 	$.post("scripts/create_survey.php", 
 			{sid: sessionId, text:questionText, type:'mc', choices: choices},
 			function(data) {
@@ -24,16 +23,16 @@ function createFR(sessionId, questionText, getSurvey) {
 }
 
 // This function takes a survey id and opens the survey.
-function startSurvey(sessionId) {
+function startSurvey(surveyId) {
 	$.post("scripts/start_survey.php",
-			{sid: sessionId});
+			{sid: surveyId});
 }
 
 // This function takes a survey id and closes the survey
 //This function takes a survey id and opens the survey.
-function stopSurvey(sessionId) {
+function stopSurvey(surveyId) {
 	$.post("scripts/close_survey.php",
-			{sid: sessionId});
+			{sid: surveyId});
 }
 
 // This function, given a surveyId, a filter setting, a sort setting, 
@@ -66,6 +65,21 @@ function getResults(surveyId, handler) {
 			});
 }
 
+window.onload = function() {
+
+    // On Click event start and stop surveying
+    $('.respond').live('click', function () {
+            var survey_id = $(this).attr("id");
+            if($(this).attr("value") == 'close') {
+                alert(survey_id.substr(9));
+                startSurvey(survey_id.substr(9));
+            } else if($(this).attr("value") == 'open') {
+                stopSurvey(survey_id.substr(9));
+            }
+            
+        });
+};
+
 function printToScreen(data){
     $("#feed").html(data);
 }
@@ -75,5 +89,5 @@ setInterval("feedRefresh()", 2000) // Refreshes the feed page every 2 seconds
 function feedRefresh() {
     $sid = $.cookie('sid');
     if ($sid)
-        getSurvey($sid, 'none', 'none', printToScreen);
+        getSurvey($sid, "none", "none", printToScreen);
 }
