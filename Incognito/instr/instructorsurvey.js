@@ -25,18 +25,22 @@ function printToScreen(data){
 }
 
 // creates a new free-response survey
-function onCreateFree() {
-    var text = submitform.elements["textfeed"].value;
-    // var type = submitsurvey.elements["typeSurvey"].value;
-    if ( text.length == 0 )
-	{
-		alert("Please enter a free-response survey in the text box before submitting.");
-	}
-	else
-	{
-        var surveyId = createFR(24104, text, printToScreen);
-        // $.cookie("surveyId",surveyId);
-        getSurvey(surveyId, "None", "Newest", printToScreen);
+function onCreateFree() { 
+    // check to see if there is a session in session. 
+    // If thre is no session, then no free response is
+    // created.
+    $sid = $.cookie('sid');
+    if($sid){
+        var text = submitform.elements["textfeed"].value;
+        // var type = submitsurvey.elements["typeSurvey"].value;
+         if ( text.length == 0 )  {
+	     	alert("Please enter a free-response survey in the text box before submitting.");
+	 } else {
+             var surveyId = createFR($sid, text, printToScreen);
+            getSurvey(surveyId, "None", "Newest", printToScreen);
+         }
+    }else{
+        alert("Must open a session to create a Free Response. \nHint: \n    What class are you currently teaching? \n    Open the class session in the settings page!");
     }
 }
 

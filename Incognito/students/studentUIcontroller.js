@@ -11,15 +11,6 @@ echo $question;
 
 var currentSession;
 var timestamp;
-
-function getContent(){
-
-}
-
-function onUpdate(){
-
-}
-
 function onSubmit(){
 	var text = submitform.elements["texthome"].value; // Haven't figured out the jQuery for this yet.
 	//var uid = 444;
@@ -31,7 +22,7 @@ function onSubmit(){
 	else
 	{
 		var type = $('input[name=submitType]:checked', '#submitform').val();
-		var sid = 23456;
+		var sid = $.cookie('sid');
 		var dataString;
 		var numvotes;
 		
