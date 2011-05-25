@@ -26,7 +26,7 @@ function getCourse(data) {
    $(".closeOptionButton").live('click',function(event) {
 		endSession($(this).attr('id'));
 		getCourses($uid, printToScreen);
-		$.cookie('sid', '', {expires: -1, path: '/'});
+		$.cookie('sid', "", {expires: -1, path: '/'});
 	});
    
     //starts a session
