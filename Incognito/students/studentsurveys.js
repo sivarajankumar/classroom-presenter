@@ -1,16 +1,7 @@
-// Makes the call to retrieve feed data
-function getFeed(sid, username, filter, sort, callback) {
-    // Make the HTTP request
-    $.post("scripts/studentfeed_lookup_questions.php",
-    {sid: sid, username: username, filter: filter, sort: sort, callback: callback},
-    function(data) {
-        callback(data);
-    });
-}
-
 var filter;
 var sort;
 var survey_id;
+var question;
 
 // Called after the submit button click event happens
 // for free-response surveys
@@ -67,6 +58,12 @@ function onPrioritySortChange() {
     // getFeed(23456, "ashen", window.filter, window.sort, printToScreen);
 }
 
+// Handles the event of multiple-choice survey popup
+function multiPopup(data) {
+
+    var survey_text = window.question + '<br /><br />' + data + '<br />';
+    $.prompt(survey_text,{ callback: multiCallback, buttons: { Submit: true, Cancel: false }, prefix:'surveyPopup'});
+}
 
 // On initial window load, initialize events and reset
 // filter and sort variables
@@ -78,7 +75,7 @@ window.onload = function() {
     
     $('.respond').live('click', function () {
         survey_id = $(this).attr("id");
-        var question = $(this).parent().parent().find('.question').text();
+        question = $(this).parent().parent().find('.question').text();
         var stype = $(this).parent().parent().find('.surveytype').text();
 
         // Handle the types of survey
@@ -87,13 +84,7 @@ window.onload = function() {
             var survey_text = question + '<br /><input type="text" id="' + survey_id + '" name="response" value="Respond here" />';
             $.prompt(survey_text,{ callback: freeCallback, buttons: { Submit: true, Cancel: false }, prefix:'surveyPopup'});
         } else if(stype == 'Multiple Choice') {
-            var option1 = "Option 1";
-            var option2 = "Option 2";
-            var option3 = "Option 3";
-            var option4 = "Option 4";
-            
-            var survey_text = question + '<br /><br /><input type="radio" name="option" value="1">' + option1 + '</input><br /><input type="radio" name="option" value="2">' + option2 + '</input><br /><input type="radio" name="option" value="3">' + option3 + '</input><br /><input type="radio" name="option" value="4">' + option4 + '</input><br /><br />';
-            $.prompt(survey_text,{ callback: multiCallback, buttons: { Submit: true, Cancel: false }, prefix:'surveyPopup'});
+            getChoices(survey_id.substring(9), multiPopup);
         }
     });
     

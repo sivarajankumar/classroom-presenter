@@ -81,7 +81,7 @@ window.onload = function() {
             }
             
         });
-    
+    // On click event to retrieve results
     $('.getresults').live('click', function () {
             var survey_id = $(this).attr("id");
             getResults(survey_id.substr(9), resultsPopup);

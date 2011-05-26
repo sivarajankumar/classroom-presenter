@@ -40,3 +40,14 @@ function getSurvey(sessionId, filter, sort, handler) {
 				handler(data);
 			});
 }
+
+// This function handles getting the choices in the survey feed
+// on the student side.
+function getChoices(surveyId, handler) {
+
+    $.post("scripts/get_choices.php",
+            {sid: surveyId},
+            function(data) {
+                handler(data);
+            });
+}
