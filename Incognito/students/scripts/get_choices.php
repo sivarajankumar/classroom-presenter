@@ -28,7 +28,8 @@
 		}
         
         while ($row = mysql_fetch_row($results)) {
-            echo '<input type=radio name=option value='.$row[0].'>'.$row[0].'</input><br />';
+            $choice = str_replace(" ","_",$row[0]);
+            echo '<input type=radio name=option value='.$choice.'>'.$row[0].'</input><br />';
         }
         
     }

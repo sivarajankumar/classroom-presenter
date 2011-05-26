@@ -25,9 +25,12 @@ function freeCallback(v,m,f){
 // for multiple-choice surveys
 function multiCallback(v,m,f) {
     if(v) {
-        var option = f.option;
-    
-        $.prompt('Survey Successfully Submitted: ' + option, {prefix:'surveyPopup'});
+        
+        // Convert underscores back to spaces
+        $choice = f.option.replace(/_/g,' ');
+        
+        submitMultipleChoice(window.survey_id.substring(9), $choice);
+        $.prompt('Survey Successfully Submitted', {prefix:'surveyPopup'});
     } else {
         $.prompt('Survey Failed to Submit', {prefix:'surveyPopup'});
     }
