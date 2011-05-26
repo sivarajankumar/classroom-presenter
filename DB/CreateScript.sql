@@ -104,7 +104,7 @@ CREATE TABLE FreeResponse
 CREATE TABLE Answer
 (
 	   sid		INT, 
-	   text		varchar(30),
+	   text		varchar(1000),
 	   uid		INT,
 	   PRIMARY KEY(sid, uid),
 	   FOREIGN KEY(sid) REFERENCES Survey(sid) ON DELETE CASCADE,
