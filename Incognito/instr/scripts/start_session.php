@@ -23,7 +23,7 @@
 		}
 
 		// Now return the session id that was just created
-		$query = sprintf("SELECT sid FROM Session WHERE cid = %d AND uid = %d;", $uid, $cid); 
+		$query = sprintf("SELECT sid FROM Session WHERE cid = %d AND uid = %d;", $cid, $uid); 
 		$results = mysql_query($query, $db_conn); 
 
 		// Error Check
