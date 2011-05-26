@@ -52,6 +52,7 @@
 				}
 			}
 			
+			mysql_close($db_conn);
 			return $rows;
 		}
 	}
