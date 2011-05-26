@@ -43,14 +43,28 @@
 				die("Error: " . mysql_error($db_conn));
 			}
 			
-			$query = "INSERT INTO Feedback (text, numvotes, isread, sid) VALUES ('test3', 0, 0, 23456)";
+			$query = "INSERT INTO Question (text, numvotes, answered, sid) VALUES ('test3', 1, 0, 12345)";
 			$results = mysql_query($query, $db_conn);
 			if (!$results)
 			{
 				die("Error: " . mysql_error($db_conn));
 			}
 			
-			$query = "INSERT INTO Feedback (text, numvotes, isread, sid) VALUES ('test4', 0, 0, 12345)";
+			$query = "INSERT INTO Feedback (text, numvotes, isread, sid) VALUES ('test4', 0, 0, 23456)";
+			$results = mysql_query($query, $db_conn);
+			if (!$results)
+			{
+				die("Error: " . mysql_error($db_conn));
+			}
+			
+			$query = "INSERT INTO Feedback (text, numvotes, isread, sid) VALUES ('test5', 0, 0, 12345)";
+			$results = mysql_query($query, $db_conn);
+			if (!$results)
+			{
+				die("Error: " . mysql_error($db_conn));
+			}
+			
+			$query = "INSERT INTO Feedback (text, numvotes, isread, sid) VALUES ('test6', 0, 0, 23456)";
 			$results = mysql_query($query, $db_conn);
 			if (!$results)
 			{
@@ -59,11 +73,23 @@
 			
 			include '../../Incognito/students/scripts/studenthome_lookup_questions.php';
 			
-			$array = getQuestions(23456);
+			$array = getQuestions(23456, 'Q');
 			$this->assertEquals('test1', $array[0]['text']);
 			$this->assertEquals('test2', $array[1]['text']);
-			$this->assertEquals('test3', $array[2]['text']);
-			$this->assertEquals(3, count($array));				// the feedback with sid=12345 shouldn't be in here.
+			$this->assertEquals(2, count($array));
+			
+			$array = getQuestions(12345, 'Q');
+			$this->assertEquals('test3', $array[0]['text']);
+			$this->assertEquals(1, count($array));
+			
+			$array = getQuestions(23456, 'F');
+			$this->assertEquals('test4', $array[0]['text']);
+			$this->assertEquals('test6', $array[1]['text']);
+			$this->assertEquals(2, count($array));
+			
+			$array = getQuestions(12345, 'F');
+			$this->assertEquals('test5', $array[0]['text']);
+			$this->assertEquals(1, count($array));
 		}
 	}
 

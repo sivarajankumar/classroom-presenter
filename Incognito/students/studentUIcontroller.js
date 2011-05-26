@@ -34,7 +34,7 @@ function onSubmit(){
 			dataString = 'text=' + text + '&sid=' + sid + '&numvotes=' + numvotes + '&type=' + type + '&uid=' + uid;
 			$.ajax({
 				type: "POST",
-				url: "scripts/submit_question.php",
+				url: "scripts/submit_question_feedback.php",
 				data: dataString,
 				success: function(){
 					// alert( 'Success!' );
@@ -49,7 +49,7 @@ function onSubmit(){
 			dataString = 'text=' + text + '&sid=' + sid + '&numvotes=' + numvotes + '&type=' + type + '&uid=' + uid;
 			$.ajax({
 				type: "POST",
-				url: "scripts/submit_question.php",
+				url: "scripts/submit_question_feedback.php",
 				data: dataString,
 				success: function(){
 					// alert( 'Success!' );
