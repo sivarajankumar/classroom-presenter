@@ -8,8 +8,7 @@
 // This function, given a courseId, will create a session for that course
 function startSession(courseId, uid,  callback) {
 	$.post("scripts/start_session.php",
-			{cid: courseId},
-			{uid: uid},
+			{cid: courseId, uid: uid},
 			function(data) {
 				callback(data);
 			});
