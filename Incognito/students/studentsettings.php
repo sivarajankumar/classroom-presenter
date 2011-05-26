@@ -32,10 +32,10 @@
 					<!--Add course: <input type="text" id="courseName"/>
 					<button type="submit" id="courseSubmitButton"/>Add!</button>-->
 				</div>
-					<h1> Edit Profile </h1>
+				<!--	<h1> Edit Profile </h1>
 					Change Alias:  <input type="text" id="aliasName"/>
 					<button type="submit" id="aliasChangeButton"/>Change!</button>
-					<br /> <!--<?php# SETCOOKIE('session', '$studentchangedname');?> -->
+					<br /> <!--<#php# SETCOOKIE('session', '$studentchangedname');?> -->-->
 			</div>
 			
 			

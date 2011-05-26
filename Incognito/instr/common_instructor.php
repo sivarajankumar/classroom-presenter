@@ -4,7 +4,7 @@
 			<a href="instructorfeed.php"><img src="logo.png" alt="logo" /></a>
 			<div id="greeting">
 				<?php echo 'Hello '.($_COOKIE['alias']!='' ? $_COOKIE['alias'] : 'Instructor') ?> 
-				| <a href="instructorsettings.php">Your Settings</a> 
+				| <a href="instructorsettings.php">Your Courses</a> 
 				| <a class="../help.com" href="help.php">Help</a> 
 				| <a href="scripts/logout.php">Logout</a> <br />
 			</div>
