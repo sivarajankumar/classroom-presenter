@@ -20,6 +20,27 @@
 		return $db_conn;
 	}
 	
+	function sortResults($feed, $sort)
+	{
+		if ($sort == "Newest")
+		{
+			foreach ($feed as $key => $row)
+			{
+				$time[$key] = $row['time'];
+			}
+			array_multisort($time, SORT_DESC, $feed);
+		}
+		elseif ($sort == "Priority")
+		{
+			foreach ($feed as $key => $row)
+			{
+				$numvotes[$key] = $row['numvotes'];
+			}
+			array_multisort($numvotes, SORT_DESC, $feed);
+		}
+		return $feed;
+	}
+	
 	function getQuestions($sid, $filter, $sort)
 	{
 		$db_conn = connectToDB();
@@ -56,15 +77,17 @@
 			$results = mysql_query($query1, $db_conn);
 			while($r = mysql_fetch_assoc($results))
 			{
-				$rows[] = array('text'=>$r["text"],'votes'=>$r["numvotes"],'answered'=>$r["answered"],'type'=>'Q','id'=>$r["qid"]);
+				$rows[] = array('text'=>$r["text"],'votes'=>$r["numvotes"],'answered'=>$r["answered"],'type'=>'Q','id'=>$r["qid"],'numvotes'=>$r["numvotes"],'time'=>$r["time"]);
 			}
 			
 			// Query the Feedback table and fetch results
 			$results = mysql_query($query2, $db_conn);
 			while($r = mysql_fetch_assoc($results))
 			{
-				$rows[] = array('text'=>$r["text"],'votes'=>$r["numvotes"],'isread'=>$r["isread"],'type'=>'F','id'=>$r["fid"]);
+				$rows[] = array('text'=>$r["text"],'votes'=>$r["numvotes"],'isread'=>$r["isread"],'type'=>'F','id'=>$r["fid"],'numvotes'=>$r["numvotes"],'time'=>$r["time"]);
 			}
+			
+			$rows = sortResults($rows);
 		}
 		elseif ( $filter == "All Questions" )	// we only want questions
 		{
@@ -220,7 +243,11 @@
 		}
 		
 		mysql_close($db_conn);
-		
+		return $rows;
+	}
+	
+	function echoTable($rows)
+	{
 		// Prints out the feed data in a nice html format
 		echo "<table id=feedTable>";
 		for($row = 0; $row < 200; $row++) {
@@ -240,9 +267,13 @@
 		}
 		echo "</table>";
 	}
-    
-	$sid = $_POST['sid'];
-	$filter = $_POST['filter'];
-	$sort = $_POST['sort'];
-	getQuestions($sid, $filter, $sort);
+	
+	if (isset($_POST['sid']) && isset($_POST['filter']) && isset($_POST['sort']))
+	{
+		$sid = $_POST['sid'];
+		$filter = $_POST['filter'];
+		$sort = $_POST['sort'];
+		$rows = getQuestions($sid, $filter, $sort);
+		echoTable($rows);
+	}
 ?>

@@ -90,6 +90,86 @@
 			$this->assertEquals(1, $voted);
 		}
 		
+		public function testSort()
+		{
+			// Test sorting by vote count
+			$feed = array();
+			$feed[0] = array('voted'=>0,'text'=>'test1','answered'=>0,'type'=>'Q','id'=>12345,'numvotes'=>1);
+			$feed[1] = array('voted'=>0,'text'=>'test2','answered'=>0,'type'=>'Q','id'=>23456,'numvotes'=>0);
+			$feed[2] = array('voted'=>0,'text'=>'test3','isread'=>0,'type'=>'F','id'=>34567,'numvotes'=>2);
+			
+			$feed = sortResults($feed, "Priority");
+			
+			$this->assertEquals(3, count($feed));
+			$this->assertEquals('test3', $feed[0]['text']);
+			$this->assertEquals('test1', $feed[1]['text']);
+			$this->assertEquals('test2', $feed[2]['text']);
+			
+			// Test sorting by time
+			include 'db_credentials.php';
+			
+			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+			if ( !$db_conn )
+			{
+				die("Could not connect");
+			}
+			
+			mysql_select_db($db_name, $db_conn);
+			
+			// Wipe the tables
+			$query = "DELETE FROM Question";
+			$results = mysql_query($query, $db_conn);
+			if (!$results)
+			{
+				die("Error: " . mysql_error($db_conn));
+			}
+			$query = "DELETE FROM Feedback";
+			$results = mysql_query($query, $db_conn);
+			if (!$results)
+			{
+				die("Error: " . mysql_error($db_conn));
+			}
+			
+			// Insert test values
+			$query = "INSERT INTO Feedback (text, numvotes, isread, sid) VALUES ('test1', 0, 0, 12345)";
+			$results = mysql_query($query, $db_conn);
+			if (!$results)
+			{
+				die("Error: " . mysql_error($db_conn));
+			}
+			sleep(1);
+			
+			$query = "INSERT INTO Question (text, numvotes, answered, sid) VALUES ('test2', 0, 0, 12345)";
+			$results = mysql_query($query, $db_conn);
+			if (!$results)
+			{
+				die("Error: " . mysql_error($db_conn));
+			}
+			sleep(1);
+			
+			$query = "INSERT INTO Feedback (text, numvotes, isread, sid) VALUES ('test3', 0, 0, 12345)";
+			$results = mysql_query($query, $db_conn);
+			if (!$results)
+			{
+				die("Error: " . mysql_error($db_conn));
+			}
+			sleep(1);
+			
+			$query = "INSERT INTO Question (text, numvotes, answered, sid) VALUES ('test4', 0, 0, 12345)";
+			$results = mysql_query($query, $db_conn);
+			if (!$results)
+			{
+				die("Error: " . mysql_error($db_conn));
+			}
+			
+			$feed = getQuestions(12345, "None", "Newest", 123);
+			$this->assertEquals(4, count($feed));
+			$this->assertEquals('test4', $feed[0]['text']);
+			$this->assertEquals('test3', $feed[1]['text']);
+			$this->assertEquals('test2', $feed[2]['text']);
+			$this->assertEquals('test1', $feed[3]['text']);
+		}
+		
 		public function testGetAll()
 		{
 			
