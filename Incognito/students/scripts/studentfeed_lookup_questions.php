@@ -44,6 +44,27 @@
 		
 		return $voted;
 	}
+	
+	function sortResults($feed, $sort)
+	{
+		if ($sort == "Newest")
+		{
+			foreach ($feed as $key => $row)
+			{
+				$time[$key] = $row['time'];
+			}
+			array_multisort($time, SORT_DESC, $feed);
+		}
+		elseif ($sort == "Priority")
+		{
+			foreach ($feed as $key => $row)
+			{
+				$numvotes[$key] = $row['numvotes'];
+			}
+			array_multisort($numvotes, SORT_DESC, $feed);
+		}
+		return $feed;
+	}
 
 	function getQuestions($sid, $filter, $sort, $uid)
 	{
@@ -96,7 +117,7 @@
 				$qid = (int)$r["qid"];
 				$voted = hasVoted('Q', $qid, $uid, $db_conn);
 				
-				$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q','id'=>$r["qid"]);
+				$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q','id'=>$r["qid"],'numvotes'=>$r["numvotes"],'time'=>$r["time"]);
 			}
 			
 			// Query the Feedback table and fetch results
@@ -110,8 +131,10 @@
 				$fid = (int)$r["fid"];
 				$voted = hasVoted('F', $fid, $uid, $db_conn);
 				
-				$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F','id'=>$r["fid"]);
+				$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F','id'=>$r["fid"],'numvotes'=>$r["numvotes"],'time'=>$r["time"]);
 			}
+			
+			$feed = sortResults($feed, $sort);
 		}
 		elseif ( $filter == "All Questions" )	// we only want questions
 		{
@@ -330,7 +353,11 @@
 		}
 	  
 		mysql_close($db_conn);
-		
+		return $feed;
+	}
+	
+	function echoTable($feed)
+	{
 		echo $feed[0][0];
 
 		// Prints the feed data in a nice html format
@@ -369,7 +396,8 @@
 		$filter = $_POST['filter'];		
 		$sort = $_POST['sort'];
 		$uid = $_POST['uid'];
-		getQuestions($sid, $filter, $sort, $uid);
+		$feed = getQuestions($sid, $filter, $sort, $uid);
+		echoTable($feed);
 	}
 ?>
 	
