@@ -30,8 +30,8 @@ function getCourse(data) {
 	});
    
     //starts a session
-	$(".openOptionButton").live('click',function(event) { 
-		startSession($(this).attr('id'), setSession);
+	$(".openOptionButton").live('click',function(event) {
+		startSession($(this).attr('id'), $uid, setSession);
 		getCourses($uid, printToScreen);
         
         $.cookie("sid", $(this).attr('id'), { expires: 7, path: '/' });

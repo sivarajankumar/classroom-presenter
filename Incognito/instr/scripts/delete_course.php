@@ -27,7 +27,7 @@
 		}
 		
 		// Delete the teaches relationship
-		$query = sprintf("DELETE FROM Teaches WHERE uid = %d;", $uid); 
+		$query = sprintf("DELETE FROM Teaches WHERE uid = %d and cid = %d;", $uid, $cid); 
 		$results = mysql_query($query, $db_conn);   
 		
 		// Error checking
@@ -37,6 +37,15 @@
 
 		// Remove the session
 		$query = sprintf("DELETE FROM Session WHERE cid = %d AND uid = %d;", $cid, $uid);
+		$results = mysql_query($query, $db_conn);
+
+		// Error check
+		if (!$results) {
+			die("Error: " + mysql_error($db_conn));
+		}
+ 
+		// Delete students from attends relationship
+		$query = sprintf("DELETE FROM Attends WHERE cid = %d;", $cid);
 		$results = mysql_query($query, $db_conn);
 
 		// Error check

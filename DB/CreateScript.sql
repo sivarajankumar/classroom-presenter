@@ -5,7 +5,7 @@
 CREATE TABLE User
 (
 	uid		INT NOT NULL AUTO_INCREMENT,
-	email   	VARCHAR(50) NOT NULL,
+	email   VARCHAR(50) NOT NULL,
 PRIMARY KEY (uid)
 );
 CREATE TABLE Student
@@ -15,13 +15,13 @@ CREATE TABLE Student
     netid   VARCHAR(30),
 	alias	VARCHAR(30), 
 	PRIMARY KEY (uid),
-	FOREIGN KEY(uid) REFERENCES User(uid)
+	FOREIGN KEY(uid) REFERENCES User(uid) ON DELETE CASCADE
 );
 CREATE TABLE Instructor
 (
        uid		INT NOT NULL,
        PRIMARY KEY (uid),
-       FOREIGN KEY(uid) REFERENCES User(uid)
+       FOREIGN KEY(uid) REFERENCES User(uid) ON DELETE CASCADE
 );
 CREATE TABLE Course
 (
@@ -34,17 +34,17 @@ CREATE TABLE Attends
 (
        uid		INT,
        cid		INT,
-       FOREIGN KEY(uid) REFERENCES Student(uid),
-       FOREIGN KEY(cid) REFERENCES Course(cid),
-       PRIMARY KEY(uid, cid)
+       PRIMARY KEY(uid, cid),
+       FOREIGN KEY(uid) REFERENCES Student(uid) ON DELETE CASCADE,
+       FOREIGN KEY(cid) REFERENCES Course(cid) ON DELETE CASCADE
 );
 CREATE TABLE Teaches
 (
        uid		INT,
        cid		INT,
-       FOREIGN KEY(uid) REFERENCES Teacher(uid),
-       FOREIGN KEY(cid) REFERENCES Course(cid),
-       PRIMARY KEY(uid, cid)
+       PRIMARY KEY(uid, cid),
+       FOREIGN KEY(uid) REFERENCES Teacher(uid) ON DELETE CASCADE,
+       FOREIGN KEY(cid) REFERENCES Course(cid) ON DELETE CASCADE
 );
 CREATE TABLE Session
 (
@@ -55,7 +55,7 @@ CREATE TABLE Session
        start_time	TIMESTAMP DEFAULT NOW(),
        stop_time TIMESTAMP,
        PRIMARY KEY(sid, cid),
-       FOREIGN KEY(cid) REFERENCES Course(cid)
+       FOREIGN KEY(cid) REFERENCES Course(cid) ON DELETE CASCADE
 );
 CREATE TABLE Feedback
 (
@@ -66,7 +66,7 @@ CREATE TABLE Feedback
        sid		INT,
        time		TIMESTAMP DEFAULT NOW(),
        PRIMARY KEY(fid),
-       FOREIGN KEY(sid) REFERENCES Session(sid)
+       FOREIGN KEY(sid) REFERENCES Session(sid) ON DELETE CASCADE
 );
 CREATE TABLE Question
 (
@@ -76,7 +76,7 @@ CREATE TABLE Question
        answered		INT,
        sid		INT,
        time		TIMESTAMP DEFAULT NOW(),
-       FOREIGN KEY(sid) REFERENCES Session(sid),
+       FOREIGN KEY(sid) REFERENCES Session(sid) ON DELETE CASCADE,
        PRIMARY KEY(qid)
 );
 CREATE TABLE Survey
@@ -84,7 +84,7 @@ CREATE TABLE Survey
        sid		INT NOT NULL AUTO_INCREMENT,
        sessionid        INT,
        open				INT, 
-       FOREIGN KEY(sessionid) REFERENCES Session(sid),
+       FOREIGN KEY(sessionid) REFERENCES Session(sid) ON DELETE CASCADE,
        PRIMARY KEY(sid)
 );
 CREATE TABLE MultipleChoice
@@ -92,14 +92,14 @@ CREATE TABLE MultipleChoice
        sid		INT,
        text		TEXT,
        PRIMARY KEY(sid),
-       FOREIGN KEY(sid) REFERENCES Survey(sid)        
+       FOREIGN KEY(sid) REFERENCES Survey(sid) ON DELETE CASCADE        
 );
 CREATE TABLE FreeResponse
 (
        sid		INT,
        text		VARCHAR(50),
        PRIMARY KEY(sid),
-       FOREIGN KEY(sid) REFERENCES Survey(sid)
+       FOREIGN KEY(sid) REFERENCES Survey(sid) ON DELETE CASCADE
 );
 CREATE TABLE Answer
 (
@@ -107,39 +107,40 @@ CREATE TABLE Answer
 	   text		varchar(30),
 	   uid		INT,
 	   PRIMARY KEY(sid, uid),
-	   FOREIGN KEY(sid) REFERENCES Survey(sid),
-	   FOREIGN KEY(uid) REFERENCES Student(uid)
+	   FOREIGN KEY(sid) REFERENCES Survey(sid) ON DELETE CASCADE,
+	   FOREIGN KEY(uid) REFERENCES Student(uid) ON DELETE CASCADE
+	   ON DELETE CASCADE
 );			
 CREATE TABLE Choices
 (
        sid		INT,
        count		INT,
        text		TEXT,
-       FOREIGN KEY(sid) REFERENCES MultipleChoice(sid)
+       FOREIGN KEY(sid) REFERENCES MultipleChoice(sid) ON DELETE CASCADE
 );
 CREATE TABLE QuestionVotedOn
 (
        uid        	INT,
        qid        	INT,
-       FOREIGN KEY(qid) REFERENCES Question(qid),
-       FOREIGN KEY(uid) REFERENCES Student(uid)
+       FOREIGN KEY(qid) REFERENCES Question(qid) ON DELETE CASCADE,
+       FOREIGN KEY(uid) REFERENCES Student(uid) ON DELETE CASCADE
 );
 
 CREATE TABLE FeedbackVotedOn
 (
 	uid				INT,
 	fid				INT,
-	FOREIGN KEY(fid) REFERENCES Feedback(fid),
-	FOREIGN KEY(uid) REFERENCES Student(uid)
+	FOREIGN KEY(fid) REFERENCES Feedback(fid) ON DELETE CASCADE,
+	FOREIGN KEY(uid) REFERENCES Student(uid) ON DELETE CASCADE
 );
 
 CREATE TABLE Joined
 (
-		sid			INT,
-		uid			INT,
-		FOREIGN KEY(sid) REFERENCES Session(sid),
-		FOREIGN KEY(uid) REFERENCES Student(uid),
-		PRIMARY KEY(sid, uid)
+	sid			INT,
+	uid			INT,
+	FOREIGN KEY(sid) REFERENCES Session(sid) ON DELETE CASCADE,
+	FOREIGN KEY(uid) REFERENCES Student(uid) ON DELETE CASCADE,
+	PRIMARY KEY(sid, uid)
 );
 
 CREATE TABLE BugReports
