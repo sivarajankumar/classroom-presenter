@@ -83,7 +83,7 @@
 		}
 				
 		// Same thing for Survey
-		$query = sprintf("SELECT sid FROM Survey WHERE sid = %d;", $sid); 
+		$query = sprintf("SELECT sid FROM Survey WHERE sessionid = %d;", $sid); 
 		$results = mysql_query($query, $db_conn); 
 
 		// Error Check
