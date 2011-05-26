@@ -225,7 +225,7 @@
 		echo "<table id=feedTable>";
 		for($row = 0; $row < 200; $row++) {
 			if(!empty($rows[$row])) {
-				if($row % 2 == 1)
+				if($rows[$row]["type"] == "Q")
 					echo "<tr class=alt>";
 				else
 					echo "<tr>";
