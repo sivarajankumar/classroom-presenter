@@ -47,15 +47,6 @@
 			die("Error" + mysql_error($db_conn));
 		}
 	
-		// Add a closed session
-		$query = sprintf("INSERT INTO Session (cid, uid, open) VALUES (%d, %d, 0);", $cid, $uid); 
-		$results = mysql_query($query, $db_conn); 
-
-		// Error Checking
-		if (!$results) {
-			die("Error: " + mysql_error($db_conn));
-		}
-	
 		// Return the cid back to the user
 		echo $cid; 
 	}
