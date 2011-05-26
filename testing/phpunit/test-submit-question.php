@@ -34,7 +34,7 @@
 			$_POST['uid'] = 23456;
 			
 			// Run the script
-			include '../../Incognito/students/scripts/submit_question.php';
+			include '../../Incognito/students/scripts/submit_question_feedback.php';
 			
 			// If the script worked correctly, this query should return 1 row.
 			$query = "SELECT * FROM Question WHERE text = 'test question' AND sid = 23456 AND numvotes = 0";
@@ -75,7 +75,7 @@
 			$_POST['uid'] = 123;
 			
 			// Run the script
-			include '../../Incognito/students/scripts/submit_question.php';
+			include '../../Incognito/students/scripts/submit_question_feedback.php';
 
 			// If the script worked correctly, this query should return 1 row.
 			$query = "SELECT * FROM Feedback WHERE text = 'test feedback' AND sid = 23456 AND numvotes = 0";
@@ -125,7 +125,7 @@
 			$_POST['sid'] = 23456;
 			$_POST['uid'] = 123;
 			
-			include '../../Incognito/students/scripts/submit_question.php';
+			include '../../Incognito/students/scripts/submit_question_feedback.php';
 			
 			// This query checks that the question's vote count is correct, and that there is a row in
 			//	QuestionVotedOn that corresponds to the question. It should return 1 row if everything worked.
@@ -146,7 +146,7 @@
 			$_POST['sid'] = 23456;
 			$_POST['uid'] = 123;
 			
-			include '../../Incognito/students/scripts/submit_question.php';
+			include '../../Incognito/students/scripts/submit_question_feedback.php';
 			
 			// Since the user has already voted for this question, nothing should have changed since the first assertion.
 			//	Verify that this is still the case.
@@ -196,7 +196,7 @@
 			$_POST['sid'] = 23456;
 			$_POST['uid'] = 123;
 			
-			include '../../Incognito/students/scripts/submit_question.php';
+			include '../../Incognito/students/scripts/submit_question_feedback.php';
 			
 			// This query checks that the comment's vote count is correct, and that there is a row in
 			//	FeedbackVotedOn that corresponds to the comment. It should return 1 row if everything worked.
@@ -217,7 +217,7 @@
 			$_POST['sid'] = 23456;
 			$_POST['uid'] = 123;
 			
-			include '../../Incognito/students/scripts/submit_question.php';
+			include '../../Incognito/students/scripts/submit_question_feedback.php';
 			
 			// Since the user has already voted for this comment, nothing should have changed since the first assertion.
 			//	Verify that this is still the case.

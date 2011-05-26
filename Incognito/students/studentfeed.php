@@ -46,10 +46,11 @@
               resultFilters    : 'phraseMatch',
               resultHighlighter: 'phraseMatch',
               source           : function(query) {
+			  var type = $('input[name=submitType]:checked', '#submitform').val();
               $.ajax({
                 type: "POST",
                 url: "scripts/studenthome_lookup_questions.php",
-                data: "sid=" + $sid, // still need to retrieve the session ID dynamically.
+                data: "sid=" + $sid + "&type=" + type, // still need to retrieve the session ID dynamically.
                 success: function(msg){
                   data = new Array();
                   for (var i = 0; i < msg.length; i++)
