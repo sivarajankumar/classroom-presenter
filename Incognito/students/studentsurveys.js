@@ -84,7 +84,7 @@ window.onload = function() {
         // Handle the types of survey
         if(stype == 'Free Response') {
         
-            var survey_text = question + '<br /><input type="text" id="' + survey_id + '" name="response" value="Respond here" />';
+            var survey_text = question + '<br /><input type="text" id="' + survey_id + '" name="response" value="Respond here" height="1000" size="40" maxlength="120"/>';
             $.prompt(survey_text,{ callback: freeCallback, buttons: { Submit: true, Cancel: false }, prefix:'surveyPopup'});
         } else if(stype == 'Multiple Choice') {
             getChoices(survey_id.substring(9), multiPopup);
