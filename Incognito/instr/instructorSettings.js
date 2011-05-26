@@ -15,6 +15,11 @@ function getCourse(data) {
   var courseId;
   var mailIs;
 
+// This function will create a cookie with the session id in it
+function setSession(sessionId) {
+	$.cookie("sid", sessionId, {expires: 7, path: '/' }); 
+}
+
  $(document).ready(function() {
 	
     // alert($.cookie("uid"));
@@ -34,7 +39,7 @@ function getCourse(data) {
 		startSession($(this).attr('id'), $uid, setSession);
 		getCourses($uid, printToScreen);
         
-        $.cookie("sid", $(this).attr('id'), { expires: 7, path: '/' });
+        	//$.cookie("sid", $(this).attr('id'), { expires: 7, path: '/' });
 	});
 	
 	//Adds a InstructorID, courseName, mailingList, callbackFunction
