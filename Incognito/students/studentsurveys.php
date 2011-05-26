@@ -26,24 +26,6 @@
 		?>
 		
 		<div id = "maincontent">
-			<div id="filterandsort">
-				<span>
-					FILTER BY: 
-					<select name="filter" id="filter">
-                        <optgroup>
-                            <option selected="selected"> None </option>
-                            <option>Free Response</option>
-                            <option>Multiple Choice</option>
-                        </optgroup>
-					</select>
-				</span>
-				
-				<span>
-					SORT BY:
-					<a id="newest" >NEWEST</a> | <a id="priority" >HIGHEST PRIORITY</a>
-				</span>
-
-			</div>
 			
 			<div id="feedbox">
 				<span>

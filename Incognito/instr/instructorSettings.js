@@ -7,11 +7,7 @@ function getCourse(data) {
 	// This is just a place holder for when the cid's are returned to us
 }
 
-  function setSession(data) {
-  	sessionId = data; 
-  }
 
-  var sessionId;
   var courseId;
   var mailIs;
 
