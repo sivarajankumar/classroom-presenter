@@ -11,33 +11,32 @@
 
 		mysql_select_db($db_name, $db_conn);
 		$uid = $_POST['uid'];	
-		//$uid = 1;
-		//$cid = 1;
-		// Now insert a new session into the Session table
+		
+		// First, get the session id
 		$cid = $_POST['cid'];
 		echo $cid . "+ " . $uid;
-		$query0 = sprintf("SELECT FROM `Session` WHERE cid=%d and uid=%d;", $cid, $uid);
-		$results0 = mysql_query($query, $db_conn);
-		if(mysql_num_rows($results0)){		
-			$query = sprintf("INSERT INTO `Session` (`cid`, `uid`, `open`) VALUES (%d, %d, '1')", $cid, $uid);
-			$results = mysql_query($query, $db_conn);
-			// Error Check
-			if (!$results) {
-				die("Error: " + mysql_error($db_conn));
-			}
-			
-			// Find the sid that was just created
-			$query = sprintf("SELECT sid FROM Session WHERE cid = %d and uid = %d;", $cid, $uid);
-			$results = mysql_query($query, $db_conn);
-			
-			// Error check
-			if (!$results) {
-				die("Error: " + mysql_error($db_conn));
-			}
-			
-			$row = mysql_fetch_row($results);
-			echo $row[0];
+		$query = sprintf("SELECT sid FROM Session WHERE cid=%d and uid=%d;", $cid, $uid);
+		$results = mysql_query($query, $db_conn);
+		
+		// Error Check
+		if (!$results) {
+			die ("Error: " . mysql_error($db_conn)); 
 		}
+
+		$row = mysql_fetch_row($results); 
+		$sid = $row[0];
+
+		// Now update the session so that it is open
+		$query = sprintf("UPDATE Session SET open = 1 WHERE sid = %d;", $sid); 
+		$results = mysql_query($query, $db_conn); 
+
+		// Error Check
+		if (!$results) {
+			die ("Error: " . mysql_error($db_conn)); 
+		}
+
+		echo $sid; 
+			
 	}
 
 ?>
