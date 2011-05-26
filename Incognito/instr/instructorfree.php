@@ -64,10 +64,6 @@
 					</select>
 				</span>
 				
-				<span>
-					SORT BY:
-					<a href="" >NEWEST</a> | <a href="" >HIGHEST PRIORITY</a>
-				</span>				  
 			</div>
 			
 			<div id="surveyFeed">
