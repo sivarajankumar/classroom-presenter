@@ -33,7 +33,7 @@ include "common_student.php";
 							<label><input type="radio" name="submitType" value="Q" checked="checked"/> Question</label>
 							<label><input type="radio" name="submitType" value="F"/> Feedback </label>
 						</span> <br />
-						<input type="textbox" name="texthome" value="" id="ac-input" height="1000" size="80" maxlength="50">
+						<input type="textbox" name="texthome" value="" id="ac-input" height="1000" size="80" maxlength="120">
             <div id="display"></div>
 						<button type="submit" id="submitbutton" onClick="onSubmit()">Submit</button>
 					</div>
