@@ -18,16 +18,16 @@
 		$results = mysql_query($query, $db_conn);
 
 		// Error Check
-		if (!results) {
+		if (!$results) {
 			die ("Error: " . mysql_error($db_conn)); 
 		}
 
 		$row = mysql_fetch_row($results);
 		$sid = $row[0];
-	
+		
 		// Get the fid, qid, and surveyId for all of the questions, feedback, and surveys
 		// we want to delete
-		$query = sprintf("SELECT qid FROM Question WHERE sid = %d;", %sid); 
+		$query = sprintf("SELECT qid FROM Question WHERE sid = %d;", $sid); 
 		$results = mysql_query($query, $db_conn); 
 
 		// Error Check
@@ -42,7 +42,7 @@
 			
 			// Error check
 			if (!$result) {
-				die ("Error: " . mysql_error($db_conn); 
+				die ("Error: " . mysql_error($db_conn)); 
 			}
 
 			$query = sprintf("DELETE FROM Question WHERE qid = %d;", $row[0]); 
@@ -50,12 +50,12 @@
 
 			// Error Check
 			if (!$result) {
-				die ("Error: " . mysql_error($db_conn); 
+				die ("Error: " . mysql_error($db_conn)); 
 			}
 		}
 		
 		// Do they same thing for feedback
-		$query = sprintf("SELECT fid FROM Feedback WHERE sid = %d;", %sid); 
+		$query = sprintf("SELECT fid FROM Feedback WHERE sid = %d;", $sid); 
 		$results = mysql_query($query, $db_conn); 
 
 		// Error Check
@@ -70,7 +70,7 @@
 			
 			// Error check
 			if (!$result) {
-				die ("Error: " . mysql_error($db_conn); 
+				die ("Error: " . mysql_error($db_conn)); 
 			}
 
 			$query = sprintf("DELETE FROM Feedback WHERE fid = %d;", $row[0]); 
@@ -78,12 +78,12 @@
 
 			// Error Check
 			if (!$result) {
-				die ("Error: " . mysql_error($db_conn); 
+				die ("Error: " . mysql_error($db_conn)); 
 			}
 		}
 				
 		// Same thing for Survey
-		$query = sprintf("SELECT sid FROM Survey WHERE sid = %d;", %sid); 
+		$query = sprintf("SELECT sid FROM Survey WHERE sid = %d;", $sid); 
 		$results = mysql_query($query, $db_conn); 
 
 		// Error Check
@@ -100,7 +100,7 @@
 			
 			// Error check
 			if (!$result) {
-				die ("Error: " . mysql_error($db_conn); 
+				die ("Error: " . mysql_error($db_conn)); 
 			}
 			
 			$query = sprintf("DELETE FROM Choices WHERE sid = %d;", $row[0]);
@@ -108,7 +108,7 @@
 			
 			// Error check
 			if (!$result) {
-				die ("Error: " . mysql_error($db_conn); 
+				die ("Error: " . mysql_error($db_conn)); 
 			}
 			
 			$query = sprintf("DELETE FROM MultipleChoice WHERE sid = %d;", $row[0]); 
@@ -116,7 +116,7 @@
 
 			// Error Check
 			if (!$result) {
-				die ("Error: " . mysql_error($db_conn); 
+				die ("Error: " . mysql_error($db_conn)); 
 			}
 
 			$query = sprintf("DELETE FROM FreeResponse WHERE sid = %d;", $row[0]);
@@ -124,7 +124,7 @@
 			
 			// Error check
 			if (!$result) {
-				die ("Error: " . mysql_error($db_conn); 
+				die ("Error: " . mysql_error($db_conn)); 
 			}
 
 			// Finally delete the survey
