@@ -36,6 +36,10 @@
 				// Query Question and fetch results
 				$query = sprintf("SELECT * FROM Question WHERE sid = %d", $sid);
 				$results = mysql_query($query, $db_conn);
+				if (!$results)
+				{
+					die("Error: " . mysql_error($db_conn));
+				}
 				while($r = mysql_fetch_assoc($results))
 				{
 					$rows[] = array('text'=>$r["text"],'votes'=>$r["numvotes"],'answered'=>$r["answered"],'type'=>'Q');
@@ -46,6 +50,10 @@
 				// Query Feedback and fetch results
 				$query = sprintf("SELECT * FROM Feedback WHERE sid = %d", $sid);
 				$results = mysql_query($query, $db_conn);
+				if (!$results)
+				{
+					die("Error: " . mysql_error($db_conn));
+				}
 				while($r = mysql_fetch_assoc($results))
 				{
 					$rows[] = array('text'=>$r["text"],'votes'=>$r["numvotes"],'isread'=>$r["isread"],'type'=>'F');

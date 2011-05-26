@@ -15,35 +15,37 @@
 		return $db_conn;
 	}
 	
-	function hasVotedForQuestion($qid, $uid, $db_conn)
+	function hasVoted($type, $id, $uid, $db_conn)
 	{
-		// Query QuestionVotedOn to see if the user has voted for this question
-		$votequery = sprintf("SELECT * FROM QuestionVotedOn WHERE qid = %d AND uid = %d", $qid, $uid);
-		$voteresults = mysql_query($votequery, $db_conn);
 		$voted = 0;
+		$votequery = null;
+		if ($type == 'Q')
+		{
+			// Query QuestionVotedOn to see if the user has voted for this question
+			$votequery = sprintf("SELECT * FROM QuestionVotedOn WHERE qid = %d AND uid = %d", $id, $uid);
+		}
+		else
+		{
+			// Query FeedbackVotedOn to see if the user has voted for this feedback
+			$votequery = sprintf("SELECT * FROM FeedbackVotedOn WHERE fid = %d AND uid = %d", $id, $uid);
+		}
+		
+		$voteresults = mysql_query($votequery, $db_conn);
+		if (!$voteresults)
+		{
+			die("Error: " . mysql_error($db_conn));
+		}
+		
 		if ($vr = mysql_fetch_assoc($voteresults))
 		{
-			// If the query returns anything, the user has voted for this question
+			// If the query returns anything, the user has voted for this question or feedback
 			$voted = 1;
 		}
-		return $voted;
-	}
-	
-	function hasVotedForFeedback($fid, $uid, $db_conn)
-	{
-		// Query FeedbackVotedOn to see if the user has voted for this feedback
-		$votequery = sprintf("SELECT * FROM FeedbackVotedOn WHERE fid = %d AND uid = %d", $fid, $uid);
-		$voteresults = mysql_query($votequery, $db_conn);
-		$voted = 0;
-		if ($vr = mysql_fetch_assoc($voteresults))
-		{
-			// If the query returns anything, the user has voted for this feedback
-			$voted = 1;
-		}
+		
 		return $voted;
 	}
 
-	function getQuestions($sid, $filter, $sort, $username)
+	function getQuestions($sid, $filter, $sort, $uid)
 	{
 		$db_conn = connectToDB(); 
 		
@@ -85,20 +87,28 @@
 			
 			// Query the Question table and fetch results
 			$results = mysql_query($query1, $db_conn);
+			if (!$results)
+			{
+				die("Error: " . mysql_error($db_conn));
+			}
 			while($r = mysql_fetch_assoc($results))
 			{
 				$qid = (int)$r["qid"];
-				$voted = hasVotedForQuestion($qid, $uid, $db_conn);
+				$voted = hasVoted('Q', $qid, $uid, $db_conn);
 				
 				$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q','id'=>$r["qid"]);
 			}
 			
 			// Query the Feedback table and fetch results
 			$results = mysql_query($query2, $db_conn);
+			if (!$results)
+			{
+				die("Error: " . mysql_error($db_conn));
+			}
 			while($r = mysql_fetch_assoc($results))
 			{
 				$fid = (int)$r["fid"];
-				$voted = hasVotedForFeedback($fid, $uid, $db_conn);
+				$voted = hasVoted('F', $fid, $uid, $db_conn);
 				
 				$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F','id'=>$r["fid"]);
 			}
@@ -127,10 +137,14 @@
 			
 			// Run the query and fetch the results
 			$results = mysql_query($query, $db_conn);
+			if (!$results)
+			{
+				die("Error: " . mysql_error($db_conn));
+			}
 			while($r = mysql_fetch_assoc($results))
 			{
 				$qid = (int)$r["qid"];
-				$voted = hasVotedForQuestion($qid, $uid, $db_conn);
+				$voted = hasVoted('Q', $qid, $uid, $db_conn);
 				
 				$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q','id'=>$r["qid"]);
 			}
@@ -160,10 +174,14 @@
 			
 			// Run the query and fetch the results
 			$results = mysql_query($query, $db_conn);
+			if (!$results)
+			{
+				die("Error: " . mysql_error($db_conn));
+			}
 			while($r = mysql_fetch_assoc($results))
 			{
 				$fid = (int)$r["fid"];
-				$voted = hasVotedForFeedback($qid, $uid, $db_conn);
+				$voted = hasVoted('F', $qid, $uid, $db_conn);
 				
 				$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F','id'=>$r["fid"]);
 			}
@@ -192,11 +210,14 @@
 			
 			// Run the query and fetch the results
 			$results = mysql_query($query, $db_conn);
-			$feed = array();
+			if (!$results)
+			{
+				die("Error: " . mysql_error($db_conn));
+			}
 			while($r = mysql_fetch_assoc($results))
 			{
 				$qid = (int)$r["qid"];
-				$voted = hasVotedForQuestion($qid, $uid, $db_conn);
+				$voted = hasVoted('Q', $qid, $uid, $db_conn);
 				
 				$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q','id'=>$r["qid"]);
 			}
@@ -225,11 +246,14 @@
 			
 			// Run the query and fetch the results
 			$results = mysql_query($query, $db_conn);
-			$feed = array();
+			if (!$results)
+			{
+				die("Error: " . mysql_error($db_conn));
+			}
 			while($r = mysql_fetch_assoc($results))
 			{
 				$qid = (int)$r["qid"];
-				$voted = hasVotedForQuestion($qid, $uid, $db_conn);
+				$voted = hasVoted('Q', $qid, $uid, $db_conn);
 				
 				$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q','id'=>$r["qid"]);
 			}
@@ -256,10 +280,14 @@
 				$query = sprintf("SELECT * FROM Feedback WHERE sid = %d AND isread = 0", $sid);
 			}
 			$results = mysql_query($query, $db_conn);
+			if (!$results)
+			{
+				die("Error: " . mysql_error($db_conn));
+			}
 			while($r = mysql_fetch_assoc($results))
 			{
 				$fid = (int)$r["fid"];
-				$voted = hasVotedForFeedback($fid, $uid, $db_conn);
+				$voted = hasVoted('F', $fid, $uid, $db_conn);
 				
 				$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F','id'=>$r["fid"]);
 			}
@@ -288,15 +316,21 @@
 			
 			// Run the query and fetch the results
 			$results = mysql_query($query, $db_conn);
+			if (!$results)
+			{
+				die("Error: " . mysql_error($db_conn));
+			}
 			while($r = mysql_fetch_assoc($results))
 			{
 				$fid = (int)$r["fid"];
-				$voted = hasVotedForFeedback($fid, $uid, $db_conn);
+				$voted = hasVoted('F', $fid, $uid, $db_conn);
 				
 				$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F','id'=>$r["fid"]);
 			}
 		}
 	  
+		mysql_close($db_conn);
+		
 		echo $feed[0][0];
 
 		// Prints the feed data in a nice html format
@@ -329,11 +363,13 @@
 		echo "</table>";
 	}
 
-	
-	$sid = $_POST['sid'];
-	$filter = $_POST['filter'];		
-	$sort = $_POST['sort'];
-	$username = $_POST['username'];
-	getQuestions($sid, $filter, $sort, $username);
+	if (isset($_POST['sid']) && isset($_POST['filter']) && isset($_POST['sort']) && isset($_POST['uid']))
+	{
+		$sid = $_POST['sid'];
+		$filter = $_POST['filter'];		
+		$sort = $_POST['sort'];
+		$uid = $_POST['uid'];
+		getQuestions($sid, $filter, $sort, $uid);
+	}
 ?>
 	
