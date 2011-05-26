@@ -32,23 +32,30 @@
 		$results2 = mysql_query($query2, $db_conn);
 		
 		// Then return the results in HTML form
+		$open = 0; 
 		while ($row = mysql_fetch_row($results2)) {
 			
 			// Check if the course is closed
 			if ($row[2] == 1) {
 				
-				echo  "<br />$row[1]:<button class='closeOptionButton' id='$row[0]'>Close?</button>
+				echo  "<br />$row[1]: <button class='closeOptionButton' id='$row[0]'>Close?</button>
 						<button id='$row[0]' class='courseRemoveButton'>Delete</button>
 						Student NetId: <input type='text' id='studentToAdd'/>
                                                 <button id='$row[0]' class='addStudentButton'>Add Student</button>";
+				$open = 1; 
 		
+			} else if (!$open) {
+				
+				echo  "<br />$row[1]: <button class='openOptionButton' id='$row[0]'>Open?</button>
+						<button id='$row[0]' class='courseRemoveButton'>Delete</button>
+						Student NetId: <input type='text' id='studentToAdd'/>
+                                                <button id='$row[0]' class='addStudentButton'>Add Student</button>";
+				
 			} else {
 				
-				echo  "<br />$row[1]:<button class='openOptionButton' id='$row[0]'>Open?</button>
-						<button id='$row[0]' class='courseRemoveButton'>Delete</button>
-						Student NetId: <input type='text' id='studentToAdd'/>
-                                                <button id='$row[0]' class='addStudentButton'>Add Student</button>";
-				
+				echo "<br />$row[1]: <button id='$row[0]' class='courseRemoveButton'>Delete</button>
+					Student NetId: <input type='text' id='studentToAdd'/>
+					<button id='$row[0]' class='addStudentButton'>Add Student</button>";
 			}
 			echo "<p />";
 		}
