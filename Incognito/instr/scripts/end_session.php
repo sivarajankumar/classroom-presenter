@@ -18,7 +18,7 @@
 		
 		// Delete the session from the Session table
 		$cid = $_POST['cid'];
-		$query = sprintf("UPDATE Session SET open = 0 WHERE cid = %d;", $cid);
+		$query = sprintf("Delete from Session where open = 1 and cid = %d;", $cid);
 		$results = mysql_query($query, $db_conn);
 		
 		// Error Checking

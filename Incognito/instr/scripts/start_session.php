@@ -3,12 +3,7 @@
 	// This php script, given a course id, will create a new session for
 	// that course
 	
-	if (isset($_POST['cid'])) {
-		// Connect to the database
-		// Connect to the database
-		//$username = "ashen";
-		//$password = "2kV2cNct";
-		//$db_name = "ashen_403_Local";
+//	if (isset($_POST['cid']) && isset($_POST['uid'])) {
 
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 		if (!$db_conn) {
@@ -16,10 +11,12 @@
 		}
 
 		mysql_select_db($db_name, $db_conn);
-		
+		//$uid = $_POST['uid'];	
+		$uid = 1;
+		$cid = 1;
 		// Now insert a new session into the Session table
-		$cid = $_POST['cid'];
-		$query = sprintf("UPDATE Session SET open = 1 WHERE cid = %d;", $cid);
+		//$cid = $_POST['cid'];
+		$query = sprintf("INSERT INTO `Session` (`cid`, `uid`, `open`) VALUES (%d, %d, '1')", $cid, $uid);
 		$results = mysql_query($query, $db_conn);
 		// Error Check
 		if (!$results) {
@@ -27,7 +24,7 @@
 		}
 		
 		// Find the sid that was just created
-		$query = sprintf("SELECT sid FROM Session WHERE cid = %d ORDER BY sid DESC;", $cid);
+		$query = sprintf("SELECT sid FROM Session WHERE cid = %d and uid = %d;", $cid, $uid);
 		$results = mysql_query($query, $db_conn);
 		
 		// Error check
@@ -37,6 +34,6 @@
 		
 		$row = mysql_fetch_row($results);
 		echo $row[0];
-	}
+//	}
 
 ?>

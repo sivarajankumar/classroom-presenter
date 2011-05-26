@@ -28,7 +28,6 @@
         }
         // Get the uid and then do the update
         $row = mysql_fetch_row($results);
-       
         $expire=time()+ 60*60*24*1;
         if(empty($row))
      {
@@ -36,14 +35,14 @@
          $query = sprintf("INSERT INTO User (`email`) VALUES ('%s');", $netid);
  	 $results = mysql_query($query, $db_conn);
         $query = sprintf("SELECT uid FROM User WHERE email = '%s';", $netid);
-        $results = mysql_query($query, $db_conn);
-        
+        $results = mysql_query($query, $db_conn);    
         // Error check
        if (!$results) {
             die("Error: " + mysql_error($db_conn));
         }
         // Get the uid and then do the update
         $row = mysql_fetch_row($results);
+	$uid = $row[0];
    	// now insert the user into the instructor or student table.
  	// currently adds to both.
 	if($user_type == 1){
@@ -51,9 +50,9 @@
 	}else if($user_type ==2){
 		 $query = sprintf("INSERT INTO Instructor (`uid`) VALUES ('%d');", $uid);
 	}
-        mysql_query($query, $db_conn); 
-    }else{
-	$uid = $row[0];
+        mysql_query($query, $db_conn);
+	}else{
+		$uid = $row[0];
 	}
 	  setcookie('uid', $uid, $expire, "/"); 
     }
