@@ -204,7 +204,7 @@
 			while($r = mysql_fetch_assoc($results))
 			{
 				$fid = (int)$r["fid"];
-				$voted = hasVoted('F', $qid, $uid, $db_conn);
+				$voted = hasVoted('F', $fid, $uid, $db_conn);
 				
 				$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F','id'=>$r["fid"]);
 			}
