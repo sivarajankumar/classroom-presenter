@@ -12,7 +12,8 @@ echo $question;
 var currentSession;
 var timestamp;
 function onSubmit(){
-	var text = submitform.elements["texthome"].value; // Haven't figured out the jQuery for this yet.
+
+	var text = $('#ac-input').attr('value');  
 	//var uid = 444;
 	var uid = $.cookie('uid');
 	if ( text.length == 0 )
@@ -21,11 +22,12 @@ function onSubmit(){
 	}
 	else
 	{
+		
 		var type = $('input[name=submitType]:checked', '#submitform').val();
 		var sid = $.cookie('sid');
 		var dataString;
 		var numvotes;
-		
+	
 		if (type == 'Q')
 		{
 			var answered = 0;
@@ -37,7 +39,7 @@ function onSubmit(){
 				url: "scripts/submit_question_feedback.php",
 				data: dataString,
 				success: function(){
-					// alert( 'Success!' );
+					alert( 'Success!' );
 				}
 			});
 		}
