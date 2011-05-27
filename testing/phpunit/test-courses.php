@@ -94,7 +94,8 @@
 		public function addCourse($courseName, $iuid) {
 			
 			$_POST['uid'] = $iuid;
-			$_POST['name'] = $courseName; 
+			$_POST['name'] = $courseName;
+			$_POST['mailinglist'] = 'test';  
 			
 			include "../../Incognito/instr/scripts/create_course.php";
 			
@@ -121,7 +122,7 @@
 			$courses; 
 			for ($i = 0; $i < $NUM_COURSES; $i++) {
 				$courses[$i] = "" . rand(1000, 9999);
-				addCourse($courseName, $iuid);
+				$this->addCourse($courses[$i], $iuid);
 			}
 			
 			return $courses; 
@@ -134,8 +135,8 @@
 			// Make instructors and students
 			$instructor = "test-inst";
 			$student = "test-stdnt";
-			$uids = init($instructor, $student);
-			$courses = addCourses($uids[0]);
+			$uids = $this->init($instructor, $student);
+			$courses = $this->addCourses($uids[0]);
 		}
 	}
 

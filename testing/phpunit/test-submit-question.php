@@ -8,7 +8,7 @@
 		// Test submitting a new question.
 		public function testSubmitNewQuestion()
 		{
-			include 'db_credentials.php';
+			include '../../db_credentials.php';
 			
 			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 			if ( !$db_conn )
@@ -49,7 +49,7 @@
 		// Test submitting a new comment.
 		public function testSubmitNewFeedback()
 		{
-			include 'db_credentials.php';
+			include '../../db_credentials.php';
 			
 			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 			if ( !$db_conn )
@@ -92,7 +92,7 @@
 		//	2. Submit a question that already exists, and that the user has already voted for
 		public function testSubmitVoteForExistingQuestion()
 		{
-			include 'db_credentials.php';
+			include '../../db_credentials.php';
 			
 			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 			if ( !$db_conn )
@@ -163,7 +163,7 @@
 		
 		public function testSubmitVoteForExistingFeedback()
 		{
-			include 'db_credentials.php';
+			include '../../db_credentials.php';
 			
 			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 			if ( !$db_conn )

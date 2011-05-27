@@ -64,7 +64,7 @@
         public function testStartSurvey() {
         
             // Connect to DB
-			include_once 'db_credentials.php';
+			include_once '../../db_credentials.php';
             
             // Add a Survey to the database and grab the survey ID
             $sid = $this->addSurvey(23456, $db_conn); // 23456 session id
@@ -96,7 +96,7 @@
             $sid = testStartSurvey();
             
             // Connect to DB
-			include_once 'db_credentials.php';
+			include_once '../../db_credentials.php';
             
             // Pass in the survey id to close
             $_POST['sid'] = $sid;
