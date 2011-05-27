@@ -51,7 +51,7 @@ function multiPopup(data) {
 // On initial window load, initialize events and reset
 // filter and sort variables
 window.onload = function() {
-    alert("I am here.");
+
     filter = "none";
     sort = "none"; // default to sorting by newest
     $sid = $.cookie('sid');
