@@ -60,18 +60,9 @@ function setSession(sessionId) {
 		//alert(cookie);
 		// var student = $("#studentToAdd").val();
 		updateStudents($uid, $(this).attr('id'));
+        $.prompt('<br />Added Student to Course<br /><br />', {prefix:'surveyPopup'});
 	});
 });
-
-
-setInterval("refreshFeed()", 1000); // refresh every 1000 milliseconds
-
-function refreshFeed() {
-    $uid = $.cookie('uid');
-    if($uid != null) {
-        getCourses($uid, printToScreen);
-    }
-}
 
 $("#timeline").live('click', function(event){
 	mypopup();
