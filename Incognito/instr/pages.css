@@ -186,6 +186,14 @@ span {
     padding:5px;
 }
 
+#resultsPop td.free
+{
+    text-align:left;
+    width:100px;
+    font-family: Calibri;
+    padding:5px;
+}
+
 /* survey feed styles */
 #surveyFeed td.surveytype
 {
