@@ -7,17 +7,17 @@ var question;
 // for free-response surveys
 function freeCallback(v,m,f){
 
+    $uid = $.cookie("uid");
+    
     // checks if the submit button was pressed
-    if(v) {
-        var cookie = readCookie('uid');
-        if(cookie != null) {
-            // window.survey_id.substr(9) parse the sid out of the string
-            // f.response is the answer that the customer submitted
-            submitFreeResponse(window.survey_id.substr(9), f.response, cookie);
-            $.prompt('Survey Successfully Submitted', {prefix:'surveyPopup'});
-        } else {
-            $.prompt('Survey Failed to Submit', {prefix:'surveyPopup'});
-        }
+    if($uid != null && v) {
+        // window.survey_id.substr(9) parse the sid out of the string
+        // f.response is the answer that the customer submitted
+        submitFreeResponse(window.survey_id.substr(9), f.response, $uid);
+        $.prompt('<br />Survey Successfully Submitted<br /><br />', {prefix:'surveyPopup'});
+        
+    } else {
+        $.prompt('<br />Survey Failed to Submit<br /><br />', {prefix:'surveyPopup'});
     }
 }
 
@@ -54,7 +54,7 @@ window.onload = function() {
 
     filter = "none";
     sort = "none"; // default to sorting by newest
-    $sid = $.cookie('sid');
+    $sid = $.cookie("sid");
     if($sid != null)
         getSurvey($sid, window.filter, window.sort, printToScreen);
     
@@ -66,7 +66,7 @@ window.onload = function() {
         // Handle the types of survey
         if(stype == 'Free Response') {
         
-            var survey_text = question + '<br /><input type="text" id="' + survey_id + '" name="response" value="Respond here" height="1000" size="30" maxlength="120"/>';
+            var survey_text = '<br />' + question + '<br /><br /><input type="text" id="' + survey_id + '" name="response" value="Respond here" height="1000" size="30" maxlength="120"/><br /><br />';
             $.prompt(survey_text,{ callback: freeCallback, buttons: { Submit: true, Cancel: false }, prefix:'surveyPopup'});
         } else if(stype == 'Multiple Choice') {
             getChoices(survey_id.substring(9), multiPopup);
