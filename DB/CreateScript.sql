@@ -43,7 +43,7 @@ CREATE TABLE Teaches
        uid		INT,
        cid		INT,
        PRIMARY KEY(uid, cid),
-       FOREIGN KEY(uid) REFERENCES Teacher(uid) ON DELETE CASCADE,
+       FOREIGN KEY(uid) REFERENCES Instructor(uid) ON DELETE CASCADE,
        FOREIGN KEY(cid) REFERENCES Course(cid) ON DELETE CASCADE
 );
 CREATE TABLE Session
@@ -55,7 +55,8 @@ CREATE TABLE Session
        start_time	TIMESTAMP DEFAULT NOW(),
        stop_time TIMESTAMP,
        PRIMARY KEY(sid, cid),
-       FOREIGN KEY(cid) REFERENCES Course(cid) ON DELETE CASCADE
+       FOREIGN KEY(cid) REFERENCES Course(cid) ON DELETE CASCADE,
+       FOREIGN KEY(uid) REFERENCES Instructor(uid)
 );
 CREATE TABLE Feedback
 (
