@@ -11,9 +11,9 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="pages.css" type="text/css" rel="stylesheet" />
 		<script src="jquery-1.5.2.js" type="text/javascript"></script>
+        <script type="text/javascript" src="jquery.cookie.js"></script>
+        <script type="text/javascript" src="scripts/InstrSettingsView.js"></script>
 		<script type="text/javascript" src="instructorSettings.js"></script>
-		<script type="text/javascript" src="jquery.cookie.js"></script> 
-		<script type="text/javascript" src="scripts/InstrSettingsView.js"></script>
 	</head>
 
 	<body>

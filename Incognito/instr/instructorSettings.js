@@ -64,6 +64,16 @@ function setSession(sessionId) {
 	});
 });
 
+
+setInterval("refreshFeed()", 1000); // refresh every 1000 milliseconds
+
+function refreshFeed() {
+    $uid = $.cookie('uid');
+    if($uid != null) {
+        getCourses($uid, printToScreen);
+    }
+}
+
 $("#timeline").live('click', function(event){
 	mypopup();
 });
