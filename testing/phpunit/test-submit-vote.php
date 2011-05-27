@@ -5,7 +5,7 @@
 		public function testAddVoteToQuestion()
 		{
 			// Connect to DB
-			include 'db_credentials.php';
+			include '../../db_credentials.php';
 			
 			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 			if ( !$db_conn )
@@ -70,7 +70,7 @@
 		public function testAddVoteToFeedback()
 		{
 			// Connect to DB
-			include 'db_credentials.php';
+			include '../../db_credentials.php';
 			
 			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 			if ( !$db_conn )
@@ -135,7 +135,7 @@
 		public function testRemoveVoteFromQuestion()
 		{
 			// Connect to DB
-			include 'db_credentials.php';
+			include '../../db_credentials.php';
 			
 			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 			if ( !$db_conn )
@@ -207,7 +207,7 @@
 		public function testRemoveVoteFromFeedback()
 		{
 			// Connect to DB
-			include 'db_credentials.php';
+			include '../../db_credentials.php';
 			
 			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 			if ( !$db_conn )
