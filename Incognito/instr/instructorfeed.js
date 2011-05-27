@@ -56,7 +56,8 @@ window.onload = function() {
     filter = "None";
     sort = "Newest"; // default to sorting by newest
     $sid = $.cookie('sid');
-    getFeed($sid, window.filter, window.sort, printToScreen);
+    if($sid != null)
+        getFeed($sid, window.filter, window.sort, printToScreen);
     $('#filter').change(onFilterChange);
     $('#newest').click(onNewestSortChange);
     $('#priority').click(onPrioritySortChange);
@@ -78,6 +79,7 @@ setInterval("feedRefresh()", 2000) // Refreshes the feed page every 2 seconds
 
 function feedRefresh() {
     $sid = $.cookie('sid');
-	getFeed($sid, window.filter, window.sort, printToScreen);
+    if($sid != null)
+        getFeed($sid, window.filter, window.sort, printToScreen);
 }
 

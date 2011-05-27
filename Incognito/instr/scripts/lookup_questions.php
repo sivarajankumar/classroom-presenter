@@ -8,10 +8,7 @@
 	{
 		// Connect to the database
 
-		//include '../../db_credentials.php';
-		$username = "furby16";
-		$password = "oYveR99b";
-		$db_name = "furby16_incognito";
+		include '../../db_credentials.php';
 
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 	 

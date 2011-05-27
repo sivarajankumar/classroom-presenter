@@ -32,27 +32,14 @@
 				</span> <br />
 				<input type="textbox" id="questiontext" value="" height="1000" size="100" maxlength="120">
 				</textarea>	<br />
-				Option 1) <input type="text" id="option" name="name" size="16"/> <br /> <!--fix these options later!!!!!!!-->
-				Option 2) <input type="text" id="option" name="name" size="16"/> <br /> 	
-				Option 3) <input type="text" id="option" name="name" size="16"/> <br /> 
-                Option 4) <input type="text" id="option" name="name" size="16"/> <br /> 
+				Choice 1) <input type="text" id="option" name="name" size="16"/> <br /> <!--fix these options later!!!!!!!-->
+				Choice 2) <input type="text" id="option" name="name" size="16"/> <br /> 	
+				Choice 3) <input type="text" id="option" name="name" size="16"/> <br /> 
+                Choice 4) <input type="text" id="option" name="name" size="16"/> <br /> 
 				<button type="submit" id="submitbutton" onClick="onSurvey()">Create</button> <br />
 				<input type="checkbox" name="createSurvey" /> I do not want to create a survey.
 			</div>
             </form>
-		
-			<div id="filterandsort">	<!-- Filtering & Sorting -->
-				<span>
-					FILTER BY: 
-					<select name="filter">
-						<option selected="selected">None</option>
-						<option>Just Created</option>
-						<option>Open</option>
-						<option>Closed</option>
-					</select>
-				</span>
-				
-			</div>
 			
 			<div id="surveyFeed">
                 <table>
