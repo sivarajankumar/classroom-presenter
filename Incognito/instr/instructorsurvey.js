@@ -22,7 +22,9 @@ function onCreateFree() {
     $sid = $.cookie('sid');
     
     if($sid){
-        var text = submitform.elements["textfeed"].value;
+        
+	var text = $('#questionText').attr('value'); 
+	//var text = submitform.elements["textfeed"].value;
         // var type = submitsurvey.elements["typeSurvey"].value;
         if ( text.length == 0 )  {
             alert("Please enter a free-response survey in the text box before submitting.");
@@ -38,6 +40,6 @@ $("#timeline").live('click', function(event){
 	mypopup();
 });
 function mypopup(){
-    mywindow = window.open("https://cubist.cs.washington.edu/~ashen/Incognito/instr/graph.php", "mywindow", "location=0,status=1,scrollbars=0,  width=300,height=300");
+    mywindow = window.open("graph.php", "mywindow", "location=0,status=1,scrollbars=0,  width=300,height=300");
     mywindow.moveTo(0, 0);
 }
