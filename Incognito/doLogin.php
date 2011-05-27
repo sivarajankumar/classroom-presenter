@@ -42,6 +42,7 @@
         }
         // Get the uid and then do the update
         $row = mysql_fetch_row($results);
+    echo $user_type;
 	$uid = $row[0];
    	// now insert the user into the instructor or student table.
  	// currently adds to both.
