@@ -22,7 +22,7 @@
 		// This function handles all of the connecting to a db
 		public function connectToDatabase() {
 			
-			include 'db_credentials.php';
+			include '../../db_credentials.php';
 	
 			// Connect to the database and insert an arbitrary question
 			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);

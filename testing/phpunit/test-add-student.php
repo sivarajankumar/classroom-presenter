@@ -5,7 +5,7 @@
 		
 		// This function tests adding a student
 		public function testAddStudent() {
-			include 'db_credentials.php';
+			include '../../db_credentials.php';
 	
 			// Connect to the database and insert an arbitrary student
 			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
