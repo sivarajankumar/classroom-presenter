@@ -8,7 +8,10 @@
 	{
 		// Connect to the database
 
-		include '../../db_credentials.php';
+		//include '../../db_credentials.php';
+		$username = "furby16";
+		$password = "oYveR99b";
+		$db_name = "furby16_incognito";
 
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 	 
@@ -87,7 +90,7 @@
 				$rows[] = array('text'=>$r["text"],'votes'=>$r["numvotes"],'isread'=>$r["isread"],'type'=>'F','id'=>$r["fid"],'numvotes'=>$r["numvotes"],'time'=>$r["time"]);
 			}
 			
-			$rows = sortResults($rows);
+			$rows = sortResults($rows, $sort);
 		}
 		elseif ( $filter == "All Questions" )	// we only want questions
 		{

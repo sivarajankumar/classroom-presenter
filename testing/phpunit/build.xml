@@ -42,6 +42,12 @@
 		</exec>
 		 </target>
 
+<target name="testInstrFeed">
+	<exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-instructorfeed.php" />
+		</exec>
+		 </target>
+
  <target name="build" depends="simpleTest"/>
  <target name="logout" depends="testLogout"/>
  <target name="alias" depends="testGetAlias"/> 
@@ -49,5 +55,6 @@
  <target name="submitVote" depends="testSubmitVote"/>
  <target name="studentFeed" depends="testStudentFeed"/>
  <target name="autocomplete" depends="testAutoComplete"/>
+ <target name="instrFeed" depends="testInstrFeed"/>
 
  </project>
