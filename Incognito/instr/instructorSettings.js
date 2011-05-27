@@ -1,15 +1,14 @@
- /* This file handles the events for Instructor Settings page. */
-  function printToScreen(data){
-	$("#courseInfo").html(data);
- }
+/* This file handles the events for Instructor Settings page. */
+function printToScreen(data){
+    $("#courseInfo").html(data);
+}
 
 function getCourse(data) {
 	// This is just a place holder for when the cid's are returned to us
 }
 
-
-  var courseId;
-  var mailIs;
+var courseId;
+var mailIs;
 
 // This function will create a cookie with the session id in it
 function setSession(sessionId) {
