@@ -49,22 +49,6 @@
 				</div>
 				<input id="createSurvey" type="checkbox" name="createSurvey" /> I do not want to create a survey.
 			</div>
-		
-		
-			<div id="filterandsort">	<!-- Filtering & Sorting -->
-				<span>
-					FILTER BY: 
-					<select name="filter">
-                        <optgroup>
-                            <option selected="selected">None</option>
-                            <option>Just Created</option>
-                            <option>Open</option>
-                            <option>Closed</option>
-                        </optgroup>
-					</select>
-				</span>
-				
-			</div>
 			
 			<div id="surveyFeed">
                 <table>

@@ -70,7 +70,10 @@ function resultsPopup(data) {
 }
 
 window.onload = function() {
-
+    $sid = $.cookie('sid');
+    if ($sid)
+        getSurvey($sid, "none", "none", printToScreen);
+        
     // On Click event start and stop surveying
     $('.respond').live('click', function () {
             var survey_id = $(this).attr("id");
