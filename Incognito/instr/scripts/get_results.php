@@ -46,10 +46,10 @@
 			if (!$results) {
 				die("Error: " . mysql_error($db_conn));
 			}
-			echo "<table id=resultsPop><tr><td>Free Response</td></tr></table><hr>";
+			echo "<table id=resultsPop><tr><td class=free>Free Response</td></tr></table><hr>";
             echo "<table id=resultsPop>";
 			while ($row = mysql_fetch_row($results)) {
-				echo "<tr><td>".$row[0]."</td>";
+				echo "<tr><td class=free wrap=hard>".wordwrap($row[0], 45, "<br />\n", TRUE)."</td><td></td>";
 			}
             echo "</hr>";
             echo "</table>";
