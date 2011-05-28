@@ -260,6 +260,34 @@
 			$this->assertEquals(0, mysql_num_rows($results));
 		}
 		
+		// This function calls the script that removes allows a student to remove
+		// themselves from the course. In addition, this function tests that the
+		// database reflects this change
+		public function removeCourse($cid, $uid) {
+			
+			// Call the delete course php script on the student side
+			$_POST['cid'] = $cid; 
+			$_POST['uid'] = $uid; 
+			
+			include "../../Incognito/students/scripts/delete_course.php";
+			
+			// Now test to make sure the cid, uid pair is no longer in the Joined
+			// table
+			$db_conn = connectToDatabase(); 
+			
+			$query = sprintf("SELECT * FROM Joined WHERE cid = %d AND uid = %d;", $cid, $uid);
+			$results = mysql_query($query, $db_conn);
+			
+			// Error check
+			if (!$results) {
+				die ("Error: " . mysql_error($db_conn));
+			}
+			
+			// We expect that there should no longer be the pair, so the number of 
+			// rows should be zero
+			$this->assertEquals(0, mysql_num_rows($results));
+		}
+		
 		// This test function goes through the entire sequence of events for a 
 		// proper use and initialization of courses
 		public function testUseCourses() {
@@ -297,6 +325,11 @@
 			// Now test closing the session on the instructor's side
 			for ($i = 0; $i < sizeof($courses); $i++) {
 				$this->closeSession($courses[$i]);
+			}
+			
+			// Now test the removal of a course by a student
+			for ($i = 0; $i < sizeof($courses); $i++) {
+				$this->removeCourse($courses[$i], $uids[1]);
 			}
 		}
 	}
