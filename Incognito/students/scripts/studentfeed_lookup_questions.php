@@ -79,35 +79,22 @@
 		
 		// There are seven filtering options and three sorting options. Each combination
 		// of these options needs to be handled differently. 
-		if ( $filter == "None" )	// no filtering, so query both Question and Feedback
+		if ( $filter == "None" || $filter == "All Questions" )	// no filtering, so query both Question and Feedback
 		{
-			// Get results sorted by timestamp in descending order
-			// echo "Filter By: None</br>";
-			$query1 = null;
-			$query2 = null;
-			if ( $sort == "Newest" )
+			$query = null;
+			if ( $sort == "Newest" )			
 			{
-				// echo "Sorting by: Newest</br>";
-				$query1 = sprintf("SELECT * FROM Question WHERE sid = %d ORDER BY time DESC", $sid);
-				$query2 = sprintf("SELECT * FROM Feedback WHERE sid = %d ORDER BY time DESC", $sid);
+				$query = sprintf("SELECT * FROM Question WHERE sid = %d ORDER BY time DESC", $sid);
 			}
 			elseif ( $sort == "Priority" )
 			{
-				// Get results sorted by the number of votes in descending order
-				// echo "Sorting by: Priority</br>";
-				$query1 = sprintf("SELECT * FROM Question WHERE sid = %d ORDER BY numvotes DESC", $sid);
-				$query2 = sprintf("SELECT * FROM Feedback WHERE sid = %d ORDER BY numvotes DESC", $sid);
-			}
+				$query = sprintf("SELECT * FROM Question WHERE sid = %d ORDER BY numvotes DESC", $sid);
+			}			
 			else
 			{
-				// No sorting specified
-				// echo "Sorting by: None</br>";
-				$query1 = sprintf("SELECT * FROM Question WHERE sid = %d", $sid);
-				$query2 = sprintf("SELECT * FROM Feedback WHERE sid = %d", $sid);
+				$query = sprintf("SELECT * FROM Question WHERE sid = %d", $sid);
 			}
-			
-			// Query the Question table and fetch results
-			$results = mysql_query($query1, $db_conn);
+			$results = mysql_query($query, $db_conn);
 			if (!$results)
 			{
 				die("Error: " . mysql_error($db_conn));
@@ -119,61 +106,10 @@
 				
 				$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q','id'=>$r["qid"],'numvotes'=>$r["numvotes"],'time'=>$r["time"]);
 			}
-			
-			// Query the Feedback table and fetch results
-			$results = mysql_query($query2, $db_conn);
-			if (!$results)
-			{
-				die("Error: " . mysql_error($db_conn));
-			}
-			while($r = mysql_fetch_assoc($results))
-			{
-				$fid = (int)$r["fid"];
-				$voted = hasVoted('F', $fid, $uid, $db_conn);
-				
-				$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F','id'=>$r["fid"],'numvotes'=>$r["numvotes"],'time'=>$r["time"]);
-			}
-			
-			$feed = sortResults($feed, $sort);
 		}
-		elseif ( $filter == "All Questions" )	// we only want questions
+		if ( $filter == "None" || $filter == "All Feedback" )
 		{
-			// echo "Filter By: All Questions</br>";
-			if ( $sort == "Newest" )
-			{
-				// Get results sorted by timestamp in descending order
-				// echo "Sort By: Newest</br>";
-				$query = sprintf("SELECT * FROM Question WHERE sid = %d ORDER BY time DESC", $sid);
-			}
-			elseif ( $sort == "Priority" )
-			{
-				// Get results sorted by the number of votes in descending order
-				// echo "Sort By: Priority</br>";
-				$query = sprintf("SELECT * FROM Question WHERE sid = %d ORDER BY numvotes DESC", $sid);
-			}
-			else
-			{
-				// No sorting specified
-				// echo "Sort By: None</br>";
-				$query = sprintf("SELECT * FROM Question WHERE sid = %d", $sid);
-			}
-			
-			// Run the query and fetch the results
-			$results = mysql_query($query, $db_conn);
-			if (!$results)
-			{
-				die("Error: " . mysql_error($db_conn));
-			}
-			while($r = mysql_fetch_assoc($results))
-			{
-				$qid = (int)$r["qid"];
-				$voted = hasVoted('Q', $qid, $uid, $db_conn);
-				
-				$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q','id'=>$r["qid"]);
-			}
-		}
-		elseif ( $filter == "All Feedback" )	// we only want feedback
-		{
+			$query = null;
 			// echo "Filter By: All Feedback</br>";
 			if ( $sort == "Newest" )
 			{
@@ -206,8 +142,14 @@
 				$fid = (int)$r["fid"];
 				$voted = hasVoted('F', $fid, $uid, $db_conn);
 				
-				$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F','id'=>$r["fid"]);
+				$feed[] = array('voted'=>$voted,'text'=>$r["text"],'isread'=>$r["isread"],'type'=>'F','id'=>$r["fid"],'numvotes'=>$r["numvotes"],'time'=>$r["time"]);
 			}
+			
+			// If filter is None, there will be results from the Questions query in $feed already, so
+			//	we need to sort the array to make sure the sorting is properly applied.	If filter is All Feedback, 
+			//	we don't need to sort the array again, but it won't hurt to do so, and it saves a bit of control
+			//	flow logic.
+			$feed = sortResults($feed, $sort);
 		}
 		elseif ( $filter == "Answered" )	// we only want answered questions
 		{
