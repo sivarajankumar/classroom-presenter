@@ -315,7 +315,62 @@
         }
         
         public function testAnswerMC() {
+        
+            // Connect to DB
+			include_once '../../db_credentials.php';
             
+            $db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+            if (!$db_conn) {
+                die("Could not connect");
+            }
+            
+            mysql_select_db($db_name, $db_conn);
+            
+            $session = $this->addSession($db_conn);
+            
+            $sid = $this->addSurvey($session, $db_conn);
+
+            $text1 = "Question1";
+            
+            //Add Multiple Choice
+            $_POST['sid'] = $sid;
+            $_POST['text'] = $text1;
+            $_POST['type'] = "mc";
+            $_POST['choices'] = "['choice1','choice2','choice3','choice4']";
+            include '../../Incognito/instr/scripts/createsurvey.php';
+            
+            //Get the count of the choice to test answering
+            //Multiple-Choice Survey
+            
+            // Testing for $test1
+            // Getting the the most recent survey added
+            $query = sprintf("SELECT count FROM FreeResponse WHERE text = '%s';", $text1);
+            $results = mysql_query($query, $db_conn);
+            
+            // Do some more error checking
+            if (!$results) {
+                die("Error: " + mysql_error($db_conn));
+            }
+				
+			$row = mysql_fetch_row($results);
+            $this->assertEquals(0, $row[0]); // assert that the no survey
+                                            // submissions have been made
+                                            
+            //update the count to 1
+            $count = $row[0] + 1;
+            
+            $query2 = sprintf("UPDATE Choices SET count = %d WHERE sid = %d AND text = '%s';",
+								$count, $sid, $text1);
+            $results2 = mysql_query($query2, $db_conn);
+            
+            // Do some more error checking
+            if (!$results2) {
+                die("Error: " + mysql_error($db_conn));
+            }
+            
+            $this->assertEquals(1, $row[0]); // assert there is one survey
+                                            // submissions that has been made
+             
         }
         
         public function testAnswerFR() {
@@ -394,6 +449,7 @@
 			$row = mysql_fetch_row($results);
             
             $this->assertEquals($answer3, $row[0]);
+            
         }
 	}
 ?>
