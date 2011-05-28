@@ -23,7 +23,8 @@
 			<a href="help_questions_feedback.php">Questions and Feedback</a> | 
 			<a href="help_student_courses.php">Your Courses</a> |  
 		<a href="help_student_feed.php">Using the Feed</a> | 
-		<a href="help_student_surveys.php">Surveys</a>  
+		<a href="help_student_surveys.php">Surveys</a> |
+		<a href="help_student_troubleshooting.php">Troubleshooting</a>  
 		</div>
 
 		
