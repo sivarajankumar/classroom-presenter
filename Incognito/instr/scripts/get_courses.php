@@ -5,7 +5,7 @@
 
 	// Check if we are given a uid
 	if (isset($_POST['uid'])) {
-
+ 
 		$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 		if (!$db_conn) {
 			die("Could not connect");
@@ -16,7 +16,6 @@
 		
 		// Query the database for all courses that the teacher teaches
        		$query = sprintf("SELECT DISTINCT c.cid, c.name FROM User u, Teaches t, Course c WHERE u.uid = %d AND t.uid = u.uid AND t.cid = c.cid;", $uid);
-		
 		$results = mysql_query($query, $db_conn);
 
 		// Error Check

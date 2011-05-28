@@ -46,7 +46,7 @@
               resultFilters    : 'phraseMatch',
               resultHighlighter: 'phraseMatch',
               source           : function(query) {
-			  var type = $('input[name=submitType]:checked', '#submitform').val();
+			var type = $('input[name=submitType]:checked', '#submitform').val();
               $.ajax({
                 type: "POST",
                 url: "scripts/studenthome_lookup_questions.php",
