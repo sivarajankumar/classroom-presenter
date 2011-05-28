@@ -77,8 +77,26 @@
 	 <arg line="test-survey.php" />
 		</exec>
 		 </target>
-         
+<target name="testCourses">
+    <exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-courses.php" />
+		</exec>
+		 </target>
+<target name="testAnswerQuestion">
+    <exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-answer-question.php" />
+		</exec>
+		 </target>
+<target name="testAddStudent">
+    <exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-add-student.php" />
+		</exec>
+		 </target>
+	
  <target name="build" depends="simpleTest"/>
+ <target name="courses" depends="testCourses"/>
+ <target name="addstudent" depends="testAddStudent"/>
+ <target name="answerQ" depends="testAnswerQuestion"/>
  <target name="logout" depends="testLogout"/>
  <target name="alias" depends="testGetAlias"/> 
  <target name="submitQuestion" depends="testSubmitQuestion"/>
