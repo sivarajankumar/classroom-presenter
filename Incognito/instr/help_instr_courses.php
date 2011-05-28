@@ -1,3 +1,8 @@
+<?php
+    include "../doLogin.php";
+	include "common_instructor.php";
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -10,18 +15,9 @@
 
 	<body>
 		
-		<div id="topbanner"> 			
-			<img src="logo.png" alt="logo" />
-		</div>			
-
-		
-		<div id="navigation">	<!-- Navigation bar -->
-			<ul>
-				<li><span><a class="tab" href="instructorfeed.php">Feed</a></span></li>
-				<li><span><a class="tab" href="instructorfree.php">Surveys</a></span></li>
-			</ul>		
-			<a href=""><span id="timeline">VIEW TIMELINE </span></a>
-		</div>
+		<?php //Inserting the banner, greeting, and navigation from common_instructor.php
+			bannerAndNavigation('Help'); 
+		?>
 		
 		<div id="instrhelpnavigation">
 			<a href="help_instr_surveys.php">Survey Management</a> | 
@@ -66,12 +62,9 @@
 
 		
 		
-		<div class="bottomlinks">	<!-- Links at bottom of page -->
-			<a class="aboutlink" href="">Report Bug</a> | 
-			<a class="aboutlink" href="help.php">About</a> | 
-			<a class="aboutlink" href="help.php">Privacy Policy</a> | 
-			<a class="aboutlink" href="help.php">Contact Us</a>
-		</div>
+		<?php //Inserting report a bug, about, privacy policy, contact us links
+			bottomLinks();
+		?>
 		
 	</body>
 </html>
