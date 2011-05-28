@@ -60,7 +60,11 @@
 	 <arg line="test-survey.php" />
 		</exec>
 		 </target>
-         
+<target name="testAnswerMC">
+	<exec dir="." executable="phpunit" failonerror="false">
+		<arg line="test-survey.php" />
+			</exec>
+			</target>         
 <target name="testAnswerFR">
     <exec dir="." executable="phpunit" failonerror="false">
 	 <arg line="test-survey.php" />
