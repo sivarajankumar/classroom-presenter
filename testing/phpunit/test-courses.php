@@ -209,6 +209,31 @@
 			$this->assertEquals(1, mysql_num_rows($results));
 		}
 		
+		// This function has a student leave the session and test whether
+		// the student successfully leaves the session
+		public function exitSession($sid, $uid) {
+			
+			// Call the script
+			$_POST['sid'] = $sid;
+			$_POST['uid'] = $uid; 
+			
+			include "../../Incognito/students/scripts/exit_session.php";
+			
+			// Now see if the sid, uid is still in the Joined table
+			$db_conn = $this->connectToDatabase(); 
+			
+			$query = sprintf("SELECT * FROM Joined WHERE sid = %d AND uid = %d;", $sid, $uid);
+			$results = mysql_query($query, $db_conn);
+			
+			// Error check
+			if (!$results) {
+				die ("Error: " . mysql_error($db_conn));
+			}
+			
+			// We know that something went wrong if the number of rows is != 0
+			$this->assertEquals(0, mysql_num_rows($results));
+		}
+		
 		// This test function goes through the entire sequence of events for a 
 		// proper use and initialization of courses
 		public function testUseCourses() {
@@ -236,6 +261,11 @@
 			// Now have the student join the sessions for each of the courses
 			for ($i = 0; $i < sizeof($sessions); $i++) {
 				$this->joinSession($session[$i], $uids[1]);
+			}
+			
+			// Now we will test the student exiting the session
+			for ($i = 0; $i < sizeof($sessions); $i++) {
+				$this->exitSession($sessions[$i], $uids[1]);
 			}
 		}
 	}
