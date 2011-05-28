@@ -8,7 +8,7 @@
 		// Test submitting a new question.
 		public function testSubmitNewQuestion()
 		{
-			include '../../db_credentials.php';
+			include '../../db_credentials.php';			
 			
 			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 			if ( !$db_conn )
@@ -35,6 +35,14 @@
 			
 			// Run the script
 			include '../../Incognito/students/scripts/submit_question_feedback.php';
+			
+			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+			if ( !$db_conn )
+			{
+				die("Could not connect");
+			}
+			
+			mysql_select_db($db_name, $db_conn);
 			
 			// If the script worked correctly, this query should return 1 row.
 			$query = "SELECT * FROM Question WHERE text = 'test question' AND sid = 23456 AND numvotes = 0";
@@ -77,6 +85,14 @@
 			// Run the script
 			include '../../Incognito/students/scripts/submit_question_feedback.php';
 
+			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+			if ( !$db_conn )
+			{
+				die("Could not connect");
+			}
+			
+			mysql_select_db($db_name, $db_conn);
+			
 			// If the script worked correctly, this query should return 1 row.
 			$query = "SELECT * FROM Feedback WHERE text = 'test feedback' AND sid = 23456 AND numvotes = 0";
 			$results = mysql_query($query, $db_conn);
@@ -127,6 +143,14 @@
 			
 			include '../../Incognito/students/scripts/submit_question_feedback.php';
 			
+			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+			if ( !$db_conn )
+			{
+				die("Could not connect");
+			}
+			
+			mysql_select_db($db_name, $db_conn);
+			
 			// This query checks that the question's vote count is correct, and that there is a row in
 			//	QuestionVotedOn that corresponds to the question. It should return 1 row if everything worked.
 			$query = "SELECT * FROM Question, QuestionVotedOn WHERE Question.text = 'test' AND Question.sid = 23456 AND Question.numvotes = 3 AND QuestionVotedOn.qid = Question.qid AND QuestionVotedOn.uid = 123";
@@ -147,6 +171,14 @@
 			$_POST['uid'] = 123;
 			
 			include '../../Incognito/students/scripts/submit_question_feedback.php';
+			
+			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+			if ( !$db_conn )
+			{
+				die("Could not connect");
+			}
+			
+			mysql_select_db($db_name, $db_conn);
 			
 			// Since the user has already voted for this question, nothing should have changed since the first assertion.
 			//	Verify that this is still the case.
@@ -198,6 +230,14 @@
 			
 			include '../../Incognito/students/scripts/submit_question_feedback.php';
 			
+			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+			if ( !$db_conn )
+			{
+				die("Could not connect");
+			}
+			
+			mysql_select_db($db_name, $db_conn);
+			
 			// This query checks that the comment's vote count is correct, and that there is a row in
 			//	FeedbackVotedOn that corresponds to the comment. It should return 1 row if everything worked.
 			$query = "SELECT * FROM Feedback, FeedbackVotedOn WHERE Feedback.text = 'test' AND Feedback.sid = 23456 AND Feedback.numvotes = 3 AND FeedbackVotedOn.fid = Feedback.fid AND FeedbackVotedOn.uid = 123";
@@ -218,6 +258,14 @@
 			$_POST['uid'] = 123;
 			
 			include '../../Incognito/students/scripts/submit_question_feedback.php';
+			
+			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+			if ( !$db_conn )
+			{
+				die("Could not connect");
+			}
+			
+			mysql_select_db($db_name, $db_conn);
 			
 			// Since the user has already voted for this comment, nothing should have changed since the first assertion.
 			//	Verify that this is still the case.

@@ -4,7 +4,7 @@
 	{
 		public function testAutoComplete()
 		{
-			include 'db_credentials.php';
+			include '../../db_credentials.php';
 			
 			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
 			if ( !$db_conn )
