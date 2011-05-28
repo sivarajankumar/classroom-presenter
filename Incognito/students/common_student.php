@@ -5,7 +5,7 @@
 			<div id="greeting">
 				<span id="cook"><?php echo 'Hello '.($_COOKIE['alias']!='' ? $_COOKIE['alias'] : 'Student') ?></span>
 				| <a href="studentsettings.php">Your Courses</a> 
-				| <a class="aboutlink" href="../help.php">Help</a> 
+				| <a class="aboutlink" href="help_students.php">Help</a> 
 				| <a href="scripts/logout.php">Logout</a> <br />
 			</div>
 		</div>
