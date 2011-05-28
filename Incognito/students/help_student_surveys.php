@@ -16,16 +16,14 @@
 	<body>
 		
 		<?php //Inserting the banner, greeting, and navigation from common_student.php
-			bannerAndNavigation('Feed'); 
+			bannerAndNavigation('Help'); 
 		?>
 		
 		<div id="studenthelpnavigation">
 			<a href="help_questions_feedback.php">Questions and Feedback</a> | 
-		<a href="help_alias.php">Aliases</a> | 
-		<a href="help_student_courses.php">Your Courses</a> |  
+			<a href="help_student_courses.php">Your Courses</a> |  
 		<a href="help_student_feed.php">Using the Feed</a> | 
-		<a href="help_student_surveys.php">Surveys</a> | 
-		<a href="help_students.php">Troubleshooting</a> 
+		<a href="help_student_surveys.php">Surveys</a>  
 		</div>
 
 		
@@ -33,8 +31,11 @@
 			<h1>Surveys</h1>Incognito's surveys let instructors create questions 
 			that students can respond to using Incognito. These questions can 
 			either be multiple choice or free response, which lets you type in 
-			any response you want.<br />
-			<h2>Responding To A Survey</h2>1.&nbsp;&nbsp;&nbsp; Go to the Survey 
+			any response you want.<br><br>Before you can respond to surveys, you 
+			must join a course session. For assistance with joining sessions, 
+			please see the "Your Courses" help link at the top of this page.<br />
+			<h2>Responding To A Survey</h2>1.&nbsp;&nbsp;&nbsp; Join an open 
+			course session.<br>2.&nbsp;&nbsp;&nbsp; Go to the Survey 
 			page.<br />
 			2.&nbsp;&nbsp;&nbsp; Click the "Respond" checkbox next to the prompt 
 			you want to answer.<br />
