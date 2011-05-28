@@ -23,8 +23,8 @@ function onCreateFree() {
     
     if($sid){
         
-	var text = $('#questionText').attr('value'); 
-	//var text = submitform.elements["textfeed"].value;
+        var text = $('#questionText').attr('value'); 
+        // var text = submitform.elements["textfeed"].value;
         // var type = submitsurvey.elements["typeSurvey"].value;
         if ( text.length == 0 )  {
             alert("Please enter a free-response survey in the text box before submitting.");
