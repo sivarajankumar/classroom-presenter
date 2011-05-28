@@ -21,16 +21,6 @@
 		$query = sprintf("SELECT * FROM Student WHERE uid = %d;", $uid);
 		$results = mysql_query($query, $db_conn);
 		
-		// Error check
-		if (!$results) {
-			die ("Error: " . mysql_error($db_conn));
-		}
-		
-		// Now check if the user id is a student
-		if (mysql_num_rows($results) > 0) {
-			die ("Student's cannot insert courses");
-		}
-		
 		// Insert the course
 		$name = $_POST['name'];
 		$mailinglist = $_POST['mailinglist'];
