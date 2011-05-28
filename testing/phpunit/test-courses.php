@@ -153,7 +153,7 @@
 		
 		// This function opens a session for a paritcular course given 
 		// a course id and an instructor id
-		public function openSession($cid, $uid, $instructor) {
+		public function openSession($cid, $uid) {
 			
 			$_POST['uid'] = $uid; 
 			$_POST['cid'] = $cid; 
@@ -162,6 +162,7 @@
 
 			// First see if we got a result back
 			$num_results = 0; 
+			$sid = 0;
 			if (isset($row[0])) {
 				
 				// Then query the database to see if the session is in the db
@@ -179,12 +180,84 @@
 				$num_results = mysql_num_rows($results);
 			}
 			
-			// Now do the asserts
-			if ($instructor) {
-				$this->assertEquals(1, $num_results);
-			} else {
-				$this->assertEquals(0, $num_results);
+			// Should be a session that we just created
+			$this->assertEquals(1, $num_results);
+			return $sid;
+		}
+		
+		// This function has a student join a session and checks to make sure
+		// that the student actually joined the session
+		public function joinSession($sid, $uid) {
+			
+			$_POST['uid'] = $uid;
+			$_POST['sid'] = $sid; 
+			
+			include "../../Incognito/students/scripts/join_session.php";
+			
+			// Now query the database to see if the student made it into the Joined table
+			$db_conn = $this->connectToDatabase(); 
+			
+			$query = sprintf("SELECT * FROM Joined WHERE sid = %d AND uid = %d;", $sid, $uid);
+			$results = mysql_query($query, $db_conn);
+			
+			// Error check
+			if (!$results) {
+				die ("Error: " . mysql_error($db_conn));
 			}
+			
+			// If we an entry in the Joined table then the script passes
+			$this->assertEquals(1, mysql_num_rows($results));
+		}
+		
+		// This function has a student leave the session and test whether
+		// the student successfully leaves the session
+		public function exitSession($sid, $uid) {
+			
+			// Call the script
+			$_POST['sid'] = $sid;
+			$_POST['uid'] = $uid; 
+			
+			include "../../Incognito/students/scripts/exit_session.php";
+			
+			// Now see if the sid, uid is still in the Joined table
+			$db_conn = $this->connectToDatabase(); 
+			
+			$query = sprintf("SELECT * FROM Joined WHERE sid = %d AND uid = %d;", $sid, $uid);
+			$results = mysql_query($query, $db_conn);
+			
+			// Error check
+			if (!$results) {
+				die ("Error: " . mysql_error($db_conn));
+			}
+			
+			// We know that something went wrong if the number of rows is != 0
+			$this->assertEquals(0, mysql_num_rows($results));
+		}
+		
+		// This function attempts to close down the session associated with
+		// a course. In addition, this function checks the database to make 
+		// sure the closure of the session is reflected. 
+		public function closeSession($cid) {
+			
+			// Call the end session php script
+			$_POST['cid'] = $cid;
+			
+			include "../../Incognito/instr/scripts/exit_session.php";
+			
+			// Now make sure that the database reflects theses changes
+			$db_conn = $this->connectToDatabase(); 
+			
+			$query = sprintf("SELECT * FROM Session WHERE cid = %d;", $cid);
+			$results = mysql_query($query, $db_conn);
+			
+			// Error Check
+			if (!$results) {
+				die ("Error: " . mysql_error($db_conn));
+			}
+			
+			// We know that there should no longer be a session associated with that
+			// cid, so there should 0 zero rows in the result
+			$this->assertEquals(0, mysql_num_rows($results));
 		}
 		
 		// This test function goes through the entire sequence of events for a 
@@ -200,14 +273,30 @@
 			// Next we want to add the student to the courses (Note,
 			// I already created a unit test for this script, so I am
 			// going to assume it works)
-			for ($i = 0; $i < sizeof($uids); $i++) {	
+			for ($i = 0; $i < sizeof($courses); $i++) {	
 				$this->addStudent($uids[1], $courses[$i]);
 			}
 			
 			// Now that we have added the student to all of the courses we can
 			// open a session for half of the courses
-			for ($i = 0; $i < sizeof($uids); $i++) {
-				$this->openSession($courses[$i], $uids[0], 1);
+			$sessions;
+			for ($i = 0; $i < sizeof($courses); $i++) {
+				$sessions[$i] = $this->openSession($courses[$i], $uids[0]);
+			}
+			
+			// Now have the student join the sessions for each of the courses
+			for ($i = 0; $i < sizeof($sessions); $i++) {
+				$this->joinSession($session[$i], $uids[1]);
+			}
+			
+			// Now we will test the student exiting the session
+			for ($i = 0; $i < sizeof($sessions); $i++) {
+				$this->exitSession($sessions[$i], $uids[1]);
+			}
+			
+			// Now test closing the session on the instructor's side
+			for ($i = 0; $i < sizeof($courses); $i++) {
+				$this->closeSession($courses[$i]);
 			}
 		}
 	}
