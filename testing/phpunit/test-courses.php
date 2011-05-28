@@ -122,6 +122,8 @@
 			
 			// Check if we are do the test on an instructor a student
 			$this->assertEquals(1, $num_results);
+
+			return $cid; 
 		}
 		
 		// This function adds a series of courses and returns the array of courses created
@@ -134,8 +136,7 @@
 			
 			$courses; 
 			for ($i = 0; $i < $NUM_COURSES; $i++) {
-				$courses[$i] = "" . rand(1000, 9999);
-				$this->addCourse($courses[$i], $iuid);
+				$courses[$i] = $this->addCourse(rand(1000, 9999), $iuid);
 			}
 			
 			return $courses; 
@@ -242,7 +243,7 @@
 			// Call the end session php script
 			$_POST['cid'] = $cid;
 			
-			include "../../Incognito/instr/scripts/exit_session.php";
+			include "../../Incognito/instr/scripts/end_session.php";
 			
 			// Now make sure that the database reflects theses changes
 			$db_conn = $this->connectToDatabase(); 
@@ -273,9 +274,9 @@
 			
 			// Now test to make sure the cid, uid pair is no longer in the Joined
 			// table
-			$db_conn = connectToDatabase(); 
+			$db_conn = $this->connectToDatabase(); 
 			
-			$query = sprintf("SELECT * FROM Joined WHERE cid = %d AND uid = %d;", $cid, $uid);
+			$query = sprintf("SELECT * FROM Attends WHERE cid = %d AND uid = %d;", $cid, $uid);
 			$results = mysql_query($query, $db_conn);
 			
 			// Error check
@@ -333,7 +334,7 @@
 		// instructor and student from the database where uids is an array
 		// where the first item is the instructor uid and the second is the 
 		// student uid. 
-		public function teardown($uids) {
+		public function destoryTestValues($uids) {
 			
 			$db_conn = $this->connectToDatabase(); 
 			
@@ -388,7 +389,7 @@
 			
 			// Now have the student join the sessions for each of the courses
 			for ($i = 0; $i < sizeof($sessions); $i++) {
-				$this->joinSession($session[$i], $uids[1]);
+				$this->joinSession($sessions[$i], $uids[1]);
 			}
 			
 			// Now we will test the student exiting the session
@@ -412,7 +413,7 @@
 			}
 			
 			// Now do a teardown of the tests
-			$this->teardown($uids);
+			$this->destoryTestValues($uids);
 		}
 	}
 
