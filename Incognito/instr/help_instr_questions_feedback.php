@@ -23,7 +23,8 @@
 			<a href="help_instr_surveys.php">Survey Management</a> | 
 		<a href="help_instr_timeline.php">Timeline</a> | 
 		<a href="help_instr_courses.php">Course Management</a> |  
-		<a href="help_instr_questions_feedback.php">Questions and Feedback</a>
+		<a href="help_instr_questions_feedback.php">Questions and Feedback</a> |
+		<a href="help_instr_troubleshooting.php">Troubleshooting</a>
 		</div>
 
 		
@@ -48,15 +49,6 @@
 			checkbox to the right of the question. Similarly, once you have read 
 			a comment, you can set its status to "Read" by checking the checkbox 
 			to its right.<br />
-			<h2>Flagging Submissions As Spam</h2>
-			Incognito lets you respond to 
-			irrelevant or disruptive submissions by flagging 
-			them as spam. Incognito tracks how many times a student's 
-			submissions have been flagged as spam, and will prevent students 
-			from submitting questions or comments if this count grows too large.<br />
-			<br />
-			To flag a question or comment as spam, click the "Flag" button next 
-			to the submission you want to flag.<br />
 		</div>
 
 		
