@@ -1,0 +1,3 @@
+AuthType CSENetID
+CSENetIDAuthGroupFile /www/auth/group
+require group cse403e cse403
