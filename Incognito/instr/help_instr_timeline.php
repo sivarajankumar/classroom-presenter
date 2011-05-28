@@ -29,7 +29,6 @@
 		
 		<div id="maincontent">
 			<h1>The Timeline Graph</h1>
-			<br />
 			<h2>What Is It?</h2>The timeline gives you a visual representation 
 			of the class session's overall activity. Time is on the horizontal 
 			axis, and number of submissions is on the vertical axis. Each point 

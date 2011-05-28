@@ -16,16 +16,14 @@
 	<body>
 		
 		<?php //Inserting the banner, greeting, and navigation from common_student.php
-			bannerAndNavigation('Feed'); 
+			bannerAndNavigation('Help'); 
 		?>
 		
 		<div id="studenthelpnavigation">
 			<a href="help_questions_feedback.php">Questions and Feedback</a> | 
-		<a href="help_alias.php">Aliases</a> | 
-		<a href="help_student_courses.php">Your Courses</a> |  
+			<a href="help_student_courses.php">Your Courses</a> |  
 		<a href="help_student_feed.php">Using the Feed</a> | 
-		<a href="help_student_surveys.php">Surveys</a> | 
-		<a href="help_students.php">Troubleshooting</a> 
+		<a href="help_student_surveys.php">Surveys</a>  
 		</div>
 
 		
@@ -33,11 +31,15 @@
 			<h1>The Feed</h1><br />
 			The feed page lets you view all questions and comments that have 
 			been submitted in your current session. As more questions and 
-			comments are submitted, they will appear on the feed in real time.<br />
-			<br />
+			comments are submitted, they will appear on the feed in real time.
 			The feed's left column shows the submissions you have voted for, 
 			while the feed's right column displays the submission's status 
-			(i.e., whether your instructor has responded to the submission).<br />
+			(i.e., whether your instructor has responded to the submission).<br>
+			<br>Please note that the feed will only display questions and 
+			comments from your class's current session, so you must join a 
+			course session to use the feed. For assistance with joining 
+			sessions, please see the "Your Courses" help link at the top of this 
+			page.<br />
 			<h2>Voting For A Question Or Comment</h2>Each question or comment 
 			has a checkbox next to it on the left side of the page. To vote for 
 			a question or comment you see on the feed, click its checkbox. If 
