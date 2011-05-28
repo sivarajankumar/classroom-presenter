@@ -234,6 +234,32 @@
 			$this->assertEquals(0, mysql_num_rows($results));
 		}
 		
+		// This function attempts to close down the session associated with
+		// a course. In addition, this function checks the database to make 
+		// sure the closure of the session is reflected. 
+		public function closeSession($cid) {
+			
+			// Call the end session php script
+			$_POST['cid'] = $cid;
+			
+			include "../../Incognito/instr/scripts/exit_session.php";
+			
+			// Now make sure that the database reflects theses changes
+			$db_conn = $this->connectToDatabase(); 
+			
+			$query = sprintf("SELECT * FROM Session WHERE cid = %d;", $cid);
+			$results = mysql_query($query, $db_conn);
+			
+			// Error Check
+			if (!$results) {
+				die ("Error: " . mysql_error($db_conn));
+			}
+			
+			// We know that there should no longer be a session associated with that
+			// cid, so there should 0 zero rows in the result
+			$this->assertEquals(0, mysql_num_rows($results));
+		}
+		
 		// This test function goes through the entire sequence of events for a 
 		// proper use and initialization of courses
 		public function testUseCourses() {
@@ -266,6 +292,11 @@
 			// Now we will test the student exiting the session
 			for ($i = 0; $i < sizeof($sessions); $i++) {
 				$this->exitSession($sessions[$i], $uids[1]);
+			}
+			
+			// Now test closing the session on the instructor's side
+			for ($i = 0; $i < sizeof($courses); $i++) {
+				$this->closeSession($courses[$i]);
 			}
 		}
 	}
