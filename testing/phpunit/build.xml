@@ -72,6 +72,12 @@
 		</exec>
 		 </target>
          
+<target name="testAnswerFR">
+    <exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-survey.php" />
+		</exec>
+		 </target>
+         
  <target name="build" depends="simpleTest"/>
  <target name="logout" depends="testLogout"/>
  <target name="alias" depends="testGetAlias"/> 
@@ -84,5 +90,6 @@
  <target name="stopSurvey" depends="testStopSurvey"/>
  <target name="createMC" depends="testCreateMC"/>
  <target name="createFR" depends="testCreateFR"/>
+ <target name="answerFR" depends="testAnswerFR"/>
  
  </project>

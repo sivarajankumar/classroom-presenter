@@ -311,14 +311,89 @@
             
             //Assert that the text is the same
 			$this->assertEquals($text3, $row[0]);
+            return $sid;
         }
         
         public function testAnswerMC() {
-        
+            
         }
         
         public function testAnswerFR() {
-        
+            
+            // Connect to DB
+			include_once '../../db_credentials.php';
+            
+            $db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+            if (!$db_conn) {
+                die("Could not connect");
+            }
+            
+            mysql_select_db($db_name, $db_conn);
+            
+            $sid = $this->testFreeResponse();
+            $answer1 = "";
+            $answer2 = "b]-=25[2p59,";
+            $answer3 = "REALLLLLLLLLLLLLLLLYYYYYYYY LONNNNNNNNNNNGGGGGGGGGGGGGGGGGGGGGGGGG RESSSSSSSSSSSSSSSSSSSPONNNNNNNNNSSSSSEEE";
+            
+            // First test case
+            $_POST['sid'] = $sid;
+            $_POST['answer'] = $answer1;
+            
+            include '../../Incognito/students/scripts/submit_survey_answer.php';
+            
+            // Testing for test1
+            // Getting the the most recent survey added
+            $query = sprintf("SELECT answer FROM FreeResponse WHERE answer = '%s';", $answer1);
+            $results = mysql_query($query, $db_conn);
+            
+            // Do some more error checking
+            if (!$results) {
+                die("Error: " + mysql_error($db_conn));
+            }
+				
+			$row = mysql_fetch_row($results);
+            
+            $this->assertEquals($answer1, $row[0]);
+            
+            // Second test case
+            $_POST['sid'] = $sid;
+            $_POST['answer'] = $answer2;
+            
+            include '../../Incognito/students/scripts/submit_survey_answer.php';
+            
+            // Testing for test2
+            // Getting the the most recent survey added
+            $query = sprintf("SELECT answer FROM FreeResponse WHERE answer = '%s';", $answer2);
+            $results = mysql_query($query, $db_conn);
+            
+            // Do some more error checking
+            if (!$results) {
+                die("Error: " + mysql_error($db_conn));
+            }
+				
+			$row = mysql_fetch_row($results);
+            
+            $this->assertEquals($answer2, $row[0]);
+            
+            // Third test case
+            $_POST['sid'] = $sid;
+            $_POST['answer'] = $answer3;
+            
+            include '../../Incognito/students/scripts/submit_survey_answer.php';
+            
+            // Testing for test1
+            // Getting the the most recent survey added
+            $query = sprintf("SELECT answer FROM FreeResponse WHERE answer = '%s';", $answer3);
+            $results = mysql_query($query, $db_conn);
+            
+            // Do some more error checking
+            if (!$results) {
+                die("Error: " + mysql_error($db_conn));
+            }
+				
+			$row = mysql_fetch_row($results);
+            
+            $this->assertEquals($answer3, $row[0]);
         }
 	}
 ?>
