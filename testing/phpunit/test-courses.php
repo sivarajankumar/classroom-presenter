@@ -93,7 +93,7 @@
 		// This function adds a course to the database given a course name,
 		// an instructor uid, and a flag indicating whether the uid is in fact
 		// an instructor
-		public function addCourse($courseName, $iuid, $instructor) {
+		public function addCourse($courseName, $iuid) {
 			
 			$_POST['uid'] = $iuid;
 			$_POST['name'] = $courseName;
@@ -121,11 +121,7 @@
 			}
 			
 			// Check if we are do the test on an instructor a student
-			if ($instructor) {
-				$this->assertEquals(1, $num_results);
-			} else {
-				$this->assertEquals(0, $num_results);
-			}
+			$this->assertEquals(1, $num_results);
 		}
 		
 		// This function adds a series of courses and returns the array of courses created
@@ -139,11 +135,8 @@
 			$courses; 
 			for ($i = 0; $i < $NUM_COURSES; $i++) {
 				$courses[$i] = "" . rand(1000, 9999);
-				$this->addCourse($courses[$i], $iuid, 1);
+				$this->addCourse($courses[$i], $iuid);
 			}
-			
-			// Next we are going to have the student try to add a course
-			$this->addCourses($courses[0], $suid, 0);
 			
 			return $courses; 
 		}
@@ -213,7 +206,7 @@
 			
 			// Now that we have added the student to all of the courses we can
 			// open a session for half of the courses
-			for ($i = 0; $i < sizeof($uids; $i++)) {
+			for ($i = 0; $i < sizeof($uids); $i++) {
 				$this->openSession($courses[$i], $uids[0], 1);
 			}
 		}
