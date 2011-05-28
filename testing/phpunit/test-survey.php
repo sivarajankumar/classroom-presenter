@@ -44,7 +44,19 @@
 				die("Error: " + mysql_error($db_conn));
 			}
             
-            return $sid;
+            // Check the session
+            // Getting the the most recent survey added
+            $query = sprintf("SELECT sid FROM Session ORDER BY DESC;");
+            $results = mysql_query($query, $db_conn);
+            
+            // Do some more error checking
+            if (!$results) {
+                die("Error: " + mysql_error($db_conn));
+            }
+				
+			$row = mysql_fetch_row($results);
+            
+            return $row[0];
 		}
         
         // This function tests start_survey.php
@@ -53,7 +65,14 @@
             // Connect to DB
 			include_once '../../db_credentials.php';
             
-            $session = addSession($db_conn);
+            $db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+            if (!$db_conn) {
+                die("Could not connect");
+            }
+            
+            mysql_select_db($db_name, $db_conn);
+            
+            $session = $this->addSession($db_conn);
             
             // Add a Survey to the database and grab the survey ID
             $sid = $this->addSurvey($session, $db_conn); // 23456 session id
@@ -82,10 +101,14 @@
         // This function tests start_survey.php
         public function testStopSurvey() {
         
-            $sid = testStartSurvey();
+            $sid = $this->testStartSurvey();
             
-            // Connect to DB
-			include_once '../../db_credentials.php';
+            $db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+            if (!$db_conn) {
+                die("Could not connect");
+            }
+            
+            mysql_select_db($db_name, $db_conn);
             
             // Pass in the survey id to close
             $_POST['sid'] = $sid;
@@ -115,29 +138,46 @@
             // Connect to DB
 			include_once '../../db_credentials.php';
             
-            $session = addSession($db_conn);
+            $db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+            if (!$db_conn) {
+                die("Could not connect");
+            }
             
-            $sid = addSurvey($session, $db_conn);
+            mysql_select_db($db_name, $db_conn);
+            
+            $session = $this->addSession($db_conn);
+            
+            $sid = $this->addSurvey($session, $db_conn);
 
             $text1 = "Question1";
             $text2 = "";
             $text3 = "REALLLLLLLLLLLLLLLYYYYYYYYY LLLLLLLLLLLLLONNNNNNNNNNNNNNNNNNNNNGGGGGG QUUUUUUUUUUUUUUUUESTTTTTTTTTTTTIOOOOOOOOOONNNNNNNN";
             
+            //Add first test case
+            
             $_POST['sid'] = $sid;
             $_POST['text'] = $text1;
             $_POST['type'] = "mc";
+            $_POST['choices'] = "['choice1','choice2','choice3','choice4']";
+            include '../../Incognito/instr/scripts/createsurvey.php';
+            
+            //Add second test case
             
             $_POST['sid'] = $sid;
             $_POST['text'] = $text2;
             $_POST['type'] = "mc";
+            $_POST['choices'] = "['','','','']";
+            include '../../Incognito/instr/scripts/createsurvey.php';
+
+            //Add third test case
             
             $_POST['sid'] = $sid;
             $_POST['text'] = $text3;
             $_POST['type'] = "mc";
-         
-            include_once '../../Incognito/instr/scripts/createsurvey.php';
+            $_POST['choices'] = "['','choice2','','choice4']";
+            include '../../Incognito/instr/scripts/createsurvey.php';
             
-            // Texting for $test1
+            // Testing for $test1
             // Getting the the most recent survey added
             $query = sprintf("SELECT text FROM MultipleChoice WHERE text = '%s';", $text1);
             $results = mysql_query($query, $db_conn);
@@ -152,7 +192,7 @@
             //Assert that the text is the same
 			$this->assertEquals($text1, $row[0]);
             
-            // Texting for $test2
+            // Testing for $test2
             // Getting the the most recent survey added
             $query = sprintf("SELECT text FROM MultipleChoice WHERE text = '%s';", $text2);
             $results = mysql_query($query, $db_conn);
@@ -167,7 +207,7 @@
             //Assert that the text is the same
 			$this->assertEquals($text2, $row[0]);
             
-            // Texting for $test3
+            // Testing for $test3
             // Getting the the most recent survey added
             $query = sprintf("SELECT text FROM MultipleChoice WHERE text = '%s';", $text3);
             $results = mysql_query($query, $db_conn);
@@ -188,29 +228,46 @@
             // Connect to DB
 			include_once '../../db_credentials.php';
             
-            $session = addSession($db_conn);
+            $db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+            if (!$db_conn) {
+                die("Could not connect");
+            }
             
-            $sid = addSurvey($session, $db_conn);
+            mysql_select_db($db_name, $db_conn);
+            
+            $session = $this->addSession($db_conn);
+            
+            $sid = $this->addSurvey($session, $db_conn);
 
             $text1 = "Question1";
             $text2 = "";
             $text3 = "REALLLLLLLLLLLLLLLYYYYYYYYY LLLLLLLLLLLLLONNNNNNNNNNNNNNNNNNNNNGGGGGG QUUUUUUUUUUUUUUUUESTTTTTTTTTTTTIOOOOOOOOOONNNNNNNN";
             
+            //add first test case
+            
             $_POST['sid'] = $sid;
             $_POST['text'] = $text1;
             $_POST['type'] = "fr";
+            
+            include '../../Incognito/instr/scripts/createsurvey.php';
+            
+            //add second test case
             
             $_POST['sid'] = $sid;
             $_POST['text'] = $text2;
             $_POST['type'] = "fr";
             
+            include '../../Incognito/instr/scripts/createsurvey.php';
+            
+            //add third test case
+            
             $_POST['sid'] = $sid;
             $_POST['text'] = $text3;
             $_POST['type'] = "fr";
          
-            include_once '../../Incognito/instr/scripts/createsurvey.php';
+            include '../../Incognito/instr/scripts/createsurvey.php';
             
-            // Texting for $test1
+            // Testing for $test1
             // Getting the the most recent survey added
             $query = sprintf("SELECT text FROM FreeResponse WHERE text = '%s';", $text1);
             $results = mysql_query($query, $db_conn);
@@ -225,7 +282,7 @@
             //Assert that the text is the same
 			$this->assertEquals($text1, $row[0]);
             
-            // Texting for $test2
+            // Testing for $test2
             // Getting the the most recent survey added
             $query = sprintf("SELECT text FROM FreeResponse WHERE text = '%s';", $text2);
             $results = mysql_query($query, $db_conn);
@@ -240,7 +297,7 @@
             //Assert that the text is the same
 			$this->assertEquals($text2, $row[0]);
             
-            // Texting for $test3
+            // Testing for $test3
             // Getting the the most recent survey added
             $query = sprintf("SELECT text FROM FreeResponse WHERE text = '%s';", $text3);
             $results = mysql_query($query, $db_conn);
@@ -254,14 +311,89 @@
             
             //Assert that the text is the same
 			$this->assertEquals($text3, $row[0]);
+            return $sid;
         }
         
-        public function testAnswerMC {
-        
+        public function testAnswerMC() {
+            
         }
         
-        public function testAnswerFR {
-        
+        public function testAnswerFR() {
+            
+            // Connect to DB
+			include_once '../../db_credentials.php';
+            
+            $db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+            if (!$db_conn) {
+                die("Could not connect");
+            }
+            
+            mysql_select_db($db_name, $db_conn);
+            
+            $sid = $this->testFreeResponse();
+            $answer1 = "";
+            $answer2 = "b]-=25[2p59,";
+            $answer3 = "REALLLLLLLLLLLLLLLLYYYYYYYY LONNNNNNNNNNNGGGGGGGGGGGGGGGGGGGGGGGGG RESSSSSSSSSSSSSSSSSSSPONNNNNNNNNSSSSSEEE";
+            
+            // First test case
+            $_POST['sid'] = $sid;
+            $_POST['answer'] = $answer1;
+            
+            include '../../Incognito/students/scripts/submit_survey_answer.php';
+            
+            // Testing for test1
+            // Getting the the most recent survey added
+            $query = sprintf("SELECT answer FROM FreeResponse WHERE answer = '%s';", $answer1);
+            $results = mysql_query($query, $db_conn);
+            
+            // Do some more error checking
+            if (!$results) {
+                die("Error: " + mysql_error($db_conn));
+            }
+				
+			$row = mysql_fetch_row($results);
+            
+            $this->assertEquals($answer1, $row[0]);
+            
+            // Second test case
+            $_POST['sid'] = $sid;
+            $_POST['answer'] = $answer2;
+            
+            include '../../Incognito/students/scripts/submit_survey_answer.php';
+            
+            // Testing for test2
+            // Getting the the most recent survey added
+            $query = sprintf("SELECT answer FROM FreeResponse WHERE answer = '%s';", $answer2);
+            $results = mysql_query($query, $db_conn);
+            
+            // Do some more error checking
+            if (!$results) {
+                die("Error: " + mysql_error($db_conn));
+            }
+				
+			$row = mysql_fetch_row($results);
+            
+            $this->assertEquals($answer2, $row[0]);
+            
+            // Third test case
+            $_POST['sid'] = $sid;
+            $_POST['answer'] = $answer3;
+            
+            include '../../Incognito/students/scripts/submit_survey_answer.php';
+            
+            // Testing for test1
+            // Getting the the most recent survey added
+            $query = sprintf("SELECT answer FROM FreeResponse WHERE answer = '%s';", $answer3);
+            $results = mysql_query($query, $db_conn);
+            
+            // Do some more error checking
+            if (!$results) {
+                die("Error: " + mysql_error($db_conn));
+            }
+				
+			$row = mysql_fetch_row($results);
+            
+            $this->assertEquals($answer3, $row[0]);
         }
 	}
 ?>

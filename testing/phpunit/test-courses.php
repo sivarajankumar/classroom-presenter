@@ -260,6 +260,108 @@
 			$this->assertEquals(0, mysql_num_rows($results));
 		}
 		
+		// This function calls the script that removes allows a student to remove
+		// themselves from the course. In addition, this function tests that the
+		// database reflects this change
+		public function removeCourse($cid, $uid) {
+			
+			// Call the delete course php script on the student side
+			$_POST['cid'] = $cid; 
+			$_POST['uid'] = $uid; 
+			
+			include "../../Incognito/students/scripts/delete_course.php";
+			
+			// Now test to make sure the cid, uid pair is no longer in the Joined
+			// table
+			$db_conn = connectToDatabase(); 
+			
+			$query = sprintf("SELECT * FROM Joined WHERE cid = %d AND uid = %d;", $cid, $uid);
+			$results = mysql_query($query, $db_conn);
+			
+			// Error check
+			if (!$results) {
+				die ("Error: " . mysql_error($db_conn));
+			}
+			
+			// We expect that there should no longer be the pair, so the number of 
+			// rows should be zero
+			$this->assertEquals(0, mysql_num_rows($results));
+		}
+		
+		// This function calls the delete course php script on the instructor side 
+		// thatdeletes a course completely from the database. In adddition,
+		// this function checks to make sure that this change in the database is
+		// actually made. 
+		public function deleteCourse($cid, $uid) {
+			
+			// First call the delete course on the instructor side
+			$_POST['cid'] = $cid; 
+			$_POST['uid'] = $uid; 
+			
+			include "../../Incognito/instr/scripts/delete_course.php";
+			
+			// Now run queries to check both the Teaches table and Course table
+			// to make sure the appropriate changes are reflected
+			$db_conn = $this->connectToDatabase();
+			
+			$query = sprintf("SELECT * FROM Teaches WHERE cid = %d AND uid = %d;", $cid, $uid);
+			$results = mysql_query($query, $db_conn);
+
+			// Error check
+			if (!$results) {
+				die ("Error: " . mysql_error($db_conn));
+			}
+			
+			// We expect that the number of rows of the result are zero since the 
+			// instructor should no longer be teaching the course
+			$this->assertEquals(0, mysql_num_rows($results));
+			
+			$query = sprintf("SELECT * FROM Course WHERE cid = %d;", $cid);
+			$results = mysql_query($query, $db_conn);
+			
+			// Error check
+			if (!$results) {
+				die ("Error: " . mysql_error($db_conn));
+			}
+			
+			// Similar to above, the course should be deleted so the number 
+			// of rows in the result should be zero
+			$this->assertEquals(0, mysql_num_rows($results));
+		}
+		
+		// This function is the teardown of the test and just deletes the
+		// instructor and student from the database where uids is an array
+		// where the first item is the instructor uid and the second is the 
+		// student uid. 
+		public function teardown($uids) {
+			
+			$db_conn = $this->connectToDatabase(); 
+			
+			$query = sprintf("DELETE FROM Instructor WHERE uid = %d;", $uids[0]);
+			$results = mysql_query($query, $db_conn);
+			
+			// Error check
+			if (!$results) {
+				die ("Error: " . mysql_error($db_conn));
+			}
+			
+			$query = sprintf("DELETE FROM Student WHERE uid = %d;", $uids[1]);
+			$results = mysql_query($query, $db_conn);
+			
+			// Error check 
+			if (!$results) {
+				die ("Error: " . mysql_error($db_conn));
+			}
+			
+			$query = sprintf("DELETE FROM User WHERE uid = %d OR uid = %d;", $uids[0], $uids[1]);
+			$results = mysql_query($query, $db_conn);
+			
+			// Error check
+			if (!$results) {
+				die ("Error: " . mysql_error($db_conn));
+			}
+		}
+		
 		// This test function goes through the entire sequence of events for a 
 		// proper use and initialization of courses
 		public function testUseCourses() {
@@ -298,6 +400,19 @@
 			for ($i = 0; $i < sizeof($courses); $i++) {
 				$this->closeSession($courses[$i]);
 			}
+			
+			// Now test the removal of a course by a student
+			for ($i = 0; $i < sizeof($courses); $i++) {
+				$this->removeCourse($courses[$i], $uids[1]);
+			}
+			
+			// Now test the instructor removing the course from the database
+			for ($i = 0; $i < sizeof($courses); $i++) {
+				$this->deleteCourse($courses[$i], $uids[0]);
+			}
+			
+			// Now do a teardown of the tests
+			$this->teardown($uids);
 		}
 	}
 

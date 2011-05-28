@@ -24,8 +24,7 @@
 		$cid = $_POST['cid'];
 		$query = sprintf("DELETE FROM Attends WHERE uid = %d AND cid = %d;", $uid, $cid);
 		$results = mysql_query($query, $db_conn);
-		
-		echo $query; 	
+		 	
 		// Check for errors
 		if (!$results) {
 			die("Error: " + mysql_error($db_conn));
