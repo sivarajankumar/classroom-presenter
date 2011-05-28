@@ -71,7 +71,13 @@
 	 <arg line="test-survey.php" />
 		</exec>
 		 </target>
-         
+ 
+<target name="testAnswerMC">
+    <exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-survey.php" />
+		</exec>
+		 </target>
+ 
 <target name="testAnswerFR">
     <exec dir="." executable="phpunit" failonerror="false">
 	 <arg line="test-survey.php" />
@@ -108,6 +114,7 @@
  <target name="stopSurvey" depends="testStopSurvey"/>
  <target name="createMC" depends="testCreateMC"/>
  <target name="createFR" depends="testCreateFR"/>
+ <target name="answerMC" depends="testAnswerMC"/>
  <target name="answerFR" depends="testAnswerFR"/>
  
  </project>
