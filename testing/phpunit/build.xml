@@ -1,0 +1,95 @@
+<project name="phpunitExample" default="build">
+
+
+ <target name="simpleTest">
+   <exec dir=".." executable="phpunit" failonerror="false">
+      <arg line="testTesting.php" />
+        </exec>
+         </target>
+
+ <target name="testLogout">
+   <exec dir=".." executable="phpunit" failonerror="false">
+      <arg line="testLogout.php" />
+        </exec>
+         </target>
+<target name="testGetAlias">
+   <exec dir="." executable="phpunit" failonerror="false">
+     <arg line="test-alias.php" />
+       </exec>
+         </target>
+		 
+<target name="testSubmitQuestion">
+	<exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-submit-question.php" />
+		</exec>
+		 </target>
+		 
+<target name="testSubmitVote">
+	<exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-submit-vote.php" />
+		</exec>
+		 </target>
+
+<target name="testStudentFeed">
+	<exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-studentfeed.php" />
+		</exec>
+		 </target>
+		 
+<target name="testAutoComplete">
+	<exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-autocomplete.php" />
+		</exec>
+		 </target>
+
+<target name="testInstrFeed">
+	<exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-instructorfeed.php" />
+		</exec>
+		 </target>
+         
+<target name="testStartSurvey">
+    <exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-survey.php" />
+		</exec>
+		 </target>
+         
+<target name="testStopSurvey">
+    <exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-survey.php" />
+		</exec>
+		 </target>
+         
+<target name="testCreateMC">
+    <exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-survey.php" />
+		</exec>
+		 </target>
+         
+<target name="testCreateFR">
+    <exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-survey.php" />
+		</exec>
+		 </target>
+         
+<target name="testAnswerFR">
+    <exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-survey.php" />
+		</exec>
+		 </target>
+         
+ <target name="build" depends="simpleTest"/>
+ <target name="logout" depends="testLogout"/>
+ <target name="alias" depends="testGetAlias"/> 
+ <target name="submitQuestion" depends="testSubmitQuestion"/>
+ <target name="submitVote" depends="testSubmitVote"/>
+ <target name="studentFeed" depends="testStudentFeed"/>
+ <target name="autocomplete" depends="testAutoComplete"/>
+ <target name="instrFeed" depends="testInstrFeed"/>
+ <target name="startSurvey" depends="testStartSurvey"/>
+ <target name="stopSurvey" depends="testStopSurvey"/>
+ <target name="createMC" depends="testCreateMC"/>
+ <target name="createFR" depends="testCreateFR"/>
+ <target name="answerFR" depends="testAnswerFR"/>
+ 
+ </project>
