@@ -25,7 +25,6 @@ function onSurvey() {
         
         // create a string from an array in JSON format
         var json_options = JSON.stringify(options);
-        alert(json_options);
 
         // Make the call to the backend to add the MC survey
         createMC($sid, qtext, printToScreen, json_options);
