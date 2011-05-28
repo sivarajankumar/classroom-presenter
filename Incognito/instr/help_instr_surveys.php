@@ -23,7 +23,8 @@
 			<a href="help_instr_surveys.php">Survey Management</a> | 
 		<a href="help_instr_timeline.php">Timeline</a> | 
 		<a href="help_instr_courses.php">Course Management</a> |  
-		<a href="help_instr_questions_feedback.php">Questions and Feedback</a>
+		<a href="help_instr_questions_feedback.php">Questions and Feedback</a> |
+		<a href="help_instr_troubleshooting.php">Troubleshooting</a>
 		</div>
 
 		
