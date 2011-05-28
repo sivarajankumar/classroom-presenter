@@ -53,7 +53,7 @@ function multiPopup(data) {
 window.onload = function() {
 
     filter = "none";
-    sort = "none"; // default to sorting by newest
+    sort = "none"; // default to sorting by none
     $sid = $.cookie("sid");
     if($sid != null)
         getSurvey($sid, window.filter, window.sort, printToScreen);
