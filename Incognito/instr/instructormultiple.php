@@ -37,7 +37,6 @@
 				Choice 3) <input type="text" id="option" name="name" size="16"/> <br /> 
                 Choice 4) <input type="text" id="option" name="name" size="16"/> <br /> 
 				<button type="submit" id="submitbutton" onClick="onSurvey()">Create</button> <br />
-				<input type="checkbox" name="createSurvey" /> I do not want to create a survey.
 			</div>
             </form>
 			

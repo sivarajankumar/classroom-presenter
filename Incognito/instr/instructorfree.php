@@ -44,7 +44,6 @@
                 <button type="submit" id="submitbutton" onClick="onCreateFree()">Create</button>
           </form>
 				</div>
-				<input id="createSurvey" type="checkbox" name="createSurvey" /> I do not want to create a survey.
 			</div>
 			
 			<div id="surveyFeed">
