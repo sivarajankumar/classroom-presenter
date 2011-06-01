@@ -39,29 +39,30 @@
 			2.&nbsp;&nbsp;&nbsp; Select 
 			"Multiple Choice" from the options above the text box. <br />
 			3.&nbsp;&nbsp;&nbsp; Type the poll's prompt into the text box. <br />
-			4.&nbsp;&nbsp;&nbsp; Type the answer options into the fields below the text box. To add another option, click the "+" button to the right of the last option. To remove an option, click the 
-			"-" button to the right of the last option.<br /> 
+			4.&nbsp;&nbsp;&nbsp; Type the answer options into the fields below the text box.<br /> 
 			5.&nbsp;&nbsp;&nbsp; Click "Create."<br />
 			<h2>Creating A Free Response Question</h2>
 		1.&nbsp;&nbsp;&nbsp; 
 			Go to the Survey page.<br />
 			2.&nbsp;&nbsp;&nbsp; Select "Free Response" from the options above the text box.<br /> 
 			3.&nbsp;&nbsp;&nbsp; Type the question's prompt into the text box.<br /> 
-			4.&nbsp;&nbsp;&nbsp; Click "Create."<br />
+			4.&nbsp;&nbsp;&nbsp; Click "Create."<br>
+			<h2>Starting A Survey</h2>1.&nbsp;&nbsp;&nbsp; Go to the Survey 
+			page.<br>2.&nbsp;&nbsp;&nbsp; After creating a survey, click the 
+			"Start Survey" button for the survey you want to start. Your 
+			students will now be able to see and respond to the survey until you 
+			close it.<br />
 			<h2>Closing A Survey</h2>1.&nbsp;&nbsp;&nbsp; 
 			Go to the Survey page.<br />
-		2.&nbsp;&nbsp;&nbsp; Select "Closed" from the drop-down menu 
-			to the left of the survey you want to close. <br />
-			<br />
-			<i>Note:</i> A survey can only be closed if its status is currently 
-			"Open."<br />
+			2.&nbsp;&nbsp;&nbsp; Click the "Close Survey" button for the open survey you want 
+			to close.<i> Note:</i> The "Close Survey" button is not visible for 
+			surveys that are not open.<br />
 			<h2>Viewing Survey Responses</h2>1.&nbsp;&nbsp;&nbsp; 
 			Go to the Survey page.<br />
-			2.&nbsp;&nbsp;&nbsp; Close the survey that you want to see responses 
+			2.&nbsp;&nbsp;&nbsp; (Optional) Close the survey that you want to see responses 
 			for.<br />
-		2.&nbsp;&nbsp;&nbsp; 
-			After the survey has been closed, a drop-down menu will appear in 
-			the "View Responses" column. Select "Yes" from the drop-down menu to the right of the desired survey.<br />
+			3.&nbsp;&nbsp;&nbsp; Click the "Get Results" button for the desired survey. A 
+			pop-up dialog box will appear and show the survey's results.<br />
 			
 		</div>
 
