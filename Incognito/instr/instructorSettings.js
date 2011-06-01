@@ -58,8 +58,8 @@ function setSession(sessionId) {
 	$(".addStudentButton").live('click',function(event) {
 		//var cookie = $.cookie("uid");
 		//alert(cookie);
-		// var student = $("#studentToAdd").val();
-		updateStudents($uid, $(this).attr('id'));
+		var student = $("#studentToAdd").val();
+		updateStudents(student, $(this).attr('id'));
         $.prompt('<br />Added Student to Course<br /><br />', {prefix:'surveyPopup'});
         getCourses($uid,printToScreen);
 	});
