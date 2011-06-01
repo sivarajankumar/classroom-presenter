@@ -83,6 +83,7 @@ window.onload = function() {
                 stopSurvey(survey_id.substr(9));
             }
             
+            getSurvey($sid, "none", "none", printToScreen);
         });
     // On click event to retrieve results
     $('.getresults').live('click', function () {
