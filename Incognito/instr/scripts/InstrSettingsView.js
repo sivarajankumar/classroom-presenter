@@ -53,19 +53,6 @@ function insertCourse(userId, courseName, mailingList, getCid) {
 // to the course. 
 //
 // TODO: Eventually this function will have some sort of handler that informs
-// 		 the caller of whether or not the student was successfully added to the 
-//		 course. 
-function updateStudents(userId, courseId) {
-	
-	// Make the HTTP requeset through AJAX
-	$.post("scripts/addStudent.php",
-			{uid: userId, cid: courseId});
-}
-
-// This function takes a courseId and a student email and then adds the student
-// to the course. 
-//
-// TODO: Eventually this function will have some sort of handler that informs
 //               the caller of whether or not the student was successfully added to the 
 //               course. 
 function updateStudents(studentEmail, courseId) {
@@ -73,4 +60,14 @@ function updateStudents(studentEmail, courseId) {
         // Make the HTTP requeset through AJAX
         $.post("scripts/addStudent.php",
                         {email: studentEmail, cid: courseId});
+}
+
+// This function takes a courseId and removes the course from the database.
+//
+// TODO: Eventually this function will have a callback that indicates the 
+//       success or failure of this function call. 
+function deleteCourse(userId, courseId) {
+        
+        $.post("scripts/delete_course.php",
+                        {uid: userId, cid: courseId});
 }
