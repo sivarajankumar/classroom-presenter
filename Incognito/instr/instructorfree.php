@@ -22,7 +22,7 @@
 	<body>		
 		
 		<?php //Inserting the banner, greeting, and navigation from common_instructor.php
-			bannerAndNavigation('Surveys'); 
+			bannerAndNavigationWithoutTimeline('Surveys'); 
 		?>
 		
 		<div id = "maincontent">	
