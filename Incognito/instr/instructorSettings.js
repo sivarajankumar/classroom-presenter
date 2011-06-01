@@ -61,6 +61,7 @@ function setSession(sessionId) {
 		// var student = $("#studentToAdd").val();
 		updateStudents($uid, $(this).attr('id'));
         $.prompt('<br />Added Student to Course<br /><br />', {prefix:'surveyPopup'});
+        getCourses($uid,printToScreen);
 	});
 });
 
