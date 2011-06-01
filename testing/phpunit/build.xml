@@ -80,9 +80,14 @@
 	 <arg line="test-add-student.php" />
 		</exec>
 		 </target>
-	
- <target name="build" depends="testCourses, testAddStudent, testAnswerQuestion, testSubmitQuestion,
+<target name="testTimeline">
+    <exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-timeline.php" />
+		</exec>
+		 </target>
+ 
+<target name="build" depends="testCourses, testAddStudent, testAnswerQuestion, testSubmitQuestion,
  				testSubmitVote, testStudentFeed, testAutoComplete, testInstrFeed, testStartSurvey, testStopSurvey,
- 				testCreateMC, testCreateFR, testAnswerFR"/>
+ 				testCreateMC, testCreateFR, testAnswerFR, testTimeline"/>
  
  </project>
