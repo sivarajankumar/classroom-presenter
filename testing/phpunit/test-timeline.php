@@ -40,7 +40,7 @@ class testTimeline extends PHPUnit_Framework_TestCase
 		
 		// Get the cid
 		$query = "SELECT cid FROM Course WHERE name = 'test' AND 
-							mailinglist = 'test ORDER BY cid DESC;";
+							mailinglist = 'test' ORDER BY cid DESC;";
 		$results = mysql_query($query, $db_conn);
 		
 		// Error check
@@ -69,7 +69,7 @@ class testTimeline extends PHPUnit_Framework_TestCase
 			die ("Error: " . mysql_error($db_conn));
 		}
 		
-		$row = mysql_fetch_rows($results);
+		$row = mysql_fetch_row($results);
 		$sid = $row[0];
 		
 		// Now insert a question
