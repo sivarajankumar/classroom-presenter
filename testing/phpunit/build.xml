@@ -37,39 +37,12 @@
 		</exec>
 		 </target>
          
-<target name="testStartSurvey">
+<target name="testSurvey">
     <exec dir="." executable="phpunit" failonerror="false">
 	 <arg line="test-survey.php" />
 		</exec>
 		 </target>
-         
-<target name="testStopSurvey">
-    <exec dir="." executable="phpunit" failonerror="false">
-	 <arg line="test-survey.php" />
-		</exec>
-		 </target>
-         
-<target name="testCreateMC">
-    <exec dir="." executable="phpunit" failonerror="false">
-	 <arg line="test-survey.php" />
-		</exec>
-		 </target>
-         
-<target name="testCreateFR">
-    <exec dir="." executable="phpunit" failonerror="false">
-	 <arg line="test-survey.php" />
-		</exec>
-		 </target>
-<target name="testAnswerMC">
-	<exec dir="." executable="phpunit" failonerror="false">
-		<arg line="test-survey.php" />
-			</exec>
-			</target>         
-<target name="testAnswerFR">
-    <exec dir="." executable="phpunit" failonerror="false">
-	 <arg line="test-survey.php" />
-		</exec>
-		 </target>
+
 <target name="testCourses">
     <exec dir="." executable="phpunit" failonerror="false">
 	 <arg line="test-courses.php" />
@@ -87,7 +60,6 @@
 		 </target>
 	
  <target name="build" depends="testCourses, testAddStudent, testAnswerQuestion, testLogout, testSubmitQuestion,
- 				testSubmitVote, testStudentFeed, testAutoComplete, testInstrFeed, testStartSurvey, testStopSurvey,
- 				testCreateMC, testCreateFR, testAnswerFR"/>
+ 				testSubmitVote, testStudentFeed, testAutoComplete, testInstrFeed, testSurvey"/>
  
  </project>

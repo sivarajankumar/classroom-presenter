@@ -98,7 +98,7 @@ CREATE TABLE MultipleChoice
 CREATE TABLE FreeResponse
 (
        sid		INT,
-       text		VARCHAR(50),
+       text		TEXT,
        PRIMARY KEY(sid),
        FOREIGN KEY(sid) REFERENCES Survey(sid) ON DELETE CASCADE
 );
