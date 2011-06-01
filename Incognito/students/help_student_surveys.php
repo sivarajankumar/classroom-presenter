@@ -40,7 +40,9 @@
 			page.<br />
 			2.&nbsp;&nbsp;&nbsp; Click the "Respond" checkbox next to the prompt 
 			you want to answer.<br />
-			3.&nbsp;&nbsp;&nbsp; Type your response into the provided check box.<br />
+			3.&nbsp;&nbsp;&nbsp; For free response surveys, type your response into the provided check box. 
+			For multiple choice surveys, select your answer from the choices 
+			provided.<br />
 			4.&nbsp;&nbsp;&nbsp; Click "Submit."<br />
 		</div>
 
