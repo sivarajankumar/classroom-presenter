@@ -1,11 +1,6 @@
 <project name="phpunitExample" default="build">
 
 
- <target name="testLogout">
-   <exec dir=".." executable="phpunit" failonerror="false">
-      <arg line="testLogout.php" />
-        </exec>
-         </target>
 		 
 <target name="testSubmitQuestion">
 	<exec dir="." executable="phpunit" failonerror="false">
@@ -86,7 +81,7 @@
 		</exec>
 		 </target>
 	
- <target name="build" depends="testCourses, testAddStudent, testAnswerQuestion, testLogout, testSubmitQuestion,
+ <target name="build" depends="testCourses, testAddStudent, testAnswerQuestion, testSubmitQuestion,
  				testSubmitVote, testStudentFeed, testAutoComplete, testInstrFeed, testStartSurvey, testStopSurvey,
  				testCreateMC, testCreateFR, testAnswerFR"/>
  
