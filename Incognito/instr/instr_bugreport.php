@@ -30,6 +30,7 @@
 			Please describe the problem below. Be as detailed as possible. The more information you give us, the easier it is for us to resolve the issue.
 				<br />
 				<textarea name="description" rows="10" style="width: 486px" id="submissioncontent"></textarea><br />
+				<input type="hidden" id="source" name="source" value="instr" />
 				<input id="submitbutton" name="SubmitBugButton" type="submit" value="Submit" />
 			</form>
 		</div>
