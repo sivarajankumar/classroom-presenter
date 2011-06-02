@@ -1,5 +1,5 @@
 <?php
-        include '../../db_credentials.php';
+        include "../../db_credentials.php";
         // This php script adds a student to a class given a email and a 
         // course id
         
