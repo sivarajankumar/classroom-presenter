@@ -60,7 +60,7 @@
 			course may have multiple sessions associated with it, and each 
 			session has its own set of questions, feedback, and surveys. 
 			However, sessions are associated with only one course.<br><br>
-			<img alt="Help Diagram" src="../help_diagram.png" width="900"></img></div>
+			<img alt="Help Diagram" src="../help_diagram.PNG" width="900"></img></div>
 
 		<br />		
 		</div>
