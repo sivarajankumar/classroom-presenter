@@ -79,7 +79,7 @@
 		
 		// There are seven filtering options and three sorting options. Each combination
 		// of these options needs to be handled differently. 
-		if ( $filter == "None" || $filter == "All Questions" )	// no filtering, so query both Question and Feedback
+		if ( $filter == "None" || $filter == "All Questions" )	// for both of these options, we need to query Question
 		{
 			$query = null;
 			if ( $sort == "Newest" )			
@@ -107,7 +107,7 @@
 				$feed[] = array('voted'=>$voted,'text'=>$r["text"],'answered'=>$r["answered"],'type'=>'Q','id'=>$r["qid"],'numvotes'=>$r["numvotes"],'time'=>$r["time"]);
 			}
 		}
-		if ( $filter == "None" || $filter == "All Feedback" )
+		if ( $filter == "None" || $filter == "All Feedback" )	// for both of these options, we need to query Feedback
 		{
 			$query = null;
 			// echo "Filter By: All Feedback</br>";
