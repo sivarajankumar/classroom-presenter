@@ -18,6 +18,9 @@
 	
 	$summary = $_POST['summary'];
 	$description = $_POST['description'];
+	$source = $_POST['source'];
+	echo "Summary = " . $summary;
+	echo "Description = " . $description;
 	
 	$query = sprintf("INSERT INTO BugReports(summary, description) VALUES ('%s', '%s')", $summary, $description);
 	if(!mysql_query($query, $db_conn))
@@ -25,4 +28,8 @@
 		die("Query error: " . mysql_error());
 	}
 
+	if ( $source == "student" )
+		header("Location: students/student_bugreport.php");
+	elseif ( $source == "instr" )
+		header("Location: instr/instr_bugreport.php");
 ?>
