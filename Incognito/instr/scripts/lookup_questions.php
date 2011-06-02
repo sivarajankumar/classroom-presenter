@@ -20,6 +20,8 @@
 		return $db_conn;
 	}
 	
+	// Given an array of query results, sorts them by timestamp or by vote count,
+	//	depending on the value of the sort parameter for the feed.
 	function sortResults($feed, $sort)
 	{
 		if ($sort == "Newest")
