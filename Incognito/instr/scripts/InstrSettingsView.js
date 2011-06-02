@@ -56,7 +56,6 @@ function insertCourse(userId, courseName, mailingList, getCid) {
 //               the caller of whether or not the student was successfully added to the 
 //               course. 
 function updateStudents(studentEmail, courseId) {
-        alert("this is going to work");
         // Make the HTTP requeset through AJAX
         $.post("scripts/addStudent.php",
                         {email: studentEmail, cid: courseId});
