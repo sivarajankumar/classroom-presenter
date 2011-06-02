@@ -62,7 +62,7 @@ function setSession(sessionId) {
 		//alert(cookie);
 		var student = $("#studentToAdd").val();
 		updateStudents(student, $(this).attr('id'));
-        $.prompt('<br />Added ' + student + ' to Course<br /><br />', {prefix:'surveyPopup'});
+        $.prompt('<br />Added Student to Course<br /><br />', {prefix:'surveyPopup'});
         getCourses($uid,printToScreen);
 	});
 });
