@@ -51,8 +51,12 @@
 		}
 	}	
 
-	$type = $_POST['type'];	// 'Q' for question, 'F' for feedback
-	$id = $_POST['id'];		// ID for the question or feedback
-	$flag = $_POST['flag'];	// "true" if we want to set the entry to answered/read, "false" for unanswered/not read
-	answer($type, $id, $flag);
+	if ( isset($_POST['type']) && isset($_POST['id']) && isset($_POST['flag']) )
+	{
+		$type = $_POST['type'];	// 'Q' for question, 'F' for feedback
+		$id = $_POST['id'];		// ID for the question or feedback
+		$flag = $_POST['flag'];	// "true" if we want to set the entry to answered/read, "false" for unanswered/not read
+		answer($type, $id, $flag);
+	}
+	
 ?>
