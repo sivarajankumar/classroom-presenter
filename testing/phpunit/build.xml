@@ -1,0 +1,93 @@
+<project name="phpunitExample" default="build">
+
+
+		 
+<target name="testSubmitQuestion">
+	<exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-submit-question.php" />
+		</exec>
+		 </target>
+		 
+<target name="testSubmitVote">
+	<exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-submit-vote.php" />
+		</exec>
+		 </target>
+
+<target name="testStudentFeed">
+	<exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-studentfeed.php" />
+		</exec>
+		 </target>
+		 
+<target name="testAutoComplete">
+	<exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-autocomplete.php" />
+		</exec>
+		 </target>
+
+<target name="testInstrFeed">
+	<exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-instructorfeed.php" />
+		</exec>
+		 </target>
+         
+<target name="testStartSurvey">
+    <exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-survey.php" />
+		</exec>
+		 </target>
+         
+<target name="testStopSurvey">
+    <exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-survey.php" />
+		</exec>
+		 </target>
+         
+<target name="testCreateMC">
+    <exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-survey.php" />
+		</exec>
+		 </target>
+         
+<target name="testCreateFR">
+    <exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-survey.php" />
+		</exec>
+		 </target>
+<target name="testAnswerMC">
+	<exec dir="." executable="phpunit" failonerror="false">
+		<arg line="test-survey.php" />
+			</exec>
+			</target>         
+<target name="testAnswerFR">
+    <exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-survey.php" />
+		</exec>
+		 </target>
+<target name="testCourses">
+    <exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-courses.php" />
+		</exec>
+		 </target>
+<target name="testAnswerQuestion">
+    <exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-answer-question.php" />
+		</exec>
+		 </target>
+<target name="testAddStudent">
+    <exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-add-student.php" />
+		</exec>
+		 </target>
+<target name="testTimeline">
+    <exec dir="." executable="phpunit" failonerror="false">
+	 <arg line="test-timeline.php" />
+		</exec>
+		 </target>
+ 
+<target name="build" depends="testCourses, testAddStudent, testAnswerQuestion, testSubmitQuestion,
+ 				testSubmitVote, testStudentFeed, testAutoComplete, testInstrFeed, testStartSurvey, testStopSurvey,
+ 				testCreateMC, testCreateFR, testAnswerFR, testTimeline"/>
+ 
+ </project>
