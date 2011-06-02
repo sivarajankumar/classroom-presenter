@@ -48,6 +48,14 @@
 			
 			include '../../Incognito/students/scripts/submit_vote.php';
 			
+			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+			if ( !$db_conn )
+			{
+				die("Could not connect");
+			}
+			
+			mysql_select_db($db_name, $db_conn);
+			
 			// Check that the vote count is right
 			$query = "SELECT * FROM Question WHERE numvotes = 1";
 			$results = mysql_query($query, $db_conn);
@@ -112,6 +120,14 @@
 			$_POST['vote'] = "true";
 			
 			include '../../Incognito/students/scripts/submit_vote.php';
+			
+			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+			if ( !$db_conn )
+			{
+				die("Could not connect");
+			}
+			
+			mysql_select_db($db_name, $db_conn);
 			
 			// Check that the vote count is right
 			$query = "SELECT * FROM Feedback WHERE numvotes = 1";
@@ -185,6 +201,14 @@
 			
 			include '../../Incognito/students/scripts/submit_vote.php';
 			
+			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+			if ( !$db_conn )
+			{
+				die("Could not connect");
+			}
+			
+			mysql_select_db($db_name, $db_conn);
+			
 			// Check that the vote count is right
 			$query = "SELECT * FROM Question WHERE numvotes = 0";
 			$results = mysql_query($query, $db_conn);
@@ -256,6 +280,14 @@
 			$_POST['vote'] = "false";
 			
 			include '../../Incognito/students/scripts/submit_vote.php';
+			
+			$db_conn = mysql_connect("cubist.cs.washington.edu", $username, $password);
+			if ( !$db_conn )
+			{
+				die("Could not connect");
+			}
+			
+			mysql_select_db($db_name, $db_conn);
 			
 			// Check that the vote count is right
 			$query = "SELECT * FROM Feedback WHERE numvotes = 0";
