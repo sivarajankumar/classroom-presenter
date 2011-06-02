@@ -25,6 +25,7 @@ function setSession(sessionId) {
 	// ends a session
    $(".closeOptionButton").live('click',function(event) {
 		endSession($(this).attr('id'));
+        
 		getCourses($uid, printToScreen);
 		$.cookie('sid', "", {expires: -1, path: '/'});
 	});
@@ -32,9 +33,8 @@ function setSession(sessionId) {
     //starts a session
 	$(".openOptionButton").live('click',function(event) {
 		startSession($(this).attr('id'), $uid, setSession);
-		getCourses($uid, printToScreen);
         
-        	//$.cookie("sid", $(this).attr('id'), { expires: 7, path: '/' });
+		getCourses($uid, printToScreen);
 	});
 	
 	//Adds a InstructorID, courseName, mailingList, callbackFunction
@@ -42,6 +42,7 @@ function setSession(sessionId) {
 		var courseIs = $("#courseName").val();
 		mailIs = $("#mailingList").val();
 		courseId = insertCourse($uid, courseIs, mailIs, getCourse);
+        
 		getCourses($uid, printToScreen);
 	});
 	
@@ -49,6 +50,7 @@ function setSession(sessionId) {
 	$(".courseRemoveButton").live('click',function(event) {
 		// if session is open , need to prompt to close session first
 		deleteCourse($uid, $(this).attr('id'));
+        
 		// must delete only one course
 		getCourses($uid,printToScreen);
 	});
@@ -60,7 +62,7 @@ function setSession(sessionId) {
 		//alert(cookie);
 		var student = $("#studentToAdd").val();
 		updateStudents(student, $(this).attr('id'));
-        $.prompt('<br />Added Student to Course<br /><br />', {prefix:'surveyPopup'});
+        $.prompt('<br />Added ' + student + ' to Course<br /><br />', {prefix:'surveyPopup'});
         getCourses($uid,printToScreen);
 	});
 });
