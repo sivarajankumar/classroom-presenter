@@ -170,7 +170,7 @@
 		}
 	}	
 
-	if ( isset() && isset() && isset() && isset() )
+	if ( isset($_POST['type']) && isset($_POST['id']) && isset($_POST['uid']) && isset($_POST['vote']) )
 	{
 		$type = $_POST['type'];			// Type of the submission ('Q' or 'F')
 		$id = $_POST['id'];				// ID of the question or feedback
