@@ -31,7 +31,7 @@
 		
 		// Execute the appropriate query depending on whether the submitted text
 		//	is a question or a feedback
-		if ($type == 'Q')
+		if ($type == 'Q')	// a question is being submitted
 		{
 			// Check if it already exists
 			$query = sprintf("SELECT * FROM Question WHERE text = '%s'", $text);
@@ -61,7 +61,7 @@
 					$query = sprintf("UPDATE Question SET numvotes = %d WHERE qid = %d", $votes, $qid);
 					$results = mysql_query($query, $db_conn);
 					
-					// update QuestionVotedOn
+					// update QuestionVotedOn to indicate $uid has voted for $qid
 					$query = sprintf("INSERT INTO QuestionVotedOn(qid, uid) VALUES (%d, %d)", $qid, $uid);
 					$results = mysql_query($query, $db_conn);
 					if (!$results)
@@ -70,9 +70,9 @@
 					}
 				}
 			}
-			else
+			else	// the query returned nothing, so this isn't a duplicate submission
 			{
-				//$answered = $_POST['answered'];
+				// just insert the question
 				$query = sprintf("INSERT INTO Question (text, numvotes, answered, sid) 
 								VALUES ('%s', %d, %d, %d)", $text, $numvotes, 0, $sid);
 				if(!mysql_query($query, $db_conn)) {
@@ -80,7 +80,7 @@
 				}
 			}
 		}
-		elseif ($type == 'F')
+		elseif ($type == 'F')	// a feedback is being submitted
 		{
 			// Check if it already exists
 			$query = sprintf("SELECT * FROM Feedback WHERE text = '%s'", $text);
@@ -114,7 +114,7 @@
 						die("Error: " . mysql_error($db_conn));
 					}
 					
-					// update FeedbackVotedOn
+					// update FeedbackVotedOn to indicate $uid has voted for $fid
 					$query = sprintf("INSERT INTO FeedbackVotedOn(fid, uid) VALUES (%d, %d)", $fid, $uid);
 					$results = mysql_query($query, $db_conn);
 					if (!$results)
@@ -123,9 +123,8 @@
 					}
 				}
 			}
-			else
+			else	// the query returned nothing, so this isn't a duplicate submission
 			{
-				//$isread = $_POST['isread'];
 				$query = sprintf("INSERT INTO Feedback (text, numvotes, isread, sid)
 								VALUES ('%s', %d, %d, %d)", $text, $numvotes, 0, $sid);
 				if(!mysql_query($query, $db_conn)) {
