@@ -18,8 +18,6 @@
 	
 	$summary = $_POST['summary'];
 	$description = $_POST['description'];
-	echo "Summary = " . $summary;
-	echo "Description = " . $description;
 	
 	$query = sprintf("INSERT INTO BugReports(summary, description) VALUES ('%s', '%s')", $summary, $description);
 	if(!mysql_query($query, $db_conn))
